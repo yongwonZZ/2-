@@ -1,8 +1,31 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 h1 {
-  font-size: 45px;
+  font-size: 25px;
+  text-align: center;
+  margin: 15px;
+}
+
+.look-button button {
+  background-color: none;
+  border: 2px solid gray;
+  border-radius: 5px;
+}
+
+.look-button button:hover {
+  cursor: pointer;
+}
+
+.fashion-img-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.fashion-img-container img {
+  max-width: 33.33%;
+  border: 2px solid white;
 }
