@@ -4,33 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4f357679-4622-4009-90d2-b5a1d5ff9c7b" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/src/airlinePage/AirlineSearchPage.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/airlinePage/AirlineSearchPage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/airlineSearchComponents/AirlineSearchResult.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/airlineSearchComponents/FlightFilterOption.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/airlineSearchComponents/FlightFilterOption.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/airlineSearchComponents/FlightFilterOptions.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/airlineSearchComponents/FlightFilterOptions.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/airlineSearchComponents/SearchFilterDropdown.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/airlineSearchComponents/SearchFilterDropdown.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mainPage/MainPage.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mainPage/MainPage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mainPageComponents/CodeShareOptions.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mainPageComponents/MainPageContainer.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mainPageComponents/MainPageContainer.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mainPageComponents/MainPageSubContainer.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/publicComponents/Header.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/publicComponents/Header.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/publicComponents/Navbar.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/publicComponents/Navbar.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/publicComponents/NavbarList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="4f357679-4622-4009-90d2-b5a1d5ff9c7b" name="변경" comment="에러 수정" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -63,7 +37,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "ProjectStart 병합 중",
+    "git-widget-placeholder": "ProjectStart",
     "last_opened_file_path": "D:/GitHub/e-team",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
@@ -71,7 +45,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2023.3.3\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "ts.external.directory.path": "D:\\GitHub\\e-team\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -87,6 +61,15 @@
       <workItem from="1721609301964" duration="56000" />
       <workItem from="1721609367507" duration="15740000" />
     </task>
+    <task id="LOCAL-00001" summary="에러 수정">
+      <option name="closed" value="true" />
+      <created>1721667516435</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1721667516435</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -104,6 +87,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="에러 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="에러 수정" />
   </component>
 </project>
