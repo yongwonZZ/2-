@@ -37,7 +37,7 @@ const ExchangeRatePage = () => {
     fetchData();
   }, []);
 
-  // 기본 통화 목록에 있는 환율만 필터링
+  /**기본 통화 목록에 있는 환율만 필터링 */
   const defaultRates = exchangeRates.filter((rate) =>
     defaultCurrencies.includes(rate.cur_unit)
   );

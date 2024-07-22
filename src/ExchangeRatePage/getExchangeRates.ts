@@ -1,15 +1,14 @@
 // api.ts
 import axios from "axios";
 
-const API_KEY = "bWOoBRWFOt3fRCMfTgMmcoeW2LvN8jWV"; // 발급받은 인증키
-const BASE_URL =
-  "https://www.koreaexim.go.kr/site/program/financial/exchangeJSON";
-
 interface ExchangeRate {
   cur_unit: string;
   cur_nm: string;
   deal_bas_r: string;
 }
+const API_KEY = "bWOoBRWFOt3fRCMfTgMmcoeW2LvN8jWV"; // 발급받은 인증키
+const BASE_URL =
+  "https://www.koreaexim.go.kr/site/program/financial/exchangeJSON";
 
 export const fetchExchangeRate = async (
   searchdate: string,
