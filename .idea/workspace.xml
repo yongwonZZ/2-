@@ -5,12 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4f357679-4622-4009-90d2-b5a1d5ff9c7b" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/src/myPage/MyPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/airlinePage/AirlineSearchPage.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/airlinePage/AirlineSearchPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/airlineSearchComponents/AirlineSearchResult.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/airlineSearchComponents/FlightFilterOption.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/airlineSearchComponents/FlightFilterOption.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/airlineSearchComponents/FlightFilterOptions.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/airlineSearchComponents/FlightFilterOptions.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/airlineSearchComponents/SearchFilterDropdown.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/airlineSearchComponents/SearchFilterDropdown.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/mainPage/MainPage.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/mainPage/MainPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/mainPageComponents/CodeShareOptions.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/mainPageComponents/MainPageContainer.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/mainPageComponents/MainPageContainer.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/mainPageComponents/MainPageSubContainer.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/publicComponents/Header.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/publicComponents/Header.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/publicComponents/Navbar.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/publicComponents/Navbar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/publicComponents/NavbarList.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/createaccount/CreateAccount.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/createaccount/CreateAccount.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/login/Login.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +63,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "GW__loginpage",
+    "git-widget-placeholder": "ProjectStart 병합 중",
     "last_opened_file_path": "D:/GitHub/e-team",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
@@ -52,7 +71,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "D:\\GitHub\\e-team\\node_modules\\typescript\\lib",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2023.3.3\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -72,5 +91,19 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
 </project>
