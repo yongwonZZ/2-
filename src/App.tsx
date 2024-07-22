@@ -1,7 +1,9 @@
+import AirportFashion from "./airportFashion/airportFashion";
+
 function App() {
   return (
-    <div className="App">
-      <h1>메인 페이지</h1>
+    <div className='App'>
+      <AirportFashion />
     </div>
   );
 }
