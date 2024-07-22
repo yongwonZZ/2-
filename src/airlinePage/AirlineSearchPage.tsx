@@ -4,8 +4,22 @@ import Header from "../publicComponents/Header";
 import FlightFilterOptions from "../airlineSearchComponents/FlightFilterOptions";
 import AirlineSearchResult from "../airlineSearchComponents/AirlineSearchResult";
 
+type FlightFilterStatus = {
+  arrivals: boolean;
+  departures: boolean;
+  t1: boolean;
+  t2: boolean;
+};
+
 function AirlineSearchPage() {
   const [searchText, setSearchText] = useState<string>("");
+  const [flightFilterStatus, setFlightFilterStatus] =
+    useState<FlightFilterStatus>({
+      arrivals: true,
+      departures: true,
+      t1: true,
+      t2: true,
+    });
   const prevNavigator = useNavigate(); // 이전 페이지로 이동하는 함수
 
   const handleTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -13,6 +27,15 @@ function AirlineSearchPage() {
   };
 
   const handleTextReset = () => setSearchText("");
+
+  const handleSwitchFlightFilter = (identifier: keyof FlightFilterStatus) => {
+    setFlightFilterStatus((prevStatus) => {
+      return {
+        ...prevStatus,
+        [identifier]: !prevStatus[identifier],
+      };
+    });
+  };
 
   return (
     <>
@@ -29,7 +52,10 @@ function AirlineSearchPage() {
         </div>
         <button>필터</button>
       </Header>
-      <FlightFilterOptions />
+      <FlightFilterOptions
+        filter={flightFilterStatus}
+        onSwitch={handleSwitchFlightFilter}
+      />
       <AirlineSearchResult />
     </>
   );
