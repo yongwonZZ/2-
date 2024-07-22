@@ -5,15 +5,38 @@
 }
 
 h1 {
-  font-size: 25px;
+  font-size: 20px;
   text-align: center;
-  margin: 15px;
+  margin: 20px;
+}
+
+hr {
+  margin: auto 15px;
+  border: 0;
+  height: 0.5px;
+  background: rgb(241, 241, 241);
+}
+
+.look-button {
+  display: flex;
+  margin: 20px 15px;
+  gap: 15px;
+  overflow-x: auto;
+  white-space: nowrap;
 }
 
 .look-button button {
-  background-color: none;
-  border: 2px solid gray;
-  border-radius: 5px;
+  flex: 0 0 auto;
+  margin: auto 5px;
+  padding: 5px 10px;
+  width: 70px;
+  height: 30px;
+  font-size: 10px;
+  font-weight: 600;
+  color: rgb(1, 23, 89);
+  background-color: white;
+  border: 1px solid rgb(1, 23, 89);
+  border-radius: 10px;
 }
 
 .look-button button:hover {
@@ -23,9 +46,12 @@ h1 {
 .fashion-img-container {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+  margin: auto 15px;
 }
 
 .fashion-img-container img {
+  flex: 1;
   max-width: 33.33%;
   border: 2px solid white;
 }
