@@ -1,0 +1,28 @@
+.checkbox {
+  display: none;
+}
+
+/* 필터 체크 해제 상태 */
+.checkbox + span {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: lightgray;
+  border-radius: 20px;
+  color: black;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* 필터 체크된 상태 */
+.checkbox:checked + span {
+  background-color: rgb(1, 23, 89);
+  color: white;
+}
+
+/* 체크박스 focus 된 상태 */
+.custom-checkbox + span:focus,
+.custom-checkbox:checked + span:focus {
+  outline: 2px solid lightblue;
+}
