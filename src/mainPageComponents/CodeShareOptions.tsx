@@ -1,11 +1,23 @@
-function CodeShareOptions() {
+type CodeShareOptionsProps = {
+  onSwitch: (value: boolean) => void;
+  isChecked: boolean; // 스위치의 초기 상태 설정
+};
+
+function CodeShareOptions({ onSwitch, isChecked }: CodeShareOptionsProps) {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    onSwitch(event.target.checked);
+  };
+
   return (
     <div>
-      <label htmlFor="codeshare-select">코드쉐어</label>
-      <select name="" id="codeshare-select">
-        <option value="codeshare-on">ON</option>
-        <option value="codeshare-off">OFF</option>
-      </select>
+      <label htmlFor="codeshare-checkbox">코드쉐어</label>
+      <input
+        type="checkbox"
+        id="codeshare-checkbox"
+        name="codeshare-checkbox"
+        checked={isChecked}
+        onChange={handleInputChange}
+      />
     </div>
   );
 }
