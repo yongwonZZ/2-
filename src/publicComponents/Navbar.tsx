@@ -1,5 +1,5 @@
 import styles from "./Navbar.module.css";
-import NavbarList from "./NavbarList";
+import NavbarList from "../publicComponents/NavbarList";
 
 function Navbar() {
   return (

@@ -1,21 +1,21 @@
 import { useNavigate } from "react-router-dom";
 
-type MainPageSubCardProps = {
+type MainPageSubContainerProps = {
   mainIcon: React.ReactNode;
   title: string;
   description?: string;
   arrowIcon: React.ReactNode;
 };
 
-function MainPageSubCard({
+function MainPageSubContainer({
   mainIcon,
   title,
   description,
   arrowIcon,
-}: MainPageSubCardProps) {
+}: MainPageSubContainerProps) {
   const mainPageNavigator = useNavigate();
 
   return <div onClick={() => mainPageNavigator("#")}></div>;
 }
 
-export default MainPageSubCard;
+export default MainPageSubContainer;

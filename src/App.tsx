@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import MainPage from "./mainPage/MainPage";
-import AirlineSearchPage from "./airlineSearchPage/AirlineSearchPage";
+import AirlineSearchPage from "./airlinePage/AirlineSearchPage";
 
 function App() {
   return (

@@ -1,13 +1,13 @@
-.card-header {
+.container-header {
   display: flex;
   justify-content: space-between;
 }
 
-.card-children {
+.container-children {
   display: flex;
   flex-direction: column;
 }
 
-.card-children a {
+.container-children a {
   margin: 10px 0;
 }
