@@ -15,7 +15,7 @@ function MainPageContainer({
   children,
 }: MainPageContainerProps) {
   return (
-    <div>
+    <div className={styles["container-wrapper"]}>
       <div className={styles["container-header"]}>
         <h3>{title}</h3>
         {option}

@@ -4,12 +4,13 @@ import MainPageContainer from "../mainPageComponents/MainPageContainer";
 import CodeShareOptions from "../mainPageComponents/CodeShareOptions";
 import Navbar from "../publicComponents/Navbar";
 import { useState } from "react";
+import styles from "./MainPage.module.css";
 
 function MainPage() {
   const [codeshareStatus, setCodeshareStatus] = useState(true);
 
   return (
-    <>
+    <div className={styles.wrapper}>
       <Header>
         <h1>인천국제공항</h1>
       </Header>
@@ -32,7 +33,7 @@ function MainPage() {
         <Link to="#">주차</Link>
       </MainPageContainer>
       <Navbar />
-    </>
+    </div>
   );
 }
 
