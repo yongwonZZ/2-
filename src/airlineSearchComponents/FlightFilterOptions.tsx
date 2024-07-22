@@ -1,4 +1,5 @@
 import FlightFilterOption from "./FlightFilterOption";
+import styles from "./FlightFilterOptions.module.css";
 
 type FlightFilterStatus = {
   arrivals: boolean;
@@ -14,7 +15,7 @@ type FlightFilterOptionsProps = {
 
 function FlightFilterOptions({ filter, onSwitch }: FlightFilterOptionsProps) {
   return (
-    <div>
+    <div className={styles["option-wrapper"]}>
       <FlightFilterOption
         label="도착"
         identifier="arrivals"

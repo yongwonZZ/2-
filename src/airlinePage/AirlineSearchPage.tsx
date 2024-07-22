@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "../publicComponents/Header";
 import FlightFilterOptions from "../airlineSearchComponents/FlightFilterOptions";
 import AirlineSearchResult from "../airlineSearchComponents/AirlineSearchResult";
+import styles from "./AirlineSearchPage.module.css";
 
 type FlightFilterStatus = {
   arrivals: boolean;
@@ -38,7 +39,7 @@ function AirlineSearchPage() {
   };
 
   return (
-    <>
+    <div className={styles.wrapper}>
       <Header>
         <button onClick={() => prevNavigator(-1)}>이전</button>
         <div>
@@ -57,7 +58,7 @@ function AirlineSearchPage() {
         onSwitch={handleSwitchFlightFilter}
       />
       <AirlineSearchResult />
-    </>
+    </div>
   );
 }
 

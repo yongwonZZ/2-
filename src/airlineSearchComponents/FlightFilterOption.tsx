@@ -1,3 +1,5 @@
+import styles from "./FlightFilterOption.module.css";
+
 type FlightFilterStatus = {
   arrivals: boolean;
   departures: boolean;
@@ -21,16 +23,17 @@ function FlightFilterOption({
   const labelInputName = "filter-" + identifier;
 
   return (
-    <>
-      <label htmlFor={labelInputName}>{label}</label>
+    <label htmlFor={labelInputName}>
       <input
         type="checkbox"
         id={labelInputName}
+        className={styles.checkbox}
         name={labelInputName}
-        checked={filter.arrivals}
+        checked={filter[identifier]}
         onChange={() => onSwitch(identifier)}
       />
-    </>
+      <span>{label}</span>
+    </label>
   );
 }
 
