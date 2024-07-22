@@ -5,16 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4f357679-4622-4009-90d2-b5a1d5ff9c7b" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/FooterNavbar.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/nav.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/createaccount/CreateAccount.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/createaccount/CreateAccount.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/login/Login.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/login/Login.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/myPage/MyPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/createaccount/CreateAccount.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/createaccount/CreateAccount.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/login/Login.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,9 +20,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript JSX File" />
         <option value="TypeScript File" />
         <option value="CSS File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -70,7 +66,7 @@
       <updated>1721607910013</updated>
       <workItem from="1721607911109" duration="144000" />
       <workItem from="1721609301964" duration="56000" />
-      <workItem from="1721609367507" duration="14272000" />
+      <workItem from="1721609367507" duration="15740000" />
     </task>
     <servers />
   </component>
