@@ -12,7 +12,7 @@ function AirportFashion() {
         <button>빈티지</button>
         <button>시크</button>
         <button>키치</button>
-        <button>???</button>
+        <button>??</button>
       </div>
       <div className='fashion-img-container'>
         <img
