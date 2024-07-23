@@ -1,6 +1,6 @@
 /* 모바일 화면 비율 + 중앙 위치 */
 .wrapper {
-  width: 30%;
+  width: 360px;
   margin: auto;
   display: flex;
   flex-direction: column;
