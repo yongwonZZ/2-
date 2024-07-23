@@ -15,10 +15,10 @@ export const fetchExchangeRate = async (
 ): Promise<ExchangeRate[]> => {
   try {
     // const response = await axios.get(
-    //   `/site/program/financial/exchangeJSON?authkey=${API_KEY}&searchdate=${searchdate}&data=${type}`
+    //   /site/program/financial/exchangeJSON?authkey=${API_KEY}&searchdate=${searchdate}&data=${type}
     // );
     const response = await axios.get(
-      `/api1/site/program/financial/exchangeJSON?authkey=${API_KEY}&searchdate=${searchdate}&data=${type}`
+      `/api1/?authkey=${API_KEY}&searchdate=${searchdate}&data=${type}`
     );
     return response.data;
   } catch (error) {

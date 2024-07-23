@@ -2,14 +2,23 @@
   background-color: #333649;
   color: #fafafa;
   padding: 20px;
+  overflow: hidden;
 }
-
 .map-header {
-  padding: 0 20px;
-  font-size: 16px;
-  font-weight: 700;
+  padding: 0 10px;
   display: flex;
   align-items: center;
+  font-size: 16px;
+}
+
+.map-btn {
+  font-size: 16px;
+  font-weight: 700;
   background-color: transparent;
   border: none;
+  cursor: pointer;
+}
+
+img {
+  width: 100%;
 }

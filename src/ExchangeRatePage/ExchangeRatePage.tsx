@@ -33,9 +33,9 @@ const ExchangeRatePage = () => {
         console.error("Failed to fetch exchange rates", error);
       }
     };
+    console.log(exchangeRates);
     fetchData();
   }, []);
-  console.log(exchangeRates);
 
   /**기본 통화 목록에 있는 환율만 필터링 */
   const defaultRates = exchangeRates?.filter((rate) =>

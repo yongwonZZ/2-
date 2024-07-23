@@ -4,10 +4,10 @@ module.exports = function (app) {
   app.use(
     "/api1",
     createProxyMiddleware({
-      target: "https://www.koreaexim.go.kr",
+      target: "https://www.koreaexim.go.kr/",
       changeOrigin: true,
       pathRewrite: {
-        "^/api1": "/site/program/financial", // '/api1'을 '/site/program/financial'로 대체
+        "^/api": "site/program/financial/exchangeJSON", // '/api1'을 '/site/program/financial'로 대체
       },
     })
   );
