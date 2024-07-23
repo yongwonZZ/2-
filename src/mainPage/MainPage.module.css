@@ -1,5 +1,6 @@
 .wrapper {
-  width: 360px; /* 모바일 화면 너비 */
+  width: 100%;
+  max-width: 400px; /* width는 0~400px 범위 */
   margin: auto;
   display: flex;
   flex-direction: column;

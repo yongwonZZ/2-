@@ -21,9 +21,7 @@ function MainPage() {
   /** 각 link-item별 라우트 설정 */
   return (
     <div className={styles.wrapper}>
-      <Header>
-        <h1>인천국제공항</h1>
-      </Header>
+      <Header leftContent="인천국제공항" />
       <MainPageContainer
         title="항공편"
         option={
