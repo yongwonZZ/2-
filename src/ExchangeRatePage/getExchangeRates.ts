@@ -1,4 +1,3 @@
-// api.ts
 import axios from "axios";
 
 interface ExchangeRate {
@@ -15,8 +14,11 @@ export const fetchExchangeRate = async (
   type: string
 ): Promise<ExchangeRate[]> => {
   try {
+    // const response = await axios.get(
+    //   /site/program/financial/exchangeJSON?authkey=${API_KEY}&searchdate=${searchdate}&data=${type}
+    // );
     const response = await axios.get(
-      `/site/program/financial/exchangeJSON?authkey=${API_KEY}&searchdate=${searchdate}&data=${type}`
+      `/api1/?authkey=${API_KEY}&searchdate=${searchdate}&data=${type}`
     );
     return response.data;
   } catch (error) {
