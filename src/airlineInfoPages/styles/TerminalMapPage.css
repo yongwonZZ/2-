@@ -1,0 +1,15 @@
+.map-container {
+  background-color: #333649;
+  color: #fafafa;
+  padding: 20px;
+}
+
+.map-header {
+  padding: 0 20px;
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+}
