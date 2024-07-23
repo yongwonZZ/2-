@@ -1,4 +1,3 @@
-// api.ts
 import axios from "axios";
 
 interface ExchangeRate {
@@ -18,6 +17,9 @@ export const fetchExchangeRate = async (
     const response = await axios.get(
       `/site/program/financial/exchangeJSON?authkey=${API_KEY}&searchdate=${searchdate}&data=${type}`
     );
+    // const response = await axios.get(
+    //   `/api1/site/program/financial/exchangeJSON?authkey=${API_KEY}&searchdate=${searchdate}&data=${type}`
+    // );
     return response.data;
   } catch (error) {
     console.error("Failed to fetch exchange rates", error);
