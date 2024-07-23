@@ -15,7 +15,7 @@ type FlightFilterOptionsProps = {
 
 function FlightFilterOptions({ filter, onSwitch }: FlightFilterOptionsProps) {
   return (
-    <div className={styles["option-wrapper"]}>
+    <div className={styles.wrapper}>
       <FlightFilterOption
         label="도착"
         identifier="arrivals"
