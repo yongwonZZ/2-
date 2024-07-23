@@ -1,16 +1,32 @@
 import { useNavigate } from "react-router-dom";
+import styles from "./NavbarList.module.css";
 
 type NavbarListProps = {
+  icon: React.ReactNode;
   title: string;
   navigateTo: string;
+  isSelected: boolean;
+  setSelected: (title: string) => void;
 };
 
-function NavbarList({ title, navigateTo }: NavbarListProps) {
-  const navbarNavigator = useNavigate();
+function NavbarList({
+  icon,
+  title,
+  navigateTo,
+  isSelected,
+  setSelected,
+}: NavbarListProps) {
+  const navigate = useNavigate();
+
+  const handleNavigateTo = () => {
+    navigate(navigateTo);
+    setSelected(title);
+  };
 
   return (
-    <div onClick={() => navbarNavigator(navigateTo)}>
-      <li>
+    <div className={styles.container} onClick={handleNavigateTo}>
+      <p className={styles.icon}>{icon}</p>
+      <li className={isSelected ? styles.selected : styles.notSelected}>
         <p>{title}</p>
       </li>
     </div>

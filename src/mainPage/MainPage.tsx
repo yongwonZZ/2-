@@ -12,11 +12,13 @@ import {
   FaDoorOpen,
   FaConciergeBell,
   FaParking,
-} from "react-icons/fa";
+} from "react-icons/fa"; // icon 라이브러리
 
 function MainPage() {
+  /** 코드쉐어 상태값 */
   const [codeshareStatus, setCodeshareStatus] = useState(true);
 
+  /** 각 link-item별 라우트 설정 */
   return (
     <div className={styles.wrapper}>
       <Header>
