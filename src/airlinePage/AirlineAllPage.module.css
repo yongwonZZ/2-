@@ -1,0 +1,8 @@
+.wrapper {
+  width: 100%;
+  max-width: 400px; /* width는 0~400px 범위 */
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* 중앙 수평 조정 */
+}

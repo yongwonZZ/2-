@@ -199,4 +199,4 @@ const DUMMY_DATA: DummyData[] = [
   },
 ];
 
-export { DUMMY_DATA };
+export { type DummyData, DUMMY_DATA };

@@ -39,7 +39,7 @@ function MainPage() {
         <MainPageLinkItem
           icon={<FaList className={styles.icon} />}
           title="전체 항공편"
-          navigateTo="#"
+          navigateTo="/airline-all"
         />
       </MainPageContainer>
       <MainPageContainer title="정보">

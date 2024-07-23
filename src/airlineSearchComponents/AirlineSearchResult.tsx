@@ -8,13 +8,24 @@
 // 검색어 상태가 공백이 아닌 경우 => 검색 결과
 // 검색 결과
 
-function AirlineSearchResult() {
+import { DummyData } from "../airlinePage/airlineDummyData";
+
+type AirlineSearchResultProps = {
+  searchedData: DummyData[] | null;
+};
+
+function AirlineSearchResult({ searchedData }: AirlineSearchResultProps) {
   return (
-    // 추후 검색 결과를 렌더하는 기능 추가 예정
     <div>
-      <p>앗... 검색 결과가 없습니다!</p>
-      <p>다른 검색어를 입력하거나</p>
-      <p>우측 상단의 검색어 필터를 확인해 보세요.</p>
+      {searchedData &&
+        searchedData.map((data) => {
+          return (
+            <div>
+              <p>항공사: {data.airline}</p>
+              <p>편명: {data.flightId}</p>
+            </div>
+          );
+        })}
     </div>
   );
 }
