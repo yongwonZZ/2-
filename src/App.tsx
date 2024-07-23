@@ -11,6 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/airline-search" element={<AirlineSearchPage />} />
+
       </Routes>
     </div>
   );
