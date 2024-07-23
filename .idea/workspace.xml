@@ -5,12 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4f357679-4622-4009-90d2-b5a1d5ff9c7b" name="변경" comment="에러 수정">
-      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/boardingPass/BoardingPass.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/boardingPass/BoardingPass.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/boardingPass/BoardingPass.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/boardingPass/BoardingPass.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gwcomponents/nav.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/gwcomponents/nav.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,8 +20,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="TypeScript File" />
-        <option value="CSS File" />
         <option value="TypeScript JSX File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -67,7 +66,7 @@
       <workItem from="1721607911109" duration="144000" />
       <workItem from="1721609301964" duration="56000" />
       <workItem from="1721609367507" duration="15740000" />
-      <workItem from="1721717504068" duration="2212000" />
+      <workItem from="1721717504068" duration="6823000" />
     </task>
     <task id="LOCAL-00001" summary="에러 수정">
       <option name="closed" value="true" />
@@ -77,7 +76,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721667516435</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="에러 수정">
+      <option name="closed" value="true" />
+      <created>1721720282532</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1721720282532</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
