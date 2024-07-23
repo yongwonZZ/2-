@@ -15,12 +15,12 @@ function MainPageContainer({
   children,
 }: MainPageContainerProps) {
   return (
-    <div className={styles["container-wrapper"]}>
-      <div className={styles["container-header"]}>
+    <div className={styles.wrapper}>
+      <div className={styles.header}>
         <h3>{title}</h3>
         {option}
       </div>
-      <div className={styles["container-children"]}>{children}</div>
+      <div className={styles.content}>{children}</div>
     </div>
   );
 }
