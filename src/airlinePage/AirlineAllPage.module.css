@@ -6,7 +6,3 @@
   flex-direction: column;
   height: 100vh; /* 중앙 수평 조정 */
 }
-
-.icon {
-  margin-right: 10px;
-}

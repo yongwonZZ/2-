@@ -1,5 +1,6 @@
 /* 각 filter의 flex 부여 및 간격 조정 */
-.option-wrapper {
+.wrapper {
   display: flex;
   gap: 10px;
+  margin-bottom: 20px;
 }

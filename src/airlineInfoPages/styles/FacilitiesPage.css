@@ -1,0 +1,33 @@
+.facility-list-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  border-bottom: 1px solid #aaa;
+}
+.facility {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 14px;
+}
+.facility-name {
+  font-size: 16px;
+  font-weight: 700;
+}
+.facility-location {
+  color: #359aff;
+}
+
+.facility-info {
+  color: #aaa;
+}
+.time {
+  display: flex;
+  gap: 5px;
+}
+.facility-number {
+  text-decoration: underline;
+  display: flex;
+  gap: 5px;
+}
