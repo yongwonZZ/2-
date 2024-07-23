@@ -25,8 +25,8 @@ function NavbarList({
 
   return (
     <div className={styles.container} onClick={handleNavigateTo}>
-      <p className={styles.icon}>{icon}</p>
       <li className={isSelected ? styles.selected : styles.notSelected}>
+        <p className={styles.icon}>{icon}</p>
         <p>{title}</p>
       </li>
     </div>

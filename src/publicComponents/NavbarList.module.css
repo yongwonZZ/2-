@@ -6,10 +6,6 @@
   cursor: pointer;
 }
 
-.container:hover {
-  color: #b0b0b0;
-}
-
 .icon {
   font-size: 24px;
 }
@@ -19,6 +15,10 @@ li {
   flex-direction: column;
   align-items: center;
   font-size: 12px;
+}
+
+li:hover {
+  color: #4d67fa;
 }
 
 /* li 중 선택된 항목의 색상 */
