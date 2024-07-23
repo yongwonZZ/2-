@@ -14,8 +14,8 @@ interface ExchangeRate {
 const ExchangeRatePage = () => {
   const [amount, setAmount] = useState<number>(0);
   const [exchangeRates, setExchangeRates] = useState<ExchangeRate[]>([]);
-  const [baseCountry, setBaseCountry] = useState("KRW");
-  const [targetCountry, setTargetCountry] = useState("USD");
+  const [baseCountry, setBaseCountry] = useState();
+  const [targetCountry, setTargetCountry] = useState();
 
   // 기본 통화 목록
   const defaultCurrencies = ["USD", "JPY(100)", "EUR", "CNH"];
@@ -38,7 +38,7 @@ const ExchangeRatePage = () => {
   }, []);
 
   /**기본 통화 목록에 있는 환율만 필터링 */
-  const defaultRates = exchangeRates.filter((rate) =>
+  const defaultRates = exchangeRates?.filter((rate) =>
     defaultCurrencies.includes(rate.cur_unit)
   );
 
