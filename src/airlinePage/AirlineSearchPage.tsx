@@ -9,7 +9,7 @@ import { FaChevronLeft } from "react-icons/fa";
 import { LuSettings2 } from "react-icons/lu";
 import { MdClear } from "react-icons/md";
 
-type FlightFilterStatus = {
+type FlightFilter = {
   arrivals: boolean;
   departures: boolean;
   t1: boolean;
@@ -21,13 +21,12 @@ function AirlineSearchPage() {
   const [searchText, setSearchText] = useState<string>("");
 
   /** 도착, 출발, T1, T2 필터 */
-  const [flightFilterStatus, setFlightFilterStatus] =
-    useState<FlightFilterStatus>({
-      arrivals: true,
-      departures: true,
-      t1: true,
-      t2: true,
-    });
+  const [flightFilter, setFlightFilter] = useState<FlightFilter>({
+    arrivals: true,
+    departures: true,
+    t1: true,
+    t2: true,
+  });
 
   /** Header의 필터 버튼 클릭 시 드롭다운 상태 */
   const [showDropdown, setShowDropdown] = useState(false);
@@ -42,8 +41,8 @@ function AirlineSearchPage() {
   const handleTextClear = () => setSearchText("");
 
   /** 도착, 출발, T1, T2 필터 상태변경 함수 */
-  const handleSwitchFlightFilter = (identifier: keyof FlightFilterStatus) => {
-    setFlightFilterStatus((prevStatus) => {
+  const handleSwitchFlightFilter = (identifier: keyof FlightFilter) => {
+    setFlightFilter((prevStatus) => {
       return {
         ...prevStatus,
         [identifier]: !prevStatus[identifier],
@@ -88,7 +87,7 @@ function AirlineSearchPage() {
       />
       {showDropdown && <SearchFilterDropdown />}
       <FlightFilterOptions
-        filter={flightFilterStatus}
+        filter={flightFilter}
         onSwitch={handleSwitchFlightFilter}
       />
       <AirlineSearchResult />
