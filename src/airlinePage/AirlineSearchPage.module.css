@@ -11,6 +11,7 @@
 .icon-prev,
 .icon-dropdown,
 .icon-clear {
+  font-size: 22px;
   cursor: pointer;
 }
 

@@ -5,7 +5,7 @@ import FlightFilterOptions from "../airlineSearchComponents/FlightFilterOptions"
 import AirlineSearchResult from "../airlineSearchComponents/AirlineSearchResult";
 import SearchFilterDropdown from "../airlineSearchComponents/SearchFilterDropdown";
 import styles from "./AirlineSearchPage.module.css";
-import { GrPrevious } from "react-icons/gr";
+import { FaChevronLeft } from "react-icons/fa";
 import { LuSettings2 } from "react-icons/lu";
 import { MdClear } from "react-icons/md";
 
@@ -58,7 +58,7 @@ function AirlineSearchPage() {
     <div className={styles.wrapper}>
       <Header
         leftContent={
-          <GrPrevious
+          <FaChevronLeft
             className={styles["icon-prev"]}
             onClick={() => navigate(-1)}
           />

@@ -6,3 +6,24 @@
   flex-direction: column;
   height: 100vh; /* 중앙 수평 조정 */
 }
+
+.header-container--left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.icon-btn {
+  outline: none;
+}
+
+.icon-prev {
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.icon-switch {
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
