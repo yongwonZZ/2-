@@ -1,7 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
+
+/* 기본 셋팅 값 */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+body {
+  font-family: "Noto Sans KR", sans-serif;
 }
 
 button {
@@ -16,15 +24,16 @@ h1 {
 }
 
 hr {
-  margin: auto 15px;
+  margin: auto 0px;
   border: 0;
   height: 0.5px;
   background: rgb(241, 241, 241);
 }
 
+/* 공항 패션룩 필터 */
 .look-button-container {
   display: flex;
-  margin: 20px 15px;
+  margin: 20px 5px;
   gap: 5px;
   overflow-x: auto;
   white-space: nowrap;
@@ -34,11 +43,11 @@ hr {
   flex: 0 0 auto;
   margin: auto 5px;
   padding: 5px 10px;
-  width: 60px;
+  width: 65px;
   height: 30px;
-  font-size: 10px;
-  font-weight: 300;
-  color: gray;
+  font-size: 13px;
+  font-weight: 400;
+  color: rgb(168, 168, 168);
   background-color: white;
   border: 1px solid rgba(228, 228, 228, 0.719);
   border-radius: 15px;
@@ -46,14 +55,43 @@ hr {
 
 .look-button-container button:hover {
   cursor: pointer;
+  font-weight: 500;
   color: rgb(1, 23, 89);
   border: 1px solid rgb(1, 23, 89);
 }
 
+/* 공항 패션룩 정렬 */
+.look-sort-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 12px;
+  color: rgb(168, 168, 168);
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+.look-sort-container p {
+  font-size: 10px;
+  color: #cccccc;
+  margin: 5px;
+}
+
+.look-sort-container button {
+  background-color: transparent;
+  border: none;
+  font-size: 12px;
+  color: rgb(168, 168, 168);
+}
+
+.look-sort-container button:hover {
+  color: #6a6a6a;
+}
+
+/* 공항 패션룩 이미지 */
 .fashion-items-container {
   display: flex;
   flex-direction: column;
-  max-height: 545px;
+  max-height: auto;
   overflow-y: auto;
 }
 
@@ -61,35 +99,33 @@ hr {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  margin: auto 15px;
+  margin: auto 0px;
 }
 
 .fashion-img-container img {
   flex: 1;
   max-width: 33.33%;
-  border: 2px solid white;
+  border: 1px solid white;
 }
 
+/* 공항 패션룩 업로드 버튼 */
 .upload-button {
   position: fixed;
   right: 25px;
   bottom: 50px;
 }
+
 .upload-button button {
-  background-color: rgb(1, 23, 89);
+  width: 33px;
+  height: 33px;
   color: white;
+  background-color: rgb(1, 23, 89);
   background-size: cover;
   background-position: center;
   border: none;
   border-radius: 20px;
-  width: 33px;
-  height: 33px;
 }
 
-.upload-button button img {
-  width: 20px;
-  height: 20px;
-  filter: invert(100%) sepia(4%) saturate(7500%) hue-rotate(276deg)
-    brightness(111%) contrast(102%);
+.upload-button button svg {
   margin-top: 2px;
 }

@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
+
+/* 기본 셋팅 값 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+body {
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+button {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+/* 상단 */
+.top-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+.top-container button {
+  position: absolute;
+  color: gray;
+  top: 20px;
+  left: 30px;
+}
+
+/* 게시글 - 사용자 프로필 */
+.user-post-info {
+  display: flex;
+  font-size: 12px;
+  margin: 20px 20px;
+}
+
+.user-post-info p:first-child {
+  margin-top: 2px;
+}
+
+.user-post-info p:last-child {
+  margin-top: 5px;
+  font-size: 8px;
+  color: rgb(168, 168, 168);
+}
+
+.user-post-info svg:first-child {
+  color: white;
+  background-color: rgb(221, 221, 221);
+  border-radius: 20px;
+  padding: 2px;
+  margin-right: 13px;
+}
+.user-post-info svg:last-child {
+  color: rgb(168, 168, 168);
+  margin-top: 10px;
+  transform: rotate(90deg);
+  margin-left: auto;
+}
+
+/* 게시글 이미지 */
+.fashion-items-container svg {
+}
+
+.like-comment-icon svg:first-child {
+  color: #e88080;
+}
+.like-comment-icon svg:last-child {
+  color: rgb(168, 168, 168);
+}
