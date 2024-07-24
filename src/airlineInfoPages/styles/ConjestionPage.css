@@ -1,0 +1,10 @@
+.conjestion {
+}
+.conjestion-header {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  align-content: center;
+  font-weight: 700;
+  padding: 0 10px;
+}

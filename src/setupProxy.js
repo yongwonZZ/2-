@@ -4,10 +4,10 @@ module.exports = function (app) {
   app.use(
     "/api1",
     createProxyMiddleware({
-      target: "https://www.koreaexim.go.kr/",
+      target: "https://www.koreaexim.go.kr",
       changeOrigin: true,
       pathRewrite: {
-        "^/api": "site/program/financial/exchangeJSON", // '/api1'을 '/site/program/financial'로 대체
+        "^/api1": "", // '/api1'을 빈 문자열로 대체
       },
     })
   );
@@ -18,7 +18,7 @@ module.exports = function (app) {
       target: "https://apis.data.go.kr",
       changeOrigin: true,
       pathRewrite: {
-        "^/api2": "/B551177/StatusOfParking", // '/api2'을 '/B551177/StatusOfParking'로 대체
+        "^/api2": "", // '/api2'을 빈 문자열로 대체
       },
     })
   );

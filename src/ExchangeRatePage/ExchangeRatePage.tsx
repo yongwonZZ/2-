@@ -21,7 +21,7 @@ const ExchangeRatePage = () => {
   const defaultCurrencies = ["USD", "JPY(100)", "EUR", "CNH"];
 
   /** 하루 특정 시간에 따라 api 업데이트 */
-  const searchdate = "20240722"; // 검색요청 날짜
+  const searchdate = "20240724"; // 검색요청 날짜
   const type = "AP01"; // 환율 데이터 요청타입
 
   useEffect(() => {

@@ -3,10 +3,11 @@ import Header from "../../publicComponents/Header";
 import "../styles/InfoPages.css";
 import ParkingAreaItem from "../airlineComponents/ParkingAreaItem";
 import { fetchParkingData } from "../getInfoData/getParkingData";
+import { FaChevronLeft } from "react-icons/fa";
 
 const ParkingPage = () => {
-  // const [parkingData, setParkingData] = useState();
-  // const type = "&%20numOfRows=10&pageNo=1&type=json";
+  const [parkingData, setParkingData] = useState();
+  const type = "&%20numOfRows=10&pageNo=1&type=json";
 
   // useEffect(() => {
   //   const fetchData = async () => {
@@ -17,13 +18,18 @@ const ParkingPage = () => {
   //       console.error("Failed to fetch parking data", error);
   //     }
   //   };
-  //   // console.log(parkingData);
+  //   console.log(parkingData);
   //   fetchData();
   // });
   return (
     <>
       <div className="container">
-        <Header>주차</Header>
+        <Header>
+          <div className="parking-header">
+            <FaChevronLeft style={{ fontSize: "22px" }} />
+            주차
+          </div>
+        </Header>
         <div className="parking short-area">
           <h2 className="parking-header">단기 주차장</h2>
           <div className="fee-info">
