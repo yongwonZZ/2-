@@ -5,6 +5,7 @@ import ExchangeRatePage from "./ExchangeRatePage/ExchangeRatePage";
 import ParkingPage from "./airlineInfoPages/Pages/ParkingPage";
 import FacilitiesPage from "./airlineInfoPages/Pages/FacilitiesPage";
 import TerminalMapPage from "./airlineInfoPages/Pages/TerminalMapPage";
+import CongestionPage from "./airlineInfoPages/Pages/CongestionPage";
 
 // 라우팅 설명
 // Routes 하위의 Route 컴포넌트: 다양한 URL 경로에 대한 라우트 정의
@@ -17,6 +18,7 @@ function App() {
         <Route path="/airline-search" element={<AirlineSearchPage />} />
         <Route path="/exchange" element={<ExchangeRatePage />} />
         <Route path="/parking" element={<ParkingPage />} />
+        <Route path="/congestion" element={<CongestionPage />} />
         <Route path="/facilities" element={<FacilitiesPage />} />
         <Route path="/terminalmap" element={<TerminalMapPage />} />
       </Routes>
