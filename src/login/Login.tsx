@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './Login.css'; // CSS 파일을 임포트
 import { useNavigate } from 'react-router-dom';
+import Header from "../publicComponents/Header";
+import Navbar from "../publicComponents/Navbar";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -22,9 +24,7 @@ const Login = () => {
 
     return (
         <>
-            <div>
-                <h3>로그인</h3>
-            </div>
+            <Header>편의시설</Header>
             <div className="login-container">
                 <input
                     className="email-input"
@@ -62,6 +62,7 @@ const Login = () => {
                     </button>
                 </div>
             </div>
+            <Navbar />
         </>
     );
 }

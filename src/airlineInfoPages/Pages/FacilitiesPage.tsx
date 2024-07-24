@@ -3,7 +3,7 @@ import Header from "../../publicComponents/Header";
 import FacilitiesItem from "../airlineComponents/FacilitiesItem";
 
 const FacilitiesPage = () => {
-  return (
+    return (
     <div className="container">
       <Header>편의시설</Header>
       <FacilitiesItem />
