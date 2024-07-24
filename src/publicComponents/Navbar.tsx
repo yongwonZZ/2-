@@ -22,7 +22,7 @@ function Navbar() {
       <NavbarList
         icon={<RiExchangeDollarLine />}
         title="환율"
-        navigateTo="#"
+        navigateTo="/exchange"
         isSelected={selected === "환율"}
         setSelected={setSelected}
       />

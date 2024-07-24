@@ -46,7 +46,7 @@ function MainPage() {
         <MainPageLinkItem
           icon={<FaMapMarkedAlt className={styles.icon} />}
           title="공항 터미널 지도"
-          navigateTo="#"
+          navigateTo="/terminalmap"
         />
         <MainPageLinkItem
           icon={<FaDoorOpen className={styles.icon} />}
@@ -56,12 +56,12 @@ function MainPage() {
         <MainPageLinkItem
           icon={<FaConciergeBell className={styles.icon} />}
           title="편의시설"
-          navigateTo="#"
+          navigateTo="/facilities"
         />
         <MainPageLinkItem
           icon={<FaParking className={styles.icon} />}
           title="주차"
-          navigateTo="#"
+          navigateTo="/parking"
         />
       </MainPageContainer>
       <Navbar />
