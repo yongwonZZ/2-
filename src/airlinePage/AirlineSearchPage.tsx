@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../publicComponents/Header";
 import FlightFilterOptions from "../airlineSearchComponents/FlightFilterOptions";
@@ -8,8 +8,6 @@ import styles from "./AirlineSearchPage.module.css";
 import { GrPrevious } from "react-icons/gr";
 import { LuSettings2 } from "react-icons/lu";
 import { MdClear } from "react-icons/md";
-
-import { DummyData, DUMMY_DATA } from "./airlineDummyData"; // 가짜 항공편 데이터
 
 type FlightFilterStatus = {
   arrivals: boolean;
@@ -21,18 +19,6 @@ type FlightFilterStatus = {
 function AirlineSearchPage() {
   /** 검색어 */
   const [searchText, setSearchText] = useState<string>("");
-
-  /** fetch해온 데이터 */
-  const [searchedData, setSearchedData] = useState<DummyData[] | null>(null);
-
-  /** 데이터 불러오기 */
-  useEffect(() => {
-    if (!searchText.trim().length) return;
-
-    // 더미 데이터로부터 data를 받아온 것을
-    // setState를 이용해 저장해둠
-    setSearchedData(DUMMY_DATA);
-  }, [searchText]);
 
   /** 도착, 출발, T1, T2 필터 */
   const [flightFilterStatus, setFlightFilterStatus] =
@@ -105,7 +91,7 @@ function AirlineSearchPage() {
         filter={flightFilterStatus}
         onSwitch={handleSwitchFlightFilter}
       />
-      <AirlineSearchResult searchedData={searchedData} />
+      <AirlineSearchResult />
     </div>
   );
 }
