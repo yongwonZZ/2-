@@ -31,7 +31,7 @@ const FacilitiesPage: React.FC = () => {
     fetchData();
   }, []);
   console.log(facility);
-  return (
+    return (
     <div className="container">
       <Header>
         <div className="facility-header">

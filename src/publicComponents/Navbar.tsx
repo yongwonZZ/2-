@@ -29,21 +29,21 @@ function Navbar() {
       <NavbarList
         icon={<MdOutlineAirplaneTicket />}
         title="내 티켓"
-        navigateTo="#"
+        navigateTo="../boardingPass"
         isSelected={selected === "내 티켓"}
         setSelected={setSelected}
       />
       <NavbarList
         icon={<TbHanger />}
         title="공항패션"
-        navigateTo="#"
+        navigateTo="../airportFashion"
         isSelected={selected === "공항패션"}
         setSelected={setSelected}
       />
       <NavbarList
         icon={<FaRegUser />}
         title="마이페이지"
-        navigateTo="#"
+        navigateTo="../Login"
         isSelected={selected === "마이페이지"}
         setSelected={setSelected}
       />
