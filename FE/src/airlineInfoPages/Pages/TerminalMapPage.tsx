@@ -21,27 +21,30 @@ const TerminalMapPage = () => {
 
   return (
     <div className="container">
-      <Header>
-        <div className="map-header">
-          <FaChevronLeft style={{ fontSize: "22px", cursor: "pointer" }} />
-          <button className="map-btn" onClick={handleOnClickTerminal}>
-            공항 터미널 지도{terminal} <FaCaretDown />
-          </button>
-        </div>
-      </Header>
+      <Header
+        leftContent={
+          <div className="map-header">
+            <FaChevronLeft style={{ fontSize: "22px", cursor: "pointer" }} />
+            <button className="map-btn" onClick={handleOnClickTerminal}>
+              공항 터미널 지도{terminal} <FaCaretDown />
+            </button>
+          </div>
+        }
+      ></Header>
+      <div className="map-info">* 두 손가락을 이용해 확대해 볼 수 있습니다</div>
       <div className="map-container">
         {terminal === "T1" ? (
           <>
-            출국
+            <div className="map-name">출국</div>
             <img src={Map1} alt="map1" />
-            입국
+            <div className="map-name">입국</div>
             <img src={Map11} alt="map11" />
           </>
         ) : (
           <>
-            출국
+            <div className="map-name">출국</div>
             <img src={Map2} alt="map1" />
-            입국
+            <div className="map-name">입국</div>
             <img src={Map22} alt="map11" />
           </>
         )}
