@@ -11,7 +11,7 @@ import TerminalMapPage from "./airlineInfoPages/Pages/TerminalMapPage";
 import BoardingPass from "./boardingPass/BoardingPass";
 import Login from "./login/Login";
 import MyPage from "./myPage/MyPage";
-import AirportFashion from "./airportFashion/airportFashion"
+import AirportFashion from "./airportFashion/airportFashion";
 import CongestionPage from "./airlineInfoPages/Pages/CongestionPage";
 
 const queryClient = new QueryClient();
@@ -28,15 +28,15 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route path="/airline-search" element={<AirlineSearchPage />} />
           <Route path="/exchange" element={<ExchangeRatePage />} />
+          <Route path="/terminalmap" element={<TerminalMapPage />} />
+          <Route path="/congestion" element={<CongestionPage />} />
           <Route path="/parking" element={<ParkingPage />} />
           <Route path="/facilities" element={<FacilitiesPage />} />
-          <Route path="/terminalmap" element={<TerminalMapPage />} />
           <Route path="/airline-all" element={<AirlineAllPage />} />
-          <Route path="/congestion" element={<CongestionPage />} />
           <Route path="/BoardingPass" element={<BoardingPass />} />
-            <Route path="/Login" element={<Login />}/>
-            <Route path="/MyPage" element={<MyPage />}/>
-            <Route path="/airportFashion" element={<AirportFashion />} />
+          <Route path="/Login" element={<Login />} />
+          <Route path="/MyPage" element={<MyPage />} />
+          <Route path="/airportFashion" element={<AirportFashion />} />
         </Routes>
       </QueryClientProvider>
     </div>
