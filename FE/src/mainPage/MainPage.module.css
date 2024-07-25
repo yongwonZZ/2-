@@ -4,7 +4,7 @@
   margin: auto;
   display: flex;
   flex-direction: column;
-  height: 100vh; /* 중앙 수평 조정 */
+  padding-bottom: 60px; /* navbar 높이만큼 여백 추가 */
 }
 
 .icon {
