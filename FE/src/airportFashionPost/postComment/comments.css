@@ -1,0 +1,103 @@
+/* 댓글창 외부 */
+.comment-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 1000;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.comment-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 60%;
+  max-height: 60%;
+  overflow-y: auto;
+  background-color: white;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  padding: 20px;
+  box-shadow: 0 -5px 15px rgba(85, 84, 84, 0.1);
+  overflow-y: auto;
+  animation: slide-up 0.3s ease-out;
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* 댓글창 내부 */
+.comment-top {
+  display: flex;
+  position: fixed;
+  left: 0px;
+  font-size: 15px;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: -20px;
+  width: 100%;
+  height: 60px;
+  background-color: rgb(255, 255, 255);
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+}
+
+.comment-top p:first-child {
+  font-size: 15px;
+  font-weight: 600;
+  margin-left: 47%;
+  margin-top: 25px;
+}
+
+.close-button {
+  color: rgb(202, 202, 202);
+  margin-left: auto;
+  margin-top: 15px;
+  margin-right: 18px;
+}
+
+.user-comment-container {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  margin: 10px;
+  margin-bottom: 25px;
+}
+.user-comment-container svg {
+  color: white;
+  background-color: rgb(221, 221, 221);
+  border-radius: 20px;
+  padding: 2px;
+  margin-right: 13px;
+}
+
+.comments {
+  font-size: 14px;
+}
+
+.comments p:first-child {
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+.comments p:last-child {
+  font-size: 12px;
+  margin-top: 5px;
+}
+.date {
+  right: 10px;
+  font-size: 11px;
+  color: rgb(168, 168, 168);
+  margin-left: auto;
+}
