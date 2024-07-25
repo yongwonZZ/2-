@@ -4,6 +4,7 @@ import { PiPencilSimpleLine } from "react-icons/pi";
 import LookFilter from "./airportFashionComponents/LookFilter";
 import FashionImagesItem from "./airportFashionComponents/FashionImagesItem";
 import LookSort from "./airportFashionComponents/LookSort";
+import Navbar from "../publicComponents/Navbar";
 
 const AirportFashion: React.FC = () => {
   return (
@@ -22,6 +23,7 @@ const AirportFashion: React.FC = () => {
           <PiPencilSimpleLine size={20} />
         </button>
       </div>
+      <Navbar />
     </div>
   );
 };
