@@ -32,8 +32,8 @@ function App() {
           <Route path="/facilities" element={<FacilitiesPage />} />
           <Route path="/terminalmap" element={<TerminalMapPage />} />
           <Route path="/airline-all" element={<AirlineAllPage />} />
-            <Route path="/congestion" element={<CongestionPage />} />
-            <Route path="/BoardingPass" element={<BoardingPass />} />
+          <Route path="/congestion" element={<CongestionPage />} />
+          <Route path="/BoardingPass" element={<BoardingPass />} />
             <Route path="/Login" element={<Login />}/>
             <Route path="/MyPage" element={<MyPage />}/>
             <Route path="/airportFashion" element={<AirportFashion />} />

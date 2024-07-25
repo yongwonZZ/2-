@@ -4,7 +4,7 @@ import { searchResultType } from "./search-result-type";
 
 /** API 인증키 => 나중에 .env로 옮겨야 함 */
 const AIRLINE_SERVICE_KEY =
-  "sfNylwxNbWCfF7pGVXv/TgNBbxQOU5480gsoaoJZF6bFnCgKolS4uI6KEpMOBOwx6TRtMCVFUslJdIEkr8ik4A==";
+  "sfNylwxNbWCfF7pGVXv/TgNBbxQOU5480gsoaoJZF6bFnCgKolS4uI6KEpMOBOnpwx6TRtMCVFUslJdIEkr8ik4A==";
 
 /** API 요청 주소 => 나중에 .env로 옮겨야 함 */
 /** Encoding이 아닌 Decoding 인증키 사용 */
