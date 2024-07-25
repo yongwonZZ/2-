@@ -22,7 +22,7 @@ const FacilitiesPage: React.FC = () => {
     const fetchData = async () => {
       try {
         const faciData = await fetchFacilitiesData(type);
-        console.log("faci data : ", faciData);
+        // console.log("faci data : ", faciData);
         setFacility(faciData.response.body.items);
       } catch (error) {
         console.error("Failed to fetch parking data", error);
@@ -30,8 +30,7 @@ const FacilitiesPage: React.FC = () => {
     };
     fetchData();
   }, []);
-  console.log(facility);
-    return (
+  return (
     <div className="container">
       <Header>
         <div className="facility-header">
