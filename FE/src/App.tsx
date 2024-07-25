@@ -14,6 +14,7 @@ import MyPage from "./myPage/MyPage";
 import AirportFashion from "./airportFashionMain/airportFashion";
 import LookDetails from "./airportFashionPost/lookDetails";
 import CongestionPage from "./airlineInfoPages/Pages/CongestionPage";
+import AirlineDetailPage from "./airlinePage/AirlineDetailPage";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ function App() {
         <Routes>
           <Route path='/' element={<MainPage />} />
           <Route path='/airline-search' element={<AirlineSearchPage />} />
+          <Route path='/airline-search/:id' element={<AirlineDetailPage />} />
           <Route path='/exchange' element={<ExchangeRatePage />} />
           <Route path='/parking' element={<ParkingPage />} />
           <Route path='/facilities' element={<FacilitiesPage />} />
