@@ -1,0 +1,22 @@
+.card {
+  padding: 16px 0;
+  font-size: 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+  display: flex;
+  align-items: center;
+}
+
+.section-sm,
+.section-lg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 4px;
+}
+.section-sm {
+  width: 10%;
+}
+.section-lg {
+  width: 25%;
+}

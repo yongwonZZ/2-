@@ -1,10 +1,11 @@
 import axios from "axios";
 import { useQuery } from "react-query";
 import { searchResultType } from "./search-result-type";
+import AirlineSearchResultCard from "./AirlineSearchResultCard";
 
 /** API 인증키 => 나중에 .env로 옮겨야 함 */
 const AIRLINE_SERVICE_KEY =
-  "sfNylwxNbWCfF7pGVXv/TgNBbxQOU5480gsoaoJZF6bFnCgKolS4uI6KEpMOBOnpwx6TRtMCVFUslJdIEkr8ik4A==";
+  "sfNylwxNbWCfF7pGVXv/TgNBbxQOU5480gsoaoJZF6bFnCgKolS4uI6KEpMOBOwx6TRtMCVFUslJdIEkr8ik4A==";
 
 /** API 요청 주소 => 나중에 .env로 옮겨야 함 */
 /** Encoding이 아닌 Decoding 인증키 사용 */
@@ -47,16 +48,9 @@ function AirlineSearchResult() {
       <div>
         {isLoading && <div>데이터를 불러오는 중이에요..!</div>}
         {error && <div>에러: {error.message}</div>}
-        {data?.slice(0, 10).map((item: searchResultType, index: number) => {
-          return (
-            <li key={index} style={{ marginBottom: 24, fontSize: 16 }}>
-              <p>항공사: {item.airline}</p>
-              <p>편명: {item.flightId}</p>
-              <p>도착 예정시각: {item.scheduleDateTime}</p>
-              <p>도착 예상시각(지연 시): {item.estimatedDateTime}</p>
-            </li>
-          );
-        })}
+        {data?.slice(0, 10).map((item: searchResultType, index: number) => (
+          <AirlineSearchResultCard key={index} item={item} />
+        ))}
       </div>
     </div>
   );
