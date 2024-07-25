@@ -20,3 +20,15 @@
 .section-lg {
   width: 25%;
 }
+
+/* 취소선 */
+.section-strikethrough {
+  text-decoration: line-through;
+  text-decoration-color: red;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+/* 텍스트 색 blue */
+.section-blue {
+  color: blue;
+}

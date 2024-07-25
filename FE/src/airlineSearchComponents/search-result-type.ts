@@ -13,4 +13,5 @@ export type searchResultType = {
   remark: "도착" | "결항" | "지연" | "회항" | "착륙" | null;
   airportCode: string;
   terminalid: string;
+  [key: string]: any;
 };
