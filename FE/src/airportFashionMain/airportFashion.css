@@ -40,10 +40,10 @@ hr {
 }
 
 .look-button-container button {
-  flex: 0 0 auto;
+  flex: 1 1 auto;
   margin: auto 5px;
   padding: 5px 10px;
-  width: 65px;
+  min-width: 65px;
   height: 30px;
   font-size: 13px;
   font-weight: 400;
