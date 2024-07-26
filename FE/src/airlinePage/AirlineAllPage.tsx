@@ -5,6 +5,7 @@ import { FaCaretDown } from "react-icons/fa";
 import { useState } from "react";
 import { FlightFilterForAllPage } from "./types";
 import AirlineSearchResult from "../airlineSearchComponents/AirlineSearchResult";
+import AirlineAttribute from "../airlineSearchComponents/AirlineAttribute";
 import { useNavigate } from "react-router-dom";
 import { useFetchAirlineData } from "../airlineSearchComponents/hooks/useFetchAirlineData";
 import { fetchAirlineData } from "../airlineSearchComponents/api/fetchAirlineData";
@@ -71,6 +72,7 @@ function AirlineAllPage() {
           </div>
         }
       />
+      <AirlineAttribute />
       <AirlineSearchResult
         data={filteredData}
         isLoading={isLoading}

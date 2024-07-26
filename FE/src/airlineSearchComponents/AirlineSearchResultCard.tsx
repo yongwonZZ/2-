@@ -1,5 +1,6 @@
 import { searchResultType } from "./search-result-type";
 import { formatTime } from "./utils/formatTime";
+import { terminal2 } from "../airlinePage/airlineTerminals";
 import styles from "./AirlineSearchResultCard.module.css";
 import { useNavigate } from "react-router-dom";
 
@@ -16,8 +17,8 @@ function AirlineSearchResultCard({ item }: Props) {
       onClick={() => navigate(`/airline-search/${item.flightId.toLowerCase()}`)}
     >
       <div className={styles["section-sm"]}>
-        <span>T1</span>
-        <span>[123]</span>
+        <span>T{terminal2.includes(item.airline) ? 2 : 1}</span>
+        <span>[{item.gatenumber}]</span>
       </div>
       <div className={styles["section-sm"]}>
         <span className={styles["section-strikethrough"]}>

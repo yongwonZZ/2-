@@ -15,19 +15,16 @@ function AirlineSearchResult({
 }: AirlineSearchResultProps) {
   return (
     <div>
-      <h1>검색 결과</h1>
-      <div>
-        {isLoading && <div>데이터를 불러오는 중이에요..!</div>}
-        {error && <div>에러: {error.message}</div>}
-        {data
-          ?.filter(
-            ({ estimatedDateTime }) => estimatedDateTime >= currentFormatTime()
-          )
-          .slice(0, 10)
-          .map((item: searchResultType, index: number) => (
-            <AirlineSearchResultCard key={index} item={item} />
-          ))}
-      </div>
+      {isLoading && <div>데이터를 불러오는 중이에요..!</div>}
+      {error && <div>에러: {error.message}</div>}
+      {data
+        ?.filter(
+          ({ estimatedDateTime }) => estimatedDateTime >= currentFormatTime()
+        )
+        .slice(0, 10)
+        .map((item: searchResultType, index: number) => (
+          <AirlineSearchResultCard key={index} item={item} />
+        ))}
     </div>
   );
 }
