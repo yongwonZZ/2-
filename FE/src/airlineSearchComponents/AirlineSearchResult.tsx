@@ -1,18 +1,18 @@
 import { searchResultType } from "./search-result-type";
 import AirlineSearchResultCard from "./AirlineSearchResultCard";
 import { currentFormatTime } from "./utils/formatTime";
-import { useFetchAirlineData } from "./hooks/useFetchAirlineData";
 
-function AirlineSearchResult() {
-  /** 요청에 필요한 파라미터 */
-  /** 원래는 AirlineSearchPage로부터 props 전송받아야 함. 일단 하드코딩 */
-  const params = {
-    // airport_code: "IAD",
-    // serviceKey와 type은 fetchAirlineData 내부에서 처리
-  };
+type AirlineSearchResultProps = {
+  data?: searchResultType[];
+  isLoading: boolean;
+  error?: Error;
+};
 
-  const { error, isLoading, data } = useFetchAirlineData(params);
-
+function AirlineSearchResult({
+  data,
+  isLoading,
+  error,
+}: AirlineSearchResultProps) {
   return (
     <div>
       <h1>검색 결과</h1>
