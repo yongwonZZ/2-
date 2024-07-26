@@ -13,6 +13,7 @@ import Login from "./login/Login";
 import MyPage from "./myPage/MyPage";
 import AirportFashion from "./airportFashionMain/airportFashion";
 import LookDetails from "./airportFashionPost/lookDetails";
+import PostUpload from "./airportFashionPost/postUpload/PostUpload";
 import CongestionPage from "./airlineInfoPages/Pages/CongestionPage";
 import AirlineDetailPage from "./airlinePage/AirlineDetailPage";
 
@@ -41,6 +42,7 @@ function App() {
           <Route path='/MyPage' element={<MyPage />} />
           <Route path='/airportFashion' element={<AirportFashion />} />
           <Route path='/lookDetails' element={<LookDetails />} />
+          <Route path='/postUpload' element={<PostUpload />} />
         </Routes>
       </QueryClientProvider>
     </div>

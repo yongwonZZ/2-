@@ -46,6 +46,7 @@
   flex-direction: row;
   justify-content: center;
   margin-top: -20px;
+  margin-bottom: 50px;
   width: 100%;
   height: 60px;
   background-color: rgb(255, 255, 255);
@@ -67,12 +68,17 @@
   margin-right: 18px;
 }
 
+.comments-box {
+  margin-top: 40px;
+}
+
+/* 댓글들 */
 .user-comment-container {
   display: flex;
   flex-direction: row;
   gap: 5px;
   margin: 10px;
-  margin-bottom: 25px;
+  margin-bottom: 28px;
 }
 .user-comment-container svg {
   color: white;

@@ -1,11 +1,10 @@
 import React from "react";
 import { useState } from "react";
-import "./lookDetails.css";
-
-import PostComment from "./postComment/PostComment";
-import Navbar from "../publicComponents/Navbar";
-
 import { useLocation, useNavigate } from "react-router-dom";
+
+import "./lookDetails.css";
+import PostComment from "./postComment/PostComment";
+
 import { IoIosArrowBack as IconArrowBack } from "react-icons/io";
 import { BsPersonFill as IconUserProfile } from "react-icons/bs";
 import { GoKebabHorizontal as IconKebabMenu } from "react-icons/go";
@@ -34,23 +33,28 @@ const LookDetails: React.FC = () => {
   return (
     <div>
       <div className='top-container'>
-        <button onClick={handleBackClick}>
-          <IconArrowBack size={20} />
-        </button>
-        <h1>스트릿</h1>
-      </div>
-      <hr />
-      <div className='user-post-info'>
-        <button>
-          <IconUserProfile size={35} />
-        </button>
-        <div>
-          <p>사용자이름</p>
-          <p>2024년 07월 24일</p>
+        <div className='look-details-top'>
+          <button className='back-button' onClick={handleBackClick}>
+            <IconArrowBack size={20} />
+          </button>
+          <h1>스트릿</h1>
         </div>
-        <button>
-          <IconKebabMenu size={15} />
-        </button>
+        <hr />
+      </div>
+
+      <div className='user-post-info-top'>
+        <div className='user-post-info'>
+          <button>
+            <IconUserProfile size={37} />
+          </button>
+          <div>
+            <p>사용자이름</p>
+            <p>2024년 07월 24일</p>
+          </div>
+          <button>
+            <IconKebabMenu size={15} />
+          </button>
+        </div>
       </div>
       <div className='fashion-image'>
         <img src={imageUrl} alt={`Fashion-Image`} />
@@ -73,7 +77,6 @@ const LookDetails: React.FC = () => {
         <p>12개 댓글 더보기</p>
       </div>
       {isCommentOpen && <PostComment onClose={handleCommentClose} />}
-      <Navbar />
     </div>
   );
 };
