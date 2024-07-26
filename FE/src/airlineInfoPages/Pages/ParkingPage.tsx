@@ -24,12 +24,12 @@ const ParkingPage = () => {
   return (
     <>
       <div className="container">
-        <Header>
-          <div className="parking-header">
-            <FaChevronLeft style={{ fontSize: "22px" }} />
-            주차
-          </div>
-        </Header>
+        {/* <Header>
+        <div className="facility-header">
+          <FaChevronLeft style={{ fontSize: "22px", cursor: "pointer" }} />
+          편의시설
+        </div>
+      </Header>*/}
         <div className="parking short-area">
           <h2 className="parking-header">단기 주차장</h2>
           <div className="fee-info">

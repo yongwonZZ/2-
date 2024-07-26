@@ -32,12 +32,13 @@ const FacilitiesPage: React.FC = () => {
   }, []);
   return (
     <div className="container">
-      <Header>
+
+      {/* <Header>
         <div className="facility-header">
           <FaChevronLeft style={{ fontSize: "22px", cursor: "pointer" }} />
           편의시설
         </div>
-      </Header>
+      </Header>*/}
       {facility && facility.length > 0 ? (
         facility.map((item, index) => (
           <FacilitiesItem
