@@ -22,6 +22,14 @@ function AirlineDetailPage() {
   /** 자료에서 flightId에 해당하는 특정 항공편 하나 찾기 */
   const detailData = data?.find(({ flightId }) => flightId === id);
 
+  const handleRegisterBoardingPass = () => {
+    // detailData의 flightId, scheduleDateTime 정보를
+    // 백엔드 api post 요청을 보내 추가한다.(비동기 처리)
+
+    // 그 후 boardingPass로 페이지 라우팅
+    navigate("/boardingPass");
+  };
+
   return (
     <div className={styles.wrapper}>
       <Header
@@ -87,7 +95,9 @@ function AirlineDetailPage() {
           <span>{formatTime(detailData!.estimatedDateTime)}</span>
         </div>
       </div>
-      <button className={styles.btn}>내 항공편 등록하기</button>
+      <button className={styles.btn} onClick={handleRegisterBoardingPass}>
+        내 항공편 등록하기
+      </button>
     </div>
   );
 }
