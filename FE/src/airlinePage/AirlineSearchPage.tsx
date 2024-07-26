@@ -13,6 +13,9 @@ import { fetchAirlineData } from "../airlineSearchComponents/api/fetchAirlineDat
 import { FlightFilter } from "./types"; // FlightFilter 타입 가져오기
 
 function AirlineSearchPage() {
+  /** 페이지 이동을 위한 훅 */
+  const navigate = useNavigate();
+
   /** 검색어 상태 */
   const [searchText, setSearchText] = useState<string>("");
 
@@ -32,9 +35,6 @@ function AirlineSearchPage() {
 
   /** 드롭다운 메뉴 상태 */
   const [showDropdown, setShowDropdown] = useState(false);
-
-  /** 페이지 이동을 위한 훅 */
-  const navigate = useNavigate();
 
   /** 검색어 변경 핸들러 */
   const handleTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
