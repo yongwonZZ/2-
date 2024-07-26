@@ -19,7 +19,8 @@ function AirlineSearchResult({
       {error && <div>에러: {error.message}</div>}
       {data
         ?.filter(
-          ({ estimatedDateTime }) => estimatedDateTime >= currentFormatTime()
+          ({ estimatedDateTime }) =>
+            Number(estimatedDateTime) >= Number(currentFormatTime()) - 30
         )
         .slice(0, 10)
         .map((item: searchResultType, index: number) => (

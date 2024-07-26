@@ -5,6 +5,7 @@ export type searchResultType = {
   scheduleDateTime: string;
   estimatedDateTime: string;
   airport: string;
+  chkinrange?: string;
   gatenumber?: string;
   carousel?: string;
   exitnumber?: string;
