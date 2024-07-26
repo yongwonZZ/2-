@@ -37,9 +37,9 @@ function AirlineSearchResultCard({ item }: Props) {
         <span>{item.airport}</span>
       </div>
       <div className={styles["section-lg"]}>
-        <span>출구/수하물</span>
-        <span>{item.exitnumber}</span>
-        <span>{item.carousel}</span>
+        <span>{item.chkinrange ? "체크인/탑승구" : "출구/수하물"}</span>
+        <span>{item.chkinrange ? item.gatenumber : item.exitnumber}</span>
+        <span>{item.chkinrange ? item.chkinrange : item.carousel}</span>
       </div>
     </div>
   );
