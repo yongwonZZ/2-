@@ -3,6 +3,7 @@ import { FaChevronLeft, FaFilter } from "react-icons/fa";
 import Header from "../../publicComponents/Header";
 import "../styles/ConjestionPage.css";
 import { fetchCongestionData } from "../getInfoData/getCongestionData";
+import { Link } from "react-router-dom";
 
 interface Congestion {
   adate: string;
@@ -118,7 +119,9 @@ const CongestionPage: React.FC = () => {
       <Header
         leftContent={
           <div className="conjestion-header">
-            <FaChevronLeft style={{ fontSize: "22px", cursor: "pointer" }} />
+            <Link to={"/"}>
+              <FaChevronLeft style={{ fontSize: "22px", cursor: "pointer" }} />
+            </Link>
             {day} {into === "in" ? "입국" : "출국"}장 {terminal}
           </div>
         }
