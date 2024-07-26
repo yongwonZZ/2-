@@ -1,25 +1,27 @@
-const asyncHandler = require('express-async-handler');
-const { User } = require('../models/model');
-const hashPassword = require('../utils/hash-password');
-const jwt = require('jsonwebtoken');
-const secret = process.env.ACCESS_SECRET;
-const {
+import asyncHandler from 'express-async-handler';
+import { User } from '../models/model.js';
+import hashPassword from '../middlewares/hash-password.js';
+import jwt from 'jsonwebtoken';
+import {
   NotFoundError,
   BadRequestError,
   UnauthorizedError,
   InternalServerError,
-} = require('../utils/customError');
+} from '../utils/custom-error.js';
+
+const secret = process.env.ACCESS_SECRET;
+
 // 회원 가입
 const signup = asyncHandler(async (req, res) => {
-  const { email, userName, password, birthDay, address, userRole } = req.body;
+  const { email, userName, password, role } = req.body;
   const userJoin = await User.findOne({ email });
   if (userJoin) {
     throw new BadRequestError('이미 가입하신 회원입니다.');
   }
   const hashedPassword = hashPassword(password); // 비밀번호 해쉬값 만들기
   const user = await User.create({
-    // 유저 생성
     email,
+    userName,
     password: hashedPassword,
     role,
   });
@@ -37,29 +39,26 @@ const login = asyncHandler(async (req, res, next) => {
     throw new NotFoundError('이메일 또는 비밀번호 불일치입니다.');
   }
 
-  if (user && user.password !== hashPassword(password)) {
+  if (user.password !== hashPassword(password)) {
     res.status(401);
     throw new UnauthorizedError('이메일 또는 비밀번호 불일치입니다.');
-  } // 토큰 생성
+  }
+
+  // 토큰 생성
   const token = jwt.sign(
     {
-      // objId, 역할, 권한
       id: user._id,
-      userRole: user.userRole,
+      role: user.role,
       permission: user.permission,
     },
     secret,
     { expiresIn: '1h' }
   );
-  // res.json({
-  //    error: null,
-  //    data: token,
-  // })
 
   res.cookie('accessToken', token, { maxAge: 3600000 });
-  res.json({ massage: `${user.userName}님 환영합니다!` });
-  return;
+  res.json({ message: `${user.userName}님 환영합니다!` });
 });
+
 // 로그아웃
 const logout = asyncHandler(async (req, res) => {
   res.cookie('accessToken', null, { maxAge: 0 });
@@ -87,6 +86,7 @@ const getUser = asyncHandler(async (req, res) => {
   }
   res.json(user);
 });
+
 // 회원 수정
 const updateUser = asyncHandler(async (req, res) => {
   const { password, ...rest } = req.body;
@@ -99,13 +99,14 @@ const updateUser = asyncHandler(async (req, res) => {
     const hashedPassword = hashPassword(password);
     rest.password = hashedPassword;
   }
-  const updatedUser = await User.updateOne({ _id: userId }, { rest });
+  const updatedUser = await User.updateOne({ _id: userId }, { $set: rest });
   if (updatedUser.modifiedCount === 0) {
     throw new InternalServerError('서버 오류입니다.');
   }
 
   res.json({ message: '회원 정보가 수정되었습니다.' });
 });
+
 // 회원 탈퇴
 const resignUser = asyncHandler(async (req, res) => {
   const userId = req.user._id;
@@ -116,8 +117,9 @@ const resignUser = asyncHandler(async (req, res) => {
   user.deleteAt = Date.now();
   await user.save();
 
-  res.json({ message: '회원에서 탈퇴하셨습니다. ' });
+  res.json({ message: '회원에서 탈퇴하셨습니다.' });
 });
+
 // 회원 삭제(탈퇴) - 소프트 삭제
 const deleteUser = asyncHandler(async (req, res) => {
   const userId = req.params.id;
@@ -132,10 +134,10 @@ const deleteUser = asyncHandler(async (req, res) => {
   user.deleteAt = Date.now();
   await user.save();
 
-  res.json({ message: '사용자 데이터가 삭제되었습니다. ' });
+  res.json({ message: '사용자 데이터가 삭제되었습니다.' });
 });
 
-module.exports = {
+export {
   signup,
   login,
   logout,
