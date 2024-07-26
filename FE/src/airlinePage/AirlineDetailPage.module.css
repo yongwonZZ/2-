@@ -39,7 +39,7 @@
 
 .btn {
   position: absolute;
-  bottom: 0;
+  bottom: 60px;
   width: inherit;
   max-width: 400px;
   padding: 20px 0;
