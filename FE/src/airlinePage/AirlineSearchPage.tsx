@@ -4,6 +4,7 @@ import Header from "../publicComponents/Header";
 import FlightFilterOptions from "../airlineSearchComponents/FlightFilterOptions";
 import AirlineSearchResult from "../airlineSearchComponents/AirlineSearchResult";
 import SearchFilterDropdown from "../airlineSearchComponents/SearchFilterDropdown";
+import AirlineAttribute from "../airlineSearchComponents/AirlineAttribute";
 import styles from "./AirlineSearchPage.module.css";
 import { FaChevronLeft } from "react-icons/fa";
 import { LuSettings2 } from "react-icons/lu";
@@ -122,6 +123,7 @@ function AirlineSearchPage() {
         filter={flightFilter}
         onSwitch={handleSwitchFlightFilter}
       />
+      <AirlineAttribute />
       <AirlineSearchResult
         data={filteredData}
         isLoading={isLoading}

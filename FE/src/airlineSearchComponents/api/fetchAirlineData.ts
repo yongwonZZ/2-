@@ -2,15 +2,16 @@ import axios from "axios";
 import { searchResultType } from "../search-result-type";
 
 /** .env로 옮겨야 함 */
-const AIRLINE_SERVICE_KEY =
-  "sfNylwxNbWCfF7pGVXv/TgNBbxQOU5480gsoaoJZF6bFnCgKolS4uI6KEpMOBOwx6TRtMCVFUslJdIEkr8ik4A==";
-const AIRLINE_SERVICE_URL =
-  "https://apis.data.go.kr/B551177/StatusOfPassengerFlightsDSOdp/getPassengerArrivalsDSOdp";
+const AIRLINE_SERVICE_KEY = process.env.REACT_APP_AIRLINE_SERVICE_KEY;
+const AIRLINE_SERVICE_URL = process.env.REACT_APP_AIRLINE_SERVICE_URL;
 
 /** API 요청 함수 */
 export const fetchAirlineData = async (
   params: any
 ): Promise<searchResultType[]> => {
+  console.log("api_url", AIRLINE_SERVICE_URL);
+  console.log("api_key", AIRLINE_SERVICE_KEY);
+
   const { data } = await axios.get(AIRLINE_SERVICE_URL!, {
     params: {
       ...params,
