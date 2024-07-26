@@ -24,14 +24,19 @@ const ExchangeRatePage = () => {
   const defaultCurrencies = ["USD", "JPY(100)", "EUR", "CNH"];
 
   /** 하루 특정 시간에 따라 api 업데이트 */
+  // const getCurrentTime = () => {
+  //   /** date 정보를 string으로 합칩니다. */
+  //   const newDate = new Date();
+  //   const year = newDate.getFullYear();
+  //   const mounth = newDate.getMonth();
+  //   const date = newDate.getDate();
+
+  //   return `${year}${mounth}${date}`;
+  // };
+  // const searchdate = getCurrentTime(); // 검색요청 날짜
   const searchdate = "20240726"; // 검색요청 날짜
-  const newDate = new Date();
-  const year = newDate.getFullYear();
-  const mounth = newDate.getMonth();
-  const date = newDate.getDate();
-  // const dateString =
-  console.log(year, mounth, date);
-  const type = "AP01"; // 환율 데이터 요청타입
+
+  const type = "AP01"; // 환율 데이터 요청타입 AP01 = json
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,7 +44,7 @@ const ExchangeRatePage = () => {
         const rates = await fetchExchangeRate(searchdate, type);
         setExchangeRates(rates);
 
-        // KRW와 USD의 환율 데이터를 설정
+        // KRW와 USD의 환율 데이터를 설정 => default state
         const krwRate = rates.find((rate) => rate.cur_unit === "KRW");
         const usdRate = rates.find((rate) => rate.cur_unit === "USD");
 
@@ -79,20 +84,33 @@ const ExchangeRatePage = () => {
       {/* state값에 따라 target설정 */}
       <div className="selected-list">
         {/* base country */}
-        {baseCountry && (
+        {baseCountry ? (
           <Link to={"selectcontry"}>
             <SelectedCountry amount={amount} {...baseCountry} />
           </Link>
+        ) : (
+          <div className="country-item">
+            <div className="country-item-header">
+              <div className="country-image"></div>
+              <div className="country-name">데이터를 불러오는 중입니다</div>
+            </div>
+          </div>
         )}
         {/* target country */}
-        {targetCountry && (
+        {targetCountry ? (
           <Link to={"selectcontry"}>
             <SelectedCountry amount={amount} {...targetCountry} />
           </Link>
+        ) : (
+          <div className="country-item">
+            <div className="country-item-header">
+              <div className="country-image"></div>
+              <div className="country-name">데이터를 불러오는 중입니다</div>
+            </div>
+          </div>
         )}
       </div>
       <InputAmount setAmount={setAmount} />
-      <Navbar />
     </div>
   );
 };
