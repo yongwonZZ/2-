@@ -1,4 +1,4 @@
-const terminal1: string[] = [
+export const terminal1: string[] = [
   "베트남항공",
   "비엣젯항공",
   "상하이항공",
@@ -64,7 +64,7 @@ const terminal1: string[] = [
   "홍콩항공",
 ];
 
-const terminal2: string[] = [
+export const terminal2: string[] = [
   "KLM네덜란드항공",
   "가루다인도네시아",
   "대한항공",
@@ -75,4 +75,4 @@ const terminal2: string[] = [
   "진에어",
 ];
 
-export { terminal1, terminal2 };
+// export { terminal1, terminal2 };

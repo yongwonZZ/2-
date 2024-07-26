@@ -4,7 +4,7 @@
   margin: auto;
   display: flex;
   flex-direction: column;
-  height: 100vh; /* 중앙 수평 조정 */
+  padding-bottom: 60px;
 }
 
 /* 이전 화면 이동 아이콘 (<), dropdown 아이콘 */
