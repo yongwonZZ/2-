@@ -9,7 +9,7 @@ const AIRLINE_SERVICE_URL =
 
 /** API 요청 함수 */
 export const fetchAirlineData = async (
-  params: Record<string, string>
+  params: any
 ): Promise<searchResultType[]> => {
   const { data } = await axios.get(AIRLINE_SERVICE_URL!, {
     params: {

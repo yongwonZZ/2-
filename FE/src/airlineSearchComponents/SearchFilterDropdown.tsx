@@ -1,26 +1,27 @@
 import styles from "./SearchFilterDropdown.module.css";
+import { FlightFilter, filterNameMap } from "../airlinePage/types";
 
-function SearchFilterDropdown() {
+type SearchFilterDropdownProps = {
+  filters: Record<keyof FlightFilter, boolean>;
+  onFilterChange: (filterName: keyof FlightFilter) => void;
+};
+
+function SearchFilterDropdown({
+  filters,
+  onFilterChange,
+}: SearchFilterDropdownProps) {
   return (
     <div className={styles.dropdown}>
-      <label>
-        <input type="checkbox" /> 편명
-      </label>
-      <label>
-        <input type="checkbox" checked /> 항공사
-      </label>
-      <label>
-        <input type="checkbox" /> 공항
-      </label>
-      <label>
-        <input type="checkbox" /> 수하물수취대
-      </label>
-      <label>
-        <input type="checkbox" /> 출구
-      </label>
-      <label>
-        <input type="checkbox" /> 게이트
-      </label>
+      {Object.keys(filters).map((filterName) => (
+        <label key={filterName}>
+          <input
+            type="checkbox"
+            checked={filters[filterName as keyof FlightFilter]}
+            onChange={() => onFilterChange(filterName as keyof FlightFilter)}
+          />
+          {filterNameMap[filterName as keyof FlightFilter]}
+        </label>
+      ))}
     </div>
   );
 }

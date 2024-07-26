@@ -3,7 +3,7 @@ import Header from "../publicComponents/Header";
 import { FaChevronLeft } from "react-icons/fa";
 import { FaCaretDown } from "react-icons/fa";
 import { useState } from "react";
-import AirlineSearchResult from "../airlineSearchComponents/AirlineSearchResult";
+// import AirlineSearchResult from "../airlineSearchComponents/AirlineSearchResult";
 import { useNavigate } from "react-router-dom";
 
 function AirlineAllPage() {
@@ -39,7 +39,7 @@ function AirlineAllPage() {
           </div>
         }
       />
-      <AirlineSearchResult />
+      {/* <AirlineSearchResult /> */}
     </div>
   );
 }
