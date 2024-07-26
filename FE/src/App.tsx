@@ -15,6 +15,7 @@ import AirportFashion from "./airportFashionMain/airportFashion";
 import LookDetails from "./airportFashionPost/lookDetails";
 import CongestionPage from "./airlineInfoPages/Pages/CongestionPage";
 import AirlineDetailPage from "./airlinePage/AirlineDetailPage";
+import SelectCountryPage from "./ExchangeRatePage/SelectCountryPage";
 
 const queryClient = new QueryClient();
 
@@ -24,23 +25,27 @@ const queryClient = new QueryClient();
 // QueryClientProvider로 감싼 컴포넌트들은 react-query를 사용 가능
 function App() {
   return (
-    <div className='App'>
+    <div className="App">
       <QueryClientProvider client={queryClient}>
         <Routes>
-          <Route path='/' element={<MainPage />} />
-          <Route path='/airline-search' element={<AirlineSearchPage />} />
-          <Route path='/airline-search/:id' element={<AirlineDetailPage />} />
-          <Route path='/exchange' element={<ExchangeRatePage />} />
-          <Route path='/parking' element={<ParkingPage />} />
-          <Route path='/facilities' element={<FacilitiesPage />} />
-          <Route path='/terminalmap' element={<TerminalMapPage />} />
-          <Route path='/airline-all' element={<AirlineAllPage />} />
-          <Route path='/congestion' element={<CongestionPage />} />
-          <Route path='/BoardingPass' element={<BoardingPass />} />
-          <Route path='/Login' element={<Login />} />
-          <Route path='/MyPage' element={<MyPage />} />
-          <Route path='/airportFashion' element={<AirportFashion />} />
-          <Route path='/lookDetails' element={<LookDetails />} />
+          <Route path="/" element={<MainPage />} />
+          <Route path="/airline-search" element={<AirlineSearchPage />} />
+          <Route path="/airline-search/:id" element={<AirlineDetailPage />} />
+          <Route path="/exchange" element={<ExchangeRatePage />} />
+          <Route
+            path="/exchange/selectcontry"
+            element={<SelectCountryPage />}
+          />
+          <Route path="/parking" element={<ParkingPage />} />
+          <Route path="/facilities" element={<FacilitiesPage />} />
+          <Route path="/terminalmap" element={<TerminalMapPage />} />
+          <Route path="/airline-all" element={<AirlineAllPage />} />
+          <Route path="/congestion" element={<CongestionPage />} />
+          <Route path="/BoardingPass" element={<BoardingPass />} />
+          <Route path="/Login" element={<Login />} />
+          <Route path="/MyPage" element={<MyPage />} />
+          <Route path="/airportFashion" element={<AirportFashion />} />
+          <Route path="/lookDetails" element={<LookDetails />} />
         </Routes>
       </QueryClientProvider>
     </div>
