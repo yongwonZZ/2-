@@ -1,71 +1,54 @@
-import cors from 'cors';
 import express from 'express';
-import { userRouter } from './routers/index.js';
-// import { viewsRouter } from './routers/views-router.js';
-import { customError } from './db/middlewares/index.js';
-import morgan from 'morgan';
-
+import dotenv from 'dotenv';
+import mongoose from 'mongoose';
+import cookieParser from 'cookie-parser';
 import path from 'path';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+import cors from 'cors';
+import apiRouter from './routers/index.js';
+// import indexRouter from './routes/indexRouter.js';
+import { errorHandler } from './middlewares/index.js';
 
-// 현재 모듈의 디렉토리 경로를 가져오는 함수
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+dotenv.config();
+
+mongoose
+  .connect(process.env.MONGODB_URL)
+  .then(() => {
+    console.log('MongoDB connect Success!');
+  })
+  .catch((err) => console.log(err));
 
 const app = express();
+app.use(
+  cors({
+    origin: '*', // 출처 허용 옵션
+    credentials: true, // 사용자 인증이 필요한 리소스(쿠키 등) 접근
+  })
+);
+app.use(express.json()); // express.json(): POST 등의 요청과 함께 오는 json형태의 데이터를 인식하고 핸들링할 수 있게 함.
+app.use(express.static('views'));
 
-// CORS 에러 방지
-app.use(cors());
+// app.use("/images", express.static("images"));
 
-//morgan dev사용
-app.use(morgan('dev'));
-
-// Content-Type: application/json 형태의 데이터를 인식하고 핸들링할 수 있게 함.
-app.use(express.json());
-
-// Content-Type: application/x-www-form-urlencoded 형태의 데이터를 인식하고 핸들링할 수 있게 함.
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 
-// // Static files
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.get('/', (req, res) => {
-  res.redirect('/main');
-});
-
-// // Routes
-app.get('/main', (req, res) => {
-  //   // ---- 이후 public 디렉토리 하위 각 폴더별로 라우터 변경
-  res.sendFile(path.join(__dirname, 'public/main', 'main.html')); // 브랜치 병합 이후 여러분들 폴더를 public폴더로 옮겨야함
-});
-
-// // *********** User Page 관련 ***************
-app.get('/signup', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/Sign', 'signup.html'));
-});
-app.get('/signin', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/Sign', 'signin.html'));
-});
-app.get('/mypage', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/myPage', 'myPage.html'));
-});
-
-//back
+//라우터
+app.use('/api', apiRouter);
 app.get('/api', (req, res) => {
   res.send('API RUNNING...');
 });
 
-// html, css, js 라우팅
-// app.use(viewsRouter);
+// app.use('/', indexRouter);
 
-// api 라우팅
-// 아래처럼 하면, userRouter 에서 '/login' 으로 만든 것이 실제로는 앞에 /api가 붙어서
-// /api/login 으로 요청을 해야 하게 됨. 백엔드용 라우팅을 구분하기 위함임.
-app.use('/api/users', userRouter);
+//에러 핸들러
+app.use(errorHandler);
+// app.use((err, req, res, next) => {
+//   res.locals.message = err.message; // res.locals는 응답 객체의 로컬 변수(local variable)를 나타내며, 응답을 렌더링하는 뷰(view)에서 사용
+//   res.locals.error = req.app.get('env') === 'development' ? err : {}; // 재사용하기 어려움
 
-// 순서 중요 (customError은 다른 일반 라우팅보다 나중에 있어야 함)
-// 그래야, 에러가 났을 때 next(error) 했을 때 여기로 오게 됨
-app.use(customError);
+// render the error page
+//   res.status(err.status || 500);
+//   res.json({ message: err.message });
+// });
 
-export { app };
+export default app;

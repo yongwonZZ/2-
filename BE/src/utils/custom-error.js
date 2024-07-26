@@ -1,4 +1,4 @@
-class customError extends Error {
+class CustomError extends Error {
   constructor(code, message) {
     super(message);
     this.code = code;
@@ -69,7 +69,7 @@ class NotModifiedError extends Error {
   }
 }
 
-module.exports = {
+export {
   NotModifiedError,
   DatabaseError,
   ValidationError,
@@ -78,5 +78,5 @@ module.exports = {
   UnauthorizedError,
   BadRequestError,
   NotFoundError,
-  customError,
+  CustomError,
 };
