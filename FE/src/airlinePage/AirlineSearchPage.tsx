@@ -10,7 +10,6 @@ import { FaChevronLeft } from "react-icons/fa";
 import { LuSettings2 } from "react-icons/lu";
 import { MdClear } from "react-icons/md";
 import { useFetchAirlineData } from "../airlineSearchComponents/hooks/useFetchAirlineData";
-import { fetchAirlineData } from "../airlineSearchComponents/api/fetchAirlineData";
 import { FlightFilter } from "./types"; // FlightFilter 타입 가져오기
 
 function AirlineSearchPage() {
@@ -59,7 +58,7 @@ function AirlineSearchPage() {
   const handleFilterDropdown = () => setShowDropdown(!showDropdown);
 
   /** 커스텀 훅 내 비즈니스 로직 => data fetching */
-  const { error, isLoading, data } = useFetchAirlineData(fetchAirlineData({}));
+  const { error, isLoading, data } = useFetchAirlineData({});
 
   /** 데이터 필터링 로직 */
   const filteredData = data?.filter((item) => {
@@ -78,7 +77,10 @@ function AirlineSearchPage() {
       (flightFilter.baggageClaim && item.carousel) || // carousel 필드 사용
       (flightFilter.exit && item.exitnumber) || // exitnumber 필드 사용
       (flightFilter.gate && item.gatenumber); // gatenumber 필드 사용
-    return matchesSearchText && matchesFilter;
+    const matchesDirection =
+      (flightFilter.arrivals && !item.chkinrange) ||
+      (flightFilter.departures && item.chkinrange);
+    return matchesSearchText && matchesFilter && matchesDirection;
   });
 
   return (

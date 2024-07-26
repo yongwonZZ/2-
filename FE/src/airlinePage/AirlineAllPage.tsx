@@ -42,8 +42,10 @@ function AirlineAllPage() {
       (flightFilter.t1
         ? terminal1.includes(item.airline)
         : terminal2.includes(item.airline));
-
-    return matchesFilter;
+    const matchesDirection =
+      (flightFilter.arrivals && !item.chkinrange) ||
+      (!flightFilter.arrivals && item.chkinrange);
+    return matchesFilter && matchesDirection;
   });
 
   return (
