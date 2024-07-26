@@ -1,6 +1,5 @@
 .navbar {
-  width: inherit; /* navbar의 width는 메인페이지 wrapper와 동일하게 */
-  max-width: 400px; /* width 범위 0~400px */
+  width: 100vw;
   display: flex;
   justify-content: space-around;
   align-items: center;

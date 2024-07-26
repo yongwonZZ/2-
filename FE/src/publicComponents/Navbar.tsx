@@ -10,6 +10,8 @@ import { FaRegUser } from "react-icons/fa";
 function Navbar() {
   const [selected, setSelected] = useState("공항");
 
+  const handleSelectList = (title: string) => setSelected(title);
+
   return (
     <ul className={styles.navbar}>
       <NavbarList
@@ -17,35 +19,35 @@ function Navbar() {
         title="공항"
         navigateTo="/"
         isSelected={selected === "공항"}
-        setSelected={setSelected}
+        setSelected={handleSelectList}
       />
       <NavbarList
         icon={<RiExchangeDollarLine />}
         title="환율"
         navigateTo="/exchange"
         isSelected={selected === "환율"}
-        setSelected={setSelected}
+        setSelected={handleSelectList}
       />
       <NavbarList
         icon={<MdOutlineAirplaneTicket />}
         title="내 티켓"
-        navigateTo="../boardingPass"
+        navigateTo="/boardingPass"
         isSelected={selected === "내 티켓"}
-        setSelected={setSelected}
+        setSelected={handleSelectList}
       />
       <NavbarList
         icon={<TbHanger />}
         title="공항패션"
-        navigateTo="../airportFashion"
+        navigateTo="/airportFashion"
         isSelected={selected === "공항패션"}
-        setSelected={setSelected}
+        setSelected={handleSelectList}
       />
       <NavbarList
         icon={<FaRegUser />}
         title="마이페이지"
-        navigateTo="../Login"
+        navigateTo="/Login"
         isSelected={selected === "마이페이지"}
-        setSelected={setSelected}
+        setSelected={handleSelectList}
       />
     </ul>
   );
