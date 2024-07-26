@@ -2,7 +2,6 @@ import Header from "../publicComponents/Header";
 import MainPageContainer from "../mainPageComponents/MainPageContainer";
 import CodeShareOptions from "../mainPageComponents/CodeShareOptions";
 import MainPageLinkItem from "../mainPageComponents/MainPageLinkItem";
-import Navbar from "../publicComponents/Navbar";
 import { useState } from "react";
 import styles from "./MainPage.module.css";
 import {
@@ -64,7 +63,6 @@ function MainPage() {
           navigateTo="/parking"
         />
       </MainPageContainer>
-      <Navbar />
     </div>
   );
 }
