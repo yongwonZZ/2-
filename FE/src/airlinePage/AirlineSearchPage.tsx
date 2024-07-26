@@ -125,7 +125,7 @@ function AirlineSearchPage() {
         filter={flightFilter}
         onSwitch={handleSwitchFlightFilter}
       />
-      <AirlineAttribute />
+      <AirlineAttribute arrivals={flightFilter.arrivals} />
       <AirlineSearchResult
         data={filteredData}
         isLoading={isLoading}

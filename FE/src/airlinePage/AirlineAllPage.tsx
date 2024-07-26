@@ -74,7 +74,7 @@ function AirlineAllPage() {
           </div>
         }
       />
-      <AirlineAttribute />
+      <AirlineAttribute arrivals={flightFilter.arrivals} />
       <AirlineSearchResult
         data={filteredData}
         isLoading={isLoading}

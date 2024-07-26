@@ -1,6 +1,10 @@
 import styles from "./AirlineAttribute.module.css";
 
-function AirlineAttribute() {
+type AirlineAttributeProps = {
+  arrivals: boolean;
+};
+
+function AirlineAttribute({ arrivals }: AirlineAttributeProps) {
   return (
     <div className={styles.card}>
       <div className={styles["section-sm"]}>
@@ -16,8 +20,8 @@ function AirlineAttribute() {
         <span>출발지</span>
       </div>
       <div className={styles["section-lg"]}>
-        <span>출구/</span>
-        <span>수하물</span>
+        <span>{arrivals ? "출구" : "체크인"}</span>
+        <span>{arrivals ? "체크인" : "탑승게이트"}</span>
       </div>
     </div>
   );

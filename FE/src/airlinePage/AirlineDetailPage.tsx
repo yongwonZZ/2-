@@ -60,12 +60,20 @@ function AirlineDetailPage() {
         <span>{detailData?.terminalid}</span>
       </div>
       <div className={styles.card}>
-        <span>수하물수취대</span>
-        <span>{detailData?.carousel}</span>
+        <span>{detailData?.chkinrange ? "체크인카운터" : "수하물수취대"}</span>
+        <span>
+          {detailData?.chkinrange
+            ? detailData?.chkinrange
+            : detailData?.carousel}
+        </span>
       </div>
       <div className={styles.card}>
-        <span>출구</span>
-        <span>{detailData?.exitnumber}</span>
+        <span>{detailData?.chkinrange ? "탑승게이트" : "출구"}</span>
+        <span>
+          {detailData?.chkinrange
+            ? detailData?.gatenumber
+            : detailData?.exitnumber}
+        </span>
       </div>
       <div className={styles.card}>
         <div className={styles.section}>
