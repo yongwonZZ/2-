@@ -19,14 +19,16 @@ const PostComment: React.FC<PostCommentProps> = ({ onClose }) => {
             <IconClose size={25} />
           </button>
         </div>
-        <Comments />
-        <Comments />
-        <Comments />
-        <Comments />
-        <Comments />
-        <Comments />
-        <Comments />
-        <Comments />
+        <div className='comments-box'>
+          <Comments />
+          <Comments />
+          <Comments />
+          <Comments />
+          <Comments />
+          <Comments />
+          <Comments />
+          <Comments />
+        </div>
 
         <div className='comment-input'>
           <hr />
