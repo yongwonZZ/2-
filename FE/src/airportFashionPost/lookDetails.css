@@ -26,13 +26,21 @@ hr {
 }
 
 /* 상단 */
+.look-details-top {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+}
+
 .top-container {
   display: flex;
   justify-content: center;
   margin-bottom: 5px;
 }
 
-.top-container button {
+.back-button {
   position: absolute;
   color: gray;
   top: 20px;
@@ -40,10 +48,14 @@ hr {
 }
 
 /* 게시글 - 사용자 프로필 */
+.user-post-info-top {
+  margin-top: 77px;
+}
+
 .user-post-info {
   display: flex;
-  font-size: 12px;
-  margin: 20px 20px;
+  font-size: 13px;
+  margin: 15px 20px;
 }
 
 .user-post-info p:first-child {
@@ -52,7 +64,7 @@ hr {
 
 .user-post-info p:last-child {
   margin-top: 7px;
-  font-size: 8px;
+  font-size: 10px;
   color: rgb(168, 168, 168);
 }
 
@@ -62,11 +74,13 @@ hr {
   border-radius: 20px;
   padding: 2px;
   margin-right: 13px;
+  margin-top: 2px;
 }
 .user-post-info button:last-child {
   color: rgb(168, 168, 168);
   transform: rotate(90deg);
   margin-left: auto;
+  margin-top: -3px;
 }
 
 /* 게시글 이미지 */
@@ -76,7 +90,7 @@ hr {
 .fashion-image img {
   display: block;
   max-width: 100%;
-  max-height: 60vh;
+  max-height: 58vh;
   margin: 0px auto;
 }
 
