@@ -8,7 +8,8 @@ import PostComment from "./postComment/PostComment";
 import { IoIosArrowBack as IconArrowBack } from "react-icons/io";
 import { BsPersonFill as IconUserProfile } from "react-icons/bs";
 import { GoKebabHorizontal as IconKebabMenu } from "react-icons/go";
-import { IoMdHeartEmpty as IconLike } from "react-icons/io";
+import { IoMdHeartEmpty as IconLikeNo } from "react-icons/io";
+import { IoMdHeart as IconLikeYes } from "react-icons/io";
 import { GoComment as IconComment } from "react-icons/go";
 
 const LookDetails: React.FC = () => {
@@ -20,7 +21,11 @@ const LookDetails: React.FC = () => {
     navigate(-1); // 이전 페이지로 이동
   };
 
+  // 댓글창 상태
   const [isCommentOpen, setCommentOpen] = useState(false);
+  // 좋아요 상태
+  const [isLiked, setIsLiked] = useState(false);
+  const [likeCount, setLikeCount] = useState(0);
 
   const handleCommentClick = () => {
     setCommentOpen(true);
@@ -28,6 +33,15 @@ const LookDetails: React.FC = () => {
 
   const handleCommentClose = () => {
     setCommentOpen(false);
+  };
+
+  const handleLikeClick = () => {
+    if (isLiked) {
+      setLikeCount(likeCount - 1);
+    } else {
+      setLikeCount(likeCount + 1);
+    }
+    setIsLiked(!isLiked);
   };
 
   return (
@@ -60,21 +74,21 @@ const LookDetails: React.FC = () => {
         <img src={imageUrl} alt={`Fashion-Image`} />
       </div>
       <div className='like-comment-icon'>
-        <button className='like-button'>
-          <IconLike size={28} />
+        <button className='like-button' onClick={handleLikeClick}>
+          {isLiked ? <IconLikeYes size={28} /> : <IconLikeNo size={28} />}
         </button>
         <button className='comment-button' onClick={handleCommentClick}>
           <IconComment size={25} />
         </button>
       </div>
       <div className='post-bottom-container'>
-        <p>좋아요 222개</p>
+        <p>좋아요 {likeCount}개</p>
         <p>#공항패션 #공항패션룩 #여행룩</p>
         <div className='post-comment-container'>
           <p>토마토마토</p>
           <p>오 예쁩니다. 👍👍</p>
         </div>
-        <p>12개 댓글 더보기</p>
+        <button onClick={handleCommentClick}>12개 댓글 더보기</button>
       </div>
       {isCommentOpen && <PostComment onClose={handleCommentClose} />}
     </div>
