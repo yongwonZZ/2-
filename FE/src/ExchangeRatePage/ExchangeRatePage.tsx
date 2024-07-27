@@ -73,13 +73,17 @@ const ExchangeRatePage = () => {
         마지막 업데이트 <span className="">{`2024.07.22 14:26`}</span>
       </div>
       <div className="ex-rate-list">
-        {defaultRates.map((rate) => (
-          <ExRateHeaderItem
-            key={rate.cur_unit}
-            curUnit={rate.cur_unit}
-            dealBasR={rate.deal_bas_r}
-          />
-        ))}
+        {defaultRates ? (
+          defaultRates.map((rate) => (
+            <ExRateHeaderItem
+              key={rate.cur_unit}
+              curUnit={rate.cur_unit}
+              dealBasR={rate.deal_bas_r}
+            />
+          ))
+        ) : (
+          <div />
+        )}
       </div>
       {/* state값에 따라 target설정 */}
       <div className="selected-list">
