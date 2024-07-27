@@ -46,6 +46,7 @@ const InputAmount: React.FC<InputAmountProps> = ({ setAmount }) => {
         <button className="keypad keypad-control-btn" onClick={handleClear}>
           C
         </button>
+        <button className="keypad keypad-control-btn"></button>
       </div>
     </div>
   );

@@ -50,7 +50,7 @@ function MainPage() {
         <MainPageLinkItem
           icon={<FaDoorOpen className={styles.icon} />}
           title="출입국 혼잡도"
-          navigateTo="#"
+          navigateTo="/congestion"
         />
         <MainPageLinkItem
           icon={<FaConciergeBell className={styles.icon} />}

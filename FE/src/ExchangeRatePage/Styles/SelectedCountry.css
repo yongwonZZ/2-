@@ -1,19 +1,25 @@
 .country-item {
   width: 100%;
-  padding: 30px 10px;
+  padding: 15px 10px;
   box-sizing: border-box;
-
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  transition: 0.5s;
+  cursor: pointer;
 }
-
+a {
+  text-decoration: none;
+}
+.country-item:hover {
+  background-color: #ddd;
+}
 .country-item-header {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
   font-weight: 700;
 }
 
@@ -26,4 +32,6 @@
 .rate-amount {
   font-size: 26px;
   font-weight: 400;
+  text-align: end;
+  margin: 0;
 }

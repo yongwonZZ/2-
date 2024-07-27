@@ -4,9 +4,10 @@
   height: 100%;
   display: flex;
   flex-direction: row;
-  flex: 1 auto;
   margin: 0 auto;
   background-color: #eee;
+  padding-bottom: 60px;
+  box-sizing: border-box;
 }
 .amount-ketpad-number {
   width: 75%;
@@ -16,11 +17,11 @@
   flex-wrap: wrap;
 }
 .keypad {
-  font-size: 24px;
-  aspect-ratio: 1.2/1;
+  font-size: 22px;
   border: 0;
   outline: none;
   background-color: #eee;
+  aspect-ratio: 1.2/1;
 }
 .keypad-btn {
   width: 33.33%;
@@ -30,4 +31,5 @@
 }
 .keypad-control-btn {
   width: 100%;
+  height: 25%;
 }

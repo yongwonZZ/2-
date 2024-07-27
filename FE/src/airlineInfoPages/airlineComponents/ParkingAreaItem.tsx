@@ -1,10 +1,22 @@
 import React from "react";
 
-const ParkingAreaItem = () => {
+interface ParkingData {
+  floor: string;
+  parking: string;
+  parkingarea: string;
+}
+
+interface ParkingAreaItemProps {
+  data: ParkingData;
+}
+
+const ParkingAreaItem: React.FC<ParkingAreaItemProps> = ({ data }) => {
+  const count = Number(data.parkingarea) - Number(data.parking);
+
   return (
     <div className="parking-list-item">
-      <div className="floor">1F</div>
-      <div className="possible">220대가능</div>
+      <div className="floor">{data.floor}</div>
+      <div className="possible">{count}</div>
     </div>
   );
 };

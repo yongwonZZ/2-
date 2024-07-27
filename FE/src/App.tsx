@@ -17,6 +17,7 @@ import PostUpload from "./airportFashionPost/postUpload/PostUpload";
 import CongestionPage from "./airlineInfoPages/Pages/CongestionPage";
 import AirlineDetailPage from "./airlinePage/AirlineDetailPage";
 import Navbar from "./publicComponents/Navbar";
+import SelectCountryPage from "./ExchangeRatePage/SelectCountryPage";
 
 const queryClient = new QueryClient();
 
@@ -44,8 +45,8 @@ function App() {
           <Route path="/airportFashion" element={<AirportFashion />} />
           <Route path="/lookDetails" element={<LookDetails />} />
           <Route path='/postUpload' element={<PostUpload />} />
+          <Route path="/exchange/selectcontry" element={<SelectCountryPage />}/>
         </Routes>
-        <Navbar />
       </QueryClientProvider>
     </div>
   );
