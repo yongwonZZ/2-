@@ -1,152 +1,149 @@
-import { userModel } from "../db/models/user-model.js";
+import asyncHandler from 'express-async-handler';
+import { User } from '../models/model.js';
+import hashPassword from '../middlewares/hash-password.js';
+import jwt from 'jsonwebtoken';
+import {
+  NotFoundError,
+  BadRequestError,
+  UnauthorizedError,
+  InternalServerError,
+} from '../utils/custom-error.js';
 
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
+const secret = process.env.ACCESS_SECRET;
 
-class UserService {
-    // 본 파일의 맨 아래에서, new UserService(userModel) 하면, 이 함수의 인자로 전달됨
-    constructor(userModel) {
-        this.userModel = userModel;
-    }
+// 회원 가입
+const signup = asyncHandler(async (req, res) => {
+  const { email, userName, password, role } = req.body;
+  const userJoin = await User.findOne({ email });
+  if (userJoin) {
+    throw new BadRequestError('이미 가입하신 회원입니다.');
+  }
+  const hashedPassword = hashPassword(password); // 비밀번호 해쉬값 만들기
+  const user = await User.create({
+    email,
+    userName,
+    password: hashedPassword,
+    role,
+  });
+  if (!user) {
+    throw new NotFoundError('사용자가 존재하지 않습니다.');
+  }
+  res.json({ message: `${user.userName}님 회원 가입에 성공하셨습니다!` });
+});
 
-    // 회원가입
-    async addUser(userInfo) {
-        // 객체 destructuring
-        const { email, fullName, password, phoneNumber, role } = userInfo;
-
-        // 이메일 중복 확인
-        const user = await this.userModel.findByEmail(email);
-        if (user) {
-        throw new Error(
-            "이 이메일은 현재 사용중입니다. 다른 이메일을 입력해 주세요."
-        );
-        }
-
-        // 이메일 중복은 이제 아니므로, 회원가입을 진행함
-
-        // 우선 비밀번호 해쉬화(암호화)
-        const hashedPassword = await bcrypt.hash(password, 10);
-
-        const newUserInfo = { fullName, email, password: hashedPassword, phoneNumber, role };
-
-        // db에 저장
-        const createdNewUser = await this.userModel.create(newUserInfo);
-
-        return createdNewUser;
-    }
-
-    // 로그인
-    async getUserToken(loginInfo) {
-        // 객체 destructuring
-        const { email, password } = loginInfo;
-
-        // 우선 해당 이메일의 사용자 정보가  db에 존재하는지 확인
-        const user = await userModel.findByEmail(email);
-        if (!user) {
-            throw new Error(
-                "해당 이메일은 가입 내역이 없습니다. 다시 한 번 확인해 주세요."
-            );
-        }
-
-        // 이제 이메일은 문제 없는 경우이므로, 비밀번호를 확인함
-
-        // 비밀번호 일치 여부 확인
-        const correctPasswordHash = user.password; // db에 저장되어 있는 암호화된 비밀번호
-
-        // 매개변수의 순서 중요 (1번째는 프론트가 보내온 비밀번호, 2번쨰는 db에 있떤 암호화된 비밀번호)
-        const isPasswordCorrect = await bcrypt.compare(
-            password,
-            correctPasswordHash
-        );
-
-        if (!isPasswordCorrect) {
-            throw new Error(
-            "비밀번호가 일치하지 않습니다. 다시 한 번 확인해 주세요."
-        );
-        }
-
-        // 로그인 성공 -> JWT 웹 토큰 생성
-        const secretKey = process.env.JWT_SECRET_KEY || "secret-key";
-
-        // 2개 프로퍼티를 jwt 토큰에 담음
-        const token = jwt.sign({ userId: user._id, role: user.role }, secretKey);
-        return { token };
-    }
-
-    // 사용자 목록을 받음.
-    async getUsers() {
-        const users = await this.userModel.findAll();
-        return users;
-    }
-
-    // 유저정보 수정, 현재 비밀번호가 있어야 수정 가능함.
-    async setUser(userInfoRequired, toUpdate) {
-        // 객체 destructuring
-        const { userId, currentPassword } = userInfoRequired;
-
-        // 우선 해당 id의 유저가 db에 있는지 확인
-        let user = await this.userModel.findById(userId);
-
-        // db에서 찾지 못한 경우, 에러 메시지 반환
-        if (!user) {
-            throw new Error("가입 내역이 없습니다. 다시 한 번 확인해 주세요.");
-        }
-
-        // 이제, 정보 수정을 위해 사용자가 입력한 비밀번호가 올바른 값인지 확인해야 함
-
-        // 비밀번호 일치 여부 확인
-        const correctPasswordHash = user.password;
-        const isPasswordCorrect = await bcrypt.compare(
-            currentPassword,
-            correctPasswordHash
-        );
-
-        if (!isPasswordCorrect) {
-            throw new Error(
-            "현재 비밀번호가 일치하지 않습니다. 다시 한 번 확인해 주세요."
-            );
-        }
-
-        // 이제 드디어 업데이트 시작
-
-        // 비밀번호도 변경하는 경우에는, 회원가입 때처럼 해쉬화 해주어야 함.
-        const { password } = toUpdate;
-
-        if (password) {
-            const newPasswordHash = await bcrypt.hash(password, 10);
-            toUpdate.password = newPasswordHash;
-        }
-
-        // 업데이트 진행
-        user = await this.userModel.update({
-            userId,
-            update: toUpdate,
-        });
-    return user;
+// 로그인
+const login = asyncHandler(async (req, res, next) => {
+  const { email, password } = req.body;
+  const user = await User.findOne({ email });
+  if (user === null) {
+    throw new NotFoundError('이메일 또는 비밀번호 불일치입니다.');
   }
 
-    //회원탈퇴
-    async deleteUser({ email, password }) {
-    // 해당 id의 유저가 db에 있는지 확인
-    const user = await userModel.findByEmail(email);
+  if (user.password !== hashPassword(password)) {
+    res.status(401);
+    throw new UnauthorizedError('이메일 또는 비밀번호 불일치입니다.');
+  }
 
-    // db에서 찾지 못한 경우, 에러 메시지 반환
-    if (!user) {
-        throw new Error("가입 내역이 없습니다. 다시 한 번 확인해 주세요.");
-    }
+  // 토큰 생성
+  const token = jwt.sign(
+    {
+      id: user._id,
+      role: user.role,
+      permission: user.permission,
+    },
+    secret,
+    { expiresIn: '1h' }
+  );
 
-    const isPasswordCorrect = await bcrypt.compare(password, user.password);
+  res.cookie('accessToken', token, { maxAge: 3600000 });
+  res.json({ message: `${user.userName}님 환영합니다!` });
+});
 
-    if (!isPasswordCorrect) {
-        throw new Error("비밀번호가 일치하지 않습니다. 다시 한 번 확인해 주세요.");
-    }
-    // 유저가 db에 있는 경우, 삭제 진행
-    await userModel.delete(email);
+// 로그아웃
+const logout = asyncHandler(async (req, res) => {
+  res.cookie('accessToken', null, { maxAge: 0 });
+  if (res.cookie.accessToken) {
+    res.status(500);
+    throw new InternalServerError('정상적으로 로그 아웃이 되지 않았습니다.');
+  }
+  res.json({ message: '이용해주셔서 감사합니다.' });
+});
 
-    return;
-    }
-}
+// 회원 목록 조회 (관리자)
+const getUserList = asyncHandler(async (req, res) => {
+  const users = await User.find({}).limit(20);
+  if (users.length === 0) {
+    throw new NotFoundError('요청하신 데이터가 존재하지 않습니다.');
+  }
+  res.json(users);
+});
 
-const userService = new UserService(userModel);
+// 회원 조회
+const getUser = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user.id);
+  if (!user) {
+    throw new NotFoundError('사용자가 존재하지 않습니다.');
+  }
+  res.json(user);
+});
 
-export { userService };
+// 회원 수정
+const updateUser = asyncHandler(async (req, res) => {
+  const { password, ...rest } = req.body;
+  const userId = req.params.id;
+  const user = await User.findById(userId);
+  if (!user) {
+    throw new NotFoundError('사용자를 찾을 수 없습니다.');
+  }
+  if (password) {
+    const hashedPassword = hashPassword(password);
+    rest.password = hashedPassword;
+  }
+  const updatedUser = await User.updateOne({ _id: userId }, { $set: rest });
+  if (updatedUser.modifiedCount === 0) {
+    throw new InternalServerError('서버 오류입니다.');
+  }
+
+  res.json({ message: '회원 정보가 수정되었습니다.' });
+});
+
+// 회원 탈퇴
+const resignUser = asyncHandler(async (req, res) => {
+  const userId = req.user._id;
+  const user = await User.findById(userId);
+  if (!user) {
+    throw new NotFoundError('사용자를 찾을 수 없습니다.');
+  }
+  user.deleteAt = Date.now();
+  await user.save();
+
+  res.json({ message: '회원에서 탈퇴하셨습니다.' });
+});
+
+// 회원 삭제(탈퇴) - 소프트 삭제
+const deleteUser = asyncHandler(async (req, res) => {
+  const userId = req.params.id;
+
+  const user = await User.findById(userId);
+  if (!user) {
+    throw new NotFoundError('사용자를 찾을 수 없습니다.');
+  }
+  if (user.deleteAt !== null) {
+    throw new NotFoundError('이미 삭제된 데이터입니다.');
+  }
+  user.deleteAt = Date.now();
+  await user.save();
+
+  res.json({ message: '사용자 데이터가 삭제되었습니다.' });
+});
+
+export {
+  signup,
+  login,
+  logout,
+  getUserList,
+  updateUser,
+  deleteUser,
+  getUser,
+  resignUser,
+};
