@@ -128,7 +128,7 @@ hr {
   color: #567ffa;
 }
 
-.post-bottom-container p:last-child {
+.post-bottom-container button {
   margin-top: 12px;
   color: rgb(168, 168, 168);
   font-size: 12px;
