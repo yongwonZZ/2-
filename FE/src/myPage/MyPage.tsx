@@ -11,8 +11,8 @@ const MyPage: React.FC = () => {
     }
 
     return (
-        <div className="mypage-container">
-            <Header> 뭐라도 떠봐라 </Header>
+        <div className="mypage-container" >
+            <Header leftContent={"마이페이지"} />
             <div className="profile-container">
                 <div className="profile-image"></div>
                 <div className="profile-info">

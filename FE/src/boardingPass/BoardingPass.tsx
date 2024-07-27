@@ -6,7 +6,7 @@ import Header from "../publicComponents/Header";
 const BoardingPass: React.FC = () => {
     return (
         <>
-            <Header>편의시설</Header>
+            <Header leftContent={"보딩패스"} />
             <div className="boarding-pass">
                 <div className="color-strip"></div>
                 <div className="boarding-pass-content">

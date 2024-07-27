@@ -1,30 +1,34 @@
 import React, { useState } from 'react';
-import './Login.css'; // CSS 파일을 임포트
+import './Login.css';
 import { useNavigate } from 'react-router-dom';
 import Header from "../publicComponents/Header";
 import Navbar from "../publicComponents/Navbar";
+import { login } from './LoginAPI'; // 수정된 경로
 
 const Login = () => {
     const navigate = useNavigate();
-
-    const testID: string = 'test@naver.com';
-    const testPassword: string = "P@ssw0rd";
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
-    const testLogin = () => {
-        if (email === testID && password === testPassword) {
-            navigate('/myPage');
-        } else {
-            setError('아이디 또는 비밀번호가 틀렸습니다.');
+    const handleLogin = async () => {
+        try {
+            const data = await login(email, password);
+            if (data.success) {
+                navigate('/myPage');
+            } else {
+                setError('아이디 또는 비밀번호가 틀렸습니다.');
+            }
+        } catch (error) {
+            // @ts-ignore
+            setError(error.message);
         }
     };
 
     return (
         <>
-            <Header>편의시설</Header>
+
             <div className="login-container">
                 <input
                     className="email-input"
@@ -50,7 +54,7 @@ const Login = () => {
                 <div className="button-container">
                     <button
                         className="login-button"
-                        onClick={testLogin}
+                        onClick={handleLogin}
                     >
                         로그인
                     </button>
