@@ -7,6 +7,7 @@ import Map11 from "../images/map_entry_route_map_01.png";
 
 import Map2 from "../images/map_exit_route_map_02.png";
 import Map22 from "../images/map_entry_route_map_02.png";
+import { Link } from "react-router-dom";
 
 const TerminalMapPage = () => {
   const [terminal, setTerminal] = useState<string>("T1");
@@ -24,7 +25,9 @@ const TerminalMapPage = () => {
       <Header
         leftContent={
           <div className="map-header">
-            <FaChevronLeft style={{ fontSize: "22px", cursor: "pointer" }} />
+            <Link to={"/"}>
+              <FaChevronLeft style={{ fontSize: "22px", cursor: "pointer" }} />
+            </Link>
             <button className="map-btn" onClick={handleOnClickTerminal}>
               공항 터미널 지도{terminal} <FaCaretDown />
             </button>

@@ -3,6 +3,7 @@ import Header from "../../publicComponents/Header";
 import FacilitiesItem from "../airlineComponents/FacilitiesItem";
 import { FaChevronLeft } from "react-icons/fa";
 import { fetchFacilitiesData } from "../getInfoData/getFacilitiesData";
+import { Link } from "react-router-dom";
 
 interface Facility {
   entrpskoreannm: string;
@@ -32,12 +33,16 @@ const FacilitiesPage: React.FC = () => {
   }, []);
   return (
     <div className="container">
-      <Header>
-        <div className="facility-header">
-          <FaChevronLeft style={{ fontSize: "22px", cursor: "pointer" }} />
-          편의시설
-        </div>
-      </Header>
+      <Header
+        leftContent={
+          <div className="facility-header">
+            <Link to={"/"}>
+              <FaChevronLeft style={{ fontSize: "22px", cursor: "pointer" }} />
+            </Link>
+            편의시설
+          </div>
+        }
+      />
       {facility && facility.length > 0 ? (
         facility.map((item, index) => (
           <FacilitiesItem

@@ -4,6 +4,9 @@
   max-width: 400px;
   margin: 0 auto;
 }
+a {
+  color: inherit;
+}
 .parking {
   border-top: 1px solid #ccc;
   padding: 20px;
@@ -14,6 +17,9 @@
 .parking-header {
   font-size: 16px;
   font-weight: 700;
+  align-items: center;
+  display: flex;
+  gap: 10px;
 }
 .fee-info {
   display: flex;
