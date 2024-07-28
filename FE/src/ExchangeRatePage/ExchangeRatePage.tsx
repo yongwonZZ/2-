@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import ExRateHeaderItem from "./Components/ExRateHeaderItem";
 import "./Styles/ExchangeRatePage.css";
 import SelectedCountry from "./Components/SelectedCountry";
@@ -7,6 +7,7 @@ import { fetchExchangeRate } from "./getExchangeRates";
 import Header from "../publicComponents/Header";
 import Navbar from "../publicComponents/Navbar";
 import { Link } from "react-router-dom";
+import { FaChevronLeft } from "react-icons/fa";
 
 interface ExchangeRate {
   cur_unit: string;
@@ -19,6 +20,7 @@ const ExchangeRatePage = () => {
   const [exchangeRates, setExchangeRates] = useState<ExchangeRate[]>([]);
   const [baseCountry, setBaseCountry] = useState<ExchangeRate | null>(null);
   const [targetCountry, setTargetCountry] = useState<ExchangeRate | null>(null);
+  const [isToggle, setIsToggle] = useState<boolean>(false);
 
   // 기본 통화 목록
   const defaultCurrencies = ["USD", "JPY(100)", "EUR", "CNH"];
@@ -66,9 +68,42 @@ const ExchangeRatePage = () => {
     defaultCurrencies.includes(rate.cur_unit)
   );
 
-  return (
+  /** baseCountry와 targetCountry를 스왑합니다 */
+  const handleSwapCountries = useCallback(() => {
+    setBaseCountry(targetCountry);
+    setTargetCountry(baseCountry);
+  }, [baseCountry, targetCountry]);
+
+  return isToggle ? (
+    <>
+      <div className="container">
+        <Header
+          leftContent={
+            <div className="exchange-header">
+              <FaChevronLeft
+                style={{ fontSize: "22px" }}
+                onClick={() => setIsToggle(false)}
+              />
+              통화
+            </div>
+          }
+        />
+        <div className="country-list">
+          {exchangeRates?.map((item, index) => (
+            <div className="country-item" key={index}>
+              <div className="country-item-header">
+                <div className="country-image"></div>
+                <div className="country-name">{item.cur_nm.split(" ")[0]}</div>
+              </div>
+              <div className="country-amount">{item.cur_unit}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
+  ) : (
     <div className="container">
-      <Header leftContent={<div className="facility-header">환율</div>} />
+      <Header leftContent={<div className="exchange-header">환율</div>} />
       <div className="last-update">
         마지막 업데이트 <span className="">{`2024.07.22 14:26`}</span>
       </div>
@@ -89,9 +124,9 @@ const ExchangeRatePage = () => {
       <div className="selected-list">
         {/* base country */}
         {baseCountry ? (
-          <Link to={"selectcontry"}>
+          <div onClick={() => setIsToggle(true)}>
             <SelectedCountry amount={amount} {...baseCountry} />
-          </Link>
+          </div>
         ) : (
           <div className="country-item">
             <div className="country-item-header">
@@ -102,9 +137,9 @@ const ExchangeRatePage = () => {
         )}
         {/* target country */}
         {targetCountry ? (
-          <Link to={"selectcontry"}>
+          <div onClick={() => setIsToggle(true)}>
             <SelectedCountry amount={amount} {...targetCountry} />
-          </Link>
+          </div>
         ) : (
           <div className="country-item">
             <div className="country-item-header">
@@ -114,7 +149,10 @@ const ExchangeRatePage = () => {
           </div>
         )}
       </div>
-      <InputAmount setAmount={setAmount} />
+      <InputAmount
+        setAmount={setAmount}
+        onSwapCountries={handleSwapCountries}
+      />
     </div>
   );
 };
