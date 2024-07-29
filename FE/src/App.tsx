@@ -16,7 +16,7 @@ import LookDetails from "./airportFashionPost/lookDetails";
 import PostUpload from "./airportFashionPost/postUpload/PostUpload";
 import CongestionPage from "./airlineInfoPages/Pages/CongestionPage";
 import AirlineDetailPage from "./airlinePage/AirlineDetailPage";
-import Navbar from "./publicComponents/Navbar";
+import Navbar from "./components/Navbar";
 import SelectCountryPage from "./ExchangeRatePage/SelectCountryPage";
 
 const queryClient = new QueryClient();
