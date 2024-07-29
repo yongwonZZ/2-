@@ -1,8 +1,0 @@
-/* 모바일 화면 비율 + 중앙 위치 */
-.wrapper {
-  width: 30%;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  height: 100vh; /* 중앙 수평 조정 */
-}
