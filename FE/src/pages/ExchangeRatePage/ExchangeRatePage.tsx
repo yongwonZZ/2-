@@ -4,8 +4,8 @@ import "./Styles/ExchangeRatePage.css";
 import SelectedCountry from "./Components/SelectedCountry";
 import InputAmount from "./Components/InputAmount";
 import { fetchExchangeRate } from "./getExchangeRates";
-import Header from "../components/Header";
-import Navbar from "../components/Navbar";
+import Header from "../../components/Header";
+import Navbar from "../../components/Navbar";
 import { Link } from "react-router-dom";
 
 interface ExchangeRate {

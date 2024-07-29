@@ -1,7 +1,7 @@
-import Header from "../components/Header";
-import MainPageContainer from "../mainPageComponents/MainPageContainer";
-import CodeShareOptions from "../mainPageComponents/CodeShareOptions";
-import MainPageLinkItem from "../mainPageComponents/MainPageLinkItem";
+import Header from "../../components/Header";
+import MainPageContainer from "../../mainPageComponents/MainPageContainer";
+import CodeShareOptions from "../../mainPageComponents/CodeShareOptions";
+import MainPageLinkItem from "../../mainPageComponents/MainPageLinkItem";
 import { useState } from "react";
 import styles from "./MainPage.module.css";
 import {

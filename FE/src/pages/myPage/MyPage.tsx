@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from "../components/Header";
+import Header from "../../components/Header";
 import './Mypage.css';
-import Navbar from "../components/Navbar"; // CSS 파일을 임포트
+import Navbar from "../../components/Navbar"; // CSS 파일을 임포트
 import { useNavigate } from 'react-router-dom';
 
 const MyPage: React.FC = () => {
@@ -44,7 +44,6 @@ const MyPage: React.FC = () => {
                     <button className="logout-button" onClick={handleLogout}>로그아웃</button>
                 </div>
             </div>
-            <Navbar />
         </div>
     );
 }

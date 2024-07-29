@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../components/Header";
+import Header from "../../components/Header";
 import FlightFilterOptions from "../airlineSearchComponents/FlightFilterOptions";
 import AirlineSearchResult from "../airlineSearchComponents/AirlineSearchResult";
 import SearchFilterDropdown from "../airlineSearchComponents/SearchFilterDropdown";
