@@ -19,6 +19,7 @@ import AirlineDetailPage from "./pages/airlinePage/AirlineDetailPage";
 import Navbar from "./components/Navbar";
 import SelectCountryPage from "./pages/ExchangeRatePage/SelectCountryPage";
 import CreateAccount from "./pages/createAccount/CreateAccount";
+import BoardingPassDetails from "./pages/boardingPassDetails/BoardingPassDetails";
 
 const queryClient = new QueryClient();
 
@@ -47,6 +48,8 @@ function App() {
             <Route path="/lookDetails" element={<LookDetails />} />
             <Route path='/postUpload' element={<PostUpload />} />
             <Route path="/exchange/selectcontry" element={<SelectCountryPage />} />
+
+            <Route path="/boardingPass/:id" element={<BoardingPassDetails setTicketCount={setTicketCount} />} />
           </Routes>
         </QueryClientProvider>
       </div>
