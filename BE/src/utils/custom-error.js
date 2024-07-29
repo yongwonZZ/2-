@@ -1,11 +1,11 @@
-class CustomError extends Error {
+export class CustomError extends Error {
   constructor(code, message) {
     super(message);
     this.code = code;
   }
 }
 
-class NotFoundError extends Error {
+export class NotFoundError extends Error {
   constructor(message = 'Not found') {
     super(message);
     this.name = 'NotFoundError';
@@ -13,7 +13,7 @@ class NotFoundError extends Error {
   }
 }
 
-class BadRequestError extends Error {
+export class BadRequestError extends Error {
   constructor(message = 'Bad request') {
     super(message);
     this.name = 'BadRequestError';
@@ -21,7 +21,7 @@ class BadRequestError extends Error {
   }
 }
 
-class UnauthorizedError extends Error {
+export class UnauthorizedError extends Error {
   constructor(message = 'Unauthorized') {
     super(message);
     this.name = 'UnauthorizedError';
@@ -29,7 +29,7 @@ class UnauthorizedError extends Error {
   }
 }
 
-class ForbiddenError extends Error {
+export class ForbiddenError extends Error {
   constructor(message = 'Forbidden') {
     super(message);
     this.name = 'ForbiddenError';
@@ -37,7 +37,7 @@ class ForbiddenError extends Error {
   }
 }
 
-class InternalServerError extends Error {
+export class InternalServerError extends Error {
   constructor(message = 'Internal server error') {
     super(message);
     this.name = 'InternalServerError';
@@ -45,7 +45,7 @@ class InternalServerError extends Error {
   }
 }
 
-class ValidationError extends Error {
+export class ValidationError extends Error {
   constructor(message = 'Validation failed') {
     super(message);
     this.name = 'ValidationError';
@@ -53,7 +53,7 @@ class ValidationError extends Error {
   }
 }
 
-class DatabaseError extends Error {
+export class DatabaseError extends Error {
   constructor(message = 'Database error') {
     super(message);
     this.name = 'DatabaseError';
@@ -61,22 +61,10 @@ class DatabaseError extends Error {
   }
 }
 
-class NotModifiedError extends Error {
+export class NotModifiedError extends Error {
   constructor(message = 'NotModified error') {
     super(message);
     this.name = 'NotModifiedError';
     this.status = 304; // Not Modified
   }
 }
-
-export {
-  NotModifiedError,
-  DatabaseError,
-  ValidationError,
-  InternalServerError,
-  ForbiddenError,
-  UnauthorizedError,
-  BadRequestError,
-  NotFoundError,
-  CustomError,
-};
