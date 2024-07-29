@@ -1,0 +1,53 @@
+.wrapper {
+  width: 100%;
+  max-width: 400px; /* width는 0~400px 범위 */
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 60px; /* navbar 높이만큼 여백 추가 */
+}
+
+.icon-prev,
+.icon-share {
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.icon-prev:hover,
+.icon-share:hover {
+  color: #4d67fa;
+}
+
+.icon-departure {
+  font-size: 32px;
+}
+
+.card {
+  padding: 16px 8px;
+  font-size: 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn {
+  position: absolute;
+  bottom: 60px;
+  width: inherit;
+  max-width: 400px;
+  padding: 20px 0;
+  background-color: rgb(1, 23, 89);
+  transition: background-color 0.2s ease;
+  color: white;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background-color: rgba(1, 23, 89, 0.8);
+}
