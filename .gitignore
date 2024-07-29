@@ -1,4 +1,6 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+#
+/BE/node_modules
+/BE/.env
 
 # dependencies
 /FE/node_modules
@@ -13,6 +15,8 @@
 
 # misc
 /FE/.DS_Store
+
+/FE/.env
 /FE/.env.local
 /FE/.env.development.local
 /FE/.env.test.local
@@ -27,5 +31,4 @@ yarn-error.log*
 /FE/.idea/workspace.xml
 .idea/
 
-node_modules
-.env
+
