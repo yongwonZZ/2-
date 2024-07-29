@@ -13,6 +13,8 @@
 
 # misc
 /FE/.DS_Store
+
+/FE/.env
 /FE/.env.local
 /FE/.env.development.local
 /FE/.env.test.local
@@ -22,7 +24,10 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+
 # IntelliJ IDEA files
 /FE/.idea/
 /FE/.idea/workspace.xml
 .idea/
+
+
