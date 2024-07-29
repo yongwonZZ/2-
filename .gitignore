@@ -26,3 +26,6 @@ yarn-error.log*
 /FE/.idea/
 /FE/.idea/workspace.xml
 .idea/
+
+node_modules
+.env
