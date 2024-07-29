@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
-import Header from "../components/Header";
-import Navbar from "../components/Navbar";
-import { login } from './LoginAPI'; // 수정된 경로
+import { LoginAction } from './LoginAction'; // 수정된 경로
 
 const Login = () => {
     const navigate = useNavigate();
@@ -12,10 +10,12 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
-    const handleLogin = async () => {
+    const handleLogin = async (event: React.FormEvent) => {
+        event.preventDefault();
         try {
-            const data = await login(email, password);
+            const data = await LoginAction(email, password);
             if (data.success) {
+                console.log("로그인에 성공하셨습니다");
                 navigate('/myPage');
             } else {
                 setError('아이디 또는 비밀번호가 틀렸습니다.');
@@ -23,50 +23,52 @@ const Login = () => {
         } catch (error) {
             // @ts-ignore
             setError(error.message);
+            console.log("로그인에 실패했습니다");
         }
     };
 
     return (
         <>
-
             <div className="login-container">
-                <input
-                    className="email-input"
-                    id="email-input"
-                    type="email"
-                    name="email"
-                    placeholder="이메일 입력"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                />
-                <input
-                    className="password-input"
-                    id="password-input"
-                    type="password"
-                    name="password"
-                    placeholder="비밀번호 입력"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-                {error && <p className="error">{error}</p>}
-                <div className="button-container">
-                    <button
-                        className="login-button"
-                        onClick={handleLogin}
-                    >
-                        로그인
-                    </button>
-                    <button
-                        className="signup-button"
-                        onClick={() => navigate('/create-account')}
-                    >
-                        회원가입
-                    </button>
-                </div>
+                <form onSubmit={handleLogin}>
+                    <input
+                        className="email-input"
+                        id="email-input"
+                        type="email"
+                        name="email"
+                        placeholder="이메일 입력"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                    <input
+                        className="password-input"
+                        id="password-input"
+                        type="password"
+                        name="password"
+                        placeholder="비밀번호 입력"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                    {error && <p className="error">{error}</p>}
+                    <div className="button-container">
+                        <button
+                            className="login-button"
+                            type="submit"
+                        >
+                            로그인
+                        </button>
+                        <button
+                            className="signup-button"
+                            type="button"
+                            onClick={() => navigate('../createAccount')}
+                        >
+                            회원가입
+                        </button>
+                    </div>
+                </form>
             </div>
-            <Navbar />
         </>
     );
 }

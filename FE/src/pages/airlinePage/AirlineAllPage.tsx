@@ -1,5 +1,5 @@
 import styles from "./AirlineAllPage.module.css";
-import Header from "../components/Header";
+import Header from "../../components/Header";
 import { FaChevronLeft } from "react-icons/fa";
 import { FaCaretDown } from "react-icons/fa";
 import { useState } from "react";

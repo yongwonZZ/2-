@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/TerminalMapPage.css";
 import { FaCaretDown, FaChevronLeft } from "react-icons/fa";
-import Header from "../../components/Header";
+import Header from "../../../components/Header";
 import Map1 from "../images/map_exit_route_map_01.png";
 import Map11 from "../images/map_entry_route_map_01.png";
 

@@ -2,7 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useFetchAirlineData } from "../../hooks/useFetchAirlineData";
 import styles from "./AirlineDetailPage.module.css";
 import stylesEx from "../airlineSearchComponents/AirlineSearchResultCard.module.css";
-import Header from "../components/Header";
+import Header from "../../components/Header";
 import { formatTime } from "../../utils/formatTime";
 import { FaChevronLeft } from "react-icons/fa";
 import { IoMdShare } from "react-icons/io";
