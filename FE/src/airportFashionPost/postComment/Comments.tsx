@@ -2,15 +2,30 @@ import React from "react";
 import "./comments.css";
 import { BsPersonFill as IconUserProfile } from "react-icons/bs";
 
-const Comments: React.FC = () => {
+interface CommentsProps {
+  comment: string;
+}
+
+const formatDate = (date: Date) => {
+  const year = date.getFullYear();
+  const month = `0${date.getMonth() + 1}`.slice(-2);
+  const day = `0${date.getDate()}`.slice(-2);
+  return `${year}년 ${month}월 ${day}일`;
+};
+
+const Comments: React.FC<CommentsProps> = ({ comment }) => {
+  const currentDate = formatDate(new Date());
+
   return (
-    <div className='user-comment-container'>
-      <IconUserProfile size={35} />
-      <div className='comments'>
-        <p>토마토마토</p>
-        <p>오 예쁩니다. 👍👍</p>
+    <div>
+      <div className='user-comment-container'>
+        <IconUserProfile size={35} />
+        <div className='comments'>
+          <p>토마토마토</p>
+          <p>{comment}</p>
+        </div>
       </div>
-      <p className='date'>2024년 7월 25일</p>
+      <p className='date'>{currentDate}</p>
     </div>
   );
 };

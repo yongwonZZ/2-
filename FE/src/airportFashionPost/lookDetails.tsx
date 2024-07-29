@@ -21,8 +21,10 @@ const LookDetails: React.FC = () => {
     navigate(-1); // 이전 페이지로 이동
   };
 
-  // 댓글창 상태
+  // 댓글 상태
   const [isCommentOpen, setCommentOpen] = useState(false);
+  const [commentCount, setCommentCount] = useState(0);
+  const [firstComment, setFirstComment] = useState<string | null>(null);
   // 좋아요 상태
   const [isLiked, setIsLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
@@ -36,14 +38,17 @@ const LookDetails: React.FC = () => {
   };
 
   const handleLikeClick = () => {
-    if (isLiked) {
-      setLikeCount(likeCount - 1);
-    } else {
-      setLikeCount(likeCount + 1);
-    }
+    setLikeCount(isLiked ? likeCount - 1 : likeCount + 1);
     setIsLiked(!isLiked);
   };
 
+  const updateCommentCount = (count: number) => {
+    setCommentCount(count);
+  };
+
+  const updateFirstComment = (comment: string) => {
+    setFirstComment(comment);
+  };
   return (
     <div>
       <div className='top-container'>
@@ -85,12 +90,26 @@ const LookDetails: React.FC = () => {
         <p>좋아요 {likeCount}개</p>
         <p>#공항패션 #공항패션룩 #여행룩</p>
         <div className='post-comment-container'>
-          <p>토마토마토</p>
-          <p>오 예쁩니다. 👍👍</p>
+          {firstComment ? (
+            <>
+              <p>토마토마토</p>
+              <p>{firstComment}</p>
+            </>
+          ) : (
+            <p>댓글이 없습니다.</p>
+          )}
         </div>
-        <button onClick={handleCommentClick}>12개 댓글 더보기</button>
+        <button onClick={handleCommentClick}>
+          {commentCount}개 댓글 더보기
+        </button>
       </div>
-      {isCommentOpen && <PostComment onClose={handleCommentClose} />}
+      {isCommentOpen && (
+        <PostComment
+          onClose={handleCommentClose}
+          updateCommentCount={updateCommentCount}
+          updateFirstComment={updateFirstComment}
+        />
+      )}
     </div>
   );
 };
