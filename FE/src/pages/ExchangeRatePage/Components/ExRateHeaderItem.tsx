@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../Styles/ExRateHeaderItem.css";
 
 interface ExRateHeaderItemProps {
@@ -12,8 +12,8 @@ const ExRateHeaderItem: React.FC<ExRateHeaderItemProps> = ({
 }) => {
   return (
     <div className="rate-items">
-      <div className="rate-item-name">{curUnit}</div>
-      <div className="rate-item">{dealBasR}</div>
+      <div className="rate-item-name">{curUnit ? curUnit : "..."}</div>
+      <div className="rate-item">{dealBasR ? dealBasR : "..."}</div>
     </div>
   );
 };

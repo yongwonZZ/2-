@@ -14,8 +14,14 @@ a {
   flex-direction: column;
   gap: 10px;
 }
+.update-time {
+  text-align: end;
+  color: #888;
+  font-size: 12px;
+  padding: 0 20px 5px 0;
+}
 .parking-header {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
   align-items: center;
   display: flex;
@@ -33,4 +39,12 @@ a {
   font-weight: 700;
   display: flex;
   justify-content: space-between;
+  color: #007aff;
+}
+.parking-list-item.pos {
+  color: #007aff;
+}
+
+.parking-list-item.impos {
+  color: red;
 }
