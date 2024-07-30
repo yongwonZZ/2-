@@ -3,12 +3,10 @@ import Header from "../../components/Header";
 import './Mypage.css';
 import Navbar from "../../components/Navbar"; // CSS 파일을 임포트
 import { useNavigate } from 'react-router-dom';
+import { handleLogout } from '../../utils/authUtils'; // authUtils 파일에서 함수 가져오기
 
 const MyPage: React.FC = () => {
     const navigate = useNavigate();
-    const handleLogout = () => {
-        navigate('../login');
-    }
 
     return (
         <div className="mypage-container" >
@@ -41,7 +39,7 @@ const MyPage: React.FC = () => {
                     <p> 0.0.1 </p>
                 </div>
                 <div className="logout-container">
-                    <button className="logout-button" onClick={handleLogout}>로그아웃</button>
+                    <button className="logout-button" onClick={() => handleLogout(navigate)}>로그아웃</button>
                 </div>
             </div>
         </div>
