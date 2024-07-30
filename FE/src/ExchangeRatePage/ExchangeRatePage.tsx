@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import ExRateHeaderItem from "./Components/ExRateHeaderItem";
 import "./Styles/ExchangeRatePage.css";
 import SelectedCountry from "./Components/SelectedCountry";
@@ -26,17 +26,15 @@ const ExchangeRatePage = () => {
   const defaultCurrencies = ["USD", "JPY(100)", "EUR", "CNH"];
 
   /** 하루 특정 시간에 따라 api 업데이트 */
-  // const getCurrentTime = () => {
-  //   /** date 정보를 string으로 합칩니다. */
-  //   const newDate = new Date();
-  //   const year = newDate.getFullYear();
-  //   const mounth = newDate.getMonth();
-  //   const date = newDate.getDate();
-
-  //   return `${year}${mounth}${date}`;
-  // };
-  // const searchdate = getCurrentTime(); // 검색요청 날짜
-  const searchdate = "20240726"; // 검색요청 날짜
+  /** 현재 시간을 반환 */
+  const getCurrentTime = () => {
+    const now = new Date();
+    const year = String(now.getFullYear());
+    const month = String(now.getMonth() + 1).padStart(2, "0"); // 월은 0부터 시작하므로 1을 더함
+    const date = String(now.getDate()).padStart(2, "0");
+    return `${year}${month}${date}`;
+  };
+  const searchdate = getCurrentTime(); // 검색요청 날짜
 
   const type = "AP01"; // 환율 데이터 요청타입 AP01 = json
 
@@ -64,8 +62,10 @@ const ExchangeRatePage = () => {
   }, [exchangeRates]);
 
   /**기본 통화 목록에 있는 환율만 필터링 */
-  const defaultRates = exchangeRates?.filter((rate) =>
-    defaultCurrencies.includes(rate.cur_unit)
+  const defaultRates = useMemo(
+    () =>
+      exchangeRates.filter((rate) => defaultCurrencies.includes(rate.cur_unit)),
+    [exchangeRates]
   );
 
   /** baseCountry와 targetCountry를 스왑합니다 */
@@ -108,24 +108,24 @@ const ExchangeRatePage = () => {
         마지막 업데이트 <span className="">{`2024.07.22 14:26`}</span>
       </div>
       <div className="ex-rate-list">
-        {defaultRates ? (
-          defaultRates.map((rate) => (
-            <ExRateHeaderItem
-              key={rate.cur_unit}
-              curUnit={rate.cur_unit}
-              dealBasR={rate.deal_bas_r}
-            />
-          ))
-        ) : (
-          <div />
-        )}
+        {defaultRates
+          ? defaultRates.map((rate) => (
+              <ExRateHeaderItem
+                key={rate.cur_unit}
+                curUnit={rate.cur_unit}
+                dealBasR={rate.deal_bas_r}
+              />
+            ))
+          : defaultCurrencies.map((item, index) => (
+              <ExRateHeaderItem curUnit={item} dealBasR="..." />
+            ))}
       </div>
       {/* state값에 따라 target설정 */}
       <div className="selected-list">
         {/* base country */}
         {baseCountry ? (
           <div onClick={() => setIsToggle(true)}>
-            <SelectedCountry amount={amount} {...baseCountry} />
+            <SelectedCountry type="base" amount={amount} {...baseCountry} />
           </div>
         ) : (
           <div className="country-item">
@@ -138,7 +138,7 @@ const ExchangeRatePage = () => {
         {/* target country */}
         {targetCountry ? (
           <div onClick={() => setIsToggle(true)}>
-            <SelectedCountry amount={amount} {...targetCountry} />
+            <SelectedCountry type="target" amount={amount} {...targetCountry} />
           </div>
         ) : (
           <div className="country-item">
