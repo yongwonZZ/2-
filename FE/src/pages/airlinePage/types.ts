@@ -12,9 +12,9 @@ export type FlightFilter = FlightFilterForAllPage & {
   flightId: boolean;
   airline: boolean;
   airport: boolean;
-  baggageClaim: boolean;
-  exit: boolean;
-  gate: boolean;
+  carousel: boolean;
+  exitnumber: boolean;
+  gatenumber: boolean;
 };
 
 export const filterNameMap: Record<keyof FlightFilter, string> = {
@@ -25,7 +25,7 @@ export const filterNameMap: Record<keyof FlightFilter, string> = {
   flightId: "편명",
   airline: "항공사",
   airport: "공항",
-  baggageClaim: "수하물 수취대",
-  exit: "출구",
-  gate: "게이트",
+  carousel: "수하물 수취대",
+  exitnumber: "출구",
+  gatenumber: "게이트",
 };
