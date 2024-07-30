@@ -15,9 +15,8 @@ const secret = process.env.ACCESS_SECRET;
 const signup = asyncHandler(async (req, res) => {
   const { email, userName, password, role } = req.body;
   const userJoin = await User.findOne({ email });
-  if (userJoin) {
-    throw new BadRequestError('이미 가입하신 회원입니다.');
-  }
+  if (userJoin) throw new BadRequestError('이미 가입하신 회원입니다.');
+
   const hashedPassword = hashPassword(password); // 비밀번호 해쉬값 만들기
   const user = await User.create({
     email,
@@ -25,9 +24,6 @@ const signup = asyncHandler(async (req, res) => {
     password: hashedPassword,
     role,
   });
-  if (!user) {
-    throw new NotFoundError('사용자가 존재하지 않습니다.');
-  }
   res.json({ message: `${user.userName}님 회원 가입에 성공하셨습니다!` });
 });
 
@@ -62,10 +58,10 @@ const login = asyncHandler(async (req, res, next) => {
 // 로그아웃
 const logout = asyncHandler(async (req, res) => {
   res.cookie('accessToken', null, { maxAge: 0 });
-  if (res.cookie.accessToken) {
-    res.status(500);
-    throw new InternalServerError('정상적으로 로그 아웃이 되지 않았습니다.');
-  }
+  // if (res.cookie.accessToken) {
+  //   res.status(500);
+  //   throw new InternalServerError('정상적으로 로그 아웃이 되지 않았습니다.');
+  // }
   res.json({ message: '이용해주셔서 감사합니다.' });
 });
 
