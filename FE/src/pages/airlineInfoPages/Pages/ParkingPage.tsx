@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
+// @ts-ignore
 import Header from "../../publicComponents/Header";
 import "../styles/InfoPages.css";
 import ParkingAreaItem from "../airlineComponents/ParkingAreaItem";
