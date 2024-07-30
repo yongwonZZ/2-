@@ -14,9 +14,11 @@ const ParkingAreaItem: React.FC<ParkingAreaItemProps> = ({ data }) => {
   const count = Number(data.parkingarea) - Number(data.parking);
 
   return (
-    <div className="parking-list-item">
+    <div className={`parking-list-item ${count > 0 ? "pos" : "impos"}`}>
       <div className="floor">{data.floor}</div>
-      <div className="possible">{count}</div>
+      <div className={`possible `}>
+        {count > 0 ? `${count}대 가능` : "만차"}
+      </div>
     </div>
   );
 };
