@@ -7,6 +7,12 @@
   flex-direction: column;
   margin: 0 auto;
 }
+.exchange-header {
+  font-size: 16px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
 .last-update {
   text-align: end;
   color: #555;
@@ -20,4 +26,13 @@
 .selected-list {
   display: flex;
   flex-direction: column;
+}
+
+/** country list style */
+.conunrty-list {
+  display: flex;
+  flex-direction: column;
+}
+.country-amount {
+  font-weight: 700;
 }
