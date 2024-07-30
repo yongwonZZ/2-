@@ -1,6 +1,6 @@
 {
   "type": "module",
-  "name": "flight booking",
+  "name": "flight_booking",
   "author": "team-2",
   "version": "1.0.0",
   "main": "index.js",
