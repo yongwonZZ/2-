@@ -52,6 +52,7 @@
   background-color: rgb(255, 255, 255);
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
+  z-index: 1;
 }
 
 .comment-top p:first-child {
@@ -70,6 +71,7 @@
 
 .comments-box {
   margin-top: 40px;
+  margin-bottom: 55px;
 }
 
 /* 댓글들 */
@@ -86,6 +88,8 @@
   border-radius: 20px;
   padding: 2px;
   margin-right: 13px;
+  min-width: 35px;
+  max-width: 35px;
 }
 
 .comments {
@@ -100,10 +104,17 @@
 .comments p:last-child {
   font-size: 12px;
   margin-top: 5px;
+  width: 100%;
 }
 .date {
-  right: 10px;
+  position: relative;
+  text-align: end;
+  top: -60px;
+  right: 7px;
   font-size: 11px;
   color: rgb(168, 168, 168);
   margin-left: auto;
+  min-width: 88px;
+  max-height: 20px;
+  z-index: 0;
 }
