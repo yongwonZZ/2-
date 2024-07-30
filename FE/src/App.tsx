@@ -1,23 +1,23 @@
 import { Routes, Route } from "react-router-dom";
 // @ts-ignore
 import { QueryClient, QueryClientProvider } from "react-query";
-import MainPage from "./mainPage/MainPage";
-import AirlineSearchPage from "./airlinePage/AirlineSearchPage";
-import AirlineAllPage from "./airlinePage/AirlineAllPage";
-import ExchangeRatePage from "./ExchangeRatePage/ExchangeRatePage";
-import ParkingPage from "./airlineInfoPages/Pages/ParkingPage";
-import FacilitiesPage from "./airlineInfoPages/Pages/FacilitiesPage";
-import TerminalMapPage from "./airlineInfoPages/Pages/TerminalMapPage";
-import BoardingPass from "./boardingPass/BoardingPass";
-import Login from "./login/Login";
-import MyPage from "./myPage/MyPage";
-import AirportFashion from "./airportFashionMain/airportFashion";
-import LookDetails from "./airportFashionPost/lookDetails";
-import PostUpload from "./airportFashionPost/postUpload/PostUpload";
-import CongestionPage from "./airlineInfoPages/Pages/CongestionPage";
-import AirlineDetailPage from "./airlinePage/AirlineDetailPage";
+import MainPage from "./pages/mainPage/MainPage";
+import AirlineSearchPage from "./pages/airlinePage/AirlineSearchPage";
+import AirlineAllPage from "./pages/airlinePage/AirlineAllPage";
+import ExchangeRatePage from "./pages/ExchangeRatePage/ExchangeRatePage";
+import ParkingPage from "./pages/airlineInfoPages/Pages/ParkingPage";
+import FacilitiesPage from "./pages/airlineInfoPages/Pages/FacilitiesPage";
+import TerminalMapPage from "./pages/airlineInfoPages/Pages/TerminalMapPage";
+import BoardingPass from "./pages/boardingPass/BoardingPass";
+import Login from "./pages/login/Login";
+import MyPage from "./pages/myPage/MyPage";
+import AirportFashion from "./pages/airportFashionMain/airportFashion";
+import LookDetails from "./pages/airportFashionPost/lookDetails";
+import PostUpload from "./pages/airportFashionPost/postUpload/PostUpload";
+import CongestionPage from "./pages/airlineInfoPages/Pages/CongestionPage";
+import AirlineDetailPage from "./pages/airlinePage/AirlineDetailPage";
 import Navbar from "./components/Navbar";
-import SelectCountryPage from "./ExchangeRatePage/SelectCountryPage";
+import SelectCountryPage from "./pages/ExchangeRatePage/SelectCountryPage";
 
 const queryClient = new QueryClient();
 
@@ -44,9 +44,13 @@ function App() {
           <Route path="/MyPage" element={<MyPage />} />
           <Route path="/airportFashion" element={<AirportFashion />} />
           <Route path="/lookDetails" element={<LookDetails />} />
-          <Route path='/postUpload' element={<PostUpload />} />
-          <Route path="/exchange/selectcontry" element={<SelectCountryPage />}/>
+          <Route path="/postUpload" element={<PostUpload />} />
+          <Route
+            path="/exchange/selectcontry"
+            element={<SelectCountryPage />}
+          />
         </Routes>
+        <Navbar />
       </QueryClientProvider>
     </div>
   );

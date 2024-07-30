@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Header from "../../components/Header";
+import Header from "../../../components/Header";
 import "../styles/InfoPages.css";
 import ParkingAreaItem from "../airlineComponents/ParkingAreaItem";
 import { fetchParkingData } from "../getInfoData/getParkingData";

@@ -1,18 +1,17 @@
+import { useCallback, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./AirlineAllPage.module.css";
-import Header from "../components/Header";
+import Header from "../../components/Header";
+import AirlineSearchResult from "./airlineSearchComponents/AirlineSearchResult";
+import AirlineAttribute from "./airlineSearchComponents/AirlineAttribute";
+import AirlineLastUpdated from "./airlineSearchComponents/AirlineLastUpdated";
+import { FlightFilterForAllPage } from "./types";
+import { useFetchAirlineData } from "../../hooks/useFetchAirlineData";
+import { terminal1, terminal2 } from "./airlineTerminals";
 import { FaChevronLeft } from "react-icons/fa";
 import { FaCaretDown } from "react-icons/fa";
-import { useState } from "react";
-import { FlightFilterForAllPage } from "./types";
-import AirlineSearchResult from "../airlineSearchComponents/AirlineSearchResult";
-import AirlineAttribute from "../airlineSearchComponents/AirlineAttribute";
-import { useNavigate } from "react-router-dom";
-import { useFetchAirlineData } from "../../hooks/useFetchAirlineData";
-import { fetchAirlineData } from "../airlineSearchComponents/api/fetchAirlineData";
-import { terminal1, terminal2 } from "./airlineTerminals";
 
 function AirlineAllPage() {
-  /** 페이지 이동 훅 */
   const navigate = useNavigate();
 
   /** 필터 상태 */
@@ -21,32 +20,33 @@ function AirlineAllPage() {
     t1: true, // true => t1, false => t2
   });
 
-  const handleSwitchFlightFilter = (
-    identifier: keyof FlightFilterForAllPage
-  ) => {
-    setFlightFilter((prevState) => {
-      return {
+  /** 필터 상태 핸들러 */
+  const handleSwitchFlightFilter = useCallback(
+    (identifier: keyof FlightFilterForAllPage) => {
+      setFlightFilter((prevState) => ({
         ...prevState,
         [identifier]: !prevState[identifier],
-      };
-    });
-  };
+      }));
+    },
+    []
+  );
 
   /** 커스텀 훅 내 비즈니스 로직 => data fetching */
-  const { error, isLoading, data } = useFetchAirlineData(fetchAirlineData({}));
+  const { error, isLoading, dataUpdatedAt, refetch, data } =
+    useFetchAirlineData({});
 
   /** 데이터 필터링 로직 */
-  const filteredData = data?.filter((item) => {
-    const matchesFilter =
-      (flightFilter.arrivals && item.terminalid === "A") ||
-      (flightFilter.t1
-        ? terminal1.includes(item.airline)
-        : terminal2.includes(item.airline));
-    const matchesDirection =
-      (flightFilter.arrivals && !item.chkinrange) ||
-      (!flightFilter.arrivals && item.chkinrange);
-    return matchesFilter && matchesDirection;
-  });
+  const filteredData = useMemo(() => {
+    return data?.filter((item) => {
+      const matchesDirection =
+        (flightFilter.arrivals && !item.chkinrange) ||
+        (!flightFilter.arrivals && item.chkinrange);
+      const matchesTerminal =
+        (flightFilter.t1 && terminal1.includes(item.airline)) ||
+        (!flightFilter.t1 && terminal2.includes(item.airline));
+      return matchesDirection && matchesTerminal;
+    });
+  }, [data, flightFilter.arrivals, flightFilter.t1]);
 
   return (
     <div className={styles.wrapper}>
@@ -74,6 +74,7 @@ function AirlineAllPage() {
           </div>
         }
       />
+      <AirlineLastUpdated dataUpdatedAt={dataUpdatedAt} refetch={refetch} />
       <AirlineAttribute arrivals={flightFilter.arrivals} />
       <AirlineSearchResult
         data={filteredData}
