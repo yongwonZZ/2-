@@ -232,7 +232,10 @@ const CongestionPage: React.FC = () => {
                       item.atime === currentTimeSlot ? "current-time" : ""
                     }`}
                   >
-                    <td className="data-time">{item?.atime}</td>
+                    <td className="data-time">
+                      {item?.atime.split("_")[0]}
+                      <span className="data-time-set">시</span>
+                    </td>
                     {into === "out" ? (
                       <>
                         {item.sum1 && <td>{item?.sum1}명</td>}
