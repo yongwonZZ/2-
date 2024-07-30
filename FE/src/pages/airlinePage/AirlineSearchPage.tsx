@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./AirlineSearchPage.module.css";
 import Header from "../../components/Header";
@@ -14,25 +14,38 @@ import { FaChevronLeft } from "react-icons/fa";
 import { LuSettings2 } from "react-icons/lu";
 import { MdClear } from "react-icons/md";
 
+const getSavedFlightFilter = () => {
+  const savedFilter = sessionStorage.getItem("flightFilter");
+  return savedFilter ? JSON.parse(savedFilter) : null;
+};
+
 function AirlineSearchPage() {
   const navigate = useNavigate();
 
   /** 검색어 상태 */
-  const [searchText, setSearchText] = useState<string>("");
+  const [searchText, setSearchText] = useState<string>(
+    sessionStorage.getItem("searchText") ?? ""
+  );
 
   /** 필터 상태 */
-  const [flightFilter, setFlightFilter] = useState<FlightFilter>({
-    arrivals: true, // 도착
-    departures: true, // 출발
-    t1: true, // T1
-    t2: true, // T2
-    flightId: false, // 편명
-    airline: true, // 항공사
-    airport: false, // (출발/도착)공항
-    carousel: false, // 수하물수취대
-    exitnumber: false, // 출구
-    gatenumber: false, // 게이트
-  });
+  const [flightFilter, setFlightFilter] = useState<FlightFilter>(
+    getSavedFlightFilter() || {
+      arrivals: true, // 도착
+      departures: true, // 출발
+      t1: true, // T1
+      t2: true, // T2
+      flightId: false, // 편명
+      airline: true, // 항공사
+      airport: false, // (출발/도착)공항
+      carousel: false, // 수하물수취대
+      exitnumber: false, // 출구
+      gatenumber: false, // 게이트
+    }
+  );
+
+  useEffect(() => {
+    sessionStorage.setItem("flightFilter", JSON.stringify(flightFilter));
+  }, [flightFilter]);
 
   /** 드롭다운 메뉴 상태 */
   const [showDropdown, setShowDropdown] = useState(false);
@@ -40,10 +53,14 @@ function AirlineSearchPage() {
   /** 검색어 변경 핸들러 */
   const handleTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(event.target.value);
+    sessionStorage.setItem("searchText", event.target.value);
   };
 
   /** 검색어 clear 핸들러 */
-  const handleTextClear = () => setSearchText("");
+  const handleTextClear = () => {
+    setSearchText("");
+    sessionStorage.removeItem("searchText");
+  };
 
   /** 필터 토글 핸들러 */
   const handleSwitchFlightFilter = useCallback(
