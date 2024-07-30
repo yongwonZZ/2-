@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Header from "../../components/Header";
+import Header from "../../../components/Header";
 import FacilitiesItem from "../airlineComponents/FacilitiesItem";
 import { FaChevronLeft } from "react-icons/fa";
 import { fetchFacilitiesData } from "../getInfoData/getFacilitiesData";

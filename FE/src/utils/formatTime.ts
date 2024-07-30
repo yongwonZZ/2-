@@ -17,3 +17,10 @@ export function currentFormatTime(): string {
 
   return `${YYYY}${MM}${DD}${HH}${mm}`;
 }
+
+/** 타임스탬프 => ex. "마지막 업데이트 ❇️ 오후 1:57:30" */
+/** API가 업데이트된 시각이 필요하실 때 사용하세요 */
+export function lastUpdatedTime(timestamp: number) {
+  const updatedTime = new Date(timestamp);
+  return `마지막 업데이트 시각: ${updatedTime.toLocaleTimeString()}`;
+}

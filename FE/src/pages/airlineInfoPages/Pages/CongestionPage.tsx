@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FaChevronLeft, FaFilter } from "react-icons/fa";
-import Header from "../../components/Header";
+import Header from "../../../components/Header";
 import "../styles/ConjestionPage.css";
 import { fetchCongestionData } from "../getInfoData/getCongestionData";
 import { Link } from "react-router-dom";
