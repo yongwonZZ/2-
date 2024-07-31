@@ -15,7 +15,10 @@ import { GoComment as IconComment } from "react-icons/go";
 const LookDetails: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { imageUrl } = location.state as { imageUrl: string };
+  const { imageUrl, description } = location.state as {
+    imageUrl: string;
+    description: string;
+  };
 
   const handleBackClick = () => {
     navigate(-1); // 이전 페이지로 이동
@@ -88,7 +91,7 @@ const LookDetails: React.FC = () => {
       </div>
       <div className='post-bottom-container'>
         <p>좋아요 {likeCount}개</p>
-        <p>#공항패션 #공항패션룩 #여행룩</p>
+        <p>{description}</p>
         <div className='post-comment-container'>
           {firstComment ? (
             <>
