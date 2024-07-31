@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../Styles/ExRateHeaderItem.css";
+import "../styles/ExRateHeaderItem.css";
 
 interface ExRateHeaderItemProps {
   curUnit: string;

@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../airportFashion.css";
-import { fashionImageUrls } from "./fashionImageUrls";
 
 interface FashionImagesItemProps {
   imageUrl: string;
@@ -19,10 +18,10 @@ const FashionImagesItem: React.FC<FashionImagesItemProps> = ({
   };
 
   return (
-    <div className='fashion-img-container'>
+    <div className="fashion-img-container">
       <img
         src={imageUrl}
-        alt='Fashion-Image'
+        alt="Fashion-Image"
         onClick={() => handleImageClick(imageUrl, description)}
       />
     </div>

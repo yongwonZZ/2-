@@ -1,10 +1,13 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import ExRateHeaderItem from "./Components/ExRateHeaderItem";
-import "./Styles/ExchangeRatePage.css";
-import SelectedCountry from "./Components/SelectedCountry";
-import InputAmount from "./Components/InputAmount";
-import { fetchExchangeRate, fetchCountryImage } from "./getExchangeRates";
-import Header from "../publicComponents/Header";
+import ExRateHeaderItem from "../../pages/exchangeRatePage/components/ExRateHeaderItem";
+import "./styles/ExchangeRatePage.css";
+import SelectedCountry from "../../pages/exchangeRatePage/components/SelectedCountry";
+import InputAmount from "../../pages/exchangeRatePage/components/InputAmount";
+import {
+  fetchExchangeRate,
+  fetchCountryImage,
+} from "../../pages/exchangeRatePage/getExchangeRates";
+import Header from "../../components/Header";
 import { FaChevronLeft } from "react-icons/fa";
 
 interface ExchangeRate {

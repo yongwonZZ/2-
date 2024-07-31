@@ -1,5 +1,5 @@
 import axios from "axios";
-import { searchResultType } from "../search-result-type";
+import { searchResultType } from "../searchResultType";
 
 const AIRLINE_KEY = process.env.REACT_APP_AIRLINE_SERVICE_KEY;
 const AIRLINE_URL = process.env.REACT_APP_AIRLINE_SERVICE_URL;

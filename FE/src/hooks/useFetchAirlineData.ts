@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import { fetchAirlineData } from "../pages/airlinePage/airlineSearchComponents/api/fetchAirlineData";
-import { searchResultType } from "../pages/airlinePage/airlineSearchComponents/search-result-type";
+import { searchResultType } from "../pages/airlinePage/airlineSearchComponents/searchResultType";
 
 /** useQuery 커스텀 훅 */
 export const useFetchAirlineData = (params: any) => {
