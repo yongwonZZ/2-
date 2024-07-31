@@ -93,7 +93,7 @@ function AirlineSearchPage() {
         (flightFilter.departures && item.chkinrange);
       const matchesTerminal =
         (flightFilter.t1 && terminal1.includes(item.airline)) ||
-        (flightFilter.t2 && terminal2.includes(item.ariline));
+        (flightFilter.t2 && terminal2.includes(item.airline));
       const matchesWithSearchText =
         (flightFilter.flightId && item.flightId?.includes(searchText)) ||
         (flightFilter.airline && item.airline?.includes(searchText)) ||

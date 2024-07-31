@@ -17,7 +17,7 @@ function AirlineAttribute({ arrivals }: AirlineAttributeProps) {
         <span>편명</span>
       </div>
       <div className={styles["section-lg"]}>
-        <span>출발지</span>
+        <span>{arrivals ? "출발지" : "도착지"}</span>
       </div>
       <div className={styles["section-lg"]}>
         <span>{arrivals ? "출구" : "체크인"}</span>
