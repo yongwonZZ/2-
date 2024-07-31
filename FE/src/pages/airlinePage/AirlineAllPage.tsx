@@ -74,6 +74,15 @@ function AirlineAllPage() {
           </div>
         }
       />
+      <div
+        style={{
+          position: "sticky",
+          top: 60,
+          height: 30,
+          backgroundColor: "#fff",
+          zIndex: 1001,
+        }}
+      ></div>
       <AirlineLastUpdated dataUpdatedAt={dataUpdatedAt} refetch={refetch} />
       <AirlineAttribute arrivals={flightFilter.arrivals} />
       <AirlineSearchResult
