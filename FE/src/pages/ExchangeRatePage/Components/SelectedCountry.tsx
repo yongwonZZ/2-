@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../Styles/SelectedCountry.css";
+import "../styles/SelectedCountry.css";
 
 interface SelectedCountryProps {
   amount: number;

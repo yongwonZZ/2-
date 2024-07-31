@@ -3,7 +3,7 @@ import "../airportFashion.css";
 
 const LookFilter: React.FC = () => {
   return (
-    <div className='look-button-container'>
+    <div className="look-button-container">
       <button>캐주얼</button>
       <button>오피스</button>
       <button>빈티지</button>

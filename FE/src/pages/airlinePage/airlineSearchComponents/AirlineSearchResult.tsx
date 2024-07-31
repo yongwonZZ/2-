@@ -1,4 +1,4 @@
-import { searchResultType } from "./search-result-type";
+import { searchResultType } from "./searchResultType";
 import AirlineSearchResultCard from "./AirlineSearchResultCard";
 import { currentFormatTime } from "../../../utils/formatTime";
 

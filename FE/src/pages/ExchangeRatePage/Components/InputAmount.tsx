@@ -1,7 +1,7 @@
 // InputAmount.tsx
 import React from "react";
 import { FaBackspace, FaExchangeAlt } from "react-icons/fa";
-import "../Styles/InputAmount.css";
+import "../styles/InputAmount.css";
 
 interface InputAmountProps {
   setAmount: (amount: number) => void;

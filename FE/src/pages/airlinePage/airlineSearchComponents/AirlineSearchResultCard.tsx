@@ -1,4 +1,4 @@
-import { searchResultType } from "./search-result-type";
+import { searchResultType } from "./searchResultType";
 import { formatTime } from "../../../utils/formatTime";
 import { terminal2 } from "../airlineTerminals";
 import styles from "./AirlineSearchResultCard.module.css";
