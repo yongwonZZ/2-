@@ -2,7 +2,6 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./postUpload.css";
-
 import { IoIosArrowBack as IconArrowBack } from "react-icons/io";
 import { GoPlus as IconPlus } from "react-icons/go";
 import { IoCloseOutline as IconClose } from "react-icons/io5";
@@ -38,6 +37,10 @@ const PostUpload: React.FC = () => {
 
   const handleRemoveImage = (index: number) => {
     setImages(images.filter((_, i) => i !== index));
+  };
+
+  const handlePostSubmit = () => {
+    navigate("/airportFashion", { state: { images, text } });
   };
 
   return (
@@ -97,7 +100,9 @@ const PostUpload: React.FC = () => {
           <button>키치</button>
         </div>
       </div>
-      <button className='post-registration-button'>등록하기</button>
+      <button className='post-registration-button' onClick={handlePostSubmit}>
+        등록하기
+      </button>
     </div>
   );
 };
