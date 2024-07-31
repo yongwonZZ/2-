@@ -18,7 +18,8 @@ function AirlineSearchResult({
       ({ estimatedDateTime }) =>
         Number(estimatedDateTime) >= Number(currentFormatTime()) - 30
     )
-    .slice(0, 10);
+    .sort(({ estimatedDateTime: a }, { estimatedDateTime: b }) => +a - +b)
+    .slice(0, 20);
 
   return (
     <div>
