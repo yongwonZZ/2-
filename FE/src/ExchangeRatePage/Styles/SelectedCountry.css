@@ -28,6 +28,7 @@ a {
   height: 40px;
   background-color: #555;
   border-radius: 50%;
+  overflow: hidden;
 }
 .rate-amount {
   font-size: 26px;
