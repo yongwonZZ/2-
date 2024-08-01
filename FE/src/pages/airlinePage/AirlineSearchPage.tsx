@@ -15,7 +15,7 @@ import { LuSettings2 } from "react-icons/lu";
 import { MdClear } from "react-icons/md";
 
 const getSavedFlightFilter = () => {
-  const savedFilter = sessionStorage.getItem("flightFilter");
+  const savedFilter = localStorage.getItem("flightFilter");
   return savedFilter ? JSON.parse(savedFilter) : null;
 };
 
@@ -24,7 +24,7 @@ function AirlineSearchPage() {
 
   /** 검색어 상태 */
   const [searchText, setSearchText] = useState<string>(
-    sessionStorage.getItem("searchText") ?? ""
+    localStorage.getItem("searchText") ?? ""
   );
 
   /** 필터 상태 */
@@ -44,7 +44,7 @@ function AirlineSearchPage() {
   );
 
   useEffect(() => {
-    sessionStorage.setItem("flightFilter", JSON.stringify(flightFilter));
+    localStorage.setItem("flightFilter", JSON.stringify(flightFilter));
   }, [flightFilter]);
 
   /** 드롭다운 메뉴 상태 */
@@ -53,13 +53,13 @@ function AirlineSearchPage() {
   /** 검색어 변경 핸들러 */
   const handleTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(event.target.value);
-    sessionStorage.setItem("searchText", event.target.value);
+    localStorage.setItem("searchText", event.target.value);
   };
 
   /** 검색어 clear 핸들러 */
   const handleTextClear = () => {
     setSearchText("");
-    sessionStorage.removeItem("searchText");
+    localStorage.removeItem("searchText");
   };
 
   /** 필터 토글 핸들러 */
