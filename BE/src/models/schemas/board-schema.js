@@ -6,6 +6,10 @@ const BoardSchema = new mongoose.Schema({
     ref: 'User',
     required: true,
   },
+  category: {
+    type: String,
+    required: true,
+  },
   contents: {
     type: String,
     required: true,
