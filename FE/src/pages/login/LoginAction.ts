@@ -2,7 +2,11 @@ import axios from 'axios';
 
 export interface LoginResponse {
     message: string;
-    token: string; // 서버가 반환하는 JWT
+    token: string;
+    user: {
+        email: string;
+        nickname?: string;
+    };
 }
 
 // 로그인 요청을 보내는 함수
