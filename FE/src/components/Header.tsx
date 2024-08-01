@@ -1,3 +1,4 @@
+import { memo } from "react";
 import styles from "./Header.module.css";
 
 type HeaderProps = {
@@ -6,7 +7,11 @@ type HeaderProps = {
   rightContent?: React.ReactNode; // Header 우측에 위치할 것들(필터 기능 icon 등..)
 };
 
-function Header({ leftContent, centerContent, rightContent  }: HeaderProps) {
+const Header = memo(function Header({
+  leftContent,
+  centerContent,
+  rightContent,
+}: HeaderProps) {
   return (
     <header className={styles.header}>
       {leftContent && <div className={styles.left}>{leftContent}</div>}
@@ -14,6 +19,6 @@ function Header({ leftContent, centerContent, rightContent  }: HeaderProps) {
       {rightContent && <div className={styles.right}>{rightContent}</div>}
     </header>
   );
-}
+});
 
 export default Header;

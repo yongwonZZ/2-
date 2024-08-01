@@ -16,7 +16,7 @@ function AirlineSearchResult({
   const filteredData = data
     ?.filter(
       ({ estimatedDateTime }) =>
-        Number(estimatedDateTime) >= Number(currentFormatTime()) - 30
+        Number(estimatedDateTime) >= Number(currentFormatTime()) - 15
     )
     .sort(({ estimatedDateTime: a }, { estimatedDateTime: b }) => +a - +b)
     .slice(0, 20);
@@ -39,9 +39,22 @@ function AirlineSearchResult({
           <p>우측 상단의 검색어 필터를 확인해 보세요.</p>
         </div>
       ) : (
-        filteredData?.map((item: searchResultType, index: number) => (
-          <AirlineSearchResultCard key={index} item={item} />
-        ))
+        filteredData?.map(
+          (
+            item: searchResultType,
+            index: number,
+            origin: searchResultType[]
+          ) => (
+            <AirlineSearchResultCard key={index} item={item}>
+              {item.codeshare === "Slave" &&
+              item.masterflightid === origin[index - 1].flightId ? (
+                <AirlineSearchResultCard.Slave item={item} />
+              ) : (
+                <AirlineSearchResultCard.Master item={item} />
+              )}
+            </AirlineSearchResultCard>
+          )
+        )
       )}
     </div>
   );
