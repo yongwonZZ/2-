@@ -14,11 +14,11 @@ const BoardSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  // img: {
-  //이미지는 s3에 저장
-  //   type: String,
-  //   required: true,
-  // },
+  img: {
+    //이미지는 s3에 저장
+    type: String,
+    required: true,
+  },
   like: {
     type: Number,
     default: 0,
