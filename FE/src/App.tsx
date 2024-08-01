@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import MainPage from "./pages/mainPage/MainPage";
 import AirlineSearchPage from "./pages/airlinePage/AirlineSearchPage";
 import AirlineAllPage from "./pages/airlinePage/AirlineAllPage";
-import ExchangeRatePage from "./pages/exchangeRatePage/ExchangeRatePage";
+import ExChangeRatePage from "./pages/exchangeRatePage/ExchangeRatePage";
 import ParkingPage from "./pages/airlineInfoPages/pages/ParkingPage";
 import FacilitiesPage from "./pages/airlineInfoPages/pages/FacilitiesPage";
 import TerminalMapPage from "./pages/airlineInfoPages/pages/TerminalMapPage";
@@ -35,7 +35,7 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route path="/airline-search" element={<AirlineSearchPage />} />
           <Route path="/airline-search/:id" element={<AirlineDetailPage />} />
-          <Route path="/exchange" element={<ExchangeRatePage />} />
+          <Route path="/exchange" element={<ExChangeRatePage />} />
           <Route path="/parking" element={<ParkingPage />} />
           <Route path="/facilities" element={<FacilitiesPage />} />
           <Route path="/terminalmap" element={<TerminalMapPage />} />
