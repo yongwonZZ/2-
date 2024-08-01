@@ -1,3 +1,4 @@
+import { memo } from "react";
 import styles from "./Navbar.module.css";
 import NavbarList from "./NavbarList";
 import { useState } from "react";
