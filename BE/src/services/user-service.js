@@ -7,7 +7,7 @@ import {
   BadRequestError,
   UnauthorizedError,
   InternalServerError,
-} from '../utils/custom-error.js';
+} from '../middlewares/custom-error.js';
 const secret = process.env.ACCESS_SECRET;
 
 // 회원 가입
