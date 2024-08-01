@@ -6,7 +6,7 @@ import path from 'path';
 import cors from 'cors';
 import apiRouter from './routers/index.js';
 // import indexRouter from './routes/indexRouter.js';
-import { errorHandler } from './middlewares/index.js';
+import { errorHandler } from './middlewares/custom-error.js';
 
 dotenv.config();
 

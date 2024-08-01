@@ -10,7 +10,6 @@ import FacilitiesPage from "./pages/airlineInfoPages/pages/FacilitiesPage";
 import TerminalMapPage from "./pages/airlineInfoPages/pages/TerminalMapPage";
 // import BoardingPass from "./pages/boardingPass/BoardingPass";
 import Login from "./pages/login/Login";
-// @ts-ignore
 import MyPage from "./pages/myPage/MyPage";
 import AirportFashion from "./pages/airportFashionMain/airportFashion";
 import LookDetails from "./pages/airportFashionPost/lookDetails";
@@ -18,7 +17,6 @@ import PostUpload from "./pages/airportFashionPost/postUpload/PostUpload";
 import CongestionPage from "./pages/airlineInfoPages/pages/CongestionPage";
 import AirlineDetailPage from "./pages/airlinePage/AirlineDetailPage";
 import Navbar from "./components/Navbar";
-// @ts-ignore
 import CreateAccount from "./pages/createAccount/CreateAccount";
 import BoardingPassDetails from "./pages/boardingPassDetails/BoardingPassDetails";
 

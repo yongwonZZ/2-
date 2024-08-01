@@ -1,10 +1,12 @@
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 // 로그인 상태를 확인하는 함수 (예: 토큰 존재 여부)
 export const isUserLoggedIn = (): boolean => {
     const token = localStorage.getItem('token');
     return !!token; // 토큰이 있으면 true, 없으면 false 반환
 };
+
 
 // 페이지 이동을 처리하는 함수
 export const handleRegisterBoardingPass = (navigate: ReturnType<typeof useNavigate>, detailData: any) => {
@@ -22,18 +24,41 @@ export const handleRegisterBoardingPass = (navigate: ReturnType<typeof useNaviga
     }
 };
 
+
+//로그인 함수
+export interface LoginResponse {
+    message: string;
+    token: string;
+    user: {
+        email: string;
+        nickname?: string;
+    };
+}
+export const LoginAction = async (email: string, password: string): Promise<LoginResponse> => {
+    try {
+        const response = await axios.post('http://localhost:5000/api/login', { email, password });
+        return response.data;
+    } catch (error: any) {
+        if (error.response) {
+            throw new Error(error.response.data.message || 'Unknown error occurred');
+        } else if (error.request) {
+            throw new Error('No response received from the server');
+        } else {
+            throw new Error('Error setting up the request');
+        }
+    }
+};
+
 //로그아웃 함수
 export const handleLogout = (navigate: ReturnType<typeof useNavigate>) => {
     const token = localStorage.getItem('token');
 
-    // JWT가 존재하면 콘솔에 출력
     if (token) {
         console.log('JWT before logout:', token);
     }
 
-    // JWT 삭제
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
 
-    // 로그인 페이지로 이동
     navigate('../login');
 };
