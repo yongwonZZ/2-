@@ -8,11 +8,10 @@ import {
   UnauthorizedError,
   InternalServerError,
 } from '../utils/custom-error.js';
-
 const secret = process.env.ACCESS_SECRET;
 
 // 회원 가입
-const signup = asyncHandler(async (req, res) => {
+export const signup = asyncHandler(async (req, res) => {
   const { email, userName, password, role } = req.body;
   const userJoin = await User.findOne({ email });
   if (userJoin) throw new BadRequestError('이미 가입하신 회원입니다.');
@@ -28,7 +27,7 @@ const signup = asyncHandler(async (req, res) => {
 });
 
 // 로그인
-const login = asyncHandler(async (req, res, next) => {
+export const login = asyncHandler(async (req, res, next) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
   if (user === null) {
@@ -56,7 +55,7 @@ const login = asyncHandler(async (req, res, next) => {
 });
 
 // 로그아웃
-const logout = asyncHandler(async (req, res) => {
+export const logout = asyncHandler(async (req, res) => {
   res.cookie('accessToken', null, { maxAge: 0 });
   // if (res.cookie.accessToken) {
   //   res.status(500);
@@ -66,7 +65,7 @@ const logout = asyncHandler(async (req, res) => {
 });
 
 // 회원 목록 조회 (관리자)
-const getUserList = asyncHandler(async (req, res) => {
+export const getUserList = asyncHandler(async (req, res) => {
   const users = await User.find({}).limit(20);
   if (users.length === 0) {
     throw new NotFoundError('요청하신 데이터가 존재하지 않습니다.');
@@ -75,7 +74,7 @@ const getUserList = asyncHandler(async (req, res) => {
 });
 
 // 회원 조회
-const getUser = asyncHandler(async (req, res) => {
+export const getUser = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user.id);
   if (!user) {
     throw new NotFoundError('사용자가 존재하지 않습니다.');
@@ -84,7 +83,7 @@ const getUser = asyncHandler(async (req, res) => {
 });
 
 // 회원 수정
-const updateUser = asyncHandler(async (req, res) => {
+export const updateUser = asyncHandler(async (req, res) => {
   const { password, ...rest } = req.body;
   const userId = req.params.id;
   const user = await User.findById(userId);
@@ -104,7 +103,7 @@ const updateUser = asyncHandler(async (req, res) => {
 });
 
 // 회원 탈퇴
-const resignUser = asyncHandler(async (req, res) => {
+export const resignUser = asyncHandler(async (req, res) => {
   const userId = req.user._id;
   const user = await User.findById(userId);
   if (!user) {
@@ -117,7 +116,7 @@ const resignUser = asyncHandler(async (req, res) => {
 });
 
 // 회원 삭제(탈퇴) - 소프트 삭제
-const deleteUser = asyncHandler(async (req, res) => {
+export const deleteUser = asyncHandler(async (req, res) => {
   const userId = req.params.id;
 
   const user = await User.findById(userId);
@@ -132,14 +131,3 @@ const deleteUser = asyncHandler(async (req, res) => {
 
   res.json({ message: '사용자 데이터가 삭제되었습니다.' });
 });
-
-export {
-  signup,
-  login,
-  logout,
-  getUserList,
-  updateUser,
-  deleteUser,
-  getUser,
-  resignUser,
-};
