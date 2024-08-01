@@ -18,10 +18,10 @@ const FashionImagesItem: React.FC<FashionImagesItemProps> = ({
   };
 
   return (
-    <div className="fashion-img-container">
+    <div className='fashion-img-container'>
       <img
         src={imageUrl}
-        alt="Fashion-Image"
+        alt='Fashion-Image'
         onClick={() => handleImageClick(imageUrl, description)}
       />
     </div>

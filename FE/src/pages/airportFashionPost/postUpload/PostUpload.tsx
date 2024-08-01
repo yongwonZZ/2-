@@ -21,26 +21,36 @@ const PostUpload: React.FC = () => {
     setText(e.target.value);
   };
 
-  const [images, setImages] = useState<string[]>([]);
+  const [imageURLs, setImageURLs] = useState<string[]>([]);
+  const [selectedStyle, setSelectedStyle] = useState<string>("");
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (files && files[0]) {
       const file = files[0];
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImages([...images, reader.result as string]);
-      };
-      reader.readAsDataURL(file);
+      const imageURL = URL.createObjectURL(file);
+      setImageURLs([...imageURLs, imageURL]);
     }
   };
 
   const handleRemoveImage = (index: number) => {
-    setImages(images.filter((_, i) => i !== index));
+    setImageURLs(imageURLs.filter((_, i) => i !== index));
+  };
+
+  const handleStyleSelect = (style: string) => {
+    setSelectedStyle(style);
   };
 
   const handlePostSubmit = () => {
-    navigate("/airportFashion", { state: { images, text } });
+    if (!selectedStyle) {
+      alert("스타일을 선택해주세요.");
+      return;
+    }
+    const newPost = { images: imageURLs, text, style: selectedStyle };
+    const existingPosts = JSON.parse(localStorage.getItem("posts") || "[]");
+    existingPosts.push(newPost);
+    localStorage.setItem("posts", JSON.stringify(existingPosts));
+    navigate("/airportFashion");
   };
 
   return (
@@ -65,9 +75,9 @@ const PostUpload: React.FC = () => {
             onChange={handleImageChange}
             style={{ display: "none" }}
           />
-          <p>{images.length}/10</p>
+          <p>{imageURLs.length}/10</p>
         </div>
-        {images.map((image, index) => (
+        {imageURLs.map((image, index) => (
           <div className='image-seleted' key={index}>
             <img src={image} alt={`Upload ${index}`} />
             <button onClick={() => handleRemoveImage(index)}>
@@ -91,13 +101,19 @@ const PostUpload: React.FC = () => {
       <p className='description'>스타일</p>
       <div>
         <div className='look-style-button'>
-          <button>캐주얼</button>
-          <button>오피스</button>
-          <button>빈티지</button>
-          <button>스포티</button>
-          <button>럭셔리</button>
-          <button>시크</button>
-          <button>키치</button>
+          {[
+            "캐주얼",
+            "오피스",
+            "빈티지",
+            "스포티",
+            "럭셔리",
+            "시크",
+            "키치",
+          ].map((style) => (
+            <button key={style} onClick={() => handleStyleSelect(style)}>
+              {style}
+            </button>
+          ))}
         </div>
       </div>
       <button className='post-registration-button' onClick={handlePostSubmit}>
