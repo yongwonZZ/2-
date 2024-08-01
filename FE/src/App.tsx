@@ -5,9 +5,9 @@ import MainPage from "./pages/mainPage/MainPage";
 import AirlineSearchPage from "./pages/airlinePage/AirlineSearchPage";
 import AirlineAllPage from "./pages/airlinePage/AirlineAllPage";
 import ExChangeRatePage from "./pages/exchangeRatePage/ExchangeRatePage";
-import ParkingPage from "./pages/airlineInfoPages/pages/ParkingPage";
-import FacilitiesPage from "./pages/airlineInfoPages/pages/FacilitiesPage";
-import TerminalMapPage from "./pages/airlineInfoPages/pages/TerminalMapPage";
+import ParkingPage from "./pages/airlineInfoPages/ParkingPage";
+import FacilitiesPage from "./pages/airlineInfoPages/FacilitiesPage";
+import TerminalMapPage from "./pages/airlineInfoPages/TerminalMapPage";
 // import BoardingPass from "./pages/boardingPass/BoardingPass";
 import Login from "./pages/login/Login";
 // @ts-ignore
@@ -15,7 +15,7 @@ import MyPage from "./pages/myPage/MyPage";
 import AirportFashion from "./pages/airportFashionMain/airportFashion";
 import LookDetails from "./pages/airportFashionPost/lookDetails";
 import PostUpload from "./pages/airportFashionPost/postUpload/PostUpload";
-import CongestionPage from "./pages/airlineInfoPages/pages/CongestionPage";
+import CongestionPage from "./pages/airlineInfoPages/CongestionPage";
 import AirlineDetailPage from "./pages/airlinePage/AirlineDetailPage";
 import Navbar from "./components/Navbar";
 // @ts-ignore

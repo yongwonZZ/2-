@@ -1,7 +1,8 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
-import FacilitiesItem from "../airlineComponents/FacilitiesItem";
+// import Header from "../../publicComponents/Header";
+import FacilitiesItem from "./airlineComponents/FacilitiesItem";
 import { FaChevronLeft, FaSearch } from "react-icons/fa";
-import { fetchFacilitiesData } from "../getInfoData/getFacilitiesData";
+import { fetchFacilitiesData } from "./getInfoData/getFacilitiesData";
 import { Link } from "react-router-dom";
 
 interface Facility {
@@ -25,6 +26,7 @@ const FacilitiesPage: React.FC = () => {
   const observer = useRef<IntersectionObserver | null>(null);
   const lastFacilityElementRef = useRef<HTMLDivElement | null>(null);
 
+  /** 데이터 조회 type */
   const type = "&facility_nm=&numOfRows=500&pageNo=1&type=json";
 
   const fetchData = useCallback(async () => {
