@@ -1,5 +1,5 @@
-import React from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./airportFashion.css";
 import LookFilter from "./airportFashionComponents/LookFilter";
 import FashionImagesItem from "./airportFashionComponents/FashionImagesItem";
@@ -9,7 +9,19 @@ import { IoIosArrowBack as IconArrowBack } from "react-icons/io";
 
 const AirportFashion: React.FC = () => {
   const navigate = useNavigate();
-  const location = useLocation();
+  const [posts, setPosts] = useState<
+    { images: string[]; text: string; style: string }[]
+  >([]);
+  const [filteredPosts, setFilteredPosts] = useState<
+    { images: string[]; text: string; style: string }[]
+  >([]);
+  const [selectedFilter, setSelectedFilter] = useState<string>("");
+
+  useEffect(() => {
+    const storedPosts = JSON.parse(localStorage.getItem("posts") || "[]");
+    setPosts(storedPosts);
+    setFilteredPosts(storedPosts);
+  }, []);
 
   const handleBackClick = () => {
     navigate(-1); // 이전 페이지로 이동
@@ -19,10 +31,14 @@ const AirportFashion: React.FC = () => {
     navigate("/PostUpload");
   };
 
-  const uploadedData = location.state as {
-    images: string[];
-    text: string;
-  } | null;
+  const handleFilterClick = (filter: string) => {
+    setSelectedFilter(filter);
+    if (filter === "") {
+      setFilteredPosts(posts);
+    } else {
+      setFilteredPosts(posts.filter((post) => post.style === filter));
+    }
+  };
 
   return (
     <div className='airport-fashion-main-container'>
@@ -32,19 +48,20 @@ const AirportFashion: React.FC = () => {
         </button>
         <h1>공항 패션</h1>
         <hr />
-        <LookFilter />
+        <LookFilter onFilterClick={handleFilterClick} />
         <LookSort />
       </div>
       <div className='fashion-items-top'>
         <div className='fashion-items-container'>
-          {uploadedData?.images &&
-            uploadedData.images.map((url, index) => (
+          {filteredPosts.map((post, index) =>
+            post.images.map((url, imgIndex) => (
               <FashionImagesItem
-                key={index}
+                key={`${index}-${imgIndex}`}
                 imageUrl={url}
-                description={uploadedData.text}
+                description={post.text}
               />
-            ))}
+            ))
+          )}
         </div>
       </div>
       <div className='upload-button'>
