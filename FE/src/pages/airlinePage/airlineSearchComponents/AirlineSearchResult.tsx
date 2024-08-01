@@ -47,7 +47,9 @@ function AirlineSearchResult({
           ) => (
             <AirlineSearchResultCard key={index} item={item}>
               {item.codeshare === "Slave" &&
-              item.masterflightid === origin[index - 1].flightId ? (
+              origin.find(
+                ({ flightId }) => flightId === item.masterflightid
+              ) ? (
                 <AirlineSearchResultCard.Slave item={item} />
               ) : (
                 <AirlineSearchResultCard.Master item={item} />
