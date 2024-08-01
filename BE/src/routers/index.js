@@ -5,6 +5,7 @@ import permission from '../middlewares/permission.js'; // 유저인증 & 권한 
 
 const router = express.Router();
 
+// api/하위경로로 라우팅
 router.post('/signup', signup); // 회원가입
 router.post('/login', login); // 로그인
 router.delete('/logout', logout); // 로그아웃
