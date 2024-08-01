@@ -1,6 +1,6 @@
 import asyncHandler from 'express-async-handler';
 import { Board } from '../models/model.js';
-import { NotFoundError, BadRequestError } from '../utils/custom-error.js';
+import { NotFoundError, BadRequestError } from '../middlewares/custom-error.js';
 
 // 게시글 목록 조회
 export const getBoardList = asyncHandler(async (req, res) => {
