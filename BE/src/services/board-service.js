@@ -16,11 +16,26 @@ export const getBoard = asyncHandler(async (req, res) => {
   res.json(board);
 });
 
+// 카테고리별 게시글 목록 조회
+export const getBoardListByCategory = asyncHandler(async (req, res) => {
+  const { category } = req.params;
+  const boardList = await Board.find({ category });
+  res.json(boardList);
+});
+
 // 게시글 작성
 export const createBoard = asyncHandler(async (req, res) => {
   const { userName, category, contents } = req.body;
   const board = await Board.create({ userName, category, contents });
   res.json({ message: '게시글이 작성되었습니다.', board });
+});
+
+// 게시글 삭제
+export const deleteBoard = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const board = await Board.findByIdAndDelete(id);
+  if (!board) throw new NotFoundError('해당 게시글이 존재하지 않습니다.');
+  res.json({ message: '게시글이 삭제되었습니다.', board });
 });
 
 // // 게시글 수정
