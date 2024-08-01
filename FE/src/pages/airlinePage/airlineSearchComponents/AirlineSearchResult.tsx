@@ -9,14 +9,17 @@ type AirlineSearchResultProps = {
   error?: Error;
 };
 
-// 무한 스크롤 로직 구현 flow
-// 0. data props로 부모 컴포넌트에서 필터된 data 전송받음 (데이터양: 0~7000여개)
-// 1. useState => page 상태를 1로 두고, 스크롤이 끝까지 내려가면 1씩 증가
-// 2. useState => paginatedData에 최초 마운트 시 20개의 데이터를 담고, page가 1씩 증가하면 추가로 20개 담기
-// 3. 스크롤 이벤트 리스너를 달아서 스크롤이 맨 밑으로 내려가면 setPage, setPaginatedData 트리거
-
 /** 한 페이지 당 데이터 수 */
 const DATA_PER_PAGE = 20;
+
+/** 디바운스 함수 */
+const debounce = (func: (...args: any[]) => void, delay: number) => {
+  let timer: NodeJS.Timeout;
+  return function (this: any, ...args: any[]) {
+    clearTimeout(timer);
+    timer = setTimeout(() => func.apply(this, args), delay);
+  };
+};
 
 function AirlineSearchResult({
   data,
@@ -42,14 +45,14 @@ function AirlineSearchResult({
   }, [data, page]);
 
   useEffect(() => {
-    const handleScroll = () => {
+    const handleScroll = debounce(() => {
       if (
         window.innerHeight + window.scrollY >=
         document.documentElement.offsetHeight
       ) {
         setPage((prevPage) => prevPage + 1);
       }
-    };
+    }, 200); // 200ms 디바운스 타임
 
     window.addEventListener("scroll", handleScroll);
 
