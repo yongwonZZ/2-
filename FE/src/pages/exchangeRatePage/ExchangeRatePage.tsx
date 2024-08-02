@@ -52,7 +52,6 @@ const ExchangeRatePage = () => {
         if (krwRate) setBaseCountry(krwRate);
         if (usdRate) setTargetCountry(usdRate);
 
-        // 국가 이미지 불러오기
         for (const rate of rates) {
           const countryName = rate.cur_nm.split(" ")[0];
           const flagUrl = await fetchCountryImage(countryName);
@@ -158,7 +157,7 @@ const ExchangeRatePage = () => {
             <SelectedCountry
               type="base"
               amount={amount}
-              {...baseCountry}
+              baseCountry={baseCountry ?? undefined}
               countryImage={countryImages[baseCountry.cur_unit]}
             />
           </div>
@@ -180,7 +179,8 @@ const ExchangeRatePage = () => {
             <SelectedCountry
               type="target"
               amount={amount}
-              {...targetCountry}
+              baseCountry={baseCountry ?? undefined}
+              targetCountry={targetCountry ?? undefined}
               countryImage={countryImages[targetCountry.cur_unit]}
             />
           </div>

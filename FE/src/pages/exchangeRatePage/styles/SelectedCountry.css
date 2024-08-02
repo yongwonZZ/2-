@@ -30,9 +30,16 @@ a {
   border-radius: 50%;
   overflow: hidden;
 }
+.amount {
+  text-align: end;
+}
 .rate-amount {
   font-size: 26px;
   font-weight: 400;
   text-align: end;
   margin: 0;
+}
+.amount .currency-unit {
+  font-size: 12px;
+  font-weight: 700;
 }

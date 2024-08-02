@@ -163,7 +163,9 @@ const FacilitiesPage: React.FC = () => {
           </>
         )}
         {loading && (
-          <p className="loading-data">편의시설 데이터를 불러오는 중입니다...</p>
+          <div className="loading-data">
+            편의시설 데이터를 불러오는 중입니다...
+          </div>
         )}
       </div>
     </>
