@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./AirlineAllPage.module.css";
 import Header from "../../components/Header";
@@ -10,9 +10,13 @@ import { useFetchAirlineData } from "../../hooks/useFetchAirlineData";
 import { terminal1, terminal2 } from "./airlineTerminals";
 import { FaChevronLeft } from "react-icons/fa";
 import { FaCaretDown } from "react-icons/fa";
+import { useInfiniteScroll } from "../../hooks/useInfiniteScroll";
+import LoadingSpinner from "../../components/loadingSpinner/LoadingSpinner";
 
 function AirlineAllPage() {
   const navigate = useNavigate();
+
+  const targetRef = useRef<HTMLDivElement>(null);
 
   /** 필터 상태 */
   const [flightFilter, setFlightFilter] = useState<FlightFilterForAllPage>({
@@ -37,7 +41,9 @@ function AirlineAllPage() {
 
   /** 데이터 필터링 로직 */
   const filteredData = useMemo(() => {
-    return data?.filter((item) => {
+    if (!data) return [];
+
+    return data.filter((item) => {
       const matchesDirection =
         (flightFilter.arrivals && !item.chkinrange) ||
         (!flightFilter.arrivals && item.chkinrange);
@@ -46,7 +52,12 @@ function AirlineAllPage() {
         (!flightFilter.t1 && terminal2.includes(item.airline));
       return matchesDirection && matchesTerminal;
     });
-  }, [data, flightFilter.arrivals, flightFilter.t1]);
+  }, [data, flightFilter]);
+
+  const { data: paginatedData, isLoading: isLoadingMore } = useInfiniteScroll(
+    filteredData,
+    targetRef
+  );
 
   return (
     <div className={styles.wrapper}>
@@ -86,10 +97,12 @@ function AirlineAllPage() {
       <AirlineLastUpdated dataUpdatedAt={dataUpdatedAt} refetch={refetch} />
       <AirlineAttribute arrivals={flightFilter.arrivals} />
       <AirlineSearchResult
-        data={filteredData}
+        data={paginatedData}
         isLoading={isLoading}
         error={error || undefined}
       />
+      {isLoadingMore && <LoadingSpinner message="Loading..." />}
+      <div ref={targetRef} />
     </div>
   );
 }
