@@ -50,14 +50,24 @@
 .facility-location {
   color: #359aff;
 }
+.facility .facility-des {
+  font-weight: 500;
+}
 
 .facility-info {
   color: #aaa;
 }
-.time {
+.facility-info .time {
   display: flex;
   gap: 5px;
 }
+.facility-info .time .open-now {
+  color: #359aff;
+}
+.facility-info .time .close-now {
+  color: red;
+}
+
 .facility-number {
   text-decoration: underline;
   display: flex;

@@ -32,10 +32,11 @@ a {
 }
 .amount {
   text-align: end;
+  color: #011759;
 }
 .rate-amount {
   font-size: 26px;
-  font-weight: 400;
+  font-weight: 700;
   text-align: end;
   margin: 0;
 }

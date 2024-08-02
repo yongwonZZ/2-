@@ -19,14 +19,19 @@
 }
 .last-update {
   text-align: end;
-  color: #555;
+  color: #888;
   font-size: 12px;
   padding: 0 10px;
 }
+/* 맨위의 item */
 .ex-rate-list {
+  padding: 0 20px;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }
+
+/* 중간의 item */
 .selected-list {
   display: flex;
   flex-direction: column;
