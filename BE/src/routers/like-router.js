@@ -8,7 +8,7 @@ import {
 
 const router = express.Router();
 
-router.get('/status/:userId/:boardId', checkLike); // 좋아요 상태 확인
+router.get('/status/:userId/:boardId', checkLike); // 좋아요 상태 확인 수정필요
 router.get('/count/:boardId', getLikeCount); // 좋아요 수 조회
 router.post('/like', like); // 좋아요
 router.delete('/unlike', unlike); // 좋아요 취소
