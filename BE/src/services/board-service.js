@@ -1,6 +1,18 @@
 import asyncHandler from 'express-async-handler';
 import { Board } from '../models/model.js';
 import { NotFoundError, BadRequestError } from '../middlewares/custom-error.js';
+import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const s3Client = new S3Client({
+  region: process.env.AWS_REGION,
+  credentials: {
+    accessKeyId: process.env.AWS_ACCESS_KEY,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  },
+});
 
 // 게시글 목록 조회
 export const getBoardList = asyncHandler(async (req, res) => {
@@ -26,8 +38,24 @@ export const getBoardListByCategory = asyncHandler(async (req, res) => {
 // 게시글 작성
 export const createBoard = asyncHandler(async (req, res) => {
   const { userName, category, contents } = req.body;
+
+  // S3 presigned URL 생성
+  const s3Params = {
+    Bucket: 'shin08250867', // S3 버킷 이름
+    Key: `images/${Date.now()}`, // 업로드될 파일 이름
+    ContentType: 'image/jpeg', // 업로드될 파일의 MIME 타입
+  };
+
+  const command = new PutObjectCommand(s3Params);
+  const uploadURL = await getSignedUrl(s3Client, command, { expiresIn: 300 });
+
   const board = await Board.create({ userName, category, contents });
-  res.json({ message: '게시글이 작성되었습니다.', board });
+
+  res.json({
+    message: '게시글이 작성되었습니다.',
+    board,
+    uploadURL, // 프론트엔드로 presigned URL 반환
+  });
 });
 
 // 게시글 삭제
