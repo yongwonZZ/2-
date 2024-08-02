@@ -48,20 +48,25 @@ const AirportFashion: React.FC = () => {
         </button>
         <h1>공항 패션</h1>
         <hr />
-        <LookFilter onFilterClick={handleFilterClick} />
+        <LookFilter
+          onFilterClick={handleFilterClick}
+          selectedFilter={selectedFilter}
+        />
         <LookSort />
       </div>
       <div className='fashion-items-top'>
         <div className='fashion-items-container'>
-          {filteredPosts.map((post, index) =>
-            post.images.map((url, imgIndex) => (
-              <FashionImagesItem
-                key={`${index}-${imgIndex}`}
-                imageUrl={url}
-                description={post.text}
-              />
-            ))
-          )}
+          <div className='fashion-img-container'>
+            {filteredPosts.map((post, index) =>
+              post.images.map((url, imgIndex) => (
+                <FashionImagesItem
+                  key={`${index}-${imgIndex}`}
+                  imageUrl={url}
+                  description={post.text}
+                />
+              ))
+            )}
+          </div>
         </div>
       </div>
       <div className='upload-button'>

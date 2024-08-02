@@ -18,13 +18,11 @@ const FashionImagesItem: React.FC<FashionImagesItemProps> = ({
   };
 
   return (
-    <div className='fashion-img-container'>
-      <img
-        src={imageUrl}
-        alt='Fashion-Image'
-        onClick={() => handleImageClick(imageUrl, description)}
-      />
-    </div>
+    <img
+      src={imageUrl}
+      alt='Fashion-Image'
+      onClick={() => handleImageClick(imageUrl, description)}
+    />
   );
 };
 
