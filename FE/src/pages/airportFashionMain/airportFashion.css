@@ -121,6 +121,8 @@ hr {
 .fashion-img-container img {
   flex: 1;
   max-width: 33.33%;
+  min-width: 33.33%;
+  height: 170px;
   border: 1px solid white;
 }
 
