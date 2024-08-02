@@ -1,8 +1,6 @@
 .conjestion {
-  position: relative;
-}
-.container .conjestion {
-  padding-bottom: 100px;
+  /* position: relative; */
+  padding-bottom: 80px;
 }
 .conjestion-header {
   font-size: 16px;
