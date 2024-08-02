@@ -4,7 +4,9 @@ import boardRouter from '../routers/board-router.js';
 import commentRouter from '../routers/comment-router.js';
 import likeRouter from '../routers/like-router.js';
 import { signup, login, logout } from '../services/user-service.js';
-import permission from '../middlewares/permission.js'; // 유저인증 & 권한 체크
+import permission from '../middlewares/permission.js';
+import boardRouter from "./board-router.js";
+import commentRouter from "./comment-router.js"; // 유저인증 & 권한 체크
 
 const router = express.Router();
 
