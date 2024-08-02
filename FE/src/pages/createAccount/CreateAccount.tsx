@@ -1,17 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import './CreateAccount.css'; // CSS 파일을 임포트
 import { createAccount } from './CreateAccountAction'; // 액션 파일 임포트
 
 const CreateAccount: React.FC = () => {
     const { register, handleSubmit, formState: { errors }, watch } = useForm();
+    const [message, setMessage] = useState<string | null>(null); // 메시지 상태 추가
 
     const onSubmit = async (data: any) => {
         try {
             const response = await createAccount(data);
-            console.log(response); // 성공 시 처리
+            setMessage(response.message); // 성공 시 메시지 설정
         } catch (error) {
-            console.error('Failed to create account'); // 에러 메시지 수정
+            console.error('Failed to create account', error);
+            setMessage('계정 생성에 실패했습니다. 다시 시도해 주세요.'); // 에러 메시지 설정
         }
     };
 
@@ -63,6 +65,7 @@ const CreateAccount: React.FC = () => {
 
                     <button type="submit">계정 생성</button>
                 </form>
+                {message && <p className="message">{message}</p>} {/* 메시지 표시 */}
             </div>
         </>
     );
