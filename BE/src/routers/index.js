@@ -12,6 +12,8 @@ router.delete('/logout', logout); // 로그아웃
 
 // 각 라우터 연결
 router.use('/users', userRouter);
+router.use('/board', boardRouter);
+router.use('/comment', commentRouter);
 
 // 메인 페이지 및 상품 조회(비회원 기능)
 // router.get('/', CategoryAndProducts); // 전체 카테고리 & 상품 목록 조회
