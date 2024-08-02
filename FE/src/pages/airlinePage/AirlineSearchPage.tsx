@@ -9,6 +9,7 @@ import AirlineAttribute from "./airlineSearchComponents/AirlineAttribute";
 import AirlineLastUpdated from "./airlineSearchComponents/AirlineLastUpdated";
 import { useFetchAirlineData } from "../../hooks/useFetchAirlineData";
 import { terminal1, terminal2 } from "../airlinePage/airlineTerminals";
+import { currentFormatTime } from "utils/formatTime";
 import { FlightFilter } from "./types"; // FlightFilter 타입 가져오기
 import { FaChevronLeft } from "react-icons/fa";
 import { LuSettings2 } from "react-icons/lu";
@@ -87,22 +88,29 @@ function AirlineSearchPage() {
   const filteredData = useMemo(() => {
     if (!searchText.trim().length) return;
 
-    return data?.filter((item) => {
-      const matchesDirection =
-        (flightFilter.arrivals && !item.chkinrange) ||
-        (flightFilter.departures && item.chkinrange);
-      const matchesTerminal =
-        (flightFilter.t1 && terminal1.includes(item.airline)) ||
-        (flightFilter.t2 && terminal2.includes(item.airline));
-      const matchesWithSearchText =
-        (flightFilter.flightId && item.flightId?.includes(searchText)) ||
-        (flightFilter.airline && item.airline?.includes(searchText)) ||
-        (flightFilter.airport && item.airport?.includes(searchText)) ||
-        (flightFilter.carousel && item.carousel?.includes(searchText)) ||
-        (flightFilter.exitnumber && item.exitnumber?.includes(searchText)) ||
-        (flightFilter.gatenumber && item.gatenumber?.includes(searchText));
-      return matchesDirection && matchesTerminal && matchesWithSearchText;
-    });
+    return data
+      ?.filter((item) => {
+        const matchesDirection =
+          (flightFilter.arrivals && !item.chkinrange) ||
+          (flightFilter.departures && item.chkinrange);
+        const matchesTerminal =
+          (flightFilter.t1 && terminal1.includes(item.airline)) ||
+          (flightFilter.t2 && terminal2.includes(item.airline));
+        const matchesWithSearchText =
+          (flightFilter.flightId && item.flightId?.includes(searchText)) ||
+          (flightFilter.airline && item.airline?.includes(searchText)) ||
+          (flightFilter.airport && item.airport?.includes(searchText)) ||
+          (flightFilter.carousel && item.carousel?.includes(searchText)) ||
+          (flightFilter.exitnumber && item.exitnumber?.includes(searchText)) ||
+          (flightFilter.gatenumber && item.gatenumber?.includes(searchText));
+        return matchesDirection && matchesTerminal && matchesWithSearchText;
+      })
+      .filter(
+        ({ estimatedDateTime }) =>
+          Number(estimatedDateTime) >= Number(currentFormatTime()) - 15
+      )
+      .sort(({ estimatedDateTime: a }, { estimatedDateTime: b }) => +a - +b)
+      .slice(0, 20);
   }, [data, searchText, flightFilter]);
 
   return (
