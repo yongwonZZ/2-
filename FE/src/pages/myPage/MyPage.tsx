@@ -1,34 +1,24 @@
-//리렌더링을 막기위해 메모이제이션 시도 사용자 정보가 변경되지 않는 한 불필요한 재계산 방지.
-//유즈 이펙트와 메모를 사용해서 로컬스토리지에 저장하고 가져오게함.
-import React, {useEffect,useState,useMemo} from "react";
+import React, { useMemo } from "react";
 import Header from "../../components/Header";
 import './Mypage.css';
 import { useNavigate } from 'react-router-dom';
-import { handleLogout } from '../../utils/authUtils'; // authUtils 파일에서 함수 가져오기
+import { handleLogout, useUser } from '../../utils/userUtils/action';
 
-
-interface User{
+interface User {
     email: string;
     nickname?: string;
 }
 
 const MyPage: React.FC = () => {
     const navigate = useNavigate();
-    const [user, setUser] = useState<User | null>(null);
+    const user = useUser();
 
-    useEffect(()=>{
-        const userData = localStorage.getItem('user');
-        if(userData)
-        {
-            setUser(JSON.parse(userData)); //json 유저데이터를 변환해서 가져오고 setUser셋팅.
-        }
-    },[]);
-    //useMemo를 사용하여 사용자 정보를 메모이제이션합니다.
-    const memoizedUser = useMemo(()=> user,[user]);
+    // useMemo를 사용하여 사용자 정보를 메모이제이션합니다.
+    const memoizedUser = useMemo(() => user, [user]);
 
     return (
         <div className="mypage-container">
-            <Header leftContent={"마이페이지"}/>
+            <Header leftContent={"마이페이지"} />
             <div className="profile-container">
                 <div className="profile-image"></div>
                 <div className="profile-info">

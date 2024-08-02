@@ -12,15 +12,25 @@ html, body {
     align-items: center;
     justify-content: center;
     height: 100vh; /* Viewport height: 화면 높이 100% */
-    width: 100vw; /* Viewport width: 화면 너비 100% */
+    width: 100%; /* Viewport width: 화면 너비 100% */
+    padding: 20px; /* 여백 추가 */
     box-sizing: border-box;
+}
+
+/* form 요소를 가운데 정렬 */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 400px; /* 최대 너비 설정 */
+    margin: 0 auto; /* 중앙 정렬 */
 }
 
 /* 입력 필드의 너비를 설정하고, 가운데 정렬 */
 .email-input,
 .password-input {
-    width: 80%;
-    max-width: 300px;
+    width: 100%;
     margin: 5px 0;
     padding: 10px;
     box-sizing: border-box;
@@ -31,8 +41,7 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 80%;
-    max-width: 300px;
+    width: 100%;
 }
 
 /* 로그인 및 회원가입 버튼의 스타일 설정 */
