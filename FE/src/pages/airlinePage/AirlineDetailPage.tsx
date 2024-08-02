@@ -7,7 +7,7 @@ import { formatTime } from "../../utils/formatTime";
 import { FaChevronLeft } from "react-icons/fa";
 import { IoMdShare } from "react-icons/io";
 import { IoIosAirplane } from "react-icons/io";
-import { handleRegisterBoardingPass } from "../../utils/authUtils"; // authUtils 파일에서 함수 가져오기
+import { handleRegisterBoardingPass } from "../../utils/userUtils/authUtils"; // authUtils 파일에서 함수 가져오기
 
 
 function AirlineDetailPage() {
