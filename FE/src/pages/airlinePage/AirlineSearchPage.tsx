@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./AirlineSearchPage.module.css";
 import Header from "../../components/Header";
@@ -14,6 +14,8 @@ import { FlightFilter } from "./types"; // FlightFilter 타입 가져오기
 import { FaChevronLeft } from "react-icons/fa";
 import { LuSettings2 } from "react-icons/lu";
 import { MdClear } from "react-icons/md";
+import { useInfiniteScroll } from "../../hooks/useInfiniteScroll";
+import LoadingSpinner from "../../components/loadingSpinner/LoadingSpinner";
 
 const getSavedFlightFilter = () => {
   const savedFilter = localStorage.getItem("flightFilter");
@@ -22,6 +24,8 @@ const getSavedFlightFilter = () => {
 
 function AirlineSearchPage() {
   const navigate = useNavigate();
+
+  const targetRef = useRef<HTMLDivElement>(null);
 
   /** 검색어 상태 */
   const [searchText, setSearchText] = useState<string>(
@@ -86,10 +90,10 @@ function AirlineSearchPage() {
 
   /** 데이터 필터링 로직 */
   const filteredData = useMemo(() => {
-    if (!searchText.trim().length) return;
+    if (!searchText.trim().length || !data) return [];
 
     return data
-      ?.filter((item) => {
+      .filter((item) => {
         const matchesDirection =
           (flightFilter.arrivals && !item.chkinrange) ||
           (flightFilter.departures && item.chkinrange);
@@ -109,9 +113,13 @@ function AirlineSearchPage() {
         ({ estimatedDateTime }) =>
           Number(estimatedDateTime) >= Number(currentFormatTime()) - 15
       )
-      .sort(({ estimatedDateTime: a }, { estimatedDateTime: b }) => +a - +b)
-      .slice(0, 20);
-  }, [data, searchText, flightFilter]);
+      .sort(({ estimatedDateTime: a }, { estimatedDateTime: b }) => +a - +b);
+  }, [data, flightFilter, searchText]);
+
+  const { data: paginatedData, isLoading: isLoadingMore } = useInfiniteScroll(
+    filteredData,
+    targetRef
+  );
 
   return (
     <div className={styles.wrapper}>
@@ -158,10 +166,12 @@ function AirlineSearchPage() {
       <AirlineLastUpdated dataUpdatedAt={dataUpdatedAt} refetch={refetch} />
       <AirlineAttribute arrivals={flightFilter.arrivals} />
       <AirlineSearchResult
-        data={filteredData}
+        data={paginatedData}
         isLoading={isLoading}
         error={error || undefined}
       />
+      {isLoadingMore && <LoadingSpinner message="Loading..." />}
+      <div ref={targetRef} />
     </div>
   );
 }
