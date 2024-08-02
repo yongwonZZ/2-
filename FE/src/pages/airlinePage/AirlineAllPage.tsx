@@ -11,6 +11,7 @@ import { terminal1, terminal2 } from "./airlineTerminals";
 import { FaChevronLeft } from "react-icons/fa";
 import { FaCaretDown } from "react-icons/fa";
 import { useInfiniteScroll } from "../../hooks/useInfiniteScroll";
+import { currentFormatTime } from "../../utils/formatTime";
 import LoadingSpinner from "../../components/loadingSpinner/LoadingSpinner";
 
 function AirlineAllPage() {
@@ -43,15 +44,21 @@ function AirlineAllPage() {
   const filteredData = useMemo(() => {
     if (!data) return [];
 
-    return data.filter((item) => {
-      const matchesDirection =
-        (flightFilter.arrivals && !item.chkinrange) ||
-        (!flightFilter.arrivals && item.chkinrange);
-      const matchesTerminal =
-        (flightFilter.t1 && terminal1.includes(item.airline)) ||
-        (!flightFilter.t1 && terminal2.includes(item.airline));
-      return matchesDirection && matchesTerminal;
-    });
+    return data
+      .filter((item) => {
+        const matchesDirection =
+          (flightFilter.arrivals && !item.chkinrange) ||
+          (!flightFilter.arrivals && item.chkinrange);
+        const matchesTerminal =
+          (flightFilter.t1 && terminal1.includes(item.airline)) ||
+          (!flightFilter.t1 && terminal2.includes(item.airline));
+        return matchesDirection && matchesTerminal;
+      })
+      .filter(
+        ({ estimatedDateTime }) =>
+          Number(estimatedDateTime) >= Number(currentFormatTime()) - 15
+      )
+      .sort(({ estimatedDateTime: a }, { estimatedDateTime: b }) => +a - +b);
   }, [data, flightFilter]);
 
   const { data: paginatedData, isLoading: isLoadingMore } = useInfiniteScroll(

@@ -1,5 +1,5 @@
 import { searchResultType } from "./searchResultType";
-import { formatTime } from "../../../utils/formatTime";
+import { formatTime, formatDateString } from "../../../utils/formatTime";
 import { terminal2 } from "../airlineTerminals";
 import styles from "./AirlineSearchResultCard.module.css";
 import { useNavigate } from "react-router-dom";
@@ -31,6 +31,9 @@ AirlineSearchResultCard.Master = ({ item }: Props) => {
         <span>[{item.gatenumber}]</span>
       </div>
       <div className={styles["section-sm"]}>
+        <span style={{ fontSize: 12 }}>
+          {formatDateString(item.scheduleDateTime)}
+        </span>
         <span className={styles["section-strikethrough"]}>
           {formatTime(item.scheduleDateTime)}
         </span>
