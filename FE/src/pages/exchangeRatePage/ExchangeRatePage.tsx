@@ -9,6 +9,7 @@ import {
 } from "../../pages/exchangeRatePage/getExchangeRates";
 import Header from "../../components/Header";
 import { FaChevronLeft } from "react-icons/fa";
+import countryNameMapping from "./countryNameMapping";
 
 interface ExchangeRate {
   cur_unit: string;
@@ -54,7 +55,11 @@ const ExchangeRatePage = () => {
 
         for (const rate of rates) {
           const countryName = rate.cur_nm.split(" ")[0];
-          const flagUrl = await fetchCountryImage(countryName);
+          // 나라 이름을 한 번 더 변환합니다.
+          const mappedCountryName =
+            countryNameMapping[countryName] || countryName;
+
+          const flagUrl = await fetchCountryImage(mappedCountryName);
           setCountryImages((prevImages) => ({
             ...prevImages,
             [rate.cur_unit]: flagUrl,
