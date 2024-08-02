@@ -3,11 +3,13 @@ import { Comment } from '../models/model.js';
 import { Board } from '../models/model.js';
 import { NotFoundError, BadRequestError } from '../middlewares/custom-error.js';
 
+// 댓글 목록 조회
 export const getCommentList = asyncHandler(async (req, res) => {
   const commentList = await Comment.find();
   res.json(commentList);
 });
 
+// 댓글 조회
 export const getComment = asyncHandler(async (req, res) => {
   const { id } = req.params;
   const comment = await Comment.findById(id);
@@ -15,6 +17,7 @@ export const getComment = asyncHandler(async (req, res) => {
   res.json(comment);
 });
 
+// 댓글 작성
 export const createComment = asyncHandler(async (req, res) => {
   const { userName, contents, boardId } = req.body;
   const board = await Board.findById(boardId);
@@ -23,6 +26,7 @@ export const createComment = asyncHandler(async (req, res) => {
   res.json({ message: '댓글이 작성되었습니다.', comment });
 });
 
+// 댓글 삭제
 export const deleteComment = asyncHandler(async (req, res) => {
   const { id } = req.params;
   const comment = await Comment.findByIdAndDelete(id);
