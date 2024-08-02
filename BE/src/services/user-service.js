@@ -105,12 +105,10 @@ export const updateUser = asyncHandler(async (req, res) => {
 // 회원 탈퇴
 export const resignUser = asyncHandler(async (req, res) => {
   const userId = req.user._id;
-  const user = await User.findById(userId);
+  const user = await User.findByIdAndDelete(userId);
   if (!user) {
     throw new NotFoundError('사용자를 찾을 수 없습니다.');
   }
-  user.deleteAt = Date.now();
-  await user.save();
 
   res.json({ message: '회원에서 탈퇴하셨습니다.' });
 });

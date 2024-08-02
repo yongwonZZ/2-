@@ -25,7 +25,7 @@ app.use(
   })
 );
 app.use(express.json()); // express.json(): POST 등의 요청과 함께 오는 json형태의 데이터를 인식하고 핸들링할 수 있게 함.
-app.use(express.static('views'));
+// app.use(express.static('views'));
 
 // app.use("/images", express.static("images"));
 
