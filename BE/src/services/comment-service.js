@@ -1,6 +1,5 @@
 import asyncHandler from 'express-async-handler';
-import { Comment } from '../models/model.js';
-import { Board } from '../models/model.js';
+import { Comment, Board } from '../models/model.js';
 import { NotFoundError, BadRequestError } from '../middlewares/custom-error.js';
 
 // 댓글 목록 조회
