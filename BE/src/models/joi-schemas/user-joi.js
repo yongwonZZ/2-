@@ -2,6 +2,7 @@ import Joi from 'joi';
 
 // 회원가입 요청 스키마
 export const RegisterJoi = Joi.object({
+  userName: Joi.string().required(),
   email: Joi.string().email().required(),
   password: Joi.string().required(),
 });

@@ -1,5 +1,7 @@
 import asyncHandler from 'express-async-handler';
 import { Like, Board } from '../models/model.js';
+import { LikeJoi } from '../models/joi-schemas/like-joi.js';
+import { BadRequestError } from '../middlewares/custom-error.js';
 
 // 좋아요 상태 확인
 export const isLiked = asyncHandler(async (req, res) => {
@@ -18,7 +20,11 @@ export const isLiked = asyncHandler(async (req, res) => {
 
 // 좋아요 추가 및 취소
 export const toggleLike = asyncHandler(async (req, res) => {
-  const { userId, boardId } = req.query;
+  const { error, value } = LikeJoi.validate(req.query);
+  if (error) {
+    throw new BadRequestError(`Validation error: ${error.details[0].message}`);
+  }
+  const { userId, boardId } = value;
 
   // 좋아요가 이미 존재하는지 확인
   const like = await Like.findOne({ userId, boardId });
