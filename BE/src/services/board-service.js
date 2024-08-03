@@ -2,6 +2,7 @@ import asyncHandler from 'express-async-handler';
 import { Board } from '../models/model.js';
 import { NotFoundError, BadRequestError } from '../middlewares/custom-error.js';
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
+import { BoardJoi } from '../models/joi-schemas/board-joi.js';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -14,10 +15,14 @@ const s3Client = new S3Client({
   },
 });
 
-// 게시글 목록 조회
+// 게시글 목록 조회 (페이지네이션 적용)
 export const getBoardList = asyncHandler(async (req, res) => {
-  const boardList = await Board.find();
-  res.json(boardList);
+  const { page = 1, limit = 10 } = req.query;
+  const boardList = await Board.find()
+    .skip((page - 1) * limit)
+    .limit(Number(limit));
+  const total = await Board.countDocuments();
+  res.json({ total, page: Number(page), limit: Number(limit), boardList });
 });
 
 // 게시글 상세 조회
@@ -28,16 +33,25 @@ export const getBoard = asyncHandler(async (req, res) => {
   res.json(board);
 });
 
-// 카테고리별 게시글 목록 조회
+// 카테고리별 게시글 목록 조회 (페이지네이션 적용)
 export const getBoardListByCategory = asyncHandler(async (req, res) => {
   const { category } = req.params;
-  const boardList = await Board.find({ category });
-  res.json(boardList);
+  const { page = 1, limit = 10 } = req.query;
+  const boardList = await Board.find({ category })
+    .skip((page - 1) * limit)
+    .limit(Number(limit));
+  const total = await Board.countDocuments({ category });
+  res.json({ total, page: Number(page), limit: Number(limit), boardList });
 });
 
 // 게시글 작성
 export const createBoard = asyncHandler(async (req, res) => {
-  const { userName, category, contents } = req.body;
+  const { error, value } = BoardJoi.validate(req.body);
+  if (error) {
+    throw new BadRequestError(`Validation error: ${error.details[0].message}`);
+  }
+
+  const { userName, category, contents, img } = value;
 
   // S3 presigned URL 생성
   const s3Params = {
@@ -49,7 +63,7 @@ export const createBoard = asyncHandler(async (req, res) => {
   const command = new PutObjectCommand(s3Params);
   const uploadURL = await getSignedUrl(s3Client, command, { expiresIn: 300 });
 
-  const board = await Board.create({ userName, category, contents });
+  const board = await Board.create({ userName, category, contents, img });
 
   res.json({
     message: '게시글이 작성되었습니다.',
@@ -65,16 +79,3 @@ export const deleteBoard = asyncHandler(async (req, res) => {
   if (!board) throw new NotFoundError('해당 게시글이 존재하지 않습니다.');
   res.json({ message: '게시글이 삭제되었습니다.', board });
 });
-
-// // 게시글 수정
-// export const updateBoard = asyncHandler(async (req, res) => {
-//   const { id } = req.params;
-//   const { title, content } = req.body;
-//   const board = await Board.findByIdAndUpdate(
-//     id,
-//     { title, content },
-//     { new: true }
-//   );
-//   if (!board) throw new NotFoundError('해당 게시글이 존재하지 않습니다.');
-//   res.json({ message: '게시글이 수정되었습니다.', board });
-// });
