@@ -3,6 +3,11 @@ import { User } from '../models/model.js';
 import hashPassword from '../middlewares/hash-password.js';
 import jwt from 'jsonwebtoken';
 import {
+  RegisterJoi,
+  LoginJoi,
+  UpdateUserJoi,
+} from '../models/joi-schemas/user-joi.js';
+import {
   NotFoundError,
   BadRequestError,
   UnauthorizedError,
@@ -12,7 +17,12 @@ const secret = process.env.ACCESS_SECRET;
 
 // 회원 가입
 export const signup = asyncHandler(async (req, res) => {
-  const { email, userName, password, role } = req.body;
+  const { error, value } = RegisterJoi.validate(req.body);
+  if (error) {
+    throw new BadRequestError(`Validation error: ${error.details[0].message}`);
+  }
+
+  const { email, userName, password, role } = value;
   const userJoin = await User.findOne({ email });
   if (userJoin) throw new BadRequestError('이미 가입하신 회원입니다.');
 
@@ -28,7 +38,11 @@ export const signup = asyncHandler(async (req, res) => {
 
 // 로그인
 export const login = asyncHandler(async (req, res, next) => {
-  const { email, password } = req.body;
+  const { error, value } = LoginJoi.validate(req.body);
+  if (error) {
+    throw new BadRequestError(`Validation error: ${error.details[0].message}`);
+  }
+  const { email, password } = value;
   const user = await User.findOne({ email });
   if (user === null) {
     throw new NotFoundError('이메일 또는 비밀번호 불일치입니다.');
@@ -84,7 +98,11 @@ export const getUser = asyncHandler(async (req, res) => {
 
 // 회원 수정
 export const updateUser = asyncHandler(async (req, res) => {
-  const { password, ...rest } = req.body;
+  const { error, value } = UpdateUserJoi.validate(req.body);
+  if (error) {
+    throw new BadRequestError(`Validation error: ${error.details[0].message}`);
+  }
+  const { password, ...rest } = value;
   const userId = req.params.id;
   const user = await User.findById(userId);
   if (!user) {
