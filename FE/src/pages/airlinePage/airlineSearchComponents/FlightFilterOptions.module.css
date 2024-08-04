@@ -1,0 +1,10 @@
+/* 각 filter의 flex 부여 및 간격 조정 */
+.wrapper {
+  display: flex;
+  gap: 10px;
+  position: sticky;
+  top: 60px;
+  height: 30px;
+  background-color: #fff;
+  z-index: 1001;
+}

@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  position: sticky;
+  top: 90px;
+  height: 20px;
+  background-color: #fff;
+  z-index: 1002;
+}
+
+.icon-refresh {
+  cursor: pointer;
+  transition: transform 0.5s ease-in-out;
+}
+
+.icon-refresh.rotate {
+  transform: rotate(360deg);
+}
