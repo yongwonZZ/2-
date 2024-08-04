@@ -18,7 +18,11 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "baseUrl": "./src",  // 이 부분을 추가합니다.
+    "paths": {
+      "@components/*": ["components/*"]  // 이 부분을 추가합니다.
+    }
   },
   "include": [
     "src"
