@@ -1,7 +1,5 @@
 import express from 'express';
 import userRouter from '../routers/user-router.js';
-import boardRouter from '../routers/board-router.js';
-import commentRouter from '../routers/comment-router.js';
 import likeRouter from '../routers/like-router.js';
 import { signup, login, logout } from '../services/user-service.js';
 import permission from '../middlewares/permission.js';
