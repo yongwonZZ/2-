@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../../styles/airportFashion/airportFashion.module.css";
-import styleBackBtn from "../../styles/airportFashionPost/lookDetails.module.css";
+import styleBackBtn from "../../styles/airportFashion/airportFashionPost/lookDetails.module.css";
 import LookFilter from "./airportFashionComponents/LookFilter";
 import FashionImagesItem from "./airportFashionComponents/FashionImagesItem";
 import LookSort from "./airportFashionComponents/LookSort";
