@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import './Login.css';
+import '../../styles/login/Login.module.css';
 import { useNavigate } from 'react-router-dom';
 import { LoginAction, LoginResponse } from './LoginAction';
 import LoadingSpinner from '../../components/loadingSpinner/LoadingSpinner';
 import Header from "../../components/Header";
-import styles from "../mainPage/MainPage.module.css";
+import styles from "../../styles/mainPage/MainPage.module.css";
 
 const Login: React.FC = () => {
     const navigate = useNavigate();

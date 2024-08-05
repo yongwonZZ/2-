@@ -1,4 +1,4 @@
-import styles from "./SearchFilterDropdown.module.css";
+import styles from "../../../styles/airlinePage/airlineSerchComponents/SearchFilterDropdown.module.css";
 import { FlightFilter, filterNameMap } from "../types";
 
 type SearchFilterDropdownProps = {

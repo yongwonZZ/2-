@@ -3,7 +3,7 @@ import MainPageContainer from "./mainPageComponents/MainPageContainer";
 import CodeShareOptions from "./mainPageComponents/CodeShareOptions";
 import MainPageLinkItem from "./mainPageComponents/MainPageLinkItem";
 import { useState } from "react";
-import styles from "./MainPage.module.css";
+import styles from "../../styles/mainPage/MainPage.module.css";
 import {
   FaSearch,
   FaList,

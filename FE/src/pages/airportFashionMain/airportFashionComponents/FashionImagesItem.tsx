@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "../airportFashion.css";
+import "../../../styles/airportFashion/airportFashion.module.css";
 
 interface FashionImagesItemProps {
   imageUrl: string;

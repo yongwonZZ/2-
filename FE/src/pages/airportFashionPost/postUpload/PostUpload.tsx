@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import "./postUpload.css";
+import "../../../styles/airportFashionPost/postUpload.css";
 import { IoIosArrowBack as IconArrowBack } from "react-icons/io";
 import { GoPlus as IconPlus } from "react-icons/go";
 import { IoCloseOutline as IconClose } from "react-icons/io5";

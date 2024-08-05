@@ -1,4 +1,4 @@
-import styles from "./MainPageContainer.module.css";
+import styles from "../../../styles/mainPage/MainPageContainer.module.css";
 
 type MainPageContainerProps = {
   title: string;

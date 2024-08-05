@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import styles from "./NavbarList.module.css";
+import styles from "../styles/components/NavbarList.module.css";
 
 type NavbarListProps = {
     icon: React.ReactNode;

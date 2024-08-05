@@ -1,5 +1,5 @@
 import React from "react";
-import "../airportFashion.css";
+import "../../../styles/airportFashion/airportFashion.module.css";
 
 interface LookFilterProps {
   onFilterClick: (filter: string) => void;
