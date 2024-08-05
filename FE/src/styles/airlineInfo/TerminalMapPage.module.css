@@ -1,30 +1,30 @@
-.map-container {
+.mapContainer {
   background-color: #333649;
   color: #fafafa;
-  padding: 0 20px 20px 20px;
+  padding: 0 20px 80px 20px;
   overflow: hidden;
 }
-.map-header {
+.mapHeader {
   display: flex;
   gap: 10px;
   align-items: center;
   font-size: 16px;
 }
-.map-info {
+.mapInfo {
   text-align: end;
   color: #555;
   font-size: 12px;
   padding: 0 10px 5px 0;
 }
 
-.map-btn {
+.mapBtn {
   font-size: 16px;
   font-weight: 700;
   background-color: transparent;
   border: none;
   cursor: pointer;
 }
-.map-name {
+.mapName {
   margin-top: 10px;
 }
 

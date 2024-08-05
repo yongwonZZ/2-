@@ -1,7 +1,14 @@
 .conjestion {
-  position: relative;
+  /* position: relative; */
 }
-.conjestion-header {
+.container {
+  width: 100%;
+  height: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding-bottom: 60px;
+}
+.conjestionHeader {
   font-size: 16px;
   font-weight: 700;
   align-items: center;
@@ -16,16 +23,18 @@
 .list-item {
   display: flex;
 } */
+/* 해야함 */
 table {
   vertical-align: center;
 }
-.data-table {
+.dataTable {
   width: 100%;
   font-size: 12px;
   text-align: center;
+  z-index: -10;
   /* align-items: center; */
 }
-.data-head {
+.dataHead {
   background-color: #ddd;
   height: 25px;
   font-weight: 700;
@@ -33,30 +42,30 @@ table {
 tbody {
   color: #027ffe;
 }
-.list-item {
+.listItem {
   height: 25px;
 }
-.current-time {
+.currentTime {
   background-color: #dfdfdf;
   font-weight: 700;
 }
-.list-item:last-child {
+.listItem:last-child {
   color: red;
 }
-.list-item:last-child .data-time-set {
+.listItem:last-child .dataTimeSet {
   display: none;
 }
 th,
 td {
   vertical-align: center;
 }
-.data-time {
+.dataTime {
   color: #000;
   font-weight: 700;
 }
 
 /* option-controller */
-.option-controller {
+.optionController {
   width: 100%;
   padding: 20px;
   background-color: #fff;
@@ -67,12 +76,12 @@ td {
   gap: 10px;
   justify-content: center;
 }
-.option-list {
+.optionList {
   width: 100%;
   display: flex;
   color: #555;
 }
-.option-btn {
+.optionBtn {
   font-size: 16px;
   font-weight: 700;
   width: 100%;
@@ -80,10 +89,10 @@ td {
   border: none;
   padding: 5px 0;
 }
-.option-btn.btn-active {
+.btnActive {
   color: #027ffe;
 }
-.select-btn {
+.selectBtn {
   background-color: #027ffe;
   color: #fff;
   font-size: 16px;
