@@ -1,9 +1,7 @@
 import axios from "axios";
 
-const API_KEY =
-  "hrMnQ33YKrJu8DOo5oq4CzNqxtaB8fucRisDvWoHIghiUdUd8e7LRhNVXccEa4aGXrCEb%2BN0l3q0X9JQoTstsg%3D%3D";
 const BASE_URL = "api2/B551177/StatusOfParking/getTrackingParking";
-
+const API_KEY = process.env.REACT_APP_AIRPORT_SERVICE_KEY;
 /** 주차정보 api를 불러옵니다 */
 export const fetchParkingData = async (type: string) => {
   try {

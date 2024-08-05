@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FaChevronLeft, FaFilter } from "react-icons/fa";
 import Header from "../../../components/Header";
-import "../../../styles/airlineInfo/ConjestionPage.module.css";
+import styles from "../../../styles/airlineInfo/ConjestionPage.module.css";
 import { fetchCongestionData } from "../getInfoData/getCongestionData";
 import { Link } from "react-router-dom";
 
@@ -118,7 +118,7 @@ const CongestionPage: React.FC = () => {
     <>
       <Header
         leftContent={
-          <div className="conjestion-header">
+          <div className={styles.conjestionHeader}>
             <Link to={"/"}>
               <FaChevronLeft style={{ fontSize: "22px", cursor: "pointer" }} />
             </Link>
@@ -127,64 +127,75 @@ const CongestionPage: React.FC = () => {
         }
         rightContent={<FaFilter onClick={handleToggle} />}
       />
-      <div className="container conjestion">
+      <div className={`${styles.container} ${styles.conjestion}`}>
         {isToggled && (
-          <div className="option-controller">
-            <div className="option-list">
+          <div className={styles.optionController}>
+            <div className={styles.optionList}>
               <button
-                className={`option-btn ${
-                  terminal === "T1" ? "btn-active" : ""
+                className={`${styles.optionBtn} ${
+                  terminal === "T1" ? styles.btnActive : ""
                 }`}
                 onClick={() => setTerminal("T1")}
               >
                 터미널 1
               </button>
               <button
-                className={`option-btn ${
-                  terminal === "T2" ? "btn-active" : ""
+                className={`${styles.optionBtn} ${
+                  terminal === "T2" ? styles.btnActive : ""
                 }`}
                 onClick={() => setTerminal("T2")}
               >
                 터미널 2
               </button>
             </div>
-            <div className="option-list">
+            <div className={styles.optionList}>
               <button
-                className={`option-btn ${into === "out" ? "btn-active" : ""}`}
+                className={`${styles.optionBtn} ${
+                  into === "out" ? styles.btnActive : ""
+                }`}
                 onClick={() => setInto("out")}
               >
                 출국장
               </button>
               <button
-                className={`option-btn ${into === "in" ? "btn-active" : ""}`}
+                className={`${styles.optionBtn}${
+                  into === "in" ? styles.btnActive : ""
+                }`}
                 onClick={() => setInto("in")}
               >
                 입국장
               </button>
             </div>
-            <div className="option-list">
+            <div className={styles.optionList}>
               <button
-                className={`option-btn ${day === "오늘" ? "btn-active" : ""}`}
+                className={`${styles.optionBtn} ${
+                  day === "오늘" ? styles.btnActive : ""
+                }`}
                 onClick={() => setDay("오늘")}
               >
                 오늘
               </button>
               <button
-                className={`option-btn ${day === "내일" ? "btn-active" : ""}`}
+                className={`${styles.optionBtn} ${
+                  day === "내일" ? styles.btnActive : ""
+                }`}
                 onClick={() => setDay("내일")}
               >
                 내일
               </button>
             </div>
-            <button className="select-btn" onClick={() => setIsToggled(false)}>
+            <button
+              className={styles.selectBtn}
+              onClick={() => setIsToggled(false)}
+            >
               확인
             </button>
           </div>
         )}
 
         <div className="list-container">
-          <table className="data-table">
-            <thead className="data-head">
+          <table className={styles.dataTable}>
+            <thead className={styles.dataHead}>
               <tr>
                 <th>시간</th>
                 {into === "out" ? (
@@ -228,13 +239,13 @@ const CongestionPage: React.FC = () => {
                 .map((item, index) => (
                   <tr
                     key={index}
-                    className={`list-item ${
-                      item.atime === currentTimeSlot ? "current-time" : ""
+                    className={`${styles.listItem} ${
+                      item.atime === currentTimeSlot ? styles.currentTime : ""
                     }`}
                   >
-                    <td className="data-time">
+                    <td className={styles.dataTime}>
                       {item?.atime.split("_")[0]}
-                      <span className="data-time-set">시</span>
+                      <span className={styles.dataTimeSet}>시</span>
                     </td>
                     {into === "out" ? (
                       <>
