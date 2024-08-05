@@ -1,4 +1,4 @@
-import styles from "./CodeShareOptions.module.css";
+import styles from "../../../styles/mainPage/CodeShareOptions.module.css";
 
 type CodeShareOptionsProps = {
   onSwitch: (value: boolean) => void;

@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./AirlineAllPage.module.css";
+import styles from "../../styles/airlinePage/AirlineAllPage.module.css";
 import Header from "../../components/Header";
 import AirlineSearchResult from "./airlineSearchComponents/AirlineSearchResult";
 import AirlineAttribute from "./airlineSearchComponents/AirlineAttribute";

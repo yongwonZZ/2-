@@ -1,5 +1,5 @@
 import React from 'react';
-import './BoardingPass.css';
+import '../../styles/boardingPass/BoardingPass.module.css';
 
 const BoardingPassTicket: React.FC = () => {
     return (

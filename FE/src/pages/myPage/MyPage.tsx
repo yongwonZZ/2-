@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import Header from "../../components/Header";
-import './Mypage.css';
+import '../../styles/myPage/Mypage.module.css';
 import { useNavigate } from 'react-router-dom';
 import { handleLogout, useUser } from '../../utils/userUtils/action';
 

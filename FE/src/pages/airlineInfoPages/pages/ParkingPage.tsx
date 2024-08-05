@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 // @ts-ignore
 import Header from "../../../components/Header";
-import "../styles/InfoPages.css";
+import "../../../styles/airlineInfo/InfoPages.module.css";
 import ParkingAreaItem from "../airlineComponents/ParkingAreaItem";
 import { fetchParkingData } from "../getInfoData/getParkingData";
 import { FaCaretDown, FaChevronLeft } from "react-icons/fa";

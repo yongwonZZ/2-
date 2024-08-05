@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/TerminalMapPage.css";
+import "../../../styles/airlineInfo/TerminalMapPage.module.css";
 import { FaCaretDown, FaChevronLeft } from "react-icons/fa";
 import Header from "../../../components/Header";
 import Map1 from "../images/map_exit_route_map_01.png";

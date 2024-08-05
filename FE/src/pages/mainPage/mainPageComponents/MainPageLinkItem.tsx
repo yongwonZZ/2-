@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import styles from "./MainPageLinkItem.module.css";
+import styles from "../../../styles/mainPage/MainPageLinkItem.module.css";
 import { GrNext } from "react-icons/gr";
 
 type MainPageLinkItemProps = {

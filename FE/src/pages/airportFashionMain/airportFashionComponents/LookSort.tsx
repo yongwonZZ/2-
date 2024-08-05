@@ -1,5 +1,5 @@
 import React from "react";
-import "../airportFashion.css";
+import "../../../styles/airportFashion/airportFashion.module.css";
 
 const LookSort: React.FC = () => {
   return (

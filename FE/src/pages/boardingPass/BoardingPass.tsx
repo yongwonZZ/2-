@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './BoardingPass.css';
+import '../../styles/boardingPass/BoardingPass.module.css';
 import Header from "../../components/Header";
 import BoardingPassTicket from './BoardingPassTicket';
 

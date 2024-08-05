@@ -1,6 +1,6 @@
 // LoadingSpinner.tsx
 import React from 'react';
-import './LoadingSpinner.css';
+import '../../styles/components/LoadingSpinner.module.css';
 import { MdLocalAirport } from 'react-icons/md';
 
 interface LoadingSpinnerProps {
