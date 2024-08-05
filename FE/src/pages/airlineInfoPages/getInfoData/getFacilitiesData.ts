@@ -1,9 +1,6 @@
 import axios from "axios";
 
-// http://apis.data.go.kr/B551177/StatusOfFacility/getFacilityEN
-
-const API_KEY =
-  "hrMnQ33YKrJu8DOo5oq4CzNqxtaB8fucRisDvWoHIghiUdUd8e7LRhNVXccEa4aGXrCEb%2BN0l3q0X9JQoTstsg%3D%3D";
+const API_KEY = process.env.REACT_APP_AIRPORT_SERVICE_KEY;
 const BASE_URL = "api2/B551177/StatusOfFacility/getFacilityKR";
 
 /** 편의시설 api를 불러옵니다. */

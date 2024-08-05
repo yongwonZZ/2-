@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 // @ts-ignore
 import Header from "../../../components/Header";
-import "../../../styles/airlineInfo/InfoPages.module.css";
+import styles from "../../../styles/airlineInfo/InfoPages.module.css";
 import ParkingAreaItem from "../airlineComponents/ParkingAreaItem";
 import { fetchParkingData } from "../getInfoData/getParkingData";
 import { FaCaretDown, FaChevronLeft } from "react-icons/fa";
@@ -57,10 +57,10 @@ const ParkingPage: React.FC = () => {
   }, [shortTimeParkingArea]);
 
   return (
-    <div className="container">
+    <div className={styles.container}>
       <Header
         leftContent={
-          <div className="parking-header">
+          <div className={styles.parkingHeader}>
             <Link to={"/"}>
               <FaChevronLeft style={{ fontSize: "22px" }} />
             </Link>
@@ -70,10 +70,10 @@ const ParkingPage: React.FC = () => {
         }
       />
       {/* <div className="update-time">마지막 업데이트</div> */}
-      <div className="update-time">마지막 업데이트 {updateTime}</div>
-      <div className="parking short-area">
-        <h2 className="parking-header">단기 주차장</h2>
-        <div className="fee-info">
+      <div className={styles.updateTime}>마지막 업데이트 {updateTime}</div>
+      <div className={`${styles.parking} ${styles.shortArea}`}>
+        <h2 className={styles.parkingHeader}>단기 주차장</h2>
+        <div className={styles.feeInfo}>
           <div>기본 30분 1,200원</div>
           <div>추가 15분당 600원</div>
           <div>1일권 24,000원</div>
@@ -86,9 +86,9 @@ const ParkingPage: React.FC = () => {
               <ParkingAreaItem key={index} data={item} />
             ))}
       </div>
-      <div className="parking long-area">
-        <h2 className="parking-header">장기 주차장</h2>
-        <div className="fee-info">
+      <div className={`${styles.parking} long-area`}>
+        <h2 className={styles.parkingHeader}>장기 주차장</h2>
+        <div className={styles.feeInfo}>
           <div>소형 시간당 1,000원</div>
           <div>소형 1일권 9,000원</div>
           <div>대형 30분당 1,200원</div>
