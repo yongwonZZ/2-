@@ -42,7 +42,7 @@ app.get('/api', (req, res) => {
 app.use(express.static(path.join(__dirname, '../../FE/src')));
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../../FE/public', 'index.html'));
+  res.sendFile(path.join(__dirname, '../../FE/build', 'index.html'));
 });
 
 // 에러 핸들러
