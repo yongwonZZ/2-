@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, ChangeEvent, KeyboardEvent } from "react";
-import styles from "../../../styles/airportFashionPost/comments.module.css";
+import styles from "../../../styles/airportFashion/airportFashionPost/comments.module.css";
 import Comments from "./Comments";
 import { IoCloseOutline as IconClose } from "react-icons/io5";
 import { GoArrowUp } from "react-icons/go";
