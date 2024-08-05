@@ -31,16 +31,18 @@ app.use(
 app.use(express.json()); // express.json(): POST 등의 요청과 함께 오는 json형태의 데이터를 인식하고 핸들링할 수 있게 함.
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'build')));
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
 
 // 라우터
 app.use('/api', apiRouter);
 app.get('/api', (req, res) => {
   res.send('API RUNNING...');
+});
+
+// 정적 파일 제공
+app.use(express.static(path.join(__dirname, '../../FE/src')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../FE/public', 'index.html'));
 });
 
 // 에러 핸들러
