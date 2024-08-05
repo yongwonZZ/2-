@@ -1,3 +1,4 @@
+// board-service.js
 import asyncHandler from 'express-async-handler';
 import { Board } from '../models/model.js';
 import { NotFoundError } from '../middlewares/custom-error.js';
@@ -28,26 +29,31 @@ export const getBoard = asyncHandler(async (req, res) => {
   res.json(board);
 });
 
-// 게시글 작성
-export const createBoard = asyncHandler(async (req, res) => {
-  const { userName, category, contents, img } = req.body;
+// 프리사인드 URL 생성
+export const generatePresignedUrl = asyncHandler(async (req, res) => {
+  const { fileName, fileType } = req.query;
 
-  // S3 presigned URL 생성
   const s3Params = {
-    Bucket: 'shin08250867', // S3 버킷 이름
-    Key: `images/${Date.now()}`, // 업로드될 파일 이름
-    ContentType: 'image/jpeg', // 업로드될 파일의 MIME 타입
+    Bucket: process.env.AWS_BUCKET_NAME,
+    Key: `images/${Date.now()}_${fileName}`,
+    ContentType: fileType,
   };
 
   const command = new PutObjectCommand(s3Params);
-  const uploadURL = await getSignedUrl(s3Client, command, { expiresIn: 300 });
+  const uploadURL = await getSignedUrl(s3Client, command, { expiresIn: 600 }); //너무 금방 끝나서 변경
 
-  const board = await Board.create({ userName, category, contents, img });
+  res.status(200).json({ uploadURL, key: s3Params.Key });
+});
+
+// 게시글 작성
+export const createBoard = asyncHandler(async (req, res) => {
+  const { userId, category, contents, img } = req.body;
+
+  const board = await Board.create({ userId, category, contents, img });
 
   res.json({
     message: '게시글이 작성되었습니다.',
     board,
-    uploadURL, // 프론트엔드로 presigned URL 반환
   });
 });
 
