@@ -3,6 +3,8 @@ import FacilitiesItem from "../airlineComponents/FacilitiesItem";
 import { FaChevronLeft, FaSearch } from "react-icons/fa";
 import { fetchFacilitiesData } from "../getInfoData/getFacilitiesData";
 import { Link } from "react-router-dom";
+import styles from "../../../styles/airlineInfo/FacilitiesPage.module.css";
+import container from "../../../styles/airlineInfo/InfoPages.module.css";
 
 interface Facility {
   entrpskoreannm: string;
@@ -85,9 +87,9 @@ const FacilitiesPage: React.FC = () => {
 
   return (
     <>
-      <div className="facility-header">
+      <div className={styles.facilityHeader}>
         {searchToggle ? (
-          <div className="fac-header-left">
+          <div className={styles.facHeaderLeft}>
             <FaChevronLeft
               style={{ fontSize: "22px", cursor: "pointer" }}
               onClick={() => setSearchToggle(false)}
@@ -95,13 +97,21 @@ const FacilitiesPage: React.FC = () => {
             <input
               value={searchInput}
               type="text"
-              className="search-input"
+              style={{
+                outline: "none",
+                border: "none",
+                borderWidth: "0",
+                fontSize: "20px",
+                padding: 0,
+                margin: 0,
+              }}
+              className={styles.searchInput}
               placeholder="검색어를 입력해 주세요"
               onChange={handleSearchInputChange}
             />
           </div>
         ) : (
-          <div className="fac-header-left">
+          <div className={styles.facHeaderLeft}>
             <Link to={"/"}>
               <FaChevronLeft style={{ fontSize: "22px", cursor: "pointer" }} />
             </Link>
@@ -113,7 +123,7 @@ const FacilitiesPage: React.FC = () => {
           onClick={() => setSearchToggle(true)}
         />
       </div>
-      <div className="container faci-container">
+      <div className={`${styles.faciContainer} ${container.container}`}>
         {searchToggle ? (
           <>
             {filteredFacilities.map((item, index) => (
@@ -161,7 +171,9 @@ const FacilitiesPage: React.FC = () => {
           </>
         )}
         {loading && (
-          <p className="loading-data">편의시설 데이터를 불러오는 중입니다...</p>
+          <p className={styles.loadingData}>
+            편의시설 데이터를 불러오는 중입니다...
+          </p>
         )}
       </div>
     </>
