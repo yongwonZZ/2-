@@ -32,10 +32,7 @@ export const toggleLike = asyncHandler(async (req, res) => {
     return res.json({ liked: false });
   } else {
     // 좋아요가 존재하지 않으면 새로 생성 (좋아요 추가)
-    const newLike = await Like.create({
-      userId: value.userId,
-      boardId: value.boardId,
-    });
+    const newLike = await Like.create({ userId, boardId });
     await Board.findByIdAndUpdate(newLike.boardId, { $inc: { like: 1 } });
 
     // 좋아요 추가 상태 반환
