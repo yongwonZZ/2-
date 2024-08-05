@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, ChangeEvent, KeyboardEvent } from "react";
-import "../../../styles/airportFashionPost/lookDetails.css";
+import styles from "../../../styles/airportFashionPost/comments.module.css";
 import Comments from "./Comments";
 import { IoCloseOutline as IconClose } from "react-icons/io5";
 import { GoArrowUp } from "react-icons/go";
@@ -43,21 +43,21 @@ const PostComment: React.FC<PostCommentProps> = ({
   };
 
   return (
-    <div className='comment-overlay'>
-      <div className='comment-container'>
-        <div className='comment-top'>
+    <div className={styles["comment-overlay"]}>
+      <div className={styles["comment-container"]}>
+        <div className={styles["comment-top"]}>
           <p>댓글</p>
-          <button className='close-button' onClick={onClose}>
+          <button className={styles["close-button"]} onClick={onClose}>
             <IconClose size={25} />
           </button>
         </div>
-        <div className='comments-box'>
+        <div className={styles["comments-box"]}>
           {comments.map((comment, index) => (
             <Comments key={index} comment={comment} />
           ))}
         </div>
 
-        <div className='comment-input'>
+        <div className={styles["comment-input"]}>
           <hr />
           <input
             placeholder='댓글을 남겨보세요.'
@@ -65,7 +65,10 @@ const PostComment: React.FC<PostCommentProps> = ({
             onChange={handleCommentChange}
             onKeyDown={handleKeyPress}
           ></input>
-          <button className='registration-button' onClick={handleCommentSubmit}>
+          <button
+            className={styles["registration-button"]}
+            onClick={handleCommentSubmit}
+          >
             <GoArrowUp size={22} />
           </button>
         </div>
