@@ -1,8 +1,6 @@
 import asyncHandler from 'express-async-handler';
 import { Comment, Board } from '../models/model.js';
 import { NotFoundError } from '../middlewares/custom-error.js';
-import { CommentJoi } from '../models/joi-schemas/comment-joi.js';
-import { BadRequestError } from '../middlewares/custom-error.js';
 
 // 댓글 목록 조회 (페이지네이션 적용)
 export const getCommentList = asyncHandler(async (req, res) => {
@@ -20,12 +18,8 @@ export const getCommentList = asyncHandler(async (req, res) => {
 
 // 댓글 작성
 export const createComment = asyncHandler(async (req, res) => {
-  const { error, value } = CommentJoi.validate(req.body);
-  if (error) {
-    throw new BadRequestError(`Validation error: ${error.details[0].message}`);
-  }
+  const { userName, contents, boardId } = req.body;
 
-  const { userName, contents, boardId } = value;
   const board = await Board.findById(boardId);
   if (!board) throw new NotFoundError('해당 게시글이 존재하지 않습니다.');
   const comment = await Comment.create({ userName, contents, boardId });
