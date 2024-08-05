@@ -19,8 +19,14 @@ function NavbarList({
     const navigate = useNavigate();
 
     const handleNavigateTo = () => {
-        navigate(navigateTo);
-        setSelected(title);
+        const token = localStorage.getItem('token');
+        if (!token && title === '마이페이지') {
+            console.log('No token found, redirecting to login.');
+            navigate('/login');
+        } else {
+            navigate(navigateTo);
+            setSelected(title);
+        }
     };
 
     return (
