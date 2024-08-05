@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import '../../styles/login/Login.module.css';
 import { useNavigate } from 'react-router-dom';
 import { LoginAction, LoginResponse } from './LoginAction';
 import LoadingSpinner from '../../components/loadingSpinner/LoadingSpinner';
@@ -22,8 +21,10 @@ const Login: React.FC = () => {
 
             if (data.message && data.message.includes('환영합니다')) {
                 console.log("로그인에 성공하셨습니다");
-                localStorage.setItem('token', data.token); //토큰 저장
-                localStorage.setItem('user', JSON.stringify(data.user)); //유저 정보 저장
+                console.log('Storing token:', data.token);
+                console.log('Storing user:', data.user);
+                localStorage.setItem('token', data.token); // 토큰 저장
+                localStorage.setItem('user', JSON.stringify(data.user)); // 유저 정보 저장
                 navigate('../myPage');
             } else {
                 console.error('Login failed response:', data);
