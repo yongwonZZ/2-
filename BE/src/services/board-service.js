@@ -1,9 +1,10 @@
 import asyncHandler from 'express-async-handler';
 import { Board } from '../models/model.js';
-import { NotFoundError, BadRequestError } from '../middlewares/custom-error.js';
-import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
-import { BoardJoi } from '../models/joi-schemas/board-joi.js';
+import { NotFoundError } from '../middlewares/custom-error.js';
+import s3Client from '../../s3Config.js';
+import { PutObjectCommand } from '@aws-sdk/client-s3';
 import dotenv from 'dotenv';
+import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 
 dotenv.config();
 
@@ -15,13 +16,15 @@ const s3Client = new S3Client({
   },
 });
 
-// 게시글 목록 조회 (페이지네이션 적용)
+// 게시글 목록 조회 (페이지네이션 및 카테고리별 조회 적용)
 export const getBoardList = asyncHandler(async (req, res) => {
-  const { page = 1, limit = 10 } = req.query;
-  const boardList = await Board.find()
+  const { category, page = 1, limit = 10 } = req.query;
+  const query = category ? { category } : {};
+
+  const boardList = await Board.find(query)
     .skip((page - 1) * limit)
     .limit(Number(limit));
-  const total = await Board.countDocuments();
+  const total = await Board.countDocuments(query);
   res.json({ total, page: Number(page), limit: Number(limit), boardList });
 });
 
@@ -33,25 +36,9 @@ export const getBoard = asyncHandler(async (req, res) => {
   res.json(board);
 });
 
-// 카테고리별 게시글 목록 조회 (페이지네이션 적용)
-export const getBoardListByCategory = asyncHandler(async (req, res) => {
-  const { category } = req.params;
-  const { page = 1, limit = 10 } = req.query;
-  const boardList = await Board.find({ category })
-    .skip((page - 1) * limit)
-    .limit(Number(limit));
-  const total = await Board.countDocuments({ category });
-  res.json({ total, page: Number(page), limit: Number(limit), boardList });
-});
-
 // 게시글 작성
 export const createBoard = asyncHandler(async (req, res) => {
-  const { error, value } = BoardJoi.validate(req.body);
-  if (error) {
-    throw new BadRequestError(`Validation error: ${error.details[0].message}`);
-  }
-
-  const { userName, category, contents, img } = value;
+  const { userName, category, contents, img } = req.body;
 
   // S3 presigned URL 생성
   const s3Params = {
