@@ -1,6 +1,6 @@
 import asyncHandler from 'express-async-handler';
 import { User } from '../models/model.js';
-import hashPassword from '../middlewares/hash-password.js';
+import { hashPassword } from '../middlewares/index.js';
 import jwt from 'jsonwebtoken';
 import {
   NotFoundError,
