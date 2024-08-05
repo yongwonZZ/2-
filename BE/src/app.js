@@ -39,7 +39,7 @@ app.get('/api', (req, res) => {
 });
 
 // 정적 파일 제공
-app.use(express.static(path.join(__dirname, '../../FE/src')));
+app.use(express.static(path.join(__dirname, '../../FE/build/static')));
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../../FE/build', 'index.html'));
