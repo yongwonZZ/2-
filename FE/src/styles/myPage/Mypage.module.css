@@ -1,4 +1,4 @@
-
+/* styles/mypage.module.css */
 .profile-container {
     display: flex;
     align-items: center;
@@ -34,16 +34,7 @@
 }
 
 .move-button {
-    background-color: rgb(1, 23, 89);
-    color: white;
-    border: none;
-    padding: 10px 20px;
     border-radius: 5px;
-    cursor: pointer;
-}
-
-.move-button:hover {
-    background-color: rgb(0, 20, 77);
 }
 
 .ticket-container {
@@ -71,16 +62,7 @@
 }
 
 .section-button {
-    background-color: rgb(1, 23, 89);
-    color: white;
-    border: none;
-    padding: 5px 10px;
     border-radius: 5px;
-    cursor: pointer;
-}
-
-.section-button:hover {
-    background-color: rgb(0, 20, 77);
 }
 
 .logout-container {
@@ -90,11 +72,6 @@
 
 .logout-button {
     background-color: rgb(220, 20, 60);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
 }
 
 .logout-button:hover {
