@@ -1,11 +1,4 @@
-/* 기본 스타일 설정 */
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-/* 부모 컨테이너가 전체 화면을 차지하도록 설정 */
+/* styles/Login.module.css */
 .login-container {
     display: flex;
     flex-direction: column;
@@ -17,7 +10,6 @@ html, body {
     box-sizing: border-box;
 }
 
-/* form 요소를 가운데 정렬 */
 form {
     display: flex;
     flex-direction: column;
@@ -27,7 +19,6 @@ form {
     margin: 0 auto; /* 중앙 정렬 */
 }
 
-/* 입력 필드의 너비를 설정하고, 가운데 정렬 */
 .email-input,
 .password-input {
     width: 100%;
@@ -36,7 +27,6 @@ form {
     box-sizing: border-box;
 }
 
-/* 버튼 컨테이너를 세로로 정렬 */
 .button-container {
     display: flex;
     flex-direction: column;
@@ -44,16 +34,9 @@ form {
     width: 100%;
 }
 
-/* 로그인 및 회원가입 버튼의 스타일 설정 */
 .login-button,
 .signup-button {
-    background-color: rgb(1, 23, 89); /* RGB 값으로 배경색 지정 */
-    color: white;
-    border: none;
-    padding: 10px;
     width: 100%; /* 버튼의 너비를 입력 필드와 동일하게 설정 */
-    margin: 2px 0; /* 버튼 간의 간격 설정 */
-    cursor: pointer;
 }
 
 .login-button:hover,
