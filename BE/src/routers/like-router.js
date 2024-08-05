@@ -1,6 +1,6 @@
 import express from 'express';
 import { isLiked, toggleLike } from '../services/like-service.js';
-import { validate, permission } from '../middlewares/index.js';
+import { permission, validate } from '../middlewares/index.js';
 import { LikeJoi } from '../models/joi-schemas/like-joi.js';
 
 const router = express.Router();

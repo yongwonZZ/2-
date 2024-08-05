@@ -4,7 +4,7 @@ import {
   createComment,
   deleteComment,
 } from '../services/comment-service.js';
-import { validate, permission } from '../middlewares/index.js';
+import { permission, validate } from '../middlewares/index.js';
 import { CommentJoi, PaginationJoi } from '../models/joi-schemas/index.js';
 
 const router = express.Router();
