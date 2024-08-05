@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import "./lookDetails.css";
+import "../../styles/airportFashionPost/lookDetails.css";
 import PostComment from "./postComment/PostComment";
 
 import { IoIosArrowBack as IconArrowBack } from "react-icons/io";

@@ -1,7 +1,7 @@
 import { searchResultType } from "./searchResultType";
 import { formatTime, formatDateString } from "../../../utils/formatTime";
 import { terminal2 } from "../airlineTerminals";
-import styles from "./AirlineSearchResultCard.module.css";
+import styles from "../../../styles/airlinePage/airlineSerchComponents/AirlineSearchResultCard.module.css";
 import { useNavigate } from "react-router-dom";
 import { MdOutlineSubdirectoryArrowRight as ArrowRight } from "react-icons/md";
 

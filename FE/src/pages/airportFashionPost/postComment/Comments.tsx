@@ -1,5 +1,5 @@
 import React from "react";
-import "./comments.css";
+import "../../../styles/airportFashionPost/comments.css";
 import { BsPersonFill as IconUserProfile } from "react-icons/bs";
 
 interface CommentsProps {

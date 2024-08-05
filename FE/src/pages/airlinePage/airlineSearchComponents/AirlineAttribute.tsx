@@ -1,4 +1,4 @@
-import styles from "./AirlineAttribute.module.css";
+import styles from "../../../styles/airlinePage/airlineSerchComponents/AirlineAttribute.module.css";
 
 type AirlineAttributeProps = {
   arrivals: boolean;

@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/FacilitiesPage.css";
+import "../../../styles/airlineInfo/FacilitiesPage.module.css";
 import { FaRegClock, FaPhoneAlt } from "react-icons/fa";
 
 interface FacilitiesItemProps {

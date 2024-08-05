@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import './BoardingPassDetails.css';
+import '../../styles/boardingPass/BoardingPassDetails.module.css';
 import Header from "../../components/Header";
 import { AiOutlineShareAlt } from "react-icons/ai";
 import { FaTrashAlt } from "react-icons/fa";

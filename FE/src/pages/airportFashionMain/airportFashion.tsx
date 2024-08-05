@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./airportFashion.css";
+import "../../styles/airportFashion/airportFashion.module.css";
 import LookFilter from "./airportFashionComponents/LookFilter";
 import FashionImagesItem from "./airportFashionComponents/FashionImagesItem";
 import LookSort from "./airportFashionComponents/LookSort";

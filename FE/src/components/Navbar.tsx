@@ -1,5 +1,5 @@
 import { memo } from "react";
-import styles from "./Navbar.module.css";
+import styles from "../styles/components/Navbar.module.css";
 import NavbarList from "./NavbarList";
 import { useState } from "react";
 import { MdLocalAirport, MdOutlineAirplaneTicket } from "react-icons/md";
