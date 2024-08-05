@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../../styles/airportFashionPost/comments.module.css";
+import styles from "../../../styles/airportFashion/airportFashionPost/comments.module.css";
 import { BsPersonFill as IconUserProfile } from "react-icons/bs";
 import FormatDate from "../../../components/FormatDate";
 

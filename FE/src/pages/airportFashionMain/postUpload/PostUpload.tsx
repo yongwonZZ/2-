@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import styles from "../../../styles/airportFashionPost/postUpload.module.css";
-import styleBackBtn from "../../../styles/airportFashionPost/lookDetails.module.css";
+import styles from "../../../styles/airportFashion/airportFashionPost/postUpload.module.css";
+import styleBackBtn from "../../../styles/airportFashion/airportFashionPost/lookDetails.module.css";
 
 import { IoIosArrowBack as IconArrowBack } from "react-icons/io";
 import { GoPlus as IconPlus } from "react-icons/go";
@@ -50,7 +50,12 @@ const PostUpload: React.FC = () => {
       alert("스타일을 선택해주세요.");
       return;
     }
-    const newPost = { images: imageURLs, text, style: selectedStyle };
+    const newPost = {
+      images: imageURLs,
+      text,
+      style: selectedStyle,
+      date: new Date().toISOString(),
+    };
 
     // 일단 로컬스토리지에 저장 -> 추후 db 연결
     const existingPosts = JSON.parse(localStorage.getItem("posts") || "[]");

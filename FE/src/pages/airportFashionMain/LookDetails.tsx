@@ -2,8 +2,9 @@ import React from "react";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import styles from "../../styles/airportFashionPost/lookDetails.module.css";
+import styles from "../../styles/airportFashion/airportFashionPost/lookDetails.module.css";
 import PostComment from "./postComment/PostComment";
+import FormatDate from "../../components/FormatDate";
 
 import { IoIosArrowBack as IconArrowBack } from "react-icons/io";
 import { BsPersonFill as IconUserProfile } from "react-icons/bs";
@@ -15,10 +16,12 @@ import { GoComment as IconComment } from "react-icons/go";
 const LookDetails: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { imageUrl, description } = location.state as {
+  const { imageUrl, description, style } = location.state as {
     imageUrl: string;
     description: string;
+    style: string;
   };
+  const currentDate = new Date();
 
   const handleBackClick = () => {
     navigate(-1); // 이전 페이지로 이동
@@ -28,6 +31,7 @@ const LookDetails: React.FC = () => {
   const [isCommentOpen, setCommentOpen] = useState(false);
   const [commentCount, setCommentCount] = useState(0);
   const [firstComment, setFirstComment] = useState<string | null>(null);
+
   // 좋아요 상태
   const [isLiked, setIsLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
@@ -52,6 +56,7 @@ const LookDetails: React.FC = () => {
   const updateFirstComment = (comment: string) => {
     setFirstComment(comment);
   };
+
   return (
     <div>
       <div className={styles["top-container"]}>
@@ -59,7 +64,7 @@ const LookDetails: React.FC = () => {
           <button className={styles["back-button"]} onClick={handleBackClick}>
             <IconArrowBack size={20} />
           </button>
-          <h1>스트릿</h1>
+          <h1>{style}</h1>
         </div>
         <hr />
       </div>
@@ -71,7 +76,9 @@ const LookDetails: React.FC = () => {
           </button>
           <div>
             <p>사용자이름</p>
-            <p>2024년 07월 24일</p>
+            <p>
+              <FormatDate date={currentDate} />
+            </p>
           </div>
           <button>
             <IconKebabMenu size={15} />
