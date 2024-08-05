@@ -4,3 +4,4 @@
 export * from './error-handler.js';
 export * from './permission.js';
 export * from './hash-password.js';
+export * from './validate.js';
