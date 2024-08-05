@@ -6,8 +6,7 @@ import {
   getUser,
   resignUser,
 } from '../services/user-service.js';
-import permission from '../middlewares/permission.js'; // 유저인증 & 권한 체크
-import validate from '../middlewares/validate.js';
+import { permission, validate } from '../middlewares/index.js';
 import { UpdateUserJoi } from '../models/joi-schemas/user-joi.js';
 
 const router = express.Router();

@@ -8,14 +8,6 @@ import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 
 dotenv.config();
 
-const s3Client = new S3Client({
-  region: process.env.AWS_REGION,
-  credentials: {
-    accessKeyId: process.env.AWS_ACCESS_KEY,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  },
-});
-
 // 게시글 목록 조회 (페이지네이션 및 카테고리별 조회 적용)
 export const getBoardList = asyncHandler(async (req, res) => {
   const { category, page = 1, limit = 10 } = req.query;
