@@ -18,11 +18,11 @@ export const getCommentList = asyncHandler(async (req, res) => {
 
 // 댓글 작성
 export const createComment = asyncHandler(async (req, res) => {
-  const { userName, contents, boardId } = req.body;
+  const { userId, contents, boardId } = req.body;
 
   const board = await Board.findById(boardId);
   if (!board) throw new NotFoundError('해당 게시글이 존재하지 않습니다.');
-  const comment = await Comment.create({ userName, contents, boardId });
+  const comment = await Comment.create({ userId, contents, boardId });
   res.json({ message: '댓글이 작성되었습니다.', comment });
 });
 
