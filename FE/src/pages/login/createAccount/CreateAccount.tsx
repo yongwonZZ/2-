@@ -10,7 +10,8 @@ const CreateAccount: React.FC = () => {
 
     const onSubmit = async (data: any) => {
         try {
-            const response = await createAccount(data);
+            const { confirmpassword, ...rest } = data; // confirmpassword 필드를 제외한 나머지 데이터만 사용
+            const response = await createAccount(rest); // 서버로 전송
             setMessage(response.message); // 성공 시 메시지 설정
         } catch (error) {
             console.error('Failed to create account', error);

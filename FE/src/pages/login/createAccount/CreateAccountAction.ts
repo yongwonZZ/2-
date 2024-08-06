@@ -1,4 +1,4 @@
-// src/actions/CreateAccountAction.ts
+
 import axios from 'axios';
 
 //만약에 로컬 서버로 돌릴경우 localhost:POST로 사용한다

@@ -1,14 +1,13 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-
 import Login from './Login';
-import MyPage from '../login/myPage/MyPage';
-import CreateAccount from '../login/createAccount/CreateAccount';
+import MyPage from './myPage/MyPage';
+import CreateAccount from './createAccount/CreateAccount';
 
 const LoginMain: React.FC = () => {
     return (
         <Routes>
-            <Route path='/login' element={<Login />} />
+            <Route path='/' element={<Login />} />
             <Route path='/myPage' element={<MyPage />} />
             <Route path='/createAccount' element={<CreateAccount />} />
         </Routes>
