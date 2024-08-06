@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
+import styles from "../../../styles/airlineInfo/FacilitiesPage.module.css";
 import FacilitiesItem from "../airlineComponents/FacilitiesItem";
 import { FaChevronLeft, FaSearch } from "react-icons/fa";
 import { fetchFacilitiesData } from "../getInfoData/getFacilitiesData";
@@ -85,9 +86,9 @@ const FacilitiesPage: React.FC = () => {
 
   return (
     <>
-      <div className="facility-header">
+      <div className={styles["facility-header"]}>
         {searchToggle ? (
-          <div className="fac-header-left">
+          <div className={styles["fac-header-left"]}>
             <FaChevronLeft
               style={{ fontSize: "22px", cursor: "pointer" }}
               onClick={() => setSearchToggle(false)}
@@ -95,13 +96,13 @@ const FacilitiesPage: React.FC = () => {
             <input
               value={searchInput}
               type="text"
-              className="search-input"
+              className={styles["search-input"]}
               placeholder="검색어를 입력해 주세요"
               onChange={handleSearchInputChange}
             />
           </div>
         ) : (
-          <div className="fac-header-left">
+          <div className={styles["fac-header-left"]}>
             <Link to={"/"}>
               <FaChevronLeft style={{ fontSize: "22px", cursor: "pointer" }} />
             </Link>
@@ -113,7 +114,7 @@ const FacilitiesPage: React.FC = () => {
           onClick={() => setSearchToggle(true)}
         />
       </div>
-      <div className="container faci-container">
+      <div className={`${styles.container} ${styles["faci-container"]}`}>
         {searchToggle ? (
           <>
             {filteredFacilities.map((item, index) => (
@@ -161,7 +162,9 @@ const FacilitiesPage: React.FC = () => {
           </>
         )}
         {loading && (
-          <p className="loading-data">편의시설 데이터를 불러오는 중입니다...</p>
+          <p className={styles["loading-data"]}>
+            편의시설 데이터를 불러오는 중입니다...
+          </p>
         )}
       </div>
     </>
