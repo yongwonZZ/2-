@@ -7,7 +7,6 @@ import { formatTime } from "../../utils/formatTime";
 import { FaChevronLeft } from "react-icons/fa";
 import { IoMdShare } from "react-icons/io";
 import { IoIosAirplane } from "react-icons/io";
-import { handleRegisterBoardingPass } from "../../utils/userUtils/authUtils"; // authUtils 파일에서 함수 가져오기
 
 function AirlineDetailPage() {
     const navigate = useNavigate();
@@ -24,13 +23,15 @@ function AirlineDetailPage() {
     const detailData = data?.find(({ flightId }) => flightId === id);
 
     const handleRegister = () => {
-        // 로컬 스토리지에서 기존 항공편 데이터 가져오기
-        const storedTickets = JSON.parse(localStorage.getItem('tickets') || '[]');
-        // 새로운 항공편 데이터 추가
-        const updatedTickets = [...storedTickets, detailData];
-        // 로컬 스토리지에 저장
-        localStorage.setItem('tickets', JSON.stringify(updatedTickets));
-        // 내 티켓 페이지로 이동
+        const user = JSON.parse(localStorage.getItem('user') || '{}');
+
+        if (user.email) {
+            const storedTickets = JSON.parse(localStorage.getItem(`tickets_${user.email}`) || '[]');
+            const updatedTickets = [...storedTickets, detailData];
+            localStorage.setItem(`tickets_${user.email}`, JSON.stringify(updatedTickets));
+            localStorage.setItem('tickets', JSON.stringify(updatedTickets));
+        }
+
         navigate('/boardingPass');
     };
 
@@ -44,7 +45,7 @@ function AirlineDetailPage() {
                     />
                 }
                 centerContent={detailData?.flightId}
-                rightContent={<IoMdShare className={styles["icon-share"]}/>}
+                rightContent={<IoMdShare className={styles["icon-share"]} />}
             />
             <div className={styles.card}>
                 <div className={styles.section}>
@@ -61,7 +62,7 @@ function AirlineDetailPage() {
                     <span>{detailData?.airport}</span>
                     <span>{detailData?.airportCode}</span>
                 </div>
-                <IoIosAirplane className={styles["icon-departure"]}/>
+                <IoIosAirplane className={styles["icon-departure"]} />
                 <div className={styles.section}>
                     <span>인천(서울)</span>
                     <span>ICN</span>
@@ -74,18 +75,18 @@ function AirlineDetailPage() {
             <div className={styles.card}>
                 <span>{detailData?.chkinrange ? "체크인카운터" : "수하물수취대"}</span>
                 <span>
-          {detailData?.chkinrange
-              ? detailData?.chkinrange
-              : detailData?.carousel}
-        </span>
+                    {detailData?.chkinrange
+                        ? detailData?.chkinrange
+                        : detailData?.carousel}
+                </span>
             </div>
             <div className={styles.card}>
                 <span>{detailData?.chkinrange ? "탑승게이트" : "출구"}</span>
                 <span>
-          {detailData?.chkinrange
-              ? detailData?.gatenumber
-              : detailData?.exitnumber}
-        </span>
+                    {detailData?.chkinrange
+                        ? detailData?.gatenumber
+                        : detailData?.exitnumber}
+                </span>
             </div>
             <div className={styles.card}>
                 <div className={styles.section}>
@@ -93,9 +94,9 @@ function AirlineDetailPage() {
                     <span>도착변경시간</span>
                 </div>
                 <div className={styles.section}>
-          <span className={stylesEx["section-strikethrough"]}>
-            {formatTime(detailData!.scheduleDateTime)}
-          </span>
+                    <span className={stylesEx["section-strikethrough"]}>
+                        {formatTime(detailData!.scheduleDateTime)}
+                    </span>
                     <span>{formatTime(detailData!.estimatedDateTime)}</span>
                 </div>
             </div>

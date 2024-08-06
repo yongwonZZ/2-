@@ -18,7 +18,7 @@ export const LoginAction = async (email: string, password: string): Promise<Logi
 
     } catch (error: any) {
         if (error.response) {
-            throw new Error(error.response.data.message || 'Unknown error occurred');
+            throw new Error(error.response.data.message || '아이디 또는 비밀번호를 확인해주세요');
         } else if (error.request) {
             throw new Error('No response received from the server');
         } else {

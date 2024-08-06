@@ -1,16 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../styles/boardingPass/BoardingPass.module.css';
 import Header from "../../components/Header";
 import BoardingPassTicket from './BoardingPassTicket';
 
+interface Ticket {
+    airline: string;
+    flightId: string;
+    departure: string;
+    arrival: string;
+    departureTime: string;
+    arrivalTime: string;
+    gate: string;
+    seat: string;
+    baggage: string;
+}
+
 const BoardingPass: React.FC = () => {
-    const [tickets, setTickets] = useState<any[]>([]);
+    const [tickets, setTickets] = useState<Ticket[]>([]);
     const navigate = useNavigate();
 
     useEffect(() => {
-        const storedTickets = JSON.parse(localStorage.getItem('tickets') || '[]');
-        setTickets(storedTickets);
+        const savedTickets = JSON.parse(localStorage.getItem('tickets') || '[]') as Ticket[];
+        setTickets(savedTickets);
     }, []);
 
     const handleTicketClick = (index: number) => {
