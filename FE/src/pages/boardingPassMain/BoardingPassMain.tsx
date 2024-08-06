@@ -6,8 +6,8 @@ import BoardingPassDetails from './BoardingPassDetails';
 const BoardingPassMain: React.FC = () => {
     return (
         <Routes>
-            <Route path='/boardingPass' element={<BoardingPass  />} />
-            <Route path='/boardingPass/:id' element={<BoardingPassDetails />} />
+            <Route path='/' element={<BoardingPass />} />
+            <Route path='/:id' element={<BoardingPassDetails />} />
         </Routes>
     );
 };

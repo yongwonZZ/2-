@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { LoginAction, LoginResponse } from './LoginAction';
 import LoadingSpinner from '../../components/loadingSpinner/LoadingSpinner';
 import '../../styles/login/Login.css';
+import Header from "../../components/Header";
 
 const Login: React.FC = () => {
     const navigate = useNavigate();
@@ -16,7 +17,7 @@ const Login: React.FC = () => {
         event.preventDefault();
         setIsLoading(true);
         try {
-            const data: LoginResponse = await LoginAction(email, password);
+            const data: LoginResponse = await LoginAction(email, password); //액션에서 패스워드는 해쉬화해서 넘기는걸로 바꿈
             console.log('Login response data:', data);
 
             if (data.message && data.message.includes('환영합니다')) {
@@ -45,8 +46,8 @@ const Login: React.FC = () => {
     };
 
     return (
-
-        <div >
+        <div>
+            <Header leftContent="로그인" />
             <div className="login-container">
                 {error && <p className="error">{error}</p>}
                 <form onSubmit={handleLogin}>
@@ -79,6 +80,11 @@ const Login: React.FC = () => {
                         <button className="signup-button" type="button" onClick={() => navigate('../createAccount')}>
                             회원가입
                         </button>
+                    </div>
+                    <div> {/*텍스트로 아래 간단하게 유지*/}
+                        <button> 아이디 찾기 </button>
+                        <p> | </p>
+                        <button> 비밀번호 찾기</button>
                     </div>
                 </form>
             </div>
