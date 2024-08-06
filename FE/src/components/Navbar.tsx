@@ -8,11 +8,7 @@ import { TbHanger } from "react-icons/tb";
 import { FaRegUser } from "react-icons/fa";
 import { isAuthenticated } from "../utils/TokenUtils";
 
-interface NavbarProps {
-    ticketCount: number;
-}
-
-const Navbar: React.FC<NavbarProps> = ({ ticketCount }) => {
+const Navbar: React.FC = () => {
     const [selected, setSelected] = useState("공항");
     const navigate = useNavigate();
     const location = useLocation();
@@ -64,7 +60,7 @@ const Navbar: React.FC<NavbarProps> = ({ ticketCount }) => {
             />
             <NavbarList
                 icon={<MdOutlineAirplaneTicket />}
-                title={`내 티켓 (${ticketCount})`}
+                title={`내 티켓 ()`}
                 navigateTo="/boardingPass"
                 isSelected={selected === "내 티켓"}
                 setSelected={handleSelectList}

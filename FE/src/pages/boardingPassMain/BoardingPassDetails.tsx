@@ -9,12 +9,12 @@ interface BoardingPassProps {
     setTicketCount: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const BoardingPassDetails: React.FC<BoardingPassProps> = ({ setTicketCount }) => {
+const BoardingPassDetails: React.FC = () => {
     const { id } = useParams<{ id: string }>();
 
     const handleDelete = () => {
         // 티켓 삭제 로직
-        setTicketCount(prevCount => prevCount - 1);
+        //setTicketCount(prevCount => prevCount - 1);
         // 추가적인 삭제 처리 로직이 여기에 들어갑니다.
     };
 

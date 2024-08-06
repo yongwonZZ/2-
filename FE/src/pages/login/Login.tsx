@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import '../../styles/login/Login.module.css';
 import { useNavigate } from 'react-router-dom';
 import { LoginAction, LoginResponse } from './LoginAction';
 import LoadingSpinner from '../../components/loadingSpinner/LoadingSpinner';
-import Header from "@components/Header";
-import styles from "../../styles/mainPage/MainPage.module.css";
+import '../../styles/login/Login.css';
 
 const Login: React.FC = () => {
     const navigate = useNavigate();
@@ -47,8 +45,8 @@ const Login: React.FC = () => {
     };
 
     return (
-        <>
-        <div className={styles.wrapper}>
+
+        <div >
             <div className="login-container">
                 {error && <p className="error">{error}</p>}
                 <form onSubmit={handleLogin}>
@@ -83,14 +81,10 @@ const Login: React.FC = () => {
                         </button>
                     </div>
                 </form>
-                <button className="test-spinner-button" onClick={handleSpinnerTest}>
-                    스피너 테스트
-                </button>
             </div>
             {isLoading && <LoadingSpinner message="로그인 중입니다..." />}
             {isSpinnerActive && <LoadingSpinner message="테스트 중입니다..." />}
         </div>
-            </>
     );
 }
 
