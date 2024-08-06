@@ -15,7 +15,7 @@ function MainPage() {
   /** 각 link-item별 라우트 설정 */
   return (
     <div className={styles.wrapper}>
-      <Header leftContent="인천국제공항" />
+      <Header centerContent="인천국제공항" />
       <MainPageContainer title="항공편">
         <MainPageLinkItem
           icon={<FaSearch className={styles.icon} />}
