@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import '../../styles/login/Login.module.css';
 import { useNavigate } from 'react-router-dom';
 import { LoginAction, LoginResponse } from './LoginAction';
 import LoadingSpinner from '../../components/loadingSpinner/LoadingSpinner';
-import Header from "../../components/Header";
+import Header from "@components/Header";
 import styles from "../../styles/mainPage/MainPage.module.css";
 
 const Login: React.FC = () => {
@@ -11,6 +12,7 @@ const Login: React.FC = () => {
     const [password, setPassword] = useState<string>('');
     const [error, setError] = useState<string>('');
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [isSpinnerActive, setIsSpinnerActive] = useState<boolean>(false);
 
     const handleLogin = async (event: React.FormEvent) => {
         event.preventDefault();
@@ -21,10 +23,8 @@ const Login: React.FC = () => {
 
             if (data.message && data.message.includes('환영합니다')) {
                 console.log("로그인에 성공하셨습니다");
-                console.log('Storing token:', data.token);
-                console.log('Storing user:', data.user);
-                localStorage.setItem('token', data.token); // 토큰 저장
-                localStorage.setItem('user', JSON.stringify(data.user)); // 유저 정보 저장
+                localStorage.setItem('token', data.token); //토큰 저장
+                localStorage.setItem('user', JSON.stringify(data.user)); //유저 정보 저장
                 navigate('../myPage');
             } else {
                 console.error('Login failed response:', data);
@@ -39,11 +39,18 @@ const Login: React.FC = () => {
         }
     };
 
+    const handleSpinnerTest = () => {
+        setIsSpinnerActive(true);
+        setTimeout(() => {
+            setIsSpinnerActive(false);
+        }, 5000); // 5초 동안 스피너 작동
+    };
+
     return (
+        <>
         <div className={styles.wrapper}>
-            <Header leftContent="로그인" />
             <div className="login-container">
-                {isLoading && <LoadingSpinner message="테스트" />}
+                {error && <p className="error">{error}</p>}
                 <form onSubmit={handleLogin}>
                     <input
                         className="email-input"
@@ -67,7 +74,6 @@ const Login: React.FC = () => {
                         required
                         autoComplete="current-password"
                     />
-                    {error && <p className="error">{error}</p>}
                     <div className="button-container">
                         <button className="login-button" type="submit">
                             로그인
@@ -77,8 +83,14 @@ const Login: React.FC = () => {
                         </button>
                     </div>
                 </form>
+                <button className="test-spinner-button" onClick={handleSpinnerTest}>
+                    스피너 테스트
+                </button>
             </div>
+            {isLoading && <LoadingSpinner message="로그인 중입니다..." />}
+            {isSpinnerActive && <LoadingSpinner message="테스트 중입니다..." />}
         </div>
+            </>
     );
 }
 
