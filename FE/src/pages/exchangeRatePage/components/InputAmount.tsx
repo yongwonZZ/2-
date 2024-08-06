@@ -1,7 +1,7 @@
 // InputAmount.tsx
 import React from "react";
 import { FaBackspace, FaExchangeAlt } from "react-icons/fa";
-import "../styles/InputAmount.css";
+import styles from "../../../styles/exchangeRatePage/InputAmount.module.css";
 
 interface InputAmountProps {
   setAmount: (amount: number) => void;
@@ -41,11 +41,11 @@ const InputAmount: React.FC<InputAmountProps> = ({
   };
 
   return (
-    <div className="amount-keypad">
-      <div className="amount-ketpad-number">
+    <div className={styles.amountKeypad}>
+      <div className={styles.amountKetpadNumber}>
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map((num) => (
           <button
-            className="keypad keypad-btn"
+            className={`${styles.keypad} ${styles.keypadBtn}`}
             key={num}
             onClick={() => handleButtonClick(num.toString())}
           >
@@ -53,20 +53,28 @@ const InputAmount: React.FC<InputAmountProps> = ({
           </button>
         ))}
       </div>
-      <div className="keypad-control">
-        <button className="keypad keypad-control-btn" onClick={handleBack}>
+      <div className={styles.keypadControl}>
+        <button
+          className={`${styles.keypad} ${styles.keypadControlBtn}`}
+          onClick={handleBack}
+        >
           <FaBackspace />
         </button>
         <button
-          className="keypad keypad-control-btn"
+          className={`${styles.keypad} ${styles.keypadControlBtn}`}
           onClick={handleChangeCountry}
         >
           <FaExchangeAlt />
         </button>
-        <button className="keypad keypad-control-btn" onClick={handleClear}>
+        <button
+          className={`${styles.keypad} ${styles.keypadControlBtn}`}
+          onClick={handleClear}
+        >
           C
         </button>
-        <button className="keypad keypad-control-btn"></button>
+        <button
+          className={`${styles.keypad} ${styles.keypadControlBtn}`}
+        ></button>
       </div>
     </div>
   );
