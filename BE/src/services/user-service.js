@@ -37,6 +37,7 @@ export const signup = asyncHandler(async (req, res) => {
 });
 
 // 로그인
+// 로그인
 export const login = asyncHandler(async (req, res, next) => {
   const { error, value } = LoginJoi.validate(req.body);
   if (error) {
@@ -55,17 +56,24 @@ export const login = asyncHandler(async (req, res, next) => {
 
   // 토큰 생성
   const token = jwt.sign(
-    {
-      id: user._id,
-      role: user.role,
-      permission: user.permission,
-    },
-    secret,
-    { expiresIn: '1h' }
+      {
+        id: user._id,
+        role: user.role,
+        permission: user.permission,
+      },
+      secret,
+      { expiresIn: '1h' }
   );
 
   res.cookie('accessToken', token, { maxAge: 3600000 });
-  res.json({ message: `${user.userName}님 환영합니다!` });
+  res.json({
+    message: `${user.userName}님 환영합니다!`,
+    token, // 응답 데이터에 토큰 포함
+    user: {
+      email: user.email,
+      userName: user.userName
+    }
+  });
 });
 
 // 로그아웃
