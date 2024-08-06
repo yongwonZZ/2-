@@ -1,8 +1,6 @@
 import Header from "../../components/Header";
 import MainPageContainer from "./mainPageComponents/MainPageContainer";
-import CodeShareOptions from "./mainPageComponents/CodeShareOptions";
 import MainPageLinkItem from "./mainPageComponents/MainPageLinkItem";
-import { useState } from "react";
 import styles from "../../styles/mainPage/MainPage.module.css";
 import {
   FaSearch,
@@ -14,22 +12,11 @@ import {
 } from "react-icons/fa"; // icon 라이브러리
 
 function MainPage() {
-  /** 코드쉐어 상태값 */
-  const [codeshareStatus, setCodeshareStatus] = useState(true);
-
   /** 각 link-item별 라우트 설정 */
   return (
     <div className={styles.wrapper}>
       <Header leftContent="인천국제공항" />
-      <MainPageContainer
-        title="항공편"
-        option={
-          <CodeShareOptions
-            onSwitch={(isChecked: boolean) => setCodeshareStatus(isChecked)}
-            isChecked={codeshareStatus}
-          />
-        }
-      >
+      <MainPageContainer title="항공편">
         <MainPageLinkItem
           icon={<FaSearch className={styles.icon} />}
           title="항공편 검색"
