@@ -7,9 +7,9 @@ import CreateAccount from './createAccount/CreateAccount';
 const LoginMain: React.FC = () => {
     return (
         <Routes>
-            <Route path='/' element={<Login />} />
-            <Route path='/myPage' element={<MyPage />} />
-            <Route path='/createAccount' element={<CreateAccount />} />
+            <Route path="/" element={<Login />} />
+            <Route path="myPage" element={<MyPage />} />
+            <Route path="createAccount" element={<CreateAccount />} />
         </Routes>
     );
 };

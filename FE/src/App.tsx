@@ -30,6 +30,12 @@ function App() {
         return '로그인';
       case '/login/myPage':
         return '마이페이지';
+      case '/boardingPass':
+        return '내 티켓';
+      case '/postUpload':
+        return '포스트 업로드';
+      case '/lookDetails':
+        return '룩 디테일';
         // 필요한 다른 경로들도 추가합니다.
       default:
         return '사이트 이름'; // 기본 타이틀 설정
@@ -38,7 +44,7 @@ function App() {
 
   useEffect(() => {
     const pageTitle = getPageName(location.pathname);
-    document.title = `${pageTitle} | 우리 어플이름 여기 작성`; // 경로 변경될 때마다 타이틀 업데이트
+    document.title = `${pageTitle} | 우리 어플이름`; // 경로 변경될 때마다 타이틀 업데이트
   }, [location.pathname]);
 
   return (
@@ -46,16 +52,15 @@ function App() {
         <QueryClientProvider client={queryClient}>
           <Routes>
             {/* 공항 관련 라우트 */}
-            <Route path='/*' element={<AirPortMain />} />
-
-            <Route path='/airportFashion' element={<AirportFashion />} />
-            <Route path='/lookDetails' element={<LookDetails />} />
-            <Route path='/postUpload' element={<PostUpload />} />
+            <Route path="/*" element={<AirPortMain />} />
+            <Route path="/airportFashion" element={<AirportFashion />} />
+            <Route path="/lookDetails" element={<LookDetails />} />
+            <Route path="/postUpload" element={<PostUpload />} />
 
             {/* 로그인 및 마이페이지 관련 라우트 */}
-            <Route path='/login/*' element={<LoginMain />} />
+            <Route path="/login/*" element={<LoginMain />} />
             {/* BoardingPass 관련 라우트 */}
-            <Route path='/boardingPass/*' element={<BoardingPassMain />} />
+            <Route path="/boardingPass/*" element={<BoardingPassMain />} />
           </Routes>
           <Navbar />
         </QueryClientProvider>

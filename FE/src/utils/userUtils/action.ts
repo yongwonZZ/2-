@@ -38,8 +38,19 @@ export const useUser = (): User | null => {
 
 // 로그아웃 기능을 처리하는 함수
 export const handleLogout = (navigate: ReturnType<typeof useNavigate>) => {
-    localStorage.removeItem('user'); // localStorage에서 user 데이터 제거
-    localStorage.removeItem('token'); // localStorage에서 token 데이터 제거
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+
+    if (user.email) {
+        const tickets = localStorage.getItem('tickets');
+        if (tickets) {
+            localStorage.setItem(`tickets_${user.email}`, tickets);
+        }
+    }
+
+    localStorage.removeItem('token'); // 토큰 삭제
+    localStorage.removeItem('user'); // 유저 정보 삭제
+    localStorage.removeItem('tickets'); // 현재 세션의 티켓 정보 삭제
+
     navigate('/login'); // 로그인 페이지로 리다이렉트
 };
 
