@@ -4,17 +4,13 @@ import '../../styles/boardingPass/BoardingPass.module.css';
 import Header from "../../components/Header";
 import BoardingPassTicket from './BoardingPassTicket';
 
-interface BoardingPassProps {
-    setTicketCount: React.Dispatch<React.SetStateAction<number>>;
-}
 
-const BoardingPass: React.FC<BoardingPassProps> = ({ setTicketCount }) => {
+const BoardingPass: React.FC = () => {
     const [tickets, setTickets] = useState<number[]>([]);
     const navigate = useNavigate();
 
     const handleButtonClick = () => {
         setTickets([...tickets, tickets.length]);
-        setTicketCount(prevCount => prevCount + 1);
     };
 
     const handleTicketClick = (index: number) => {

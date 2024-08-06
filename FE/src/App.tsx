@@ -15,7 +15,6 @@ import AirPortMain from './pages/airPortsMain/AirPortMain'; // airPortMain impor
 const queryClient = new QueryClient();
 
 function App() {
-  const [ticketCount, setTicketCount] = useState(0);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -28,6 +27,8 @@ function App() {
         return '환율';
       case '/airportFashion':
         return '공항패션';
+      case '/login':
+        return '로그인';
         // 필요한 다른 경로들도 추가합니다.
       default:
         return '';
@@ -46,18 +47,18 @@ function App() {
             {/* 공항 관련 라우트 */}
             <Route path='/*' element={<AirPortMain />} />
 
-            <Route path='/exchange' element={<ExChangeRatePage />} />
+            {/* <Route path='/exchange' element={<ExChangeRatePage />} /> */}
             <Route path='/airportFashion' element={<AirportFashion />} />
             <Route path='/lookDetails' element={<LookDetails />} />
             <Route path='/postUpload' element={<PostUpload />} />
 
             {/* 로그인 및 마이페이지 관련 라우트 */}
-            <Route path='/*' element={<LoginMain setTicketCount={setTicketCount} />} />
+            <Route path='/*' element={<LoginMain />} />
             {/* BoardingPass 관련 라우트 */}
-            <Route path='/*' element={<BoardingPassMain setTicketCount={setTicketCount} />} />
+            <Route path='/*' element={<BoardingPassMain />} />
 
           </Routes>
-          <Navbar ticketCount={ticketCount} />
+          <Navbar />
         </QueryClientProvider>
       </div>
   );
