@@ -6,7 +6,7 @@ interface ExchangeRate {
   deal_bas_r: string;
 }
 
-const API_KEY = "bWOoBRWFOt3fRCMfTgMmcoeW2LvN8jWV"; // 발급받은 인증키
+const API_KEY = process.env.REACT_APP_EXCHANGE_SERVICE_KEY; // 발급받은 인증키
 const BASE_URL = "api1/site/program/financial/exchangeJSON";
 
 export const fetchExchangeRate = async (
@@ -14,26 +14,32 @@ export const fetchExchangeRate = async (
   type: string
 ): Promise<ExchangeRate[]> => {
   try {
+    console.log(`Fetching exchange rates for ${searchdate}`);
     const response = await axios.get(
-      `${BASE_URL}?authkey=${API_KEY}&searchdate=${searchdate}&data=${type}`
+      `${BASE_URL}?authkey=${API_KEY}&searchdate=${searchdate}&data=AP01`
     );
     return response.data;
   } catch (error) {
-    console.error("Failed to fetch exchange rates", error);
+    console.error("Failed to fetch exchange rates");
     throw error;
   }
 };
 
+const COUNTRY_URL = process.env.REACT_APP_COUNTRY_URL;
+const COUNTRY_SETVICE_KEY = process.env.REACT_APP_COUNTRY_SERVICE_KEY;
+
 export const fetchCountryImage = async (country: string): Promise<string> => {
   try {
     const encodedCountry = encodeURIComponent(country);
-    const response = await axios.get(`
-      http://apis.data.go.kr/1262000/CountryFlagService2/getCountryFlagList2?serviceKey=hrMnQ33YKrJu8DOo5oq4CzNqxtaB8fucRisDvWoHIghiUdUd8e7LRhNVXccEa4aGXrCEb%2BN0l3q0X9JQoTstsg%3D%3D&pageNo=1&numOfRows=10&cond[country_nm::EQ]=${encodedCountry}`);
+    console.log(`Fetching image for country: ${country}`);
+    const response = await axios.get(
+      `${COUNTRY_URL}?serviceKey=${COUNTRY_SETVICE_KEY}&pageNo=1&numOfRows=10&cond[country_nm::EQ]=${encodedCountry}`
+    );
     // API 응답에서 이미지 URL 추출
     const flagUrl = response.data.data[0]?.download_url;
     return flagUrl || "";
   } catch (error) {
-    console.error("Failed to fetch country image", error);
+    console.error("Failed to fetch country image");
     throw error;
   }
 };

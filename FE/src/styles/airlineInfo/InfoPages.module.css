@@ -14,20 +14,20 @@ a {
   flex-direction: column;
   gap: 10px;
 }
-.update-time {
+.updateTime {
   text-align: end;
   color: #888;
   font-size: 12px;
   padding: 0 20px 5px 0;
 }
-.parking-header {
+.parkingHeader {
   font-size: 18px;
   font-weight: 700;
   align-items: center;
   display: flex;
   gap: 10px;
 }
-.fee-info {
+.feeInfo {
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -35,16 +35,16 @@ a {
   color: #888;
   align-items: end;
 }
-.parking-list-item {
+.parkingListItem {
   font-weight: 700;
   display: flex;
   justify-content: space-between;
   color: #007aff;
 }
-.parking-list-item.pos {
+.pos {
   color: #007aff;
 }
 
-.parking-list-item.impos {
+.impos {
   color: red;
 }
