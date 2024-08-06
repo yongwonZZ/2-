@@ -84,6 +84,9 @@ const FacilitiesPage: React.FC = () => {
     },
     []
   );
+  useEffect(() => {
+    console.log(filteredFacilities);
+  }, [filteredFacilities]);
 
   return (
     <>
@@ -126,17 +129,28 @@ const FacilitiesPage: React.FC = () => {
       <div className={`${styles.faciContainer} ${container.container}`}>
         {searchToggle ? (
           <>
-            {filteredFacilities.map((item, index) => (
-              <FacilitiesItem
-                key={index}
-                name={item.entrpskoreannm}
-                service={item.trtmntprdlstkoreannm}
-                location={item.lckoreannm}
-                arrOrDep={item.arrordep}
-                serviceTime={item.servicetime}
-                tel={item.tel}
-              />
-            ))}
+            {filteredFacilities.length >= 1 ? (
+              filteredFacilities.map((item, index) => (
+                <FacilitiesItem
+                  key={index}
+                  name={item.entrpskoreannm}
+                  service={item.trtmntprdlstkoreannm}
+                  location={item.lckoreannm}
+                  arrOrDep={item.arrordep}
+                  serviceTime={item.servicetime}
+                  tel={item.tel}
+                />
+              ))
+            ) : (
+              <>
+                <div className={styles.notFound}>
+                  <div className={styles.box}>
+                    "<span className={styles.searchText}>{searchInput}</span>"에
+                    대한 검색결과를 찾을 수 없습니다.
+                  </div>
+                </div>
+              </>
+            )}
           </>
         ) : (
           <>
