@@ -16,12 +16,12 @@ import { GoComment as IconComment } from "react-icons/go";
 const LookDetails: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { imageUrl, description, style } = location.state as {
+  const { imageUrl, description, style, date } = location.state as {
     imageUrl: string;
     description: string;
     style: string;
+    date: string;
   };
-  const currentDate = new Date();
 
   const handleBackClick = () => {
     navigate(-1); // 이전 페이지로 이동
@@ -76,9 +76,7 @@ const LookDetails: React.FC = () => {
           </button>
           <div>
             <p>사용자이름</p>
-            <p>
-              <FormatDate date={currentDate} />
-            </p>
+            <p>{date}</p>
           </div>
           <button>
             <IconKebabMenu size={15} />
