@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import ExRateHeaderItem from "../../pages/exchangeRatePage/components/ExRateHeaderItem";
-import "./styles/ExchangeRatePage.css";
+import styles from "../../styles/exchangeRatePage/ExchangeRatePage.module.css";
 import SelectedCountry from "../../pages/exchangeRatePage/components/SelectedCountry";
 import InputAmount from "../../pages/exchangeRatePage/components/InputAmount";
 import {
@@ -96,10 +96,10 @@ const ExchangeRatePage = () => {
   );
 
   return isToggle ? (
-    <div className="container">
+    <div className={styles.container}>
       <Header
         leftContent={
-          <div className="exchange-header">
+          <div className={styles.exchangeHeader}>
             <FaChevronLeft
               style={{ fontSize: "22px" }}
               onClick={() => setIsToggle(false)}
@@ -108,37 +108,39 @@ const ExchangeRatePage = () => {
           </div>
         }
       />
-      <div className="country-list">
+      <div className={styles.conunrtyList}>
         {exchangeRates.map((item, index) => (
           <div
-            className="country-item"
+            className={styles.countryItem}
             key={index}
             onClick={() => handleSelectCountry(item)}
           >
-            <div className="country-item-header">
-              <div className="country-image">
+            <div className={styles.countryItemHeader}>
+              <div className={styles.countryImage}>
                 {countryImages[item.cur_unit] && (
                   <img
-                    className="flag"
+                    className={styles.flag}
                     src={countryImages[item.cur_unit]}
                     alt={item.cur_nm}
                   />
                 )}
               </div>
-              <div className="country-name">{item.cur_nm.split(" ")[0]}</div>
+              <div className={styles.countryName}>
+                {item.cur_nm.split(" ")[0]}
+              </div>
             </div>
-            <div className="country-amount">{item.cur_unit}</div>
+            <div className={styles.countryAmount}>{item.cur_unit}</div>
           </div>
         ))}
       </div>
     </div>
   ) : (
-    <div className="container">
-      <Header leftContent={<div className="exchange-header">환율</div>} />
-      <div className="last-update">
+    <div className={styles.container}>
+      <Header leftContent={<div className={styles.exchangeHeader}>환율</div>} />
+      <div className={styles.lastUpdate}>
         마지막 업데이트 <span className="">{`${getCurrentTime()} 14:26`}</span>
       </div>
-      <div className="ex-rate-list">
+      <div className={styles.exRateList}>
         {defaultRates.length > 0
           ? defaultRates.map((rate) => (
               <ExRateHeaderItem
@@ -151,7 +153,7 @@ const ExchangeRatePage = () => {
               <ExRateHeaderItem key={item} curUnit={item} dealBasR="..." />
             ))}
       </div>
-      <div className="selected-list">
+      <div className={styles.selectedList}>
         {baseCountry ? (
           <div
             onClick={() => {
@@ -167,9 +169,9 @@ const ExchangeRatePage = () => {
             />
           </div>
         ) : (
-          <div className="country-item">
-            <div className="country-item-header">
-              <div className="country-image"></div>
+          <div className={styles.countryItem}>
+            <div className={styles.countryItemHeader}>
+              <div className={styles.countryImage}></div>
               <div className="country-name">데이터를 불러오는 중입니다</div>
             </div>
           </div>
@@ -190,9 +192,9 @@ const ExchangeRatePage = () => {
             />
           </div>
         ) : (
-          <div className="country-item">
-            <div className="country-item-header">
-              <div className="country-image"></div>
+          <div className={styles.countryItem}>
+            <div className={styles.countryItemHeader}>
+              <div className={styles.countryImage}></div>
               <div className="country-name">데이터를 불러오는 중입니다</div>
             </div>
           </div>

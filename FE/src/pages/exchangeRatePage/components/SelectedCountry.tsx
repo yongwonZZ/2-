@@ -1,5 +1,5 @@
-import React from "react";
-import "../styles/SelectedCountry.css";
+import React, { useCallback } from "react";
+import styles from "../../../styles/exchangeRatePage/SelectedCountry.module.css";
 
 interface ExchangeRate {
   cur_unit: string;
@@ -34,13 +34,21 @@ const SelectedCountry: React.FC<SelectedCountryProps> = ({
   const convertedAmount =
     type === "base" ? amount : amount * (baseRate / targetRate);
 
+  // 숫자 포맷팅 함수
+  const formatNumber = useCallback((num: number) => {
+    return new Intl.NumberFormat("en-US", {
+      // minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(num);
+  }, []);
+
   return (
-    <div className="country-item">
-      <div className="country-item-header">
-        <div className="country-image">
+    <div className={styles.countryItem}>
+      <div className={styles.countryItemHeader}>
+        <div className={styles.countryImage}>
           {countryImage && (
             <img
-              className="flag"
+              className={styles.flag}
               src={countryImage}
               alt={`${currency?.cur_nm} flag`}
             />
@@ -48,11 +56,14 @@ const SelectedCountry: React.FC<SelectedCountryProps> = ({
         </div>
         <div className="country-name">{currency?.cur_nm.split(" ")[0]}</div>
       </div>
-      <div className="amount">
-        <h1 className="rate-amount">
-          {type === "base" ? amount : convertedAmount.toFixed(2)}
+      <div className={styles.amount}>
+        <h1 className={styles.rateAmount}>
+          {/* {type === "base" ? amount : convertedAmount.toFixed(2)} */}
+          {type === "base"
+            ? formatNumber(amount)
+            : formatNumber(convertedAmount)}
         </h1>
-        <div className="currency-unit">{currency?.cur_unit}</div>
+        <div className={styles.currencyUnit}>{currency?.cur_unit}</div>
       </div>
     </div>
   );
