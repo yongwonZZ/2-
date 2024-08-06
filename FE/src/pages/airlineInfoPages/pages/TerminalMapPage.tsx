@@ -29,7 +29,7 @@ const TerminalMapPage = () => {
             <Link to={"/"}>
               <FaChevronLeft style={{ fontSize: "22px", cursor: "pointer" }} />
             </Link>
-            <button className="map-btn" onClick={handleOnClickTerminal}>
+            <button className={styles.mapBtn} onClick={handleOnClickTerminal}>
               공항 터미널 지도{terminal} <FaCaretDown />
             </button>
           </div>
