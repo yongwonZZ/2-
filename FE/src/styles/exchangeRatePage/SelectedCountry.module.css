@@ -1,4 +1,4 @@
-.country-item {
+.countryItem {
   width: 100%;
   padding: 15px 10px;
   box-sizing: border-box;
@@ -9,30 +9,38 @@
   transition: 0.5s;
   cursor: pointer;
 }
-a {
-  text-decoration: none;
-}
-.country-item:hover {
+.countryItem:hover {
   background-color: #ddd;
 }
-.country-item-header {
+.countryItemHeader {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 20px;
   font-weight: 700;
 }
+.flag {
+  height: 100%;
+}
 
-.country-image {
+.countryImage {
   width: 40px;
   height: 40px;
   background-color: #555;
   border-radius: 50%;
   overflow: hidden;
 }
-.rate-amount {
+.amount {
+  text-align: end;
+  color: #011759;
+}
+.rateAmount {
   font-size: 26px;
-  font-weight: 400;
+  font-weight: 700;
   text-align: end;
   margin: 0;
+}
+.currencyUnit {
+  font-size: 12px;
+  font-weight: 700;
 }
