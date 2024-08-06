@@ -13,7 +13,6 @@ const Navbar: React.FC = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    // 현재 경로에 따른 선택 상태를 설정하는 useEffect
     useEffect(() => {
         const path = location.pathname;
         switch (path) {
@@ -32,13 +31,13 @@ const Navbar: React.FC = () => {
             case '/login':
                 setSelected(isAuthenticated() ? "마이페이지" : "로그인");
                 break;
-            case '/myPage':
+            case '/login/myPage':
                 setSelected("마이페이지");
                 break;
             default:
                 setSelected("");
         }
-    }, [location.pathname]); // location.pathname이 변경될 때마다 실행
+    }, [location.pathname]);
 
     const handleSelectList = (title: string) => setSelected(title);
 
@@ -64,7 +63,7 @@ const Navbar: React.FC = () => {
                 navigateTo="/boardingPass"
                 isSelected={selected === "내 티켓"}
                 setSelected={handleSelectList}
-                requiresAuth={true} // 추가된 부분: 로그인이 필요함을 명시
+                requiresAuth={true}
             />
             <NavbarList
                 icon={<TbHanger />}
@@ -76,7 +75,7 @@ const Navbar: React.FC = () => {
             <NavbarList
                 icon={<FaRegUser />}
                 title={isAuthenticated() ? "마이페이지" : "로그인"}
-                navigateTo={isAuthenticated() ? "/myPage" : "/login"}
+                navigateTo={isAuthenticated() ? "/login/myPage" : "/login"}
                 isSelected={selected === "마이페이지" || selected === "로그인"}
                 setSelected={handleSelectList}
             />

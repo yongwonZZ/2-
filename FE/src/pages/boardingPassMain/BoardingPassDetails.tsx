@@ -1,27 +1,58 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import '../../styles/boardingPass/BoardingPassDetails.module.css';
 import Header from "../../components/Header";
 import { AiOutlineShareAlt } from "react-icons/ai";
 import { FaTrashAlt } from "react-icons/fa";
 
-interface BoardingPassProps {
-    setTicketCount: React.Dispatch<React.SetStateAction<number>>;
+interface Ticket {
+    airline: string;
+    flightId: string;
+    departure: string;
+    arrival: string;
+    departureTime: string;
+    arrivalTime: string;
+    gate: string;
+    seat: string;
+    baggage: string;
 }
 
 const BoardingPassDetails: React.FC = () => {
     const { id } = useParams<{ id: string }>();
+    const navigate = useNavigate();
+    const [ticket, setTicket] = useState<Ticket | null>(null);
+
+    useEffect(() => {
+        const tickets = JSON.parse(localStorage.getItem('tickets') || '[]') as Ticket[];
+        const ticketIndex = parseInt(id || '', 10);
+        if (!isNaN(ticketIndex) && ticketIndex >= 0 && ticketIndex < tickets.length) {
+            setTicket(tickets[ticketIndex]);
+        } else {
+            alert('티켓을 찾을 수 없습니다.');
+            navigate('/boardingPass');
+        }
+    }, [id, navigate]);
 
     const handleDelete = () => {
-        // 티켓 삭제 로직
-        //setTicketCount(prevCount => prevCount - 1);
-        // 추가적인 삭제 처리 로직이 여기에 들어갑니다.
+        const tickets = JSON.parse(localStorage.getItem('tickets') || '[]') as Ticket[];
+        const ticketIndex = parseInt(id || '', 10);
+        if (!isNaN(ticketIndex) && ticketIndex >= 0 && ticketIndex < tickets.length) {
+            const updatedTickets = tickets.filter((_, index) => index !== ticketIndex);
+            localStorage.setItem('tickets', JSON.stringify(updatedTickets));
+            alert('티켓이 삭제되었습니다.');
+            navigate('/boardingPass');
+        } else {
+            alert('티켓을 찾을 수 없습니다.');
+        }
     };
 
     const handleShare = () => {
-        // 공유 로직
         alert("티켓 정보가 공유되었습니다!");
     };
+
+    if (!ticket) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <>
@@ -35,39 +66,39 @@ const BoardingPassDetails: React.FC = () => {
                 <div className="ticket-info">
                     <div className="info-section">
                         <h3>항공사</h3>
-                        <p>대한항공</p>
+                        <p>{ticket.airline}</p>
                     </div>
                     <div className="info-section">
                         <h3>항공편</h3>
-                        <p>KE1234</p>
+                        <p>{ticket.flightId}</p>
                     </div>
                     <div className="info-section">
                         <h3>출발지</h3>
-                        <p>인천 국제공항</p>
+                        <p>{ticket.departure}</p>
                     </div>
                     <div className="info-section">
                         <h3>도착지</h3>
-                        <p>샌프란시스코 국제공항</p>
+                        <p>{ticket.arrival}</p>
                     </div>
                     <div className="info-section">
                         <h3>출발 시간</h3>
-                        <p>2024-07-30 08:00</p>
+                        <p>{ticket.departureTime}</p>
                     </div>
                     <div className="info-section">
                         <h3>도착 시간</h3>
-                        <p>2024-07-30 16:00</p>
+                        <p>{ticket.arrivalTime}</p>
                     </div>
                     <div className="info-section">
                         <h3>탑승구</h3>
-                        <p>12A</p>
+                        <p>{ticket.gate}</p>
                     </div>
                     <div className="info-section">
                         <h3>좌석</h3>
-                        <p>24C</p>
+                        <p>{ticket.seat}</p>
                     </div>
                     <div className="info-section">
                         <h3>수하물</h3>
-                        <p>2개</p>
+                        <p>{ticket.baggage}</p>
                     </div>
                 </div>
                 <div className="details-footer">

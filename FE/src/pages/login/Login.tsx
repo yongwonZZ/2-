@@ -17,13 +17,22 @@ const Login: React.FC = () => {
         event.preventDefault();
         setIsLoading(true);
         try {
-            const data: LoginResponse = await LoginAction(email, password); //액션에서 패스워드는 해쉬화해서 넘기는걸로 바꿈
+            const data: LoginResponse = await LoginAction(email, password);
             console.log('Login response data:', data);
 
             if (data.message && data.message.includes('환영합니다')) {
                 console.log("로그인에 성공하셨습니다");
-                localStorage.setItem('token', data.token); //토큰 저장
-                localStorage.setItem('user', JSON.stringify(data.user)); //유저 정보 저장
+                localStorage.setItem('token', data.token); // 토큰 저장
+                localStorage.setItem('user', JSON.stringify(data.user)); // 유저 정보 저장
+
+                // 사용자별 티켓 정보 로드
+                const userTickets = localStorage.getItem(`tickets_${data.user.email}`);
+                if (userTickets) {
+                    localStorage.setItem('tickets', userTickets);
+                } else {
+                    localStorage.removeItem('tickets');
+                }
+
                 navigate('../myPage');
             } else {
                 console.error('Login failed response:', data);
