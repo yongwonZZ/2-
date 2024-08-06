@@ -158,7 +158,7 @@ const CongestionPage: React.FC = () => {
                 출국장
               </button>
               <button
-                className={`${styles.optionBtn}${
+                className={`${styles.optionBtn} ${
                   into === "in" ? styles.btnActive : ""
                 }`}
                 onClick={() => setInto("in")}
