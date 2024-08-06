@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../styles/SelectedCountry.css";
+import styles from "../../../styles/exchangeRatePage/SelectedCountry.module.css";
 
 interface SelectedCountryProps {
   amount: number;
@@ -22,16 +22,16 @@ const SelectedCountry: React.FC<SelectedCountryProps> = ({
   }, [amount]);
 
   return (
-    <div className="country-item">
-      <div className="country-item-header">
-        <div className="country-image">
+    <div className={styles["country-item"]}>
+      <div className={styles["country-item-header"]}>
+        <div className={styles["country-image"]}>
           {countryImage && (
             <img className="flag" src={countryImage} alt={`${cur_nm} flag`} />
           )}
         </div>
-        <div className="country-name">{cur_unit}</div>
+        <div className={styles["country-name"]}>{cur_unit}</div>
       </div>
-      <h1 className="rate-amount">
+      <h1 className={styles["rate-amount"]}>
         {type === "base"
           ? amount
           : Number(deal_bas_r.split(",").join("")) * Number(amount)}
