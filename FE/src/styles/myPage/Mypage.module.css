@@ -1,4 +1,5 @@
 /* MyPage.module.css */
+/* 카멜케이스로 변경 모듈 - 은 없어야함*/
 .mypage-container {
     display: flex;
     flex-direction: column;
