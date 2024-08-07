@@ -16,7 +16,7 @@ const ParkingAreaItem: React.FC<ParkingAreaItemProps> = ({ data }) => {
 
   return (
     <div
-      className={`${styles.parkingListItem} ${
+      className={`${styles["parking-list-item"]} ${
         count > 0 ? styles.pos : styles.impos
       }`}
     >

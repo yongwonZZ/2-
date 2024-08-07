@@ -1,5 +1,5 @@
-import React from 'react';
-import '../../styles/boardingPass/BoardingPass.module.css';
+import React from "react";
+import styles from "../../styles/boardingPass/BoardingPass.module.css";
 
 interface TicketProps {
     ticket: {
@@ -17,27 +17,27 @@ interface TicketProps {
 
 const BoardingPassTicket: React.FC<TicketProps> = ({ ticket }) => {
     return (
-        <div className="boarding-pass">
-            <div className="color-strip"></div>
-            <div className="boarding-pass-content">
-                <div className="status">
+        <div className={styles["boarding-pass"]}>
+            <div className={styles["color-strip"]}></div>
+            <div className={styles["boarding-pass-content"]}>
+                <div className={styles.status}>
                     <p>도착 현황</p>
                     <p>도착 or 대기</p>
                 </div>
-                <div className="flight-info">
+                <div className={styles["flight-info"]}>
                     <p>{ticket.departureTime}</p>
                     <p>{ticket.arrivalTime}</p>
                 </div>
-                <div className="airline-info">
+                <div className={styles["airline-info"]}>
                     <p>{ticket.airline}</p>
                     <p>{ticket.flightId}</p>
                 </div>
-                <div className="route-info">
+                <div className={styles["route-info"]}>
                     <p>{ticket.departure}</p>
                     <span className="icon">→</span>
                     <p>{ticket.arrival}</p>
                 </div>
-                <div className="additional-info">
+                <div className={styles["additional-info"]}>
                     <div>
                         <p>터미널 / 게이트</p>
                         <p>{ticket.gate}</p>

@@ -11,9 +11,11 @@ const ExRateHeaderItem: React.FC<ExRateHeaderItemProps> = ({
   dealBasR,
 }) => {
   return (
-    <div className={styles.rateItems}>
-      <div className={styles.rateItemName}>{curUnit ? curUnit : "..."}</div>
-      <div className={styles.rateItem}>{dealBasR ? dealBasR : "..."}</div>
+    <div className={styles["rate-items"]}>
+      <div className={styles["rate-item-name"]}>
+        {curUnit ? curUnit : "..."}
+      </div>
+      <div className={styles["rate-item"]}>{dealBasR ? dealBasR : "..."}</div>
     </div>
   );
 };

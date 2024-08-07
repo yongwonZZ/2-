@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import '../../styles/boardingPass/BoardingPass.module.css';
+import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
-import BoardingPassTicket from './BoardingPassTicket';
+import BoardingPassTicket from "./BoardingPassTicket";
 
 interface Ticket {
     airline: string;
