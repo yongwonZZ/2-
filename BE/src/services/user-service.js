@@ -13,7 +13,7 @@ const secret = process.env.ACCESS_SECRET;
 
 // 회원 가입
 export const signup = asyncHandler(async (req, res) => {
-  const { email, userName, password, role } = req.body;
+  const { email, userName, password, phoneNumber, role } = req.body;
 
   const userJoin = await User.findOne({ email });
   if (userJoin) throw new BadRequestError('이미 가입하신 회원입니다.');
@@ -64,7 +64,6 @@ export const login = asyncHandler(async (req, res, next) => {
 
 // 로그아웃
 export const logout = asyncHandler(async (req, res) => {
-  res.cookie('accessToken', null, { maxAge: 0 });
   res.json({ message: '이용해주셔서 감사합니다.' });
 });
 

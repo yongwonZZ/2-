@@ -1,7 +1,8 @@
 // comment-controller.js
 import asyncHandler from 'express-async-handler';
-import { Comment, Board } from '../models/model.js';
-import { NotFoundError } from '../middlewares/custom-error.js';
+import mongoose from 'mongoose';
+import { Comment, Board, User } from '../models/model.js';
+import { NotFoundError, BadRequestError } from '../middlewares/custom-error.js';
 
 // 댓글 목록 조회 (페이지네이션 적용)
 export const getCommentList = asyncHandler(async (req, res) => {
@@ -49,10 +50,32 @@ export const getCommentList = asyncHandler(async (req, res) => {
 export const createComment = asyncHandler(async (req, res) => {
   const { userId, contents, boardId } = req.body;
 
-  const board = await Board.findById(boardId);
+  // boardId가 유효한 ObjectId인지 확인
+  if (!mongoose.Types.ObjectId.isValid(boardId)) {
+    throw new BadRequestError('유효하지 않은 게시글 ID입니다.');
+  }
+
+  const boardObjectId = new mongoose.Types.ObjectId(boardId);
+
+  // 게시글이 존재하는지 확인
+  const board = await Board.findById(boardObjectId);
   if (!board) throw new NotFoundError('해당 게시글이 존재하지 않습니다.');
-  const comment = await Comment.create({ userId, contents, boardId });
-  res.json({ message: '댓글이 작성되었습니다.', comment });
+
+  // 댓글 작성
+  const comment = await Comment.create({
+    userId: new mongoose.Types.ObjectId(userId),
+    contents,
+    boardId: boardObjectId,
+  });
+
+  // 사용자 정보 조회
+  const user = await User.findById(comment.userId);
+  if (!user) throw new NotFoundError('해당 사용자가 존재하지 않습니다.');
+
+  res.json({
+    message: '댓글이 작성되었습니다.',
+    comment: { ...comment._doc, userName: user.userName },
+  });
 });
 
 // 댓글 삭제
