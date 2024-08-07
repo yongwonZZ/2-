@@ -1,16 +1,21 @@
-
 import axios from 'axios';
 
-//만약에 로컬 서버로 돌릴경우 localhost:POST로 사용한다
-//실행주소가 localhost:5000이렇게 돌고있으니 이걸 URL로 설정
-const API_URL = 'http://localhost:5000';
+export interface CreateAccountResponse {
+    message: string;
+}
 
-//post 적을때 주소 포스트맨에 정의된 주소랑 맞는지 반드시 확인하자
-export const createAccount = async (userData: any) => {
+// 회원가입 요청을 보내는 함수
+export const createAccount = async (data: any): Promise<CreateAccountResponse> => {
     try {
-        const response = await axios.post(`${API_URL}/api/signup`, userData);
+        const response = await axios.post('http://localhost:5000/api/signup', data);
         return response.data;
-    } catch (error) {
-        throw new Error('Failed to create account');
+    } catch (error: any) {
+        if (error.response) {
+            throw new Error(error.response.data.message || 'Failed to create account');
+        } else if (error.request) {
+            throw new Error('No response received from the server');
+        } else {
+            throw new Error('Error setting up the request');
+        }
     }
 };
