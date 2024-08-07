@@ -56,7 +56,6 @@ function App() {
           <Route path="/airportFashion" element={<AirportFashion />} />
           <Route path="/lookDetails" element={<LookDetails />} />
           <Route path="/postUpload" element={<PostUpload />} />
-          <Route path="/exchange" element={<ExChangeRatePage />} />
           {/* 로그인 및 마이페이지 관련 라우트 */}
           <Route path="/login/*" element={<LoginMain />} />
           {/* BoardingPass 관련 라우트 */}
