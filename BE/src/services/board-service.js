@@ -26,8 +26,6 @@ export const getBoard = asyncHandler(async (req, res) => {
   const { id } = req.params;
   const board = await Board.findById(id);
   if (!board) throw new NotFoundError('해당 게시글이 존재하지 않습니다.');
-  res.json(board);
-});
 
 // 프리사인드 URL 생성
 export const generatePresignedUrl = asyncHandler(async (req, res) => {
@@ -60,7 +58,24 @@ export const createBoard = asyncHandler(async (req, res) => {
 // 게시글 삭제
 export const deleteBoard = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  const board = await Board.findByIdAndDelete(id);
-  if (!board) throw new NotFoundError('해당 게시글이 존재하지 않습니다.');
-  res.json({ message: '게시글이 삭제되었습니다.', board });
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    throw new BadRequestError('유효하지 않은 게시글 ID입니다.');
+  }
+
+  try {
+    const board = await Board.findByIdAndDelete(id);
+    if (!board) throw new NotFoundError('해당 게시글이 존재하지 않습니다.');
+
+    // userId를 사용하여 사용자 정보 조회
+    const user = await User.findById(board.userId);
+    if (!user) throw new NotFoundError('해당 사용자가 존재하지 않습니다.');
+
+    res.json({
+      message: '게시글이 삭제되었습니다.',
+      board: { ...board._doc, userName: user.userName },
+    });
+  } catch (error) {
+    throw new InternalServerError('게시글 삭제 중 문제가 발생했습니다.');
+  }
 });
