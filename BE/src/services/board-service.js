@@ -63,16 +63,6 @@ export const generatePresignedUrl = asyncHandler(async (req, res) => {
   res.status(200).json({ uploadURL, key: s3Params.Key });
 });
 
-// board-controller.js
-import asyncHandler from 'express-async-handler';
-import mongoose from 'mongoose';
-import { Board, User } from '../models/model.js';
-import {
-  NotFoundError,
-  BadRequestError,
-  InternalServerError,
-} from '../middlewares/custom-error.js';
-
 // 게시글 작성
 export const createBoard = asyncHandler(async (req, res) => {
   const { userId, category, contents, img } = req.body;
