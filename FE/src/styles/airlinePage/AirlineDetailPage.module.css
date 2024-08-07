@@ -1,6 +1,7 @@
 .wrapper {
   width: 100%;
   max-width: var(--media-tab);
+  min-height: 100%;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -45,7 +46,7 @@
 }
 
 .btn {
-  position: absolute;
+  position: sticky;
   bottom: 60px;
   padding: 20px 0;
   max-width: inherit;
