@@ -12,7 +12,7 @@ const secret = process.env.ACCESS_SECRET;
 
 // 회원 가입
 export const signup = asyncHandler(async (req, res) => {
-  const { email, userName, password, role } = req.body;
+  const { email, userName, password, phoneNumber, role } = req.body;
 
   const userJoin = await User.findOne({ email });
   if (userJoin) throw new BadRequestError('이미 가입하신 회원입니다.');
@@ -22,6 +22,7 @@ export const signup = asyncHandler(async (req, res) => {
     email,
     userName,
     password: hashedPassword,
+    phoneNumber,
     role,
   });
   res.json({ message: `${user.userName}님 회원 가입에 성공하셨습니다!` });
@@ -133,4 +134,14 @@ export const deleteUser = asyncHandler(async (req, res) => {
   await user.save();
 
   res.json({ message: '사용자 데이터가 삭제되었습니다.' });
+});
+
+// 회원 찾기(이메일)
+export const findUser = asyncHandler(async (req, res) => {
+  const { email } = req.body;
+  const user = await User.findOne({ email });
+  if (!user) {
+    throw new NotFoundError('사용자를 찾을 수 없습니다.');
+  }
+  res.json(user);
 });
