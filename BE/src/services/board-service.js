@@ -5,6 +5,7 @@ import s3Client from '../../s3Config.js';
 import { PutObjectCommand } from '@aws-sdk/client-s3';
 import dotenv from 'dotenv';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
+import mongoose from 'mongoose';
 
 dotenv.config();
 
