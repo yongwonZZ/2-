@@ -142,10 +142,11 @@ const FacilitiesPage: React.FC = () => {
               ))
             ) : (
               <>
-                <div className={styles.notFound}>
-                  <div className={styles.box}>
-                    "<span className={styles.searchText}>{searchInput}</span>"에
-                    대한 검색결과를 찾을 수 없습니다.
+                <div className={styles["not-found"]}>
+                  <div className={styles["box"]}>
+                    "
+                    <span className={styles["search-text"]}>{searchInput}</span>
+                    "에 대한 검색결과를 찾을 수 없습니다.
                   </div>
                 </div>
               </>
