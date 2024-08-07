@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Header from '../../../components/Header'; // 경로 수정
-import '../../../styles/findPassowrd/findPassword.css';
+import Header from '../../components/Header';
+import '../../styles/findPassowrd/findPassword.css';
 
 const FindPassword: React.FC = () => {
     const [email, setEmail] = useState<string>('');
