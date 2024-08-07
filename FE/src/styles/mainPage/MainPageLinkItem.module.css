@@ -2,12 +2,28 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 0;
-  color: rgb(1, 23, 89);
+  padding: 10px;
+  margin: 10px 0;
   text-decoration: none;
   cursor: pointer;
+  border-bottom: 1px solid white;
+  transition: border-bottom 0.5s ease-in-out;
 }
 
 .link-item:hover {
-  color: rgba(1, 23, 89, 0.6);
+  border-bottom: 1px solid var(--color-base);
+}
+
+.item-left {
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  font-size: var(--font-md);
+}
+
+.description {
+  font-size: var(--font-xs);
+  color: rgba(0, 0, 0, 0.4);
 }
