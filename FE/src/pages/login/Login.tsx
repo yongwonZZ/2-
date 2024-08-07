@@ -83,11 +83,11 @@ const Login: React.FC = () => {
             autoComplete="current-password"
           />
           <div className={styles["button-container"]}>
-            <button className={styles["login-button"]} type="submit">
+            <button className={styles.button} type="submit">
               로그인
             </button>
             <button
-              className={styles["signup-button"]}
+              className={styles.button}
               type="button"
               onClick={() => navigate("../createAccount")}
             >
