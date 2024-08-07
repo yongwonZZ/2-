@@ -16,6 +16,7 @@ interface Ticket {
     gate: string;
     seat: string;
     baggage: string;
+    direction: string; // 추가된 필드: 출발 또는 도착 정보
 }
 
 const BoardingPassDetails: React.FC = () => {
