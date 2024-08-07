@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { LoginAction, LoginResponse } from './LoginAction';
-import LoadingSpinner from '../../components/loadingSpinner/LoadingSpinner';
+import React, { useState } from "react";
+import stylesMain from "../../styles/mainPage/MainPage.module.css";
+import styles from "../../styles/login/Login.module.css";
+import { useNavigate } from "react-router-dom";
+import { LoginAction, LoginResponse } from "./LoginAction";
+import LoadingSpinner from "../../components/loadingSpinner/LoadingSpinner";
 import '../../styles/login/Login.css';
 import Header from "../../components/Header";
+
 
 const Login: React.FC = () => {
     const navigate = useNavigate();
@@ -13,12 +16,12 @@ const Login: React.FC = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [isSpinnerActive, setIsSpinnerActive] = useState<boolean>(false);
 
-    const handleLogin = async (event: React.FormEvent) => {
-        event.preventDefault();
-        setIsLoading(true);
-        try {
-            const data: LoginResponse = await LoginAction(email, password);
-            console.log('Login response data:', data);
+  const handleLogin = async (event: React.FormEvent) => {
+    event.preventDefault();
+    setIsLoading(true);
+    try {
+      const data: LoginResponse = await LoginAction(email, password);
+      console.log("Login response data:", data);
 
             if (data.message && data.message.includes('환영합니다')) {
                 console.log("로그인에 성공하셨습니다");
