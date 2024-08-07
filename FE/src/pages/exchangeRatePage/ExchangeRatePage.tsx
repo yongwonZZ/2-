@@ -96,7 +96,7 @@ const ExchangeRatePage = () => {
   );
 
   return isToggle ? (
-    <div className={styles.container}>
+    <div className={styles["container"]}>
       <Header
         leftContent={
           <div className={styles["exchange-header"]}>
@@ -119,7 +119,7 @@ const ExchangeRatePage = () => {
               <div className={styles["country-image"]}>
                 {countryImages[item.cur_unit] && (
                   <img
-                    className={styles.flag}
+                    className={styles["flag"]}
                     src={countryImages[item.cur_unit]}
                     alt={item.cur_nm}
                   />
@@ -135,7 +135,7 @@ const ExchangeRatePage = () => {
       </div>
     </div>
   ) : (
-    <div className={styles.container}>
+    <div className={styles["container"]}>
       <Header
         leftContent={<div className={styles["exchange-header"]}>환율</div>}
       />

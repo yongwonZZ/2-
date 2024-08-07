@@ -2,30 +2,30 @@
   width: 100%;
   height: 100%;
   /* padding-bottom: 80px; */
-  max-width: 400px;
+  max-width: 500px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
   overflow: hidden;
 }
-.countryList {
+.country-list {
   padding-bottom: 60px;
 }
-.exchangeHeader {
+.exchange-header {
   font-size: 16px;
   display: flex;
   gap: 10px;
   align-items: center;
 }
-.lastUpdate {
+.last-update {
   text-align: end;
   color: #888;
   font-size: 12px;
   padding: 0 10px;
 }
 /* 맨위의 item */
-.exRateList {
+.ex-rate-list {
   padding: 0 20px;
   display: flex;
   flex-direction: row;
@@ -33,23 +33,23 @@
 }
 
 /* 중간의 item */
-.selectedList {
+.selected-list {
   display: flex;
   flex-direction: column;
 }
 
 /** country list style */
-.conunrtyList {
+.country-list {
   display: flex;
   flex-direction: column;
 }
-.countryAmount {
+.country-amount {
   font-weight: 700;
 }
 .flag {
   height: 100%;
 }
-.countryItem {
+.country-item {
   width: 100%;
   padding: 15px 20px;
   box-sizing: border-box;
@@ -60,10 +60,10 @@
   transition: 0.5s;
   cursor: pointer;
 }
-.countryItem:hover {
+.country-item:hover {
   background-color: #ddd;
 }
-.countryItemHeader {
+.country-item-header {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -71,27 +71,27 @@
   font-weight: 700;
 }
 
-.countryImage {
+.country-image {
   width: 40px;
   height: 40px;
   background-color: #555;
   border-radius: 50%;
   overflow: hidden;
 }
-.countryName {
+.country-name {
   font-size: 16px;
 }
 .amount {
   text-align: end;
   color: #011759;
 }
-.rateAmount {
+.rate-amount {
   font-size: 26px;
   font-weight: 700;
   text-align: end;
   margin: 0;
 }
-.currencyUnit {
+.currency-unit {
   font-size: 12px;
   font-weight: 700;
 }
