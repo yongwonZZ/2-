@@ -1,31 +1,27 @@
 import React from "react";
-import "../../../styles/airportFashionPost/comments.css";
+import styles from "../../../styles/airportFashion/airportFashionPost/comments.module.css";
 import { BsPersonFill as IconUserProfile } from "react-icons/bs";
+import FormatDate from "../../../components/FormatDate";
 
 interface CommentsProps {
   comment: string;
 }
 
-const formatDate = (date: Date) => {
-  const year = date.getFullYear();
-  const month = `0${date.getMonth() + 1}`.slice(-2);
-  const day = `0${date.getDate()}`.slice(-2);
-  return `${year}년 ${month}월 ${day}일`;
-};
-
 const Comments: React.FC<CommentsProps> = ({ comment }) => {
-  const currentDate = formatDate(new Date());
+  const currentDate = new Date();
 
   return (
     <div>
-      <div className='user-comment-container'>
+      <div className={styles["user-comment-container"]}>
         <IconUserProfile size={35} />
-        <div className='comments'>
+        <div className={styles["comments"]}>
           <p>토마토마토</p>
           <p>{comment}</p>
         </div>
       </div>
-      <p className='date'>{currentDate}</p>
+      <p className={styles["date"]}>
+        <FormatDate date={currentDate} />
+      </p>
     </div>
   );
 };
