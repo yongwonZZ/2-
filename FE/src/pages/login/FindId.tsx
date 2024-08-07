@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Header from '../../../components/Header';
-import '../../../styles/findId/FindId.css';
+import Header from '../../components/Header';
+import '../../styles/findId/FindId.css';
 
 const FindId: React.FC = () => {
     const [phone, setPhone] = useState<string>('');

@@ -1,8 +1,8 @@
 import React, { useMemo, useEffect } from "react";
-import Header from "../../../components/Header";
+import Header from '../../components/Header';
 import { useNavigate } from 'react-router-dom';
-import { handleLogout, useUser, fetchUserInfoFromLocalStorage } from '../../../utils/userUtils/action';
-import styles from '../../../styles/myPage/Mypage.module.css'; // CSS 파일을 임포트
+import { handleLogout, useUser, fetchUserInfoFromLocalStorage } from '../../utils/userUtils/action';
+import styles from '../../styles/myPage/Mypage.module.css'; // CSS 파일을 임포트
 
 const MyPage: React.FC = () => {
     const navigate = useNavigate();
