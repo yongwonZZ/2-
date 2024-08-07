@@ -1,6 +1,5 @@
 .wrapper {
   width: 100%;
-  max-width: 400px; /* width는 0~400px 범위 */
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -11,13 +10,13 @@
 .icon-prev,
 .icon-dropdown,
 .icon-clear {
-  font-size: 22px;
+  font-size: var(--font-md);
   cursor: pointer;
 }
 
 .icon-prev:hover,
 .icon-dropdown:hover {
-  color: #4d67fa;
+  color: var(--color-base);
 }
 
 /* 검색창 */
@@ -25,22 +24,21 @@
   position: relative;
   display: flex;
   align-items: center;
-  min-width: 240px;
+  width: 100%;
 }
 
 .search-box input {
   width: 100%;
-  padding: 8px 32px 8px 8px;
-  border: 1px solid #ddd;
+  border-color: transparent;
   outline: none;
   border-radius: 4px;
-  font-size: 14px;
+  font-size: var(--font-sm);
   transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .search-box input:focus {
-  border-color: rgb(1, 23, 89);
-  box-shadow: 0 0 5px rgba(1, 23, 89, 0.5);
+  border-color: var(--color-dark);
+  box-shadow: 0 0 3px var(--color-light);
 }
 
 /* 검색어 지우는 아이콘 (X) */
@@ -51,5 +49,33 @@
 }
 
 .icon-clear:hover {
-  color: #fa8c8c;
+  color: var(--color-warning);
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+.dropdown-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2000;
+  transition: transform 0.3s ease-in-out;
+}
+
+.dropdown {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
