@@ -1,4 +1,4 @@
-/* styles/Login.css */
+/* styles/Login.module.css */
 .login-container {
     display: flex;
     flex-direction: column;

@@ -1,49 +1,46 @@
 import React, { useState } from "react";
-import stylesMain from "../../styles/mainPage/MainPage.module.css";
 import styles from "../../styles/login/Login.module.css";
 import { useNavigate } from "react-router-dom";
 import { LoginAction, LoginResponse } from "./LoginAction";
 import LoadingSpinner from "../../components/loadingSpinner/LoadingSpinner";
-import '../../styles/login/Login.css';
 import Header from "../../components/Header";
-
 
 const Login: React.FC = () => {
     const navigate = useNavigate();
-    const [email, setEmail] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
-    const [error, setError] = useState<string>('');
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+    const [error, setError] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [isSpinnerActive, setIsSpinnerActive] = useState<boolean>(false);
 
-  const handleLogin = async (event: React.FormEvent) => {
-    event.preventDefault();
-    setIsLoading(true);
-    try {
-      const data: LoginResponse = await LoginAction(email, password);
-      console.log("Login response data:", data);
+    const handleLogin = async (event: React.FormEvent) => {
+        event.preventDefault();
+        setIsLoading(true);
+        try {
+            const data: LoginResponse = await LoginAction(email, password);
+            console.log("Login response data:", data);
 
-            if (data.message && data.message.includes('환영합니다')) {
+            if (data.message && data.message.includes("환영합니다")) {
                 console.log("로그인에 성공하셨습니다");
-                localStorage.setItem('token', data.token); // 토큰 저장
-                localStorage.setItem('user', JSON.stringify(data.user)); // 유저 정보 저장
+                localStorage.setItem("token", data.token); // 토큰 저장
+                localStorage.setItem("user", JSON.stringify(data.user)); // 유저 정보 저장
 
                 // 사용자별 티켓 정보 로드
                 const userTickets = localStorage.getItem(`tickets_${data.user.email}`);
                 if (userTickets) {
-                    localStorage.setItem('tickets', userTickets);
+                    localStorage.setItem("tickets", userTickets);
                 } else {
-                    localStorage.removeItem('tickets');
+                    localStorage.removeItem("tickets");
                 }
 
-                navigate('../myPage');
+                navigate("../myPage");
             } else {
-                console.error('Login failed response:', data);
-                setError('아이디 또는 비밀번호가 틀렸습니다.');
+                console.error("Login failed response:", data);
+                setError("아이디 또는 비밀번호가 틀렸습니다.");
             }
         } catch (error: any) {
-            setError(error.message || '로그인 중 오류가 발생했습니다.');
-            console.error('Login error:', error);
+            setError(error.message || "로그인 중 오류가 발생했습니다.");
+            console.error("Login error:", error);
             console.log("로그인에 실패했습니다");
         } finally {
             setIsLoading(false);
@@ -60,11 +57,11 @@ const Login: React.FC = () => {
     return (
         <div>
             <Header leftContent="로그인" />
-            <div className="login-container">
-                {error && <p className="error">{error}</p>}
-                <form onSubmit={handleLogin}>
+            <div className={styles["login-container"]}>
+                {error && <p className={styles.error}>{error}</p>}
+                <form className={styles["login-form"]} onSubmit={handleLogin}>
                     <input
-                        className="email-input"
+                        className={styles["email-input"]}
                         id="email-input"
                         type="email"
                         name="email"
@@ -75,7 +72,7 @@ const Login: React.FC = () => {
                         autoComplete="username"
                     />
                     <input
-                        className="password-input"
+                        className={styles["password-input"]}
                         id="password-input"
                         type="password"
                         name="password"
@@ -85,18 +82,24 @@ const Login: React.FC = () => {
                         required
                         autoComplete="current-password"
                     />
-                    <div className="button-container">
-                        <button className="login-button" type="submit">
+                    <div className={styles["button-container"]}>
+                        <button className={styles.button} type="submit">
                             로그인
                         </button>
-                        <button className="signup-button" type="button" onClick={() => navigate('../createAccount')}>
+                        <button
+                            className={styles.button}
+                            type="button"
+                            onClick={() => navigate("../createAccount")}
+                        >
                             회원가입
                         </button>
                     </div>
-                    <div> {/*텍스트로 아래 간단하게 유지*/}
-                        <button> 아이디 찾기 </button>
+                    <div>
+                        {" "}
+                        {/*텍스트로 아래 간단하게 유지*/}
+                        <button type="button" onClick={() => navigate('../findId')}> 아이디 찾기 </button>
                         <p> | </p>
-                        <button> 비밀번호 찾기</button>
+                        <button type="button" onClick={() => navigate('../findPassword')}> 비밀번호 찾기</button>
                     </div>
                 </form>
             </div>
@@ -104,6 +107,6 @@ const Login: React.FC = () => {
             {isSpinnerActive && <LoadingSpinner message="테스트 중입니다..." />}
         </div>
     );
-}
+};
 
 export default Login;
