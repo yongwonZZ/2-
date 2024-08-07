@@ -14,6 +14,8 @@ body {
 
 button {
   cursor: pointer;
+  background-color: transparent;
+  border: none;
 }
 
 h1 {
@@ -39,7 +41,7 @@ hr {
   background-color: rgb(255, 255, 255);
 }
 
-.airport-fashion-main-containe {
+.airport-fashion-main-container {
   padding-bottom: 60px;
 }
 
@@ -120,8 +122,7 @@ hr {
 
 .fashion-img-container img {
   flex: 1;
-  max-width: 33.33%;
-  min-width: 33.33%;
+  width: 33.33%;
   height: 170px;
   border: 1px solid white;
 }

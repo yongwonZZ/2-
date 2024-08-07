@@ -1,7 +1,8 @@
 .card {
-  padding: 16px 8px;
+  padding: 16px 0;
   font-size: 16px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #ccc;
+  color: black;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -9,7 +10,7 @@
 }
 
 .card:hover {
-  background-color: rgba(1, 23, 89, 0.1);
+  background-color: var(--color-light);
 }
 
 .section-sm,
@@ -17,13 +18,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-right: 4px;
 }
 .section-sm {
-  width: 10%;
+  flex: 1;
 }
 .section-lg {
-  width: 25%;
+  flex: 2;
+}
+
+.section-lg img {
+  width: 64px;
+  height: auto;
 }
 
 /* 취소선 */

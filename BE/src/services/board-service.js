@@ -41,13 +41,6 @@ export const getBoard = asyncHandler(async (req, res) => {
   const board = await Board.findById(id);
   if (!board) throw new NotFoundError('해당 게시글이 존재하지 않습니다.');
 
-  // userId를 사용하여 사용자 정보 조회
-  const user = await User.findById(board.userId);
-  if (!user) throw new NotFoundError('해당 사용자가 존재하지 않습니다.');
-
-  res.json({ ...board._doc, userName: user.userName });
-});
-
 // 프리사인드 URL 생성
 export const generatePresignedUrl = asyncHandler(async (req, res) => {
   const { fileName, fileType } = req.query;
