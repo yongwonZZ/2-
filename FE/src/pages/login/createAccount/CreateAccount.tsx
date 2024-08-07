@@ -21,11 +21,12 @@ const CreateAccount: React.FC = () => {
 
     const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
     const passwordPattern = /^[A-Za-z\d@$!%*#?&]{4,}$/; // 패턴 수정: 알파벳 대소문자, 숫자, 특수문자를 포함한 4자 이상
+    const phonePattern = /^[0-9]{10,11}$/; // 한국 휴대폰 번호 패턴: 10~11자리 숫자
 
     return (
         <>
             <Header centerContent="회원가입" />
-            <div className={styles.createAccountContainer}>
+            <div className={styles["create-account-container"]}>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <input
                         {...register('userName', { required: true, minLength: 2, maxLength: 10 })}
@@ -63,7 +64,15 @@ const CreateAccount: React.FC = () => {
                     />
                     {errors.confirmpassword && <p className={styles.error}>비밀번호가 일치하지 않습니다.</p>}
 
-                    <div className={styles.buttonContainer}>
+                    <input
+                        {...register('phone', { required: true, pattern: phonePattern })}
+                        type="tel"
+                        placeholder="Phone Number"
+                        autoComplete="tel"
+                    />
+                    {errors.phone && <p className={styles.error}>올바른 휴대폰 번호가 아닙니다.</p>}
+
+                    <div className={styles["button-container"]}>
                         <button type="submit" className={styles.button}>계정 생성</button>
                     </div>
                 </form>
