@@ -30,6 +30,11 @@ const MyPage: React.FC = () => {
         fetchUserInfoFromLocalStorage();
     };
 
+    const handleEditProfileClick = () => {
+        console.log('Navigating to editProfile'); // 디버깅용 로그 추가
+        navigate('editProfile'); // 상대 경로로 설정
+    };
+
     return (
         <div className={styles.mypageContainer}>
             <Header leftContent="마이페이지" />
@@ -39,7 +44,7 @@ const MyPage: React.FC = () => {
                     <p className={styles.nickname}>{memoizedUser?.userName || memoizedUser?.email}</p>
                     <p className={styles.editInfo}>내 정보 수정</p>
                 </div>
-                <button className={styles.moveButton}>수정</button>
+                <button className={styles.moveButton} onClick={handleEditProfileClick}>수정</button>
             </div>
             <div className={styles.ticketContainer}>
                 <div>
