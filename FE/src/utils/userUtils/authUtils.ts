@@ -7,7 +7,6 @@ export const isUserLoggedIn = (): boolean => {
     return !!token; // 토큰이 있으면 true, 없으면 false 반환
 };
 
-
 // 페이지 이동을 처리하는 함수
 export const handleRegisterBoardingPass = (navigate: ReturnType<typeof useNavigate>, detailData: any) => {
     if (isUserLoggedIn()) {
@@ -36,6 +35,7 @@ export interface LoginResponse {
 }
 export const LoginAction = async (email: string, password: string): Promise<LoginResponse> => {
     try {
+                                                                    //
         const response = await axios.post('http://localhost:5000/api/login', { email, password });
         return response.data;
     } catch (error: any) {

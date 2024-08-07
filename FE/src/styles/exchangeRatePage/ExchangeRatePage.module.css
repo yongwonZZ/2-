@@ -1,0 +1,97 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  /* padding-bottom: 80px; */
+  max-width: 500px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  overflow: scroll;
+}
+.country-list {
+  padding-bottom: 60px;
+}
+.exchange-header {
+  font-size: 16px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.last-update {
+  text-align: end;
+  color: #888;
+  font-size: 12px;
+  padding: 0 10px;
+}
+/* 맨위의 item */
+.ex-rate-list {
+  padding: 0 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* 중간의 item */
+.selected-list {
+  display: flex;
+  flex-direction: column;
+}
+
+/** country list style */
+.country-list {
+  display: flex;
+  flex-direction: column;
+}
+.country-amount {
+  font-weight: 700;
+}
+.flag {
+  height: 100%;
+}
+.country-item {
+  width: 100%;
+  padding: 15px 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  transition: 0.5s;
+  cursor: pointer;
+}
+.country-item:hover {
+  background-color: #ddd;
+}
+.country-item-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  font-weight: 700;
+}
+
+.country-image {
+  width: 40px;
+  height: 40px;
+  background-color: #555;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.country-name {
+  font-size: 16px;
+}
+.amount {
+  text-align: end;
+  color: #011759;
+}
+.rate-amount {
+  font-size: 26px;
+  font-weight: 700;
+  text-align: end;
+  margin: 0;
+}
+.currency-unit {
+  font-size: 12px;
+  font-weight: 700;
+}

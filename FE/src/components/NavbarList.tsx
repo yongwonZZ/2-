@@ -7,20 +7,27 @@ type NavbarListProps = {
     navigateTo: string;
     isSelected: boolean;
     setSelected: (title: string) => void;
+    requiresAuth?: boolean;
 };
 
-function NavbarList({
-                        icon,
-                        title,
-                        navigateTo,
-                        isSelected,
-                        setSelected,
-                    }: NavbarListProps) {
+const NavbarList: React.FC<NavbarListProps> = ({
+                                                   icon,
+                                                   title,
+                                                   navigateTo,
+                                                   isSelected,
+                                                   setSelected,
+                                                   requiresAuth = false,
+                                               }) => {
     const navigate = useNavigate();
 
     const handleNavigateTo = () => {
-        navigate(navigateTo);
-        setSelected(title);
+        if (requiresAuth && !localStorage.getItem('token')) {
+            console.log('No token found, redirecting to login.');
+            navigate('/login');
+        } else {
+            setSelected(title);
+            navigate(navigateTo);
+        }
     };
 
     return (
@@ -31,6 +38,6 @@ function NavbarList({
             </li>
         </div>
     );
-}
+};
 
 export default NavbarList;

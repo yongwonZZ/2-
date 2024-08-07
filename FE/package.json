@@ -1,8 +1,8 @@
 {
   "name": "airline-check-project",
   "version": "0.1.0",
+  "homepage": ".",
   "private": true,
-  "homepage": "http://34.22.80.21",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -12,6 +12,7 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "axios": "^1.7.2",
+    "framer-motion": "^11.3.21",
     "http-proxy-middleware": "^3.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
