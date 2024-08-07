@@ -2,10 +2,9 @@
   width: 100%;
   max-width: 400px; /* width는 0~400px 범위 */
   margin: auto;
-  padding: 60px 0; /* navbar 높이만큼 여백 추가 */
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  row-gap: 20px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 60px; /* navbar 높이만큼 여백 추가 */
 }
 
 .icon {
