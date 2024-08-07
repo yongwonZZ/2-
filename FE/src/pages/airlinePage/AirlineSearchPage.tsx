@@ -116,7 +116,6 @@ function AirlineSearchPage() {
       .sort(({ estimatedDateTime: a }, { estimatedDateTime: b }) => +a - +b);
   }, [data, flightFilter, searchText]);
 
-
   const { data: paginatedData, isLoading: isLoadingMore } = useInfiniteScroll(
     filteredData,
     targetRef
