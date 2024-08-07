@@ -23,7 +23,7 @@ const MyPage: React.FC = () => {
         <div className={styles["profile-image"]}></div>
         <div className={styles["profile-info"]}>
           <p className={styles.nickname}>
-            {memoizedUser?.nickname || memoizedUser?.email}
+            {memoizedUser?.email}
           </p>
           <p className={styles["edit-info"]}>내 정보 수정</p>
         </div>
