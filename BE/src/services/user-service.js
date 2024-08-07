@@ -51,7 +51,12 @@ export const login = asyncHandler(async (req, res, next) => {
     { expiresIn: '1h' }
   );
 
-  res.cookie('accessToken', token, { maxAge: 3600000 });
+  res.cookie('accessToken', token, {
+    maxAge: 3600000, // 1시간
+    httpOnly: true, // 클라이언트 측 JavaScript에서 쿠키에 접근하지 못하도록
+    sameSite: 'None', // 다른 오리진에서도 쿠키가 전송될 수 있도록
+  });
+
   res.json({
     message: `${user.userName}님 환영합니다!`,
     token, // 응답 데이터에 토큰 포함
