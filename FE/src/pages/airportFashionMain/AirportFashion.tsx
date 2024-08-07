@@ -19,7 +19,7 @@ const AirportFashion: React.FC = () => {
   const [selectedFilter, setSelectedFilter] = useState<string>("");
 
   useEffect(() => {
-    // API 요청을 통해 게시글 목록 데이터를 가져오는 함수
+    // API 요청 -> 게시글 목록 데이터 불러오기기 함수
     const fetchPosts = async () => {
       try {
         const response = await fetch(
@@ -47,6 +47,11 @@ const AirportFashion: React.FC = () => {
     };
 
     fetchPosts();
+
+    // #로컬로
+    // const storedPosts = JSON.parse(localStorage.getItem("posts") || "[]");
+    // setPosts(storedPosts);
+    // setFilteredPosts(storedPosts);
   }, []);
 
   const handleBackClick = () => {
