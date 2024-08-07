@@ -1,13 +1,13 @@
 .card {
   padding: 16px 0;
   font-size: 16px;
-  background-color: #cccccc;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: var(--color-light);
+  border-bottom: 1px solid #ccc;
   display: flex;
   align-items: center;
   position: sticky;
   top: 110px;
-  z-index: 1003;
+  z-index: 103;
 }
 
 .section-sm,
@@ -15,16 +15,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-right: 4px;
 }
 
 .section-sm {
-  font-size: 16px;
-}
-
-.section-sm {
-  width: 12.5%;
+  flex: 1;
 }
 .section-lg {
-  width: 25%;
+  flex: 2;
 }
