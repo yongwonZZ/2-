@@ -8,6 +8,7 @@ import {
   UnauthorizedError,
   InternalServerError,
 } from '../middlewares/custom-error.js';
+
 const secret = process.env.ACCESS_SECRET;
 
 // 회원 가입
@@ -28,7 +29,6 @@ export const signup = asyncHandler(async (req, res) => {
   res.json({ message: `${user.userName}님 회원 가입에 성공하셨습니다!` });
 });
 
-// 로그인
 // 로그인
 export const login = asyncHandler(async (req, res, next) => {
   const { email, password } = req.body;
@@ -52,7 +52,6 @@ export const login = asyncHandler(async (req, res, next) => {
     { expiresIn: '1h' }
   );
 
-  res.cookie('accessToken', token, { maxAge: 3600000 });
   res.json({
     message: `${user.userName}님 환영합니다!`,
     token, // 응답 데이터에 토큰 포함
@@ -65,7 +64,6 @@ export const login = asyncHandler(async (req, res, next) => {
 
 // 로그아웃
 export const logout = asyncHandler(async (req, res) => {
-  res.cookie('accessToken', null, { maxAge: 0 });
   res.json({ message: '이용해주셔서 감사합니다.' });
 });
 
