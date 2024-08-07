@@ -1,8 +1,10 @@
 .map-container {
   background-color: #333649;
   color: #fafafa;
-  padding: 0 20px 20px 20px;
+  padding: 0 20px 80px 20px;
   overflow: hidden;
+  max-width: 500px;
+  margin: 0 auto;
 }
 .map-header {
   display: flex;
