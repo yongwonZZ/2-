@@ -42,7 +42,7 @@ const ExchangeRatePage = () => {
   const type = "AP01";
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchExchangeRatesAndImages = async () => {
       try {
         const rates = await fetchExchangeRate(searchdate, type);
         setExchangeRates(rates);
@@ -53,23 +53,26 @@ const ExchangeRatePage = () => {
         if (krwRate) setBaseCountry(krwRate);
         if (usdRate) setTargetCountry(usdRate);
 
-        for (const rate of rates) {
-          const countryName = rate.cur_nm.split(" ")[0];
-          // 나라 이름을 한 번 더 변환합니다.
-          const mappedCountryName =
-            countryNameMapping[countryName] || countryName;
+        const countryImagesTemp: { [key: string]: string } = {};
 
-          const flagUrl = await fetchCountryImage(mappedCountryName);
-          setCountryImages((prevImages) => ({
-            ...prevImages,
-            [rate.cur_unit]: flagUrl,
-          }));
-        }
+        await Promise.all(
+          rates.map(async (rate) => {
+            const countryName = rate.cur_nm.split(" ")[0];
+            const mappedCountryName =
+              countryNameMapping[countryName] || countryName;
+
+            const flagUrl = await fetchCountryImage(mappedCountryName);
+            countryImagesTemp[rate.cur_unit] = flagUrl;
+          })
+        );
+
+        setCountryImages(countryImagesTemp);
       } catch (error) {
         console.error("Failed to fetch exchange rates", error);
       }
     };
-    fetchData();
+
+    fetchExchangeRatesAndImages();
   }, [searchdate, type]);
 
   const defaultRates = useMemo(
