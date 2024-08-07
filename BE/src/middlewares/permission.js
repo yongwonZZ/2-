@@ -1,6 +1,7 @@
 import asyncHandler from 'express-async-handler';
 import jwt from 'jsonwebtoken';
 import { User } from '../models/model.js';
+import e from 'express';
 
 const secret = process.env.ACCESS_SECRET;
 

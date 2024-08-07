@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
-import ExChangeRatePage from "./pages/exchangeRatePage/ExchangeRatePage";
 import AirportFashion from "./pages/airportFashionMain/AirportFashion";
 import LookDetails from "./pages/airportFashionMain/LookDetails";
 import PostUpload from "./pages/airportFashionMain/postUpload/PostUpload";
@@ -10,6 +9,7 @@ import { PageNames } from "./utils/PageNames"; // Enum import
 import LoginMain from "./pages/login/LoginMain"; // loginMain import
 import BoardingPassMain from "./pages/boardingPassMain/BoardingPassMain"; // boardingPassMain import
 import AirPortMain from "./pages/airPortsMain/AirPortMain"; // airPortMain import
+import ExchangeRatePage from "./pages/exchangeRatePage/ExchangeRatePage";
 
 const queryClient = new QueryClient();
 
@@ -53,11 +53,12 @@ function App() {
         <Routes>
           {/* 공항 관련 라우트 */}
           <Route path="/*" element={<AirPortMain />} />
+
+          <Route path="/exchange" element={<ExchangeRatePage />} />
+          {/*패션 라우트 빼야함*/}
           <Route path="/airportFashion" element={<AirportFashion />} />
           <Route path="/lookDetails" element={<LookDetails />} />
           <Route path="/postUpload" element={<PostUpload />} />
-
-          <Route path="/exchange" element={<ExChangeRatePage />} />
 
           {/* 로그인 및 마이페이지 관련 라우트 */}
           <Route path="/login/*" element={<LoginMain />} />
