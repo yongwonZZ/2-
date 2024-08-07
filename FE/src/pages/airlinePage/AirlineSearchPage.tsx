@@ -155,11 +155,17 @@ function AirlineSearchPage() {
         }
       />
       {showDropdown && (
-        <SearchFilterDropdown
-          filters={flightFilter}
-          onFilterChange={handleSwitchFlightFilter}
-        />
+        <div className={styles.backdrop} onClick={handleFilterDropdown} />
       )}
+      <div className={styles["dropdown-container"]}>
+        {showDropdown && (
+          <SearchFilterDropdown
+            filters={flightFilter}
+            onFilterChange={handleSwitchFlightFilter}
+            onFilterClose={handleFilterDropdown}
+          />
+        )}
+      </div>
       <FlightFilterOptions
         filter={flightFilter}
         onSwitch={handleSwitchFlightFilter}
