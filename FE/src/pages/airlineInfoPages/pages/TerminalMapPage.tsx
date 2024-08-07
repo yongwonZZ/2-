@@ -8,7 +8,7 @@ import Map11 from "../images/map_entry_route_map_01.png";
 import Map2 from "../images/map_exit_route_map_02.png";
 import Map22 from "../images/map_entry_route_map_02.png";
 import { Link } from "react-router-dom";
-import container from "../../../styles/airlineInfo/InfoPages.module.css";
+// import container from "../../../styles/airlineInfo/InfoPages.module.css";
 
 const TerminalMapPage = () => {
   const [terminal, setTerminal] = useState<string>("T1");
@@ -38,9 +38,9 @@ const TerminalMapPage = () => {
           </div>
         }
       ></Header>
-      <div className={styles["map-info"]}>
+      {/* <div className={styles["map-info"]}>
         * 두 손가락을 이용해 확대해 볼 수 있습니다
-      </div>
+      </div> */}
       <div className={styles["map-container"]}>
         {terminal === "T1" ? (
           <>
