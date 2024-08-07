@@ -12,6 +12,8 @@ export interface LoginResponse {
 // 로그인 요청을 보내는 함수
 export const LoginAction = async (email: string, password: string): Promise<LoginResponse> => {
     try {
+        const baseURL = process.env.REACT_APP_API_BASE_URL;
+        console.log('Base URL:', baseURL); // 콘솔에 출력하여 확인
         const response = await axios.post('http://localhost:5000/api/login', { email, password });
         console.log('Server response data:', response.data); // 서버 응답 데이터를 콘솔에 출력
         return response.data;

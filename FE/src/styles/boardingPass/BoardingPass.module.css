@@ -1,5 +1,6 @@
 .boarding-pass {
     display: flex;
+    flex-direction: column;
     width: 90%;
     max-width: 600px;
     margin: 20px auto;
@@ -21,19 +22,26 @@
     padding: 10px;
 }
 
-.status,
+.status {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.left {
+    text-align: left;
+    font-weight: bold;
+}
+
+.right {
+    text-align: right;
+    font-weight: bold;
+}
+
 .flight-info,
 .airline-info,
 .route-info,
 .additional-info {
-}
-
-.status {
-    display: flex;
-}
-
-.status p:first-child {
-    margin-right: 20px; /* 첫 번째 p 요소와 두 번째 p 요소 사이의 간격 설정 */
 }
 
 .status p,
@@ -42,6 +50,7 @@
 .route-info p,
 .additional-info p {
     margin: 5px 0;
+    font-weight: bold; /* 모든 텍스트를 볼드 처리 */
 }
 
 .flight-info {
@@ -64,6 +73,12 @@
     justify-content: space-between;
     border-top: 1px solid rgb(1, 23, 89);
     padding-top: 10px;
+}
+
+.route-info div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .route-info .icon {
@@ -98,4 +113,18 @@
 
 .boarding-pass-content div {
     padding-bottom: 5px;
+}
+
+.details-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.largeText {
+    font-size: 1.5em;
 }
