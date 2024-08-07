@@ -1,0 +1,8 @@
+.info {
+  margin: 20px auto;
+  padding: 20px 0;
+  text-align: center;
+  word-wrap: break-word;
+  white-space: normal;
+  background-color: var(--color-warning);
+}
