@@ -1,6 +1,5 @@
 .wrapper {
   width: 100%;
-  max-width: var(--media-mobile);
   margin: auto;
   display: flex;
   flex-direction: column;

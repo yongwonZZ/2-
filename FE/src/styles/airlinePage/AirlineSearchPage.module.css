@@ -1,6 +1,5 @@
 .wrapper {
   width: 100%;
-  max-width: var(--media-mobile);
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -25,7 +24,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  width: calc(var(--media-mobile) - 100px);
+  width: 100%;
 }
 
 .search-box input {
