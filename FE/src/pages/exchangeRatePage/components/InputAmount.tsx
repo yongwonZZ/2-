@@ -42,7 +42,7 @@ const InputAmount: React.FC<InputAmountProps> = ({
 
   return (
     <div className={styles["amount-keypad"]}>
-      <div className={styles["amount-ketpad-number"]}>
+      <div className={styles["amount-keypad-number"]}>
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map((num) => (
           <button
             className={`${styles.keypad} ${styles["keypad-btn"]}`}
