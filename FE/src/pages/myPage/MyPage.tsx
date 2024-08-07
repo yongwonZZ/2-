@@ -22,9 +22,7 @@ const MyPage: React.FC = () => {
       <div className={styles["profile-container"]}>
         <div className={styles["profile-image"]}></div>
         <div className={styles["profile-info"]}>
-          <p className={styles.nickname}>
-            {memoizedUser?.email}
-          </p>
+          <p className={styles.nickname}>{memoizedUser?.email}</p>
           <p className={styles["edit-info"]}>내 정보 수정</p>
         </div>
         <button className={styles["move-button"]}>수정</button>
