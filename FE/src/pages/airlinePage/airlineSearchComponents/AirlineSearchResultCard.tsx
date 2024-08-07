@@ -52,7 +52,17 @@ AirlineSearchResultCard.Master = ({ item }: Props) => {
         />
         <span>{item.airline}</span>
         <span>{item.flightId}</span>
-        <span className={styles["section-blue"]}>{item.remark}</span>
+        <span
+          className={
+            item.remark === "결항"
+              ? styles["section-cancelled"]
+              : item.remark === "도착" || item.remark === "출발"
+              ? styles["section-blue"]
+              : styles["section-delayed"]
+          }
+        >
+          {item.remark}
+        </span>
       </div>
       <div className={styles["section-lg"]}>
         <span>{item.airport}</span>
@@ -69,11 +79,21 @@ AirlineSearchResultCard.Master = ({ item }: Props) => {
 AirlineSearchResultCard.Slave = ({ item }: Props) => {
   return (
     <>
-      <ArrowRight />
-      <div className={styles["section-lg"]}>
-        <span>코드쉐어</span>
+      <div className={styles["section-sm"]}>
+        <ArrowRight />
       </div>
       <div className={styles["section-sm"]}>
+        <span>코드쉐어</span>
+      </div>
+      <div className={styles["section-lg"]}>
+        <img
+          src={
+            terminal2.includes(item.airline)
+              ? terminal2LogosUrl[item.airline]
+              : terminal1LogosUrl[item.airline]
+          }
+          alt="항공사로고"
+        />
         <span>{item.flightId}</span>
       </div>
     </>

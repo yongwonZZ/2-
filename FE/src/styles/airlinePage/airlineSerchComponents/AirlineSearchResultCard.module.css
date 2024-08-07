@@ -2,6 +2,7 @@
   padding: 16px 0;
   font-size: 16px;
   border-bottom: 1px solid #ccc;
+  background-color: #fff;
   color: black;
   cursor: pointer;
   display: flex;
@@ -40,5 +41,16 @@
 
 /* 텍스트 색 blue */
 .section-blue {
-  color: blue;
+  color: var(--color-base);
+  font-weight: bold;
+}
+
+.section-delayed {
+  color: var(--color-delayed);
+  font-weight: bold;
+}
+
+.section-cancelled {
+  color: var(--color-cancelled);
+  font-weight: bold;
 }
