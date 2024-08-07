@@ -9,7 +9,7 @@ import { CommentJoi, PaginationJoi } from '../models/joi-schemas/index.js';
 
 const router = express.Router();
 
-router.get('/', validate(PaginationJoi), getCommentList); // 댓글 목록 조회(쿼리스트링, 페이지네이션)
+router.get('/:boardId', validate(PaginationJoi), getCommentList); // 댓글 목록 조회(쿼리스트링, 페이지네이션)
 router.post(
   '/:boardId',
   permission('user'),
