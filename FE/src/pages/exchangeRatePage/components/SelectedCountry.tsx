@@ -65,11 +65,6 @@ const SelectedCountry: React.FC<SelectedCountryProps> = ({
         </h1>
         <div className={styles.currencyUnit}>{currency?.cur_unit}</div>
       </div>
-      <h1 className={styles["rate-amount"]}>
-        {type === "base"
-          ? amount
-          : Number(deal_bas_r.split(",").join("")) * Number(amount)}
-      </h1>
     </div>
   );
 };

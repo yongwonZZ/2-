@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Header from "../../../components/Header";
-import styles from "../../styles/cretateAccount/CreateAccount.module.css"; // CSS 파일을 임포트
+import styles from "../../../styles/cretateAccount/CreateAccount.module.css"; // CSS 파일을 임포트
 import { createAccount } from "./CreateAccountAction"; // 액션 파일 임포트
 
 const CreateAccount: React.FC = () => {
