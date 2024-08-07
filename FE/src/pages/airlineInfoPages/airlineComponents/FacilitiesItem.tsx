@@ -46,16 +46,18 @@ const FacilitiesItem: React.FC<FacilitiesItemProps> = ({
         <div className={styles["facility-location"]}>{location}</div>
         <div className={styles["facility-des"]}>{service}</div>
       </div>
-      <div className={`${styles.facility} ${styles["facility-info"]}`}>
-        <div className={styles.time}>
+      <div className={`${styles["facility"]} ${styles["facility-info"]}`}>
+        <div className={styles["time"]}>
           <FaRegClock />
-          <div className={`${openNow ? styles.openNow : styles.closeNow}`}>
+          <div
+            className={`${openNow ? styles["open-now"] : styles["close-now"]}`}
+          >
             {serviceTime}
           </div>
           {openNow ? (
-            <div className={styles.openNow}>영업중</div>
+            <div className={styles["open-now"]}>영업중</div>
           ) : (
-            <div className={styles.closeNow}>영업 종료</div>
+            <div className={styles["close-now"]}>영업 종료</div>
           )}
         </div>
         <div className={styles["facility-number"]}>

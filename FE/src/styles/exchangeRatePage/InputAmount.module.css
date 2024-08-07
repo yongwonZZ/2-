@@ -1,4 +1,4 @@
-.amountKeypad {
+.amount-keypad {
   max-width: 500px;
   width: 100%;
   height: 100%;
@@ -9,7 +9,7 @@
   padding-bottom: 60px;
   box-sizing: border-box;
 }
-.amountKetpadNumber {
+.amount-keypad-number {
   width: 75%;
   display: flex;
   flex-direction: row;
@@ -23,13 +23,13 @@
   background-color: #eee;
   aspect-ratio: 1.2/1;
 }
-.keypadBtn {
+.keypad-btn {
   width: 33.33%;
 }
-.keypadControl {
+.keypad-control {
   width: 25%;
 }
-.keypadControlBtn {
+.keypad-control-btn {
   width: 100%;
   height: 25%;
 }
