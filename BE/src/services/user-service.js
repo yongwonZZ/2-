@@ -52,7 +52,14 @@ export const login = asyncHandler(async (req, res, next) => {
   );
 
   res.cookie('accessToken', token, { maxAge: 3600000 });
-  res.json({ message: `${user.userName}님 환영합니다!` });
+  res.json({
+    message: `${user.userName}님 환영합니다!`,
+    token, // 응답 데이터에 토큰 포함
+    user: {
+      email: user.email,
+      userName: user.userName,
+    },
+  });
 });
 
 // 로그아웃
