@@ -1,28 +1,20 @@
 import asyncHandler from 'express-async-handler';
 import { User } from '../models/model.js';
-import hashPassword from '../middlewares/hash-password.js';
+import { hashPassword } from '../middlewares/index.js';
 import jwt from 'jsonwebtoken';
-import {
-  RegisterJoi,
-  LoginJoi,
-  UpdateUserJoi,
-} from '../models/joi-schemas/user-joi.js';
 import {
   NotFoundError,
   BadRequestError,
   UnauthorizedError,
   InternalServerError,
 } from '../middlewares/custom-error.js';
+
 const secret = process.env.ACCESS_SECRET;
 
 // 회원 가입
 export const signup = asyncHandler(async (req, res) => {
-  const { error, value } = RegisterJoi.validate(req.body);
-  if (error) {
-    throw new BadRequestError(`Validation error: ${error.details[0].message}`);
-  }
+  const { email, userName, password, phoneNumber, role } = req.body;
 
-  const { email, userName, password, role } = value;
   const userJoin = await User.findOne({ email });
   if (userJoin) throw new BadRequestError('이미 가입하신 회원입니다.');
 
@@ -31,58 +23,47 @@ export const signup = asyncHandler(async (req, res) => {
     email,
     userName,
     password: hashedPassword,
+    phoneNumber,
     role,
   });
   res.json({ message: `${user.userName}님 회원 가입에 성공하셨습니다!` });
 });
 
 // 로그인
-// 로그인
 export const login = asyncHandler(async (req, res, next) => {
-  const { error, value } = LoginJoi.validate(req.body);
-  if (error) {
-    throw new BadRequestError(`Validation error: ${error.details[0].message}`);
-  }
-  const { email, password } = value;
+  const { email, password } = req.body;
   const user = await User.findOne({ email });
   if (user === null) {
     throw new NotFoundError('이메일 또는 비밀번호 불일치입니다.');
   }
 
   if (user.password !== hashPassword(password)) {
-    res.status(401);
     throw new UnauthorizedError('이메일 또는 비밀번호 불일치입니다.');
   }
 
   // 토큰 생성
   const token = jwt.sign(
-      {
-        id: user._id,
-        role: user.role,
-        permission: user.permission,
-      },
-      secret,
-      { expiresIn: '1h' }
+    {
+      id: user._id,
+      role: user.role,
+      permission: user.permission,
+    },
+    secret,
+    { expiresIn: '1h' }
   );
 
-  res.cookie('accessToken', token, { maxAge: 3600000 });
   res.json({
     message: `${user.userName}님 환영합니다!`,
     token, // 응답 데이터에 토큰 포함
     user: {
       email: user.email,
-      userName: user.userName
-    }
+      userName: user.userName,
+    },
   });
 });
 
 // 로그아웃
 export const logout = asyncHandler(async (req, res) => {
-  res.cookie('accessToken', null, { maxAge: 0 });
-  // if (res.cookie.accessToken) {
-  //   res.status(500);
-  //   throw new InternalServerError('정상적으로 로그 아웃이 되지 않았습니다.');
-  // }
   res.json({ message: '이용해주셔서 감사합니다.' });
 });
 
@@ -106,11 +87,8 @@ export const getUser = asyncHandler(async (req, res) => {
 
 // 회원 수정
 export const updateUser = asyncHandler(async (req, res) => {
-  const { error, value } = UpdateUserJoi.validate(req.body);
-  if (error) {
-    throw new BadRequestError(`Validation error: ${error.details[0].message}`);
-  }
-  const { password, ...rest } = value;
+  const { password, ...rest } = req.body;
+
   const userId = req.params.id;
   const user = await User.findById(userId);
   if (!user) {
@@ -154,4 +132,14 @@ export const deleteUser = asyncHandler(async (req, res) => {
   await user.save();
 
   res.json({ message: '사용자 데이터가 삭제되었습니다.' });
+});
+
+// 회원 찾기(이메일)
+export const findUser = asyncHandler(async (req, res) => {
+  const { email } = req.body;
+  const user = await User.findOne({ email });
+  if (!user) {
+    throw new NotFoundError('사용자를 찾을 수 없습니다.');
+  }
+  res.json(user);
 });

@@ -5,6 +5,7 @@ export const RegisterJoi = Joi.object({
   userName: Joi.string().required(),
   email: Joi.string().email().required(),
   password: Joi.string().required(),
+  phoneNumber: Joi.string().required(),
 });
 
 // 사용자 정보 업데이트 요청 스키마
