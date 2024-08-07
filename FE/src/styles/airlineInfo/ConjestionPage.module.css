@@ -55,7 +55,7 @@ tbody {
   color: red;
   background-color: #dfdfdf;
 }
-.list-item:last-child .data-time-set {
+.list-item:last-child .dataTimeSet {
   display: none;
 }
 th,

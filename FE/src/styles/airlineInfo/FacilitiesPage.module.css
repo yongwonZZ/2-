@@ -1,7 +1,11 @@
-.faciContainer {
+.faci-container {
   padding-top: 80px;
+  height: 100vh;
+  box-sizing: border-box;
+  max-width: 500px;
+  margin: 0 auto;
 }
-.facilityListBox {
+.facility-list-box {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -18,7 +22,7 @@
   gap: 10px;
   border-bottom: #ddd;
 } */
-.facilityHeader {
+.facility-header {
   width: 100%;
   height: 80px;
   display: flex;
@@ -31,7 +35,7 @@
   top: 0;
   left: 0;
 }
-.facHeaderLeft {
+.fac-header-left {
   font-size: 16px;
   font-weight: 700;
   display: flex;
@@ -44,49 +48,49 @@
   gap: 5px;
   font-size: 14px;
 }
-.facilityName {
+.facility-name {
   font-size: 16px;
   font-weight: 700;
 }
-.facilityLocation {
+.facility-location {
   color: #359aff;
 }
-.facilityDes {
+.facility-des {
   font-weight: 500;
 }
 
-.facilityInfo {
+.facility-info {
   color: #aaa;
 }
 .time {
   display: flex;
   gap: 5px;
 }
-.openNow {
+.open-now {
   color: #359aff;
 }
-.closeNow {
+.close-now {
   color: red;
 }
 
-.facilityNumber {
+.facility-number {
   text-decoration: underline;
   display: flex;
   gap: 5px;
 }
 /* search */
-.searchInput[type="text"] {
+.search-input[type="text"] {
   outline: none;
   border: none;
   border-width: 0;
   font-size: 20px;
 }
-.searchInput:focus {
+.search-input:focus {
   outline: none;
 }
 
 /** data-loading */
-.loadingData {
+.loading-data {
   width: 100%;
   height: 80vh;
   display: flex;
@@ -96,7 +100,7 @@
 }
 
 /* search not found */
-.notFound {
+.not-found {
   width: 100%;
   height: 100%;
   font-size: 16px;
@@ -110,7 +114,7 @@
   padding: 0 30px 80px 30px;
   line-height: 22px;
 }
-.searchText {
+.search-text {
   text-decoration: underline;
   color: #359aff;
 }
