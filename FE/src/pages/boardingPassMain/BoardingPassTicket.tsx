@@ -1,17 +1,24 @@
 import React from "react";
 import styles from "../../styles/boardingPass/BoardingPass.module.css";
+import { IoIosAirplane } from "react-icons/io";
+import { formatDateTime } from "../../utils/formatDateTime";
 
 interface TicketProps {
     ticket: {
         airline: string;
         flightId: string;
-        departure: string;
-        arrival: string;
-        departureTime: string;
-        arrivalTime: string;
-        gate: string;
-        seat: string;
-        baggage: string;
+        airport: string;
+        airportCode: string;
+        carousel: string;
+        codeshare: string;
+        estimatedDateTime: string;
+        exitnumber: string;
+        gatenumber: string;
+        remark: string;
+        scheduleDateTime: string;
+        terminalid: string;
+        direction: string; // 추가된 필드: 출발 또는 도착 정보
+        chkinrange: string; // 체크인 범위
     };
 }
 
@@ -21,35 +28,39 @@ const BoardingPassTicket: React.FC<TicketProps> = ({ ticket }) => {
             <div className={styles["color-strip"]}></div>
             <div className={styles["boarding-pass-content"]}>
                 <div className={styles.status}>
-                    <p>도착 현황</p>
-                    <p>도착 or 대기</p>
+                    <p className={styles.bold}>{ticket.airline}</p>
+                    <p className={styles.bold}>{ticket.flightId}</p>
                 </div>
-                <div className={styles["flight-info"]}>
-                    <p>{ticket.departureTime}</p>
-                    <p>{ticket.arrivalTime}</p>
-                </div>
-                <div className={styles["airline-info"]}>
-                    <p>{ticket.airline}</p>
-                    <p>{ticket.flightId}</p>
-                </div>
-                <div className={styles["route-info"]}>
-                    <p>{ticket.departure}</p>
-                    <span className="icon">→</span>
-                    <p>{ticket.arrival}</p>
-                </div>
-                <div className={styles["additional-info"]}>
-                    <div>
-                        <p>터미널 / 게이트</p>
-                        <p>{ticket.gate}</p>
+                {ticket.chkinrange ? (
+                    <div className={styles["route-info"]}>
+                        <div>
+                            <p className={`${styles.bold} ${styles.largeText}`}>ICN</p>
+                            <p className={styles.bold}>{ticket.airline}</p>
+                        </div>
+                        <IoIosAirplane className={styles["icon-departure"]} />
+                        <div>
+                            <p className={`${styles.bold} ${styles.largeText}`}>{ticket.airportCode}</p>
+                            <p className={styles.bold}>{ticket.airport}</p>
+                        </div>
                     </div>
-                    <div>
-                        <p>출구 정보</p>
-                        <p>{ticket.seat}</p>
+                ) : (
+                    <div className={styles["route-info"]}>
+                        <div>
+                            <p className={`${styles.bold} ${styles.largeText}`}>{ticket.airportCode}</p>
+                            <p className={styles.bold}>{ticket.airport}</p>
+                        </div>
+                        <IoIosAirplane className={styles["icon-departure"]} />
+                        <div>
+                            <p className={`${styles.bold} ${styles.largeText}`}>ICN</p>
+                            <p className={styles.bold}>{ticket.airline}</p>
+                        </div>
                     </div>
-                    <div>
-                        <p>수하물 수취대</p>
-                        <p>{ticket.baggage}</p>
-                    </div>
+                )}
+                <div>
+                    <p className={styles.bold}>{formatDateTime(ticket.scheduleDateTime)}</p>
+                </div>
+                <div className={styles["details-button-container"]}>
+                    <button>자세히 보기</button>
                 </div>
             </div>
         </div>

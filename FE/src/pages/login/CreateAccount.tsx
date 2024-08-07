@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import Header from "../../../components/Header";
-import styles from "../../../styles/cretateAccount/CreateAccount.module.css"; // CSS 파일을 임포트
-import { createAccount } from "./CreateAccountAction"; // 액션 파일 임포트
+import Header from '../../components/Header';
+import styles from "../../styles/cretateAccount/CreateAccount.module.css";
+import { createAccount } from "./createAccountFnc/CreateAccountAction"; // 액션 파일 임포트
 
 const CreateAccount: React.FC = () => {
     const { register, handleSubmit, formState: { errors }, watch } = useForm();
@@ -21,6 +21,7 @@ const CreateAccount: React.FC = () => {
 
     const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
     const passwordPattern = /^[A-Za-z\d@$!%*#?&]{4,}$/; // 패턴 수정: 알파벳 대소문자, 숫자, 특수문자를 포함한 4자 이상
+    const phonePattern = /^\d{10,11}$/; // 10자리 또는 11자리 숫자
 
     return (
         <>
@@ -42,6 +43,14 @@ const CreateAccount: React.FC = () => {
                         autoComplete="email"
                     />
                     {errors.email && <p className={styles.error}>올바른 이메일 주소가 아닙니다.</p>}
+
+                    <input
+                        {...register('phoneNumber', { required: true, pattern: phonePattern })}
+                        type="tel"
+                        placeholder="Phone Number"
+                        autoComplete="tel"
+                    />
+                    {errors.phoneNumber && <p className={styles.error}>올바른 전화번호가 아닙니다. 10자리 또는 11자리 숫자를 입력하세요.</p>}
 
                     <input
                         {...register('password', { required: true, minLength: 4, pattern: passwordPattern })}
