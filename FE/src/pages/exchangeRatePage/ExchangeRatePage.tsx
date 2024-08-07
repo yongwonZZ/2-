@@ -99,7 +99,7 @@ const ExchangeRatePage = () => {
     <div className={styles.container}>
       <Header
         leftContent={
-          <div className={styles.exchangeHeader}>
+          <div className={styles["exchange-header"]}>
             <FaChevronLeft
               style={{ fontSize: "22px" }}
               onClick={() => setIsToggle(false)}
@@ -108,15 +108,15 @@ const ExchangeRatePage = () => {
           </div>
         }
       />
-      <div className={styles.conunrtyList}>
+      <div className={styles["country-list"]}>
         {exchangeRates.map((item, index) => (
           <div
-            className={styles.countryItem}
+            className={styles["country-item"]}
             key={index}
             onClick={() => handleSelectCountry(item)}
           >
-            <div className={styles.countryItemHeader}>
-              <div className={styles.countryImage}>
+            <div className={styles["country-item-header"]}>
+              <div className={styles["country-image"]}>
                 {countryImages[item.cur_unit] && (
                   <img
                     className={styles.flag}
@@ -125,22 +125,24 @@ const ExchangeRatePage = () => {
                   />
                 )}
               </div>
-              <div className={styles.countryName}>
+              <div className={styles["country-name"]}>
                 {item.cur_nm.split(" ")[0]}
               </div>
             </div>
-            <div className={styles.countryAmount}>{item.cur_unit}</div>
+            <div className={styles["country-amount"]}>{item.cur_unit}</div>
           </div>
         ))}
       </div>
     </div>
   ) : (
     <div className={styles.container}>
-      <Header leftContent={<div className={styles.exchangeHeader}>환율</div>} />
-      <div className={styles.lastUpdate}>
+      <Header
+        leftContent={<div className={styles["exchange-header"]}>환율</div>}
+      />
+      <div className={styles["last-update"]}>
         마지막 업데이트 <span className="">{`${getCurrentTime()} 14:26`}</span>
       </div>
-      <div className={styles.exRateList}>
+      <div className={styles["ex-rate-list"]}>
         {defaultRates.length > 0
           ? defaultRates.map((rate) => (
               <ExRateHeaderItem
@@ -153,7 +155,7 @@ const ExchangeRatePage = () => {
               <ExRateHeaderItem key={item} curUnit={item} dealBasR="..." />
             ))}
       </div>
-      <div className={styles.selectedList}>
+      <div className={styles["selected-list"]}>
         {baseCountry ? (
           <div
             onClick={() => {
@@ -169,10 +171,12 @@ const ExchangeRatePage = () => {
             />
           </div>
         ) : (
-          <div className={styles.countryItem}>
-            <div className={styles.countryItemHeader}>
-              <div className={styles.countryImage}></div>
-              <div className="country-name">데이터를 불러오는 중입니다</div>
+          <div className={styles["country-item"]}>
+            <div className={styles["country-item-header"]}>
+              <div className={styles["country-image"]}></div>
+              <div className={styles["country-name"]}>
+                데이터를 불러오는 중입니다
+              </div>
             </div>
           </div>
         )}
@@ -192,10 +196,12 @@ const ExchangeRatePage = () => {
             />
           </div>
         ) : (
-          <div className={styles.countryItem}>
-            <div className={styles.countryItemHeader}>
-              <div className={styles.countryImage}></div>
-              <div className="country-name">데이터를 불러오는 중입니다</div>
+          <div className={styles["country-item"]}>
+            <div className={styles["country-item-header"]}>
+              <div className={styles["country-image"]}></div>
+              <div className={styles["country-name"]}>
+                데이터를 불러오는 중입니다
+              </div>
             </div>
           </div>
         )}

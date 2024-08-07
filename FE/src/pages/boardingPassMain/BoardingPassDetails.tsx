@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import '../../styles/boardingPass/BoardingPassDetails.module.css';
+import styles from "../../styles/boardingPass/BoardingPassDetails.module.css";
 import Header from "../../components/Header";
 import { AiOutlineShareAlt } from "react-icons/ai";
 import { FaTrashAlt } from "react-icons/fa";
@@ -57,52 +58,52 @@ const BoardingPassDetails: React.FC = () => {
     return (
         <>
             <Header leftContent={"티켓 상세정보"} />
-            <div className="boarding-pass-details">
-                <div className="details-header">
-                    <button className="share-button" onClick={handleShare}>
+            <div className={styles["boarding-pass-details"]}>
+                <div className={styles["details-header"]}>
+                    <button className={styles["share-button"]} onClick={handleShare}>
                         <AiOutlineShareAlt /> 공유하기
                     </button>
                 </div>
-                <div className="ticket-info">
-                    <div className="info-section">
+                <div className={styles["ticket-info"]}>
+                    <div className={styles["info-section"]}>
                         <h3>항공사</h3>
                         <p>{ticket.airline}</p>
                     </div>
-                    <div className="info-section">
+                    <div className={styles["info-section"]}>
                         <h3>항공편</h3>
                         <p>{ticket.flightId}</p>
                     </div>
-                    <div className="info-section">
+                    <div className={styles["info-section"]}>
                         <h3>출발지</h3>
                         <p>{ticket.departure}</p>
                     </div>
-                    <div className="info-section">
+                    <div className={styles["info-section"]}>
                         <h3>도착지</h3>
                         <p>{ticket.arrival}</p>
                     </div>
-                    <div className="info-section">
+                    <div className={styles["info-section"]}>
                         <h3>출발 시간</h3>
                         <p>{ticket.departureTime}</p>
                     </div>
-                    <div className="info-section">
+                    <div className={styles["info-section"]}>
                         <h3>도착 시간</h3>
                         <p>{ticket.arrivalTime}</p>
                     </div>
-                    <div className="info-section">
+                    <div className={styles["info-section"]}>
                         <h3>탑승구</h3>
                         <p>{ticket.gate}</p>
                     </div>
-                    <div className="info-section">
+                    <div className={styles["info-section"]}>
                         <h3>좌석</h3>
                         <p>{ticket.seat}</p>
                     </div>
-                    <div className="info-section">
+                    <div className={styles["info-section"]}>
                         <h3>수하물</h3>
                         <p>{ticket.baggage}</p>
                     </div>
                 </div>
-                <div className="details-footer">
-                    <button className="delete-button" onClick={handleDelete}>
+                <div className={styles["details-footer"]}>
+                    <button className={styles["delete-button"]} onClick={handleDelete}>
                         <FaTrashAlt /> 삭제하기
                     </button>
                 </div>

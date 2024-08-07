@@ -43,9 +43,9 @@ const SelectedCountry: React.FC<SelectedCountryProps> = ({
   }, []);
 
   return (
-    <div className={styles.countryItem}>
-      <div className={styles.countryItemHeader}>
-        <div className={styles.countryImage}>
+    <div className={styles["country-item"]}>
+      <div className={styles["country-item-header"]}>
+        <div className={styles["country-image"]}>
           {countryImage && (
             <img
               className={styles.flag}
@@ -54,7 +54,7 @@ const SelectedCountry: React.FC<SelectedCountryProps> = ({
             />
           )}
         </div>
-        <div className="country-name">{currency?.cur_nm.split(" ")[0]}</div>
+        <div className={styles["country-name"]}>{currency?.cur_nm.split(" ")[0]}</div>
       </div>
       <div className={styles.amount}>
         <h1 className={styles.rateAmount}>
@@ -65,6 +65,11 @@ const SelectedCountry: React.FC<SelectedCountryProps> = ({
         </h1>
         <div className={styles.currencyUnit}>{currency?.cur_unit}</div>
       </div>
+      <h1 className={styles["rate-amount"]}>
+        {type === "base"
+          ? amount
+          : Number(deal_bas_r.split(",").join("")) * Number(amount)}
+      </h1>
     </div>
   );
 };
