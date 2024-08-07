@@ -116,18 +116,20 @@ const CongestionPage: React.FC = () => {
 
   return (
     <>
-      <Header
-        leftContent={
-          <div className={styles["conjestion-header"]}>
-            <Link to={"/"}>
-              <FaChevronLeft style={{ fontSize: "22px", cursor: "pointer" }} />
-            </Link>
-            {day} {into === "in" ? "입국" : "출국"}장 {terminal}
-          </div>
-        }
-        rightContent={<FaFilter onClick={handleToggle} />}
-      />
       <div className={styles.container + " " + styles.conjestion}>
+        <Header
+          leftContent={
+            <div className={styles["conjestion-header"]}>
+              <Link to={"/"}>
+                <FaChevronLeft
+                  style={{ fontSize: "22px", cursor: "pointer" }}
+                />
+              </Link>
+              {day} {into === "in" ? "입국" : "출국"}장 {terminal}
+            </div>
+          }
+          rightContent={<FaFilter onClick={handleToggle} />}
+        />
         {isToggled && (
           <div className={styles["option-controller"]}>
             <div className={styles["option-list"]}>
