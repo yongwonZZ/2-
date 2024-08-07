@@ -37,7 +37,6 @@ export const login = asyncHandler(async (req, res, next) => {
   }
 
   if (user.password !== hashPassword(password)) {
-    res.status(401);
     throw new UnauthorizedError('이메일 또는 비밀번호 불일치입니다.');
   }
 

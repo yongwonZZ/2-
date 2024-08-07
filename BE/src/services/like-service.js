@@ -1,6 +1,7 @@
 import asyncHandler from 'express-async-handler';
 import { Like, Board } from '../models/model.js';
 import mongoose from 'mongoose';
+import { BadRequestError } from '../middlewares/custom-error.js';
 
 // 좋아요 상태 확인
 export const isLiked = asyncHandler(async (req, res) => {
@@ -23,7 +24,7 @@ export const toggleLike = asyncHandler(async (req, res) => {
 
   // boardId가 유효한 ObjectId인지 확인
   if (!mongoose.Types.ObjectId.isValid(boardId)) {
-    return res.status(400).json({ message: '유효하지 않은 boardId입니다.' });
+    throw new BadRequestError('유효하지 않은 게시글ID입니다.');
   }
 
   const boardObjectId = new mongoose.Types.ObjectId(boardId);

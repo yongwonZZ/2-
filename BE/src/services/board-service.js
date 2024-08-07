@@ -63,34 +63,61 @@ export const generatePresignedUrl = asyncHandler(async (req, res) => {
   res.status(200).json({ uploadURL, key: s3Params.Key });
 });
 
+// board-controller.js
+import asyncHandler from 'express-async-handler';
+import mongoose from 'mongoose';
+import { Board, User } from '../models/model.js';
+import {
+  NotFoundError,
+  BadRequestError,
+  InternalServerError,
+} from '../middlewares/custom-error.js';
+
 // 게시글 작성
 export const createBoard = asyncHandler(async (req, res) => {
   const { userId, category, contents, img } = req.body;
 
-  const board = await Board.create({ userId, category, contents, img });
+  if (!userId || !category || !contents) {
+    throw new BadRequestError('필수 필드가 누락되었습니다.');
+  }
 
-  // 사용자 정보 조회
-  const user = await User.findById(userId);
-  if (!user) throw new NotFoundError('해당 사용자가 존재하지 않습니다.');
+  try {
+    const board = await Board.create({ userId, category, contents, img });
 
-  res.json({
-    message: '게시글이 작성되었습니다.',
-    board: { ...board._doc, userName: user.userName },
-  });
+    // 사용자 정보 조회
+    const user = await User.findById(userId);
+    if (!user) throw new NotFoundError('해당 사용자가 존재하지 않습니다.');
+
+    res.json({
+      message: '게시글이 작성되었습니다.',
+      board: { ...board._doc, userName: user.userName },
+    });
+  } catch (error) {
+    throw new InternalServerError('게시글 작성 중 문제가 발생했습니다.');
+  }
 });
 
 // 게시글 삭제
 export const deleteBoard = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  const board = await Board.findByIdAndDelete(id);
-  if (!board) throw new NotFoundError('해당 게시글이 존재하지 않습니다.');
 
-  // userId를 사용하여 사용자 정보 조회
-  const user = await User.findById(board.userId);
-  if (!user) throw new NotFoundError('해당 사용자가 존재하지 않습니다.');
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    throw new BadRequestError('유효하지 않은 게시글 ID입니다.');
+  }
 
-  res.json({
-    message: '게시글이 삭제되었습니다.',
-    board: { ...board._doc, userName: user.userName },
-  });
+  try {
+    const board = await Board.findByIdAndDelete(id);
+    if (!board) throw new NotFoundError('해당 게시글이 존재하지 않습니다.');
+
+    // userId를 사용하여 사용자 정보 조회
+    const user = await User.findById(board.userId);
+    if (!user) throw new NotFoundError('해당 사용자가 존재하지 않습니다.');
+
+    res.json({
+      message: '게시글이 삭제되었습니다.',
+      board: { ...board._doc, userName: user.userName },
+    });
+  } catch (error) {
+    throw new InternalServerError('게시글 삭제 중 문제가 발생했습니다.');
+  }
 });

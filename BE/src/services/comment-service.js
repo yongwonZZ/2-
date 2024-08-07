@@ -1,7 +1,8 @@
+// comment-controller.js
 import asyncHandler from 'express-async-handler';
-import { Comment, Board, User } from '../models/model.js'; // User 모델을 추가
-import { NotFoundError } from '../middlewares/custom-error.js';
 import mongoose from 'mongoose';
+import { Comment, Board, User } from '../models/model.js';
+import { NotFoundError, BadRequestError } from '../middlewares/custom-error.js';
 
 // 댓글 목록 조회 (페이지네이션 적용)
 export const getCommentList = asyncHandler(async (req, res) => {
@@ -10,7 +11,7 @@ export const getCommentList = asyncHandler(async (req, res) => {
 
   // boardId가 유효한 ObjectId인지 확인
   if (!mongoose.Types.ObjectId.isValid(boardId)) {
-    return res.status(400).json({ message: '유효하지 않은 게시글 ID입니다.' });
+    throw new BadRequestError('유효하지 않은 게시글 ID입니다.');
   }
 
   const boardObjectId = new mongoose.Types.ObjectId(boardId);
@@ -51,7 +52,7 @@ export const createComment = asyncHandler(async (req, res) => {
 
   // boardId가 유효한 ObjectId인지 확인
   if (!mongoose.Types.ObjectId.isValid(boardId)) {
-    return res.status(400).json({ message: '유효하지 않은 게시글 ID입니다.' });
+    throw new BadRequestError('유효하지 않은 게시글 ID입니다.');
   }
 
   const boardObjectId = new mongoose.Types.ObjectId(boardId);
@@ -83,7 +84,7 @@ export const deleteComment = asyncHandler(async (req, res) => {
 
   // id가 유효한 ObjectId인지 확인
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(400).json({ message: '유효하지 않은 댓글 ID입니다.' });
+    throw new BadRequestError('유효하지 않은 댓글 ID입니다.');
   }
 
   const commentObjectId = new mongoose.Types.ObjectId(id);
