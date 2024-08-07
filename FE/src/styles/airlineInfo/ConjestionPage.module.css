@@ -9,7 +9,7 @@
   padding-bottom: 60px;
   /* overflow: scroll; */
 }
-.conjestionHeader {
+.conjestion-header {
   font-size: 16px;
   font-weight: 700;
   align-items: center;
@@ -28,14 +28,14 @@
 table {
   vertical-align: center;
 }
-.dataTable {
+.data-table {
   width: 100%;
   font-size: 12px;
   text-align: center;
   z-index: -10;
   /* align-items: center; */
 }
-.dataHead {
+.data-head {
   background-color: #ddd;
   height: 25px;
   font-weight: 700;
@@ -43,32 +43,32 @@ table {
 tbody {
   color: #027ffe;
 }
-.listItem {
+.list-item {
   height: 25px;
 }
-.currentTime {
+.current-time {
   background-color: #dfdfdf;
   font-weight: 700;
   border: 1px solid #011759;
 }
-.listItem:last-child {
+.list-item:last-child {
   color: red;
   background-color: #dfdfdf;
 }
-.listItem:last-child .dataTimeSet {
+.list-item:last-child .dataTimeSet {
   display: none;
 }
 th,
 td {
   vertical-align: center;
 }
-.dataTime {
+.data-time {
   color: #000;
   font-weight: 700;
 }
 
 /* option-controller */
-.optionController {
+.option-controller {
   width: 100%;
   padding: 20px;
   background-color: #fafafa;
@@ -80,12 +80,12 @@ td {
   justify-content: center;
   position: fixed;
 }
-.optionList {
+.option-list {
   width: 100%;
   display: flex;
   color: #555;
 }
-.optionBtn {
+.option-btn {
   font-size: 16px;
   font-weight: 700;
   width: 100%;
@@ -93,10 +93,10 @@ td {
   border: none;
   padding: 5px 0;
 }
-.btnActive {
+.btn-active {
   color: #027ffe;
 }
-.selectBtn {
+.select-btn {
   background-color: #027ffe;
   color: #fff;
   font-size: 16px;

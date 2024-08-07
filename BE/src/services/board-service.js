@@ -1,5 +1,6 @@
+// board-service.js
 import asyncHandler from 'express-async-handler';
-import { Board, User } from '../models/model.js'; // User 모델을 추가
+import { Board } from '../models/model.js';
 import { NotFoundError } from '../middlewares/custom-error.js';
 import s3Client from '../../s3Config.js';
 import { PutObjectCommand } from '@aws-sdk/client-s3';
@@ -17,21 +18,7 @@ export const getBoardList = asyncHandler(async (req, res) => {
     .skip((page - 1) * limit)
     .limit(Number(limit));
   const total = await Board.countDocuments(query);
-
-  // 각 게시글에 대해 userName을 추가
-  const boardListWithUserNames = await Promise.all(
-    boardList.map(async (board) => {
-      const user = await User.findById(board.userId);
-      return { ...board._doc, userName: user ? user.userName : 'Unknown' };
-    })
-  );
-
-  res.json({
-    total,
-    page: Number(page),
-    limit: Number(limit),
-    boardList: boardListWithUserNames,
-  });
+  res.json({ total, page: Number(page), limit: Number(limit), boardList });
 });
 
 // 게시글 상세 조회
@@ -39,13 +26,6 @@ export const getBoard = asyncHandler(async (req, res) => {
   const { id } = req.params;
   const board = await Board.findById(id);
   if (!board) throw new NotFoundError('해당 게시글이 존재하지 않습니다.');
-
-  // userId를 사용하여 사용자 정보 조회
-  const user = await User.findById(board.userId);
-  if (!user) throw new NotFoundError('해당 사용자가 존재하지 않습니다.');
-
-  res.json({ ...board._doc, userName: user.userName });
-});
 
 // 프리사인드 URL 생성
 export const generatePresignedUrl = asyncHandler(async (req, res) => {
@@ -67,24 +47,12 @@ export const generatePresignedUrl = asyncHandler(async (req, res) => {
 export const createBoard = asyncHandler(async (req, res) => {
   const { userId, category, contents, img } = req.body;
 
-  if (!userId || !category || !contents) {
-    throw new BadRequestError('필수 필드가 누락되었습니다.');
-  }
+  const board = await Board.create({ userId, category, contents, img });
 
-  try {
-    const board = await Board.create({ userId, category, contents, img });
-
-    // 사용자 정보 조회
-    const user = await User.findById(userId);
-    if (!user) throw new NotFoundError('해당 사용자가 존재하지 않습니다.');
-
-    res.json({
-      message: '게시글이 작성되었습니다.',
-      board: { ...board._doc, userName: user.userName },
-    });
-  } catch (error) {
-    throw new InternalServerError('게시글 작성 중 문제가 발생했습니다.');
-  }
+  res.json({
+    message: '게시글이 작성되었습니다.',
+    board,
+  });
 });
 
 // 게시글 삭제
