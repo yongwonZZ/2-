@@ -5,6 +5,7 @@
   --color-dark: rgb(1, 23, 89);
   --color-base: #3399ff;
   --color-light: #d8e8e8;
+  --color-warning: #fa8c8c;
 
   /* element size */
   --font-xs: 16px;
