@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import styles from "../../../styles/mainPage/MainPageLinkItem.module.css";
-import { motion } from "framer-motion";
+import { GrNext } from "react-icons/gr";
 
 type MainPageLinkItemProps = {
   icon: React.ReactNode;
@@ -21,16 +21,13 @@ function MainPageLinkItem({ icon, title, navigateTo }: MainPageLinkItemProps) {
   const navigate = useNavigate();
 
   return (
-    <motion.div
-      className={styles["link-item"]}
-      initial="hidden"
-      animate="visible"
-      variants={containerVariants}
-      onClick={() => navigate(navigateTo)}
-    >
-      <div style={{ width: "80%" }}>{icon}</div>
-      <p className={styles.title}>{title}</p>
-    </motion.div>
+    <div className={styles["link-item"]} onClick={() => navigate(navigateTo)}>
+      <div>
+        {icon}
+        {title}
+      </div>
+      <GrNext />
+    </div>
   );
 }
 

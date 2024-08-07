@@ -7,9 +7,10 @@ import LookDetails from "./pages/airportFashionMain/LookDetails";
 import PostUpload from "./pages/airportFashionMain/postUpload/PostUpload";
 import Navbar from "./components/Navbar";
 import { PageNames } from "./utils/PageNames"; // Enum import
-import LoginMain from "./pages/login/LoginMain"; // loginMain import
-import BoardingPassMain from "./pages/boardingPassMain/BoardingPassMain"; // boardingPassMain import
-import AirPortMain from "./pages/airPortsMain/AirPortMain"; // airPortMain import
+import LoginMain from './pages/login/LoginMain'; // loginMain import
+import BoardingPassMain from './pages/boardingPassMain/BoardingPassMain'; // boardingPassMain import
+import AirPortMain from './pages/airPortsMain/AirPortMain'; // airPortMain import
+import ExchangeRatePage from './pages/exchangeRatePage/ExchangeRatePage';
 
 const queryClient = new QueryClient();
 
@@ -48,23 +49,27 @@ function App() {
   }, [location.pathname]);
 
   return (
-    <div className="App">
-      <QueryClientProvider client={queryClient}>
-        <Routes>
-          {/* 공항 관련 라우트 */}
-          <Route path="/*" element={<AirPortMain />} />
-          <Route path="/airportFashion" element={<AirportFashion />} />
-          <Route path="/lookDetails" element={<LookDetails />} />
-          <Route path="/postUpload" element={<PostUpload />} />
-          <Route path="/exchange" element={<ExChangeRatePage />} />
-          {/* 로그인 및 마이페이지 관련 라우트 */}
-          <Route path="/login/*" element={<LoginMain />} />
-          {/* BoardingPass 관련 라우트 */}
-          <Route path="/boardingPass/*" element={<BoardingPassMain />} />
-        </Routes>
-        <Navbar />
-      </QueryClientProvider>
-    </div>
+      <div className='App'>
+        <QueryClientProvider client={queryClient}>
+          <Routes>
+            {/* 공항 관련 라우트 */}
+            <Route path="/*" element={<AirPortMain />} />
+
+            <Route path ="/exchange" element={<ExchangeRatePage />} />
+            {/*패션 라우트 빼야함*/}
+            <Route path="/airportFashion" element={<AirportFashion />} />
+            <Route path="/lookDetails" element={<LookDetails />} />
+            <Route path="/postUpload" element={<PostUpload />} />
+
+            
+            {/* 로그인 및 마이페이지 관련 라우트 */}
+            <Route path="/login/*" element={<LoginMain />} />
+            {/* BoardingPass 관련 라우트 */}
+            <Route path="/boardingPass/*" element={<BoardingPassMain />} />
+          </Routes>
+          <Navbar />
+        </QueryClientProvider>
+      </div>
   );
 }
 
