@@ -1,24 +1,13 @@
 .link-item {
-  box-sizing: border-box;
-  background-color: #96c9fc;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  padding: 20px;
-  margin: 0 10px;
-  text-align: center;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+  padding: 20px 0;
+  color: rgb(1, 23, 89);
   text-decoration: none;
-  gap: 20px;
   cursor: pointer;
 }
 
 .link-item:hover {
-  background-color: #3399ff;
-  color: white;
-}
-
-.title {
-  font-size: 16px;
+  color: rgba(1, 23, 89, 0.6);
 }
