@@ -15,12 +15,14 @@ import { FaChevronLeft } from "react-icons/fa";
 import { LuSettings2 } from "react-icons/lu";
 import { MdClear } from "react-icons/md";
 import { useInfiniteScroll } from "../../hooks/useInfiniteScroll";
+import {
+  getSavedFlightFilter,
+  saveFlightFilter,
+  getSavedSearchText,
+  saveSearchText,
+  clearSearchText,
+} from "../../utils/localStorageOperator"; // localStorage 접근 함수
 import LoadingSpinner from "../../components/loadingSpinner/LoadingSpinner";
-
-const getSavedFlightFilter = () => {
-  const savedFilter = localStorage.getItem("flightFilter");
-  return savedFilter ? JSON.parse(savedFilter) : null;
-};
 
 function AirlineSearchPage() {
   const navigate = useNavigate();
@@ -28,9 +30,7 @@ function AirlineSearchPage() {
   const targetRef = useRef<HTMLDivElement>(null);
 
   /** 검색어 상태 */
-  const [searchText, setSearchText] = useState<string>(
-    localStorage.getItem("searchText") ?? ""
-  );
+  const [searchText, setSearchText] = useState<string>(getSavedSearchText());
 
   /** 필터 상태 */
   const [flightFilter, setFlightFilter] = useState<FlightFilter>(
@@ -49,7 +49,7 @@ function AirlineSearchPage() {
   );
 
   useEffect(() => {
-    localStorage.setItem("flightFilter", JSON.stringify(flightFilter));
+    saveFlightFilter(flightFilter);
   }, [flightFilter]);
 
   /** 드롭다운 메뉴 상태 */
@@ -58,13 +58,13 @@ function AirlineSearchPage() {
   /** 검색어 변경 핸들러 */
   const handleTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(event.target.value);
-    localStorage.setItem("searchText", event.target.value);
+    saveSearchText(event.target.value);
   };
 
   /** 검색어 clear 핸들러 */
   const handleTextClear = () => {
     setSearchText("");
-    localStorage.removeItem("searchText");
+    clearSearchText();
   };
 
   /** 필터 토글 핸들러 */
@@ -115,7 +115,6 @@ function AirlineSearchPage() {
       )
       .sort(({ estimatedDateTime: a }, { estimatedDateTime: b }) => +a - +b);
   }, [data, flightFilter, searchText]);
-
 
   const { data: paginatedData, isLoading: isLoadingMore } = useInfiniteScroll(
     filteredData,
