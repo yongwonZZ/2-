@@ -122,7 +122,7 @@ const ExchangeRatePage = () => {
               <div className={styles["country-image"]}>
                 {countryImages[item.cur_unit] && (
                   <img
-                    className={styles.flag}
+                    className={styles["flag"]}
                     src={countryImages[item.cur_unit]}
                     alt={item.cur_nm}
                   />
