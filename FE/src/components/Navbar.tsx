@@ -59,7 +59,7 @@ const Navbar: React.FC = () => {
             />
             <NavbarList
                 icon={<MdOutlineAirplaneTicket />}
-                title={`내 티켓 ()`}
+                title={`내 티켓`}
                 navigateTo="/boardingPass"
                 isSelected={selected === "내 티켓"}
                 setSelected={handleSelectList}

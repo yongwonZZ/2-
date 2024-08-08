@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import '../../styles/boardingPass/BoardingPassDetails.module.css';
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import styles from "../../styles/boardingPass/BoardingPassDetails.module.css";
 import Header from "../../components/Header";
 import { AiOutlineShareAlt } from "react-icons/ai";
@@ -9,31 +8,40 @@ import { FaTrashAlt } from "react-icons/fa";
 interface Ticket {
     airline: string;
     flightId: string;
-    departure: string;
-    arrival: string;
-    departureTime: string;
-    arrivalTime: string;
-    gate: string;
-    seat: string;
-    baggage: string;
+    airport: string;
+    airportCode: string;
+    carousel: string;
+    codeshare: string;
+    estimatedDateTime: string;
+    exitnumber: string;
+    gatenumber: string;
+    remark: string;
+    scheduleDateTime: string;
+    terminalid: string;
     direction: string; // 추가된 필드: 출발 또는 도착 정보
+    chkinrange: string; // 체크인 범위
 }
 
 const BoardingPassDetails: React.FC = () => {
     const { id } = useParams<{ id: string }>();
+    const location = useLocation();
     const navigate = useNavigate();
     const [ticket, setTicket] = useState<Ticket | null>(null);
 
     useEffect(() => {
-        const tickets = JSON.parse(localStorage.getItem('tickets') || '[]') as Ticket[];
-        const ticketIndex = parseInt(id || '', 10);
-        if (!isNaN(ticketIndex) && ticketIndex >= 0 && ticketIndex < tickets.length) {
-            setTicket(tickets[ticketIndex]);
+        if (location.state && (location.state as any).ticket) {
+            setTicket((location.state as any).ticket);
         } else {
-            alert('티켓을 찾을 수 없습니다.');
-            navigate('/boardingPass');
+            const tickets = JSON.parse(localStorage.getItem('tickets') || '[]') as Ticket[];
+            const ticketIndex = parseInt(id || '', 10);
+            if (!isNaN(ticketIndex) && ticketIndex >= 0 && ticketIndex < tickets.length) {
+                setTicket(tickets[ticketIndex]);
+            } else {
+                alert('티켓을 찾을 수 없습니다.');
+                navigate('/boardingPass');
+            }
         }
-    }, [id, navigate]);
+    }, [id, location.state, navigate]);
 
     const handleDelete = () => {
         const tickets = JSON.parse(localStorage.getItem('tickets') || '[]') as Ticket[];
@@ -76,31 +84,31 @@ const BoardingPassDetails: React.FC = () => {
                     </div>
                     <div className={styles["info-section"]}>
                         <h3>출발지</h3>
-                        <p>{ticket.departure}</p>
+                        <p>{ticket.airport}</p>
                     </div>
                     <div className={styles["info-section"]}>
                         <h3>도착지</h3>
-                        <p>{ticket.arrival}</p>
+                        <p>{ticket.airportCode}</p>
                     </div>
                     <div className={styles["info-section"]}>
                         <h3>출발 시간</h3>
-                        <p>{ticket.departureTime}</p>
+                        <p>{ticket.scheduleDateTime}</p>
                     </div>
                     <div className={styles["info-section"]}>
                         <h3>도착 시간</h3>
-                        <p>{ticket.arrivalTime}</p>
+                        <p>{ticket.estimatedDateTime}</p>
                     </div>
                     <div className={styles["info-section"]}>
                         <h3>탑승구</h3>
-                        <p>{ticket.gate}</p>
+                        <p>{ticket.gatenumber}</p>
                     </div>
                     <div className={styles["info-section"]}>
                         <h3>좌석</h3>
-                        <p>{ticket.seat}</p>
+                        <p>{ticket.exitnumber}</p>
                     </div>
                     <div className={styles["info-section"]}>
                         <h3>수하물</h3>
-                        <p>{ticket.baggage}</p>
+                        <p>{ticket.carousel}</p>
                     </div>
                 </div>
                 <div className={styles["details-footer"]}>
