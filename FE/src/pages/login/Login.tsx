@@ -66,7 +66,7 @@ const Login: React.FC = () => {
 
   return (
       <div>
-        <Header leftContent="로그인" />
+        <Header centerContent="로그인" />
         <div className={styles["login-container"]}>
           {error && <p className={styles.error}>{error}</p>}
           <form className={styles["login-form"]} onSubmit={handleLogin}>
