@@ -13,7 +13,7 @@ const FindId: React.FC = () => {
     const handleFindId = async (event: React.FormEvent) => {
         event.preventDefault();
         try {
-            const response = await axios.get(`http://localhost:5000/api/find-user`, {
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/find-user`, {
                 params: { phoneNumber: phone },
             });
 
