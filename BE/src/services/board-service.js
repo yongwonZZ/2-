@@ -39,6 +39,7 @@ export const getBoard = asyncHandler(async (req, res) => {
   const { id } = req.params;
   const board = await Board.findById(id);
   if (!board) throw new NotFoundError('해당 게시글이 존재하지 않습니다.');
+});
 
   // userId를 사용하여 사용자 정보 조회
   const user = await User.findById(board.userId);
