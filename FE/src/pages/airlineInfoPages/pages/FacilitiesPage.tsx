@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
+import styles from "../../../styles/airlineInfo/FacilitiesPage.module.css";
 import FacilitiesItem from "../airlineComponents/FacilitiesItem";
 import { FaChevronLeft, FaSearch } from "react-icons/fa";
 import { fetchFacilitiesData } from "../getInfoData/getFacilitiesData";
@@ -82,12 +83,15 @@ const FacilitiesPage: React.FC = () => {
     },
     []
   );
+  useEffect(() => {
+    console.log(filteredFacilities);
+  }, [filteredFacilities]);
 
   return (
     <>
-      <div className="facility-header">
+      <div className={styles["facility-header"]}>
         {searchToggle ? (
-          <div className="fac-header-left">
+          <div className={styles["fac-header-left"]}>
             <FaChevronLeft
               style={{ fontSize: "22px", cursor: "pointer" }}
               onClick={() => setSearchToggle(false)}
@@ -95,13 +99,21 @@ const FacilitiesPage: React.FC = () => {
             <input
               value={searchInput}
               type="text"
-              className="search-input"
+              style={{
+                outline: "none",
+                border: "none",
+                borderWidth: "0",
+                fontSize: "20px",
+                padding: 0,
+                margin: 0,
+              }}
+              className={styles["search-input"]}
               placeholder="검색어를 입력해 주세요"
               onChange={handleSearchInputChange}
             />
           </div>
         ) : (
-          <div className="fac-header-left">
+          <div className={styles["fac-header-left"]}>
             <Link to={"/"}>
               <FaChevronLeft style={{ fontSize: "22px", cursor: "pointer" }} />
             </Link>
@@ -113,20 +125,32 @@ const FacilitiesPage: React.FC = () => {
           onClick={() => setSearchToggle(true)}
         />
       </div>
-      <div className="container faci-container">
+      <div className={`${styles.container} ${styles["faci-container"]}`}>
         {searchToggle ? (
           <>
-            {filteredFacilities.map((item, index) => (
-              <FacilitiesItem
-                key={index}
-                name={item.entrpskoreannm}
-                service={item.trtmntprdlstkoreannm}
-                location={item.lckoreannm}
-                arrOrDep={item.arrordep}
-                serviceTime={item.servicetime}
-                tel={item.tel}
-              />
-            ))}
+            {filteredFacilities.length >= 1 ? (
+              filteredFacilities.map((item, index) => (
+                <FacilitiesItem
+                  key={index}
+                  name={item.entrpskoreannm}
+                  service={item.trtmntprdlstkoreannm}
+                  location={item.lckoreannm}
+                  arrOrDep={item.arrordep}
+                  serviceTime={item.servicetime}
+                  tel={item.tel}
+                />
+              ))
+            ) : (
+              <>
+                <div className={styles["not-found"]}>
+                  <div className={styles["box"]}>
+                    "
+                    <span className={styles["search-text"]}>{searchInput}</span>
+                    "에 대한 검색결과를 찾을 수 없습니다.
+                  </div>
+                </div>
+              </>
+            )}
           </>
         ) : (
           <>
@@ -161,7 +185,9 @@ const FacilitiesPage: React.FC = () => {
           </>
         )}
         {loading && (
-          <p className="loading-data">편의시설 데이터를 불러오는 중입니다...</p>
+          <p className={styles["loading-data"]}>
+            편의시설 데이터를 불러오는 중입니다...
+          </p>
         )}
       </div>
     </>

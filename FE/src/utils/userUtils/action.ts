@@ -1,11 +1,15 @@
-//마이페이지 엑션
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
-// User 인터페이스 정의
-interface User {
+export interface User {
     email: string;
-    nickname?: string;
+    userName?: string;
+}
+
+export interface LoginResponse {
+    message: string;
+    token: string;
+    user: User;
 }
 
 // 사용자 데이터를 localStorage에서 가져오는 훅
@@ -14,7 +18,8 @@ export const useUser = (): User | null => {
 
     useEffect(() => {
         const userData = localStorage.getItem('user');
-        if (userData) {
+        const token = localStorage.getItem('token');
+        if (userData && token) {
             try {
                 const parsedUser = JSON.parse(userData);
                 setUser(parsedUser);
@@ -33,6 +38,41 @@ export const useUser = (): User | null => {
 
 // 로그아웃 기능을 처리하는 함수
 export const handleLogout = (navigate: ReturnType<typeof useNavigate>) => {
-    localStorage.removeItem('user'); // localStorage에서 user 데이터 제거
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+
+    if (user.email) {
+        const tickets = localStorage.getItem('tickets');
+        if (tickets) {
+            localStorage.setItem(`tickets_${user.email}`, tickets);
+        }
+    }
+
+    localStorage.removeItem('token'); // 토큰 삭제
+    localStorage.removeItem('user'); // 유저 정보 삭제
+    localStorage.removeItem('tickets'); // 현재 세션의 티켓 정보 삭제
+
     navigate('/login'); // 로그인 페이지로 리다이렉트
+};
+
+// 로컬스토리지에서 사용자 정보를 가져오는 함수
+export const fetchUserInfoFromLocalStorage = () => {
+    try {
+        const token = localStorage.getItem('token');
+        const user = localStorage.getItem('user');
+
+        if (!token) {
+            throw new Error('No token found');
+        }
+
+        if (!user) {
+            throw new Error('No user data found');
+        }
+
+        const parsedUser = JSON.parse(user);
+        console.log('Token:', token);
+        console.log('User info:', parsedUser);
+
+    } catch (error) {
+        console.error('Error fetching user info from localStorage:', error);
+    }
 };

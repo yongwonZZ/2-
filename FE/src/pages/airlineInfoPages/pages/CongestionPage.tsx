@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FaChevronLeft, FaFilter } from "react-icons/fa";
 import Header from "../../../components/Header";
-import "../../../styles/airlineInfo/ConjestionPage.module.css";
+import styles from "../../../styles/airlineInfo/ConjestionPage.module.css";
 import { fetchCongestionData } from "../getInfoData/getCongestionData";
 import { Link } from "react-router-dom";
 
@@ -116,75 +116,88 @@ const CongestionPage: React.FC = () => {
 
   return (
     <>
-      <Header
-        leftContent={
-          <div className="conjestion-header">
-            <Link to={"/"}>
-              <FaChevronLeft style={{ fontSize: "22px", cursor: "pointer" }} />
-            </Link>
-            {day} {into === "in" ? "입국" : "출국"}장 {terminal}
-          </div>
-        }
-        rightContent={<FaFilter onClick={handleToggle} />}
-      />
-      <div className="container conjestion">
+      <div className={styles.container + " " + styles.conjestion}>
+        <Header
+          leftContent={
+            <div className={styles["conjestion-header"]}>
+              <Link to={"/"}>
+                <FaChevronLeft
+                  style={{ fontSize: "22px", cursor: "pointer" }}
+                />
+              </Link>
+              {day} {into === "in" ? "입국" : "출국"}장 {terminal}
+            </div>
+          }
+          rightContent={<FaFilter onClick={handleToggle} />}
+        />
         {isToggled && (
-          <div className="option-controller">
-            <div className="option-list">
+          <div className={styles["option-controller"]}>
+            <div className={styles["option-list"]}>
               <button
-                className={`option-btn ${
-                  terminal === "T1" ? "btn-active" : ""
+                className={`${styles["option-btn"]} ${
+                  terminal === "T1" ? styles["btn-active"] : ""
                 }`}
                 onClick={() => setTerminal("T1")}
               >
                 터미널 1
               </button>
               <button
-                className={`option-btn ${
-                  terminal === "T2" ? "btn-active" : ""
+                className={`${styles["option-btn"]} ${
+                  terminal === "T2" ? styles["btn-active"] : ""
                 }`}
                 onClick={() => setTerminal("T2")}
               >
                 터미널 2
               </button>
             </div>
-            <div className="option-list">
+            <div className={styles["option-list"]}>
               <button
-                className={`option-btn ${into === "out" ? "btn-active" : ""}`}
+                className={`${styles["option-btn"]} ${
+                  into === "out" ? styles["btn-active"] : ""
+                }`}
                 onClick={() => setInto("out")}
               >
                 출국장
               </button>
               <button
-                className={`option-btn ${into === "in" ? "btn-active" : ""}`}
+                className={`${styles["option-btn"]} ${
+                  into === "in" ? styles["btn-active"] : ""
+                }`}
                 onClick={() => setInto("in")}
               >
                 입국장
               </button>
             </div>
-            <div className="option-list">
+            <div className={styles["option-list"]}>
               <button
-                className={`option-btn ${day === "오늘" ? "btn-active" : ""}`}
+                className={`${styles["option-btn"]} ${
+                  day === "오늘" ? styles["btn-active"] : ""
+                }`}
                 onClick={() => setDay("오늘")}
               >
                 오늘
               </button>
               <button
-                className={`option-btn ${day === "내일" ? "btn-active" : ""}`}
+                className={`${styles["option-btn"]} ${
+                  day === "내일" ? styles["btn-active"] : ""
+                }`}
                 onClick={() => setDay("내일")}
               >
                 내일
               </button>
             </div>
-            <button className="select-btn" onClick={() => setIsToggled(false)}>
+            <button
+              className={styles["select-btn"]}
+              onClick={() => setIsToggled(false)}
+            >
               확인
             </button>
           </div>
         )}
 
-        <div className="list-container">
-          <table className="data-table">
-            <thead className="data-head">
+        <div className={styles["list-container"]}>
+          <table className={styles["data-table"]}>
+            <thead className={styles["data-head"]}>
               <tr>
                 <th>시간</th>
                 {into === "out" ? (
@@ -228,13 +241,15 @@ const CongestionPage: React.FC = () => {
                 .map((item, index) => (
                   <tr
                     key={index}
-                    className={`list-item ${
-                      item.atime === currentTimeSlot ? "current-time" : ""
+                    className={`${styles["list-item"]} ${
+                      item.atime === currentTimeSlot
+                        ? styles["current-time"]
+                        : ""
                     }`}
                   >
-                    <td className="data-time">
+                    <td className={styles["data-time"]}>
                       {item?.atime.split("_")[0]}
-                      <span className="data-time-set">시</span>
+                      <span className={styles["data-time-set"]}>시</span>
                     </td>
                     {into === "out" ? (
                       <>
