@@ -4,6 +4,7 @@ import "./index.css";
 import "./global.module.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
+import * as serviceWorkerRegistration from "./serviceWorkerRegistration"; // PWA 세팅
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -17,3 +18,5 @@ root.render(
     </BrowserRouter>
   </React.StrictMode>
 );
+
+serviceWorkerRegistration.register();
