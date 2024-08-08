@@ -110,7 +110,6 @@ const ExchangeRatePage = () => {
             통화
           </div>
         }
-        centerContent={<div>통화</div>}
       />
       <div className={styles["country-list"]}>
         {exchangeRates.map((item, index) => (
@@ -123,7 +122,7 @@ const ExchangeRatePage = () => {
               <div className={styles["country-image"]}>
                 {countryImages[item.cur_unit] && (
                   <img
-                    className={styles.flag}
+                    className={styles["flag"]}
                     src={countryImages[item.cur_unit]}
                     alt={item.cur_nm}
                   />
