@@ -154,7 +154,7 @@ export const deleteUser = asyncHandler(async (req, res) => {
 
 // 회원 찾기(전화번호)
 export const findUser = asyncHandler(async (req, res) => {
-  const { phoneNumber } = req.body;
+  const { phoneNumber } = req.query;
   const user = await User.findOne({ phoneNumber });
   if (!user) {
     throw new NotFoundError('사용자를 찾을 수 없습니다.');
