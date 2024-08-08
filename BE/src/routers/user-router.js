@@ -20,6 +20,8 @@ router.put(
   updateUser
 ); // 회원 정보 수정
 
+
+
 router.delete('/mypage/:id', permission('user'), resignUser); // 회원 삭제(탈퇴)
 
 router.get('/admin', permission('admin'), getUserList); // 전체 회원 목록 조회
