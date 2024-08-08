@@ -1,6 +1,6 @@
 import asyncHandler from 'express-async-handler';
 import { Board, User } from '../models/model.js'; // User 모델을 추가
-import { NotFoundError } from '../middlewares/custom-error.js';
+import { NotFoundError, BadRequestError, InternalServerError } from '../middlewares/custom-error.js';
 import s3Client from '../../s3Config.js';
 import { PutObjectCommand } from '@aws-sdk/client-s3';
 import dotenv from 'dotenv';
@@ -15,16 +15,16 @@ export const getBoardList = asyncHandler(async (req, res) => {
   const query = category ? { category } : {};
 
   const boardList = await Board.find(query)
-    .skip((page - 1) * limit)
-    .limit(Number(limit));
+      .skip((page - 1) * limit)
+      .limit(Number(limit));
   const total = await Board.countDocuments(query);
 
   // 각 게시글에 대해 userName을 추가
   const boardListWithUserNames = await Promise.all(
-    boardList.map(async (board) => {
-      const user = await User.findById(board.userId);
-      return { ...board._doc, userName: user ? user.userName : 'Unknown' };
-    })
+      boardList.map(async (board) => {
+        const user = await User.findById(board.userId);
+        return { ...board._doc, userName: user ? user.userName : 'Unknown' };
+      })
   );
 
   res.json({
@@ -40,6 +40,13 @@ export const getBoard = asyncHandler(async (req, res) => {
   const { id } = req.params;
   const board = await Board.findById(id);
   if (!board) throw new NotFoundError('해당 게시글이 존재하지 않습니다.');
+
+  // userId를 사용하여 사용자 정보 조회
+  const user = await User.findById(board.userId);
+  if (!user) throw new NotFoundError('해당 사용자가 존재하지 않습니다.');
+
+  res.json({ ...board._doc, userName: user.userName });
+});
 
 // 프리사인드 URL 생성
 export const generatePresignedUrl = asyncHandler(async (req, res) => {

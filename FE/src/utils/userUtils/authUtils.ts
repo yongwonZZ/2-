@@ -35,7 +35,6 @@ export interface LoginResponse {
 }
 export const LoginAction = async (email: string, password: string): Promise<LoginResponse> => {
     try {
-                                                                    //
         const response = await axios.post('http://localhost:5000/api/login', { email, password });
         return response.data;
     } catch (error: any) {
