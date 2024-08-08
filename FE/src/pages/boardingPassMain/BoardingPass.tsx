@@ -30,7 +30,7 @@ const BoardingPass: React.FC = () => {
     }, []);
 
     const handleTicketClick = (index: number) => {
-        navigate(`/boardingPass/${index}`);
+        navigate(`/boardingPass/${index}`, { state: { ticket: tickets[index] } });
     };
 
     return (

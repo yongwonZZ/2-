@@ -1,4 +1,3 @@
-//인증된 사용자만 접근할 수 있는 보호된 데이터를 가져오는 함수입니다
 import axios from 'axios';
 
 // 보호된 데이터를 가져오는 함수
@@ -8,7 +7,7 @@ export const getProtectedData = async () => {
 
     try {
         // 서버에 인증된 요청 보내기
-        const response = await axios.get('http://localhost:5000/api/protected', {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/protected`, {
             headers: { Authorization: `Bearer ${token}` } // 요청 헤더에 토큰 포함
         });
         return response.data;
