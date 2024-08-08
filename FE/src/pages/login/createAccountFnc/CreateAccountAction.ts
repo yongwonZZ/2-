@@ -7,7 +7,7 @@ export interface CreateAccountResponse {
 // 회원가입 요청을 보내는 함수
 export const createAccount = async (data: any): Promise<CreateAccountResponse> => {
     try {
-        const response = await axios.post('http://localhost:5000/api/signup', data);
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/signup`, data);
         return response.data;
     } catch (error: any) {
         if (error.response) {

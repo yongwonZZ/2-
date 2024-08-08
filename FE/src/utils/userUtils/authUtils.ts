@@ -35,7 +35,7 @@ export interface LoginResponse {
 }
 export const LoginAction = async (email: string, password: string): Promise<LoginResponse> => {
     try {
-        const response = await axios.post('http://localhost:5000/api/login', { email, password });
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/login`, { email, password });
         return response.data;
     } catch (error: any) {
         if (error.response) {
