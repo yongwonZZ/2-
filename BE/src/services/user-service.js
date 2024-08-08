@@ -167,7 +167,7 @@ export const findUser = asyncHandler(async (req, res) => {
   if (!user) {
     throw new NotFoundError('사용자를 찾을 수 없습니다.');
   }
-  res.json(user);
+  res.json({ email: user.email });
 });
 */
 // 비밀번호 재설정 요청 처리
