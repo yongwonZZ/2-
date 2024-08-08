@@ -45,6 +45,11 @@
   gap: 8px;
 }
 
+.section img {
+  width: 96px;
+  height: auto;
+}
+
 .btn {
   position: sticky;
   bottom: 60px;
