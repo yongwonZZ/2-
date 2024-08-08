@@ -18,3 +18,13 @@ export const LoginJoi = Joi.object({
   email: Joi.string(),
   password: Joi.string(),
 });
+
+// 비밀번호 재설정 이메일 요청 스키마
+export const ForgotPasswordJoi = Joi.object({
+  email: Joi.string().email().required(),
+});
+
+// 비밀번호 재설정 요청 스키마
+export const ResetPasswordJoi = Joi.object({
+  newPassword: Joi.string().required(),
+});

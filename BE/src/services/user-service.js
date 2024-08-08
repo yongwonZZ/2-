@@ -8,8 +8,26 @@ import {
   UnauthorizedError,
   InternalServerError,
 } from '../middlewares/custom-error.js';
+import crypto from 'crypto';
+import aws from 'aws-sdk';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const secret = process.env.ACCESS_SECRET;
+const PORT = process.env.PORT || 5000;
+
+// AWS SES 설정
+const ses = new aws.SES({
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  region: process.env.AWS_REGION,
+});
+
+// 비밀번호 재설정 토큰 생성 함수
+const generateResetToken = () => {
+  return crypto.randomBytes(32).toString('hex');
+};
 
 // 회원 가입
 export const signup = asyncHandler(async (req, res) => {
@@ -100,7 +118,7 @@ export const updateUser = asyncHandler(async (req, res) => {
   }
   const updatedUser = await User.updateOne({ _id: userId }, { $set: rest });
   if (updatedUser.modifiedCount === 0) {
-    throw new InternalServerError('서버 오류입니다.');
+    throw new InternalServerError('회원 정보 수정 중 문제가 발생했습니다.');
   }
 
   res.json({ message: '회원 정보가 수정되었습니다.' });
@@ -133,13 +151,86 @@ export const deleteUser = asyncHandler(async (req, res) => {
 
   res.json({ message: '사용자 데이터가 삭제되었습니다.' });
 });
-
-// 회원 찾기(이메일)
 export const findUser = asyncHandler(async (req, res) => {
-  const { email } = req.body;
-  const user = await User.findOne({ email });
+  const { phoneNumber } = req.query; // req.query에서 phoneNumber 가져오기
+  const user = await User.findOne({ phoneNumber });
+  if (!user) {
+    throw new NotFoundError('사용자를 찾을 수 없습니다.');
+  }
+  res.json({ email: user.email }); // 필요한 정보만 응답으로 전송
+});
+/*
+// 회원 찾기(전화번호)
+export const findUser = asyncHandler(async (req, res) => {
+  const { phoneNumber } = req.body;
+  const user = await User.findOne({ phoneNumber });
   if (!user) {
     throw new NotFoundError('사용자를 찾을 수 없습니다.');
   }
   res.json(user);
+});
+*/
+// 비밀번호 재설정 요청 처리
+export const forgotPassword = asyncHandler(async (req, res) => {
+  const { email } = req.body;
+
+  const user = await User.findOne({ email });
+  if (!user) {
+    throw new NotFoundError('사용자를 찾을 수 없습니다.');
+  }
+
+  const resetToken = generateResetToken();
+  const resetPasswordExpires = Date.now() + 3600000; // 1시간 유효
+
+  user.resetPasswordToken = resetToken;
+  user.resetPasswordExpires = resetPasswordExpires;
+  await user.save();
+
+  const resetUrl = `http://localhost:${PORT}/reset-password/${resetToken}`;
+  const params = {
+    Source: 'shin08250867@gmail.com', // 검증된 이메일 주소
+    Destination: {
+      ToAddresses: [email],
+    },
+    Message: {
+      Subject: {
+        Data: '비밀번호 재설정 요청',
+      },
+      Body: {
+        Html: {
+          Data: `<p>다음 링크를 클릭하여 비밀번호를 재설정하세요:</p><p><a href="${resetUrl}">${resetUrl}</a></p>`,
+        },
+      },
+    },
+  };
+
+  try {
+    await ses.sendEmail(params).promise();
+    res.json({ message: '비밀번호 재설정 이메일이 전송되었습니다.' });
+  } catch (error) {
+    console.error('Error sending email:', error);
+    throw new InternalServerError('이메일 전송 중 오류가 발생했습니다.');
+  }
+});
+
+// 비밀번호 재설정 처리
+export const resetPassword = asyncHandler(async (req, res) => {
+  const { token } = req.params;
+  const { newPassword } = req.body;
+
+  const user = await User.findOne({
+    resetPasswordToken: token,
+    resetPasswordExpires: { $gt: Date.now() },
+  });
+
+  if (!user) {
+    throw new BadRequestError('토큰이 유효하지 않거나 만료되었습니다.');
+  }
+
+  user.password = hashPassword(newPassword);
+  user.resetPasswordToken = undefined;
+  user.resetPasswordExpires = undefined;
+  await user.save();
+
+  res.json({ message: '비밀번호가 성공적으로 변경되었습니다.' });
 });

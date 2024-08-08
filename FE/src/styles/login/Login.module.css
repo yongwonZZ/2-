@@ -1,4 +1,4 @@
-/* styles/Login.css */
+/* styles/Login.module.css */
 .login-container {
   display: flex;
   flex-direction: column;
@@ -13,7 +13,7 @@
   border-radius: 10px;
 }
 
-.login-form {
+form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,7 +22,33 @@
   margin: 0 auto;
 }
 
-.email-input,
+.email-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+
+.email-input {
+  width: 100%;
+  margin: 5px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  padding-right: 30px; /* Adjust space for the button */
+}
+
+.email-submit {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 18px;
+  cursor: pointer;
+}
+
 .password-input {
   width: 100%;
   margin: 5px 0;
@@ -58,4 +84,32 @@
 .error {
   color: red;
   margin: 10px 0;
+}
+
+.link-container {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.link-text {
+  margin-right: 5px;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  margin: 0 2px;
+}
+
+.bold-text {
+  font-weight: bold;
+}
+
+.separator {
+  margin: 0 5px;
 }
