@@ -151,7 +151,15 @@ export const deleteUser = asyncHandler(async (req, res) => {
 
   res.json({ message: '사용자 데이터가 삭제되었습니다.' });
 });
-
+export const findUser = asyncHandler(async (req, res) => {
+  const { phoneNumber } = req.query; // req.query에서 phoneNumber 가져오기
+  const user = await User.findOne({ phoneNumber });
+  if (!user) {
+    throw new NotFoundError('사용자를 찾을 수 없습니다.');
+  }
+  res.json({ email: user.email }); // 필요한 정보만 응답으로 전송
+});
+/*
 // 회원 찾기(전화번호)
 export const findUser = asyncHandler(async (req, res) => {
   const { phoneNumber } = req.body;
@@ -161,7 +169,7 @@ export const findUser = asyncHandler(async (req, res) => {
   }
   res.json(user);
 });
-
+*/
 // 비밀번호 재설정 요청 처리
 export const forgotPassword = asyncHandler(async (req, res) => {
   const { email } = req.body;

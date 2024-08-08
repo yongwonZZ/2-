@@ -99,35 +99,35 @@ const Login: React.FC = () => {
               )}
             </div>
             {showPasswordField && (
-                <>
-                  <input
-                      className={styles["password-input"]}
-                      id="password-input"
-                      type="password"
-                      name="password"
-                      placeholder="비밀번호 입력"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      required
-                      autoComplete="current-password"
-                  />
-                  <div className={styles["button-container"]}>
-                    <button className={styles.button} type="submit">
-                      로그인
-                    </button>
-                  </div>
-                  <div className={styles["link-container"]}>
-                    <p className={styles["link-text"]}>아직 회원이 아니신가요?</p>
-                    <button
-                        className={`${styles["link-button"]} ${styles["bold-text"]}`}
-                        type="button"
-                        onClick={() => navigate("../createAccount")}
-                    >
-                      회원가입
-                    </button>
-                  </div>
-                </>
+                <input
+                    className={styles["password-input"]}
+                    id="password-input"
+                    type="password"
+                    name="password"
+                    placeholder="비밀번호 입력"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    autoComplete="current-password"
+                />
             )}
+            <div className={styles["button-container"]}>
+              {showPasswordField && (
+                  <button className={styles.button} type="submit">
+                    로그인
+                  </button>
+              )}
+            </div>
+            <div className={styles["link-container"]}>
+              <p className={styles["link-text"]}>아직 회원이 아니신가요?</p>
+              <button
+                  className={`${styles["link-button"]} ${styles["bold-text"]}`}
+                  type="button"
+                  onClick={() => navigate("../createAccount")}
+              >
+                회원가입
+              </button>
+            </div>
             <div className={styles["link-container"]}>
               {loginAttempts >= 3 && (
                   <>
