@@ -9,34 +9,6 @@
   border-bottom: 1px solid white;
 }
 
-/* hover 시 애니메이션 keyframe 정의 */
-@-webkit-keyframes shadow-drop-bottom {
-  0% {
-    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-  }
-  100% {
-    -webkit-box-shadow: 0 12px 20px -12px rgba(0, 0, 0, 0.35);
-    box-shadow: 0 12px 20px -12px rgba(0, 0, 0, 0.35);
-  }
-}
-@keyframes shadow-drop-bottom {
-  0% {
-    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-  }
-  100% {
-    -webkit-box-shadow: 0 12px 20px -12px rgba(0, 0, 0, 0.35);
-    box-shadow: 0 12px 20px -12px rgba(0, 0, 0, 0.35);
-  }
-}
-
-.link-item:hover {
-  -webkit-animation: shadow-drop-bottom 0.4s
-    cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-  animation: shadow-drop-bottom 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-}
-
 .item-left {
   display: flex;
   align-items: center;

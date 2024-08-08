@@ -20,7 +20,7 @@ function App() {
 
   useEffect(() => {
     const pageTitle = getPageName(location.pathname);
-    document.title = `${pageTitle} | SkyMaestro`; // 경로 변경될 때마다 타이틀 업데이트
+    document.title = `SkyMaestro | ${pageTitle}`; // 경로 변경될 때마다 타이틀 업데이트
   }, [location.pathname]);
 
   return (
