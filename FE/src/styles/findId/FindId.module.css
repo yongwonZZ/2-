@@ -1,28 +1,24 @@
-/* styles/myPage/EditProfile.module.css */
-.editProfileContainer {
+.findIdContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
-    width: 100%;
     padding: 20px;
-    box-sizing: border-box;
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
 }
 
-form {
+.form {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
     max-width: 400px;
-    margin: 0 auto;
 }
 
-input[type="password"] {
+.input {
     width: 100%;
     margin: 10px 0;
     padding: 10px;
@@ -31,9 +27,19 @@ input[type="password"] {
     box-sizing: border-box;
 }
 
+.button {
+    background-color: #011759;
+    color: white;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
 
-button:hover {
-    background-color: rgb(0, 20, 77);
+.button:hover {
+    background-color: #000f4d;
 }
 
 .error {
@@ -41,7 +47,8 @@ button:hover {
     margin: 10px 0;
 }
 
-.success {
-    color: green;
-    margin: 10px 0;
+.result {
+    margin-top: 20px;
+    color: #011759;
+    font-weight: bold;
 }
