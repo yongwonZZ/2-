@@ -1,8 +1,10 @@
 .container {
   width: 100%;
   height: 100vh;
-  max-width: 400px;
+  /* padding-top: 60px; */
+  /* max-width: 500px; */
   margin: 0 auto;
+  box-sizing: border-box;
 }
 a {
   color: inherit;
@@ -13,6 +15,8 @@ a {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  max-width: 500px;
+  margin: 0 auto;
 }
 .update-time {
   text-align: end;
@@ -21,6 +25,8 @@ a {
   padding: 0 20px 5px 0;
 }
 .parking-header {
+  width: 100%;
+  /* position: fixed; */
   font-size: 18px;
   font-weight: 700;
   align-items: center;
@@ -41,10 +47,10 @@ a {
   justify-content: space-between;
   color: #007aff;
 }
-.parking-list-item.pos {
+.pos {
   color: #007aff;
 }
 
-.parking-list-item.impos {
+.impos {
   color: red;
 }
