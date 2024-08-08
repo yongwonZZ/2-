@@ -92,6 +92,7 @@ td {
   background-color: transparent;
   border: none;
   padding: 5px 0;
+  color: #000;
 }
 .btn-active {
   color: #027ffe;

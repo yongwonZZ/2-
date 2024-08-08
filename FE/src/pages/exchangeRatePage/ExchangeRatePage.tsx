@@ -110,6 +110,7 @@ const ExchangeRatePage = () => {
             통화
           </div>
         }
+        centerContent={<div>통화</div>}
       />
       <div className={styles["country-list"]}>
         {exchangeRates.map((item, index) => (
