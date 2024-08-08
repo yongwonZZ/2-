@@ -1,23 +1,36 @@
 import React from "react";
-import { useState, ChangeEvent, KeyboardEvent } from "react";
+import { useState, useEffect, ChangeEvent, KeyboardEvent } from "react";
 import styles from "../../../styles/airportFashion/airportFashionPost/comments.module.css";
 import Comments from "./Comments";
+import { saveComments, loadComments } from "./commentUtils"; // 추가
+
 import { IoCloseOutline as IconClose } from "react-icons/io5";
 import { GoArrowUp } from "react-icons/go";
 
 interface PostCommentProps {
   onClose: () => void;
   updateCommentCount: (count: number) => void;
-  updateFirstComment: (comment: string) => void;
+  updateFirstComment: (comment: { text: string; userName: string }) => void;
+  userName: string;
+  postId: string;
 }
 
 const PostComment: React.FC<PostCommentProps> = ({
   onClose,
   updateCommentCount,
   updateFirstComment,
+  userName,
+  postId,
 }) => {
   const [commentText, setCommentText] = useState("");
-  const [comments, setComments] = useState<string[]>([]);
+  const [comments, setComments] = useState<
+    { userName: string; text: string }[]
+  >([]);
+
+  useEffect(() => {
+    const initialComments = loadComments(postId);
+    setComments(initialComments);
+  }, [postId]);
 
   const handleCommentChange = (e: ChangeEvent<HTMLInputElement>) => {
     setCommentText(e.target.value);
@@ -25,7 +38,7 @@ const PostComment: React.FC<PostCommentProps> = ({
 
   const handleCommentSubmit = () => {
     if (commentText.trim()) {
-      const newComment = commentText.trim();
+      const newComment = { userName, text: commentText.trim() };
       const updatedComments = [...comments, newComment];
       setComments(updatedComments);
       setCommentText("");
@@ -33,6 +46,7 @@ const PostComment: React.FC<PostCommentProps> = ({
       if (updatedComments.length === 1) {
         updateFirstComment(newComment);
       }
+      saveComments(postId, updatedComments);
     }
   };
 

@@ -4,19 +4,22 @@ import { BsPersonFill as IconUserProfile } from "react-icons/bs";
 import FormatDate from "../../../components/FormatDate";
 
 interface CommentsProps {
-  comment: string;
+  comment: {
+    userName: string;
+    text: string;
+  };
 }
 
 const Comments: React.FC<CommentsProps> = ({ comment }) => {
-  const currentDate = new Date();
+  const currentDate = new Date().toISOString();
 
   return (
     <div>
       <div className={styles["user-comment-container"]}>
         <IconUserProfile size={35} />
         <div className={styles["comments"]}>
-          <p>토마토마토</p>
-          <p>{comment}</p>
+          <p>{comment.userName}</p>
+          <p>{comment.text}</p>
         </div>
       </div>
       <p className={styles["date"]}>
