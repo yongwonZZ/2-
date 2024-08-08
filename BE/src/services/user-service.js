@@ -179,6 +179,7 @@ export const forgotPassword = asyncHandler(async (req, res) => {
   await user.save();
 
   const resetUrl = `http://localhost:${PORT}/reset-password/${resetToken}`;
+  //const resetUrl = `http://http://34.22.80.21//reset-password/${resetToken}`; 로 바꿔줘야
   const params = {
     Source: 'shin08250867@gmail.com', // 검증된 이메일 주소
     Destination: {
