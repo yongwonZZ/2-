@@ -40,6 +40,7 @@ export const getBoard = asyncHandler(async (req, res) => {
   const { id } = req.params;
   const board = await Board.findById(id);
   if (!board) throw new NotFoundError('해당 게시글이 존재하지 않습니다.');
+});
 
 // 프리사인드 URL 생성
 export const generatePresignedUrl = asyncHandler(async (req, res) => {
