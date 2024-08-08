@@ -98,7 +98,7 @@ function AirlineAllPage() {
           top: 60,
           height: 30,
           backgroundColor: "#fff",
-          zIndex: 1001,
+          zIndex: 101,
         }}
       ></div>
       <AirlineLastUpdated dataUpdatedAt={dataUpdatedAt} refetch={refetch} />
