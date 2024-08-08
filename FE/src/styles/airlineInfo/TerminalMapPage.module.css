@@ -23,8 +23,12 @@
   font-size: 16px;
   font-weight: 700;
   background-color: transparent;
+  color: var(--dark);
   border: none;
   cursor: pointer;
+}
+.map-btn:hover {
+  color: #fff;
 }
 .map-name {
   margin-top: 10px;
