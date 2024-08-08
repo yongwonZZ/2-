@@ -46,11 +46,32 @@ const PostUpload: React.FC = () => {
   };
 
   const handlePostSubmit = () => {
+    // 로컬 스토리지에서 사용자 토큰 가져오기
+    const userToken = localStorage.getItem("token");
+
+    if (!userToken) {
+      alert("로그인 후에만 게시글을 등록할 수 있습니다.");
+      return;
+    }
+
     if (!selectedStyle) {
       alert("스타일을 선택해주세요.");
       return;
     }
+
+    // 게시글 고유 아이디 생성
+    const postId = Date.now().toString();
+
+    // 로컬 스토리지 사용자 이름 가져오기
+    const userString = localStorage.getItem("user");
+    const username: string = userString
+      ? JSON.parse(userString).userName ?? ""
+      : "";
+
     const newPost = {
+      id: postId,
+      token: userToken, // 인증 토큰
+      name: username,
       images: imageURLs,
       text,
       style: selectedStyle,
