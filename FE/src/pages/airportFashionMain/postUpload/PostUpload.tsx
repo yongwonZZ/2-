@@ -1,6 +1,4 @@
 import React from "react";
-import axios from "axios";
-
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import styles from "../../../styles/airportFashion/airportFashionPost/postUpload.module.css";
@@ -28,47 +26,13 @@ const PostUpload: React.FC = () => {
   // 이미지 파일 선택
   const [imageURLs, setImageURLs] = useState<string[]>([]);
   const [selectedStyle, setSelectedStyle] = useState<string>("");
-  const [imageFiles, setImageFiles] = useState<File[]>([]);
 
-  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
-    if (files) {
-      const fileArray = Array.from(files);
-      setImageFiles(fileArray);
-
-      // 이미지 미리보기  URL 생성
-      const urls = fileArray.map((file) => URL.createObjectURL(file));
-      setImageURLs(urls);
-
-      // Presigned URL을 받아서 S3에 업로드
-      for (const file of fileArray) {
-        const fileName = file.name;
-        const fileType = file.type;
-
-        try {
-          const presignedURLResponse = await axios.get(
-            "http://localhost:5000/api/boards/presigned-url",
-            {
-              params: {
-                fileName: encodeURIComponent(fileName),
-                fileType: encodeURIComponent(fileType),
-              },
-            }
-          );
-
-          const { uploadURL } = presignedURLResponse.data;
-
-          await axios.put(uploadURL, file, {
-            headers: {
-              "Content-Type": fileType,
-            },
-          });
-        } catch (error) {
-          console.error("Error uploading file:", error);
-          alert("파일 업로드에 실패했습니다. 다시 시도해주세요.");
-          return;
-        }
-      }
+    if (files && files[0]) {
+      const file = files[0];
+      const imageURL = URL.createObjectURL(file);
+      setImageURLs([...imageURLs, imageURL]);
     }
   };
 
@@ -114,25 +78,11 @@ const PostUpload: React.FC = () => {
       date: new Date().toISOString(),
     };
 
-    try {
-      const response = await axios.post(
-        "http://localhost:5000/api/boards",
-        newPost,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${userToken}`,
-          },
-        }
-      );
-
-      console.log("Response Status:", response.status);
-
-      navigate("/airportFashion");
-    } catch (error) {
-      console.error("There was a problem with the post operation:", error);
-      alert("게시글 작성에 실패했습니다. 다시 시도해주세요.");
-    }
+    // 일단 로컬스토리지에 저장 -> 추후 db 연결
+    const existingPosts = JSON.parse(localStorage.getItem("posts") || "[]");
+    existingPosts.push(newPost);
+    localStorage.setItem("posts", JSON.stringify(existingPosts));
+    navigate("/airportFashion", { state: newPost });
   };
 
   return (
