@@ -47,6 +47,7 @@ const FacilitiesPage: React.FC = () => {
     fetchData();
   }, [fetchData]);
 
+  /** 무한스크롤  */
   useEffect(() => {
     if (observer.current) observer.current.disconnect();
 
@@ -83,9 +84,6 @@ const FacilitiesPage: React.FC = () => {
     },
     []
   );
-  useEffect(() => {
-    console.log(filteredFacilities);
-  }, [filteredFacilities]);
 
   return (
     <>
