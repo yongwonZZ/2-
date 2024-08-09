@@ -12,7 +12,7 @@ const FindPassword: React.FC = () => {
         try {
             // 여기에 비밀번호 찾기 로직을 추가합니다.
             // 예: API 요청을 통해 이메일로 비밀번호 찾기
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/find-password`, {
+            const response = await fetch(`${process.env.VM_REACT_APP_API_URL}/find-password`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

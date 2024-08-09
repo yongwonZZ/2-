@@ -137,13 +137,13 @@ const LookDetails: React.FC = () => {
           </div>
           <button onClick={() => setIsDeleteMenuOpen(!isDeleteMenuOpen)}>
             <IconKebabMenu size={15} />
+            {isDeleteMenuOpen && (
+              <div className={styles["delete-menu"]}>
+                <button onClick={handleDeleteClick}>삭제</button>
+                <button onClick={() => setIsDeleteMenuOpen(false)}>취소</button>
+              </div>
+            )}
           </button>
-          {isDeleteMenuOpen && (
-            <div className={styles["delete-menu"]}>
-              <button onClick={handleDeleteClick}>삭제</button>
-              <button onClick={() => setIsDeleteMenuOpen(false)}>취소</button>
-            </div>
-          )}
         </div>
       </div>
       <div className={styles["fashion-image"]}>
