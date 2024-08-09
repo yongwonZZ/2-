@@ -1,6 +1,7 @@
 .wrapper {
   width: 100%;
-  max-width: 400px; /* width는 0~400px 범위 */
+  max-width: var(--media-tab);
+  min-height: 100%;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -15,7 +16,7 @@
 
 .icon-prev:hover,
 .icon-share:hover {
-  color: #4d67fa;
+  color: var(--color-base);
 }
 
 .icon-departure {
@@ -23,31 +24,39 @@
 }
 
 .card {
-  padding: 16px 8px;
-  font-size: 16px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  font-size: var(--font-sm);
+  border-bottom: 1px solid #ccc;
+  background-color: #fff;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
+/* 출발 항공편일 때는 역순 정렬 */
+.reverse {
+  flex-direction: row-reverse;
+}
+
 .section {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.section img {
+  width: 96px;
+  height: auto;
 }
 
 .btn {
-  position: absolute;
+  position: sticky;
   bottom: 60px;
-  width: inherit;
-  max-width: 400px;
   padding: 20px 0;
-  background-color: rgb(1, 23, 89);
-  transition: background-color 0.2s ease;
+  max-width: inherit;
+  background-color: var(--color-dark);
+  font-size: var(--font-sm);
   color: white;
   text-decoration: none;
-}
-
-.btn:hover {
-  background-color: rgba(1, 23, 89, 0.8);
 }
