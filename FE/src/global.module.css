@@ -23,6 +23,6 @@
 }
 
 button:hover {
-  /* background-color: inherit !important; */
-  color: inherit !important;
+  background-color: inherit !important;
+  color: #3399ff !important;
 }
