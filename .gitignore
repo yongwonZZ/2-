@@ -1,3 +1,5 @@
+# .gitignre
+
 #
 /BE/node_modules
 /BE/.env
