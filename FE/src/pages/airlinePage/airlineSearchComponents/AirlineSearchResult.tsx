@@ -1,5 +1,6 @@
 import { searchResultType } from "./searchResultType";
 import AirlineSearchResultCard from "./AirlineSearchResultCard";
+import styles from "../../../styles/airlinePage/airlineSerchComponents/AirlineSearchResult.module.css";
 
 type AirlineSearchResultProps = {
   data?: searchResultType[];
@@ -14,20 +15,23 @@ function AirlineSearchResult({
 }: AirlineSearchResultProps) {
   return (
     <div>
-      {isLoading && <div>데이터를 불러오는 중이에요..!</div>}
+      {isLoading && (
+        <div className={styles.info}>데이터를 불러오는 중이에요..!</div>
+      )}
       {error && (
-        <div>
+        <div className={styles.info}>
           <p>데이터를 가져오는 데 실패했어요...</p>
           <p>에러 메시지: {error.message}</p>
         </div>
       )}
       {typeof data === "undefined" ? (
-        <div>검색어를 입력해주세요!</div>
+        <div className={styles.info}>검색어를 입력해주세요!</div>
       ) : data.length === 0 ? (
-        <div>
+        <div className={styles.info}>
           <p>앗..! 검색 결과가 없습니다.</p>
-          <p>다른 검색어를 입력하거나</p>
-          <p>우측 상단의 검색어 필터를 확인해 보세요.</p>
+          <p>
+            다른 검색어를 입력하거나 우측 상단의 검색어 필터를 확인해 보세요.
+          </p>
         </div>
       ) : (
         data.map(
