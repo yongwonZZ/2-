@@ -4,6 +4,7 @@ import Header from "../../../components/Header";
 import styles from "../../../styles/airlineInfo/ConjestionPage.module.css";
 import { fetchCongestionData } from "../getInfoData/getCongestionData";
 import { Link } from "react-router-dom";
+import { LuSettings2 } from "react-icons/lu";
 
 interface Congestion {
   adate: string;
@@ -116,18 +117,20 @@ const CongestionPage: React.FC = () => {
 
   return (
     <>
-      <Header
-        leftContent={
-          <div className={styles["conjestion-header"]}>
-            <Link to={"/"}>
-              <FaChevronLeft style={{ fontSize: "22px", cursor: "pointer" }} />
-            </Link>
-            {day} {into === "in" ? "입국" : "출국"}장 {terminal}
-          </div>
-        }
-        rightContent={<FaFilter onClick={handleToggle} />}
-      />
-      <div className={styles.container + " " + styles.conjestion}>
+      <div className={styles["container"] + " " + styles["conjestion"]}>
+        <Header
+          leftContent={
+            <div className={styles["conjestion-header"]}>
+              <Link to={"/"}>
+                <FaChevronLeft
+                  style={{ fontSize: "22px", cursor: "pointer" }}
+                />
+              </Link>
+              {day} {into === "in" ? "입국" : "출국"}장 {terminal}
+            </div>
+          }
+          rightContent={<LuSettings2 onClick={handleToggle} />}
+        />
         {isToggled && (
           <div className={styles["option-controller"]}>
             <div className={styles["option-list"]}>

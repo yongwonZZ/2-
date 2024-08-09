@@ -1,6 +1,6 @@
 .wrapper {
   width: 100%;
-  max-width: 400px; /* width는 0~400px 범위 */
+  max-width: var(--media-tab);
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -10,20 +10,29 @@
 .header-container--left {
   display: flex;
   align-items: center;
+  font-size: var(--font-md);
   gap: 24px;
 }
 
 .icon-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   outline: none;
 }
 
 .icon-prev {
-  font-size: 22px;
+  font-size: var(--font-md);
   cursor: pointer;
 }
 
+.icon-prev:hover,
+.icon-switch:hover {
+  color: var(--color-base);
+}
+
 .icon-switch {
-  font-size: 16px;
+  font-size: var(--font-md);
   font-weight: 700;
   cursor: pointer;
 }

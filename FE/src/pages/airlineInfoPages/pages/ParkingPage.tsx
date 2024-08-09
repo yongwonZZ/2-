@@ -57,48 +57,52 @@ const ParkingPage: React.FC = () => {
   }, [shortTimeParkingArea]);
 
   return (
-    <div className={styles.container}>
-      <Header
-        leftContent={
-          <div className={styles["parking-header"]}>
-            <Link to={"/"}>
-              <FaChevronLeft style={{ fontSize: "22px" }} />
-            </Link>
-            주차 {filterToggle ? "T2" : "T1"}
-            <FaCaretDown onClick={() => setFilterToggle(!filterToggle)} />
+    <>
+      <div className={styles["container"]}>
+        <Header
+          leftContent={
+            <div className={styles["parking-header"]}>
+              <Link to={"/"}>
+                <FaChevronLeft style={{ fontSize: "22px" }} />
+              </Link>
+              주차 {filterToggle ? "T2" : "T1"}
+              <FaCaretDown onClick={() => setFilterToggle(!filterToggle)} />
+            </div>
+          }
+        />
+        {/* <div className={styles["update-time"]}>마지막 업데이트</div> */}
+        <div className={styles["update-time"]}>
+          마지막 업데이트 {updateTime}
+        </div>
+        <div className={`${styles["parking"]} ${styles["short-area"]}`}>
+          <h2 className={styles["parking-header"]}>단기 주차장</h2>
+          <div className={styles["fee-info"]}>
+            <div>기본 30분 1,200원</div>
+            <div>추가 15분당 600원</div>
+            <div>1일권 24,000원</div>
           </div>
-        }
-      />
-      {/* <div className={styles["update-time"]}>마지막 업데이트</div> */}
-      <div className={styles["update-time"]}>마지막 업데이트 {updateTime}</div>
-      <div className={`${styles.parking} ${styles["short-area"]}`}>
-        <h2 className={styles["parking-header"]}>단기 주차장</h2>
-        <div className={styles["fee-info"]}>
-          <div>기본 30분 1,200원</div>
-          <div>추가 15분당 600원</div>
-          <div>1일권 24,000원</div>
+          {filterToggle
+            ? t2Area.map((item, index) => (
+                <ParkingAreaItem key={index} data={item} />
+              ))
+            : t1Area.map((item, index) => (
+                <ParkingAreaItem key={index} data={item} />
+              ))}
         </div>
-        {filterToggle
-          ? t2Area.map((item, index) => (
-              <ParkingAreaItem key={index} data={item} />
-            ))
-          : t1Area.map((item, index) => (
-              <ParkingAreaItem key={index} data={item} />
-            ))}
-      </div>
-      <div className={`${styles.parking} ${styles["long-area"]}`}>
-        <h2 className={styles["parking-header"]}>장기 주차장</h2>
-        <div className={styles["fee-info"]}>
-          <div>소형 시간당 1,000원</div>
-          <div>소형 1일권 9,000원</div>
-          <div>대형 30분당 1,200원</div>
-          <div>대형 1일권 12,000원</div>
+        <div className={`${styles["parking"]} ${styles["long-area"]}`}>
+          <h2 className={styles["parking-header"]}>장기 주차장</h2>
+          <div className={styles["fee-info"]}>
+            <div>소형 시간당 1,000원</div>
+            <div>소형 1일권 9,000원</div>
+            <div>대형 30분당 1,200원</div>
+            <div>대형 1일권 12,000원</div>
+          </div>
+          {longTimeParkingArea.map((item, index) => (
+            <ParkingAreaItem key={index} data={item} />
+          ))}
         </div>
-        {longTimeParkingArea.map((item, index) => (
-          <ParkingAreaItem key={index} data={item} />
-        ))}
       </div>
-    </div>
+    </>
   );
 };
 

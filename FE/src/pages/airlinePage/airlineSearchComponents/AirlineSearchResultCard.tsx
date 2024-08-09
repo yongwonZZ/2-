@@ -1,6 +1,7 @@
 import { searchResultType } from "./searchResultType";
 import { formatTime, formatDateString } from "../../../utils/formatTime";
 import { terminal2 } from "../airlineTerminals";
+import { terminal1LogosUrl, terminal2LogosUrl } from "../airlineTerminals";
 import styles from "../../../styles/airlinePage/airlineSerchComponents/AirlineSearchResultCard.module.css";
 import { useNavigate } from "react-router-dom";
 import { MdOutlineSubdirectoryArrowRight as ArrowRight } from "react-icons/md";
@@ -31,20 +32,37 @@ AirlineSearchResultCard.Master = ({ item }: Props) => {
         <span>[{item.gatenumber}]</span>
       </div>
       <div className={styles["section-sm"]}>
-        <span style={{ fontSize: 12 }}>
-          {formatDateString(item.scheduleDateTime)}
-        </span>
+        <span>{formatDateString(item.scheduleDateTime)}</span>
         <span className={styles["section-strikethrough"]}>
-          {formatTime(item.scheduleDateTime)}
+          {item.scheduleDateTime !== item.estimatedDateTime &&
+            formatTime(item.scheduleDateTime)}
         </span>
         <span className={styles["section-blue"]}>
           {formatTime(item.estimatedDateTime)}
         </span>
       </div>
       <div className={styles["section-lg"]}>
+        <img
+          src={
+            terminal2.includes(item.airline)
+              ? terminal2LogosUrl[item.airline]
+              : terminal1LogosUrl[item.airline]
+          }
+          alt="항공사로고"
+        />
         <span>{item.airline}</span>
         <span>{item.flightId}</span>
-        <span className={styles["section-blue"]}>{item.remark}</span>
+        <span
+          className={
+            item.remark === "결항"
+              ? styles["section-cancelled"]
+              : item.remark === "도착" || item.remark === "출발"
+              ? styles["section-blue"]
+              : styles["section-delayed"]
+          }
+        >
+          {item.remark}
+        </span>
       </div>
       <div className={styles["section-lg"]}>
         <span>{item.airport}</span>
@@ -61,11 +79,21 @@ AirlineSearchResultCard.Master = ({ item }: Props) => {
 AirlineSearchResultCard.Slave = ({ item }: Props) => {
   return (
     <>
-      <ArrowRight />
-      <div className={styles["section-lg"]}>
-        <span>코드쉐어</span>
+      <div className={styles["section-sm"]}>
+        <ArrowRight />
       </div>
       <div className={styles["section-sm"]}>
+        <span>코드쉐어</span>
+      </div>
+      <div className={styles["section-lg"]}>
+        <img
+          src={
+            terminal2.includes(item.airline)
+              ? terminal2LogosUrl[item.airline]
+              : terminal1LogosUrl[item.airline]
+          }
+          alt="항공사로고"
+        />
         <span>{item.flightId}</span>
       </div>
     </>
