@@ -14,7 +14,7 @@ export const fetchExchangeRate = async (
   type: string
 ): Promise<ExchangeRate[]> => {
   try {
-    console.log(`Fetching exchange rates for ${searchdate}`);
+    // console.log(`Fetching exchange rates for ${searchdate}`);
     const response = await axios.get(
       `${BASE_URL}?authkey=${API_KEY}&searchdate=${searchdate}&data=AP01`
     );
@@ -31,7 +31,7 @@ const COUNTRY_SETVICE_KEY = process.env.REACT_APP_COUNTRY_SERVICE_KEY;
 export const fetchCountryImage = async (country: string): Promise<string> => {
   try {
     const encodedCountry = encodeURIComponent(country);
-    console.log(`Fetching image for country: ${country}`);
+    // console.log(`Fetching image for country: ${country}`);
     const response = await axios.get(
       `${COUNTRY_URL}?serviceKey=${COUNTRY_SETVICE_KEY}&pageNo=1&numOfRows=10&cond[country_nm::EQ]=${encodedCountry}`
     );
