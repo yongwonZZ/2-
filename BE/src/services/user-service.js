@@ -162,7 +162,7 @@ export const findUser = asyncHandler(async (req, res) => {
 /*
 // 회원 찾기(전화번호)
 export const findUser = asyncHandler(async (req, res) => {
-  const { phoneNumber } = req.body;
+  const { phoneNumber } = req.query;
   const user = await User.findOne({ phoneNumber });
   if (!user) {
     throw new NotFoundError('사용자를 찾을 수 없습니다.');
@@ -187,6 +187,7 @@ export const forgotPassword = asyncHandler(async (req, res) => {
   await user.save();
 
   const resetUrl = `http://localhost:${PORT}/reset-password/${resetToken}`;
+  //const resetUrl = `http://http://34.22.80.21//reset-password/${resetToken}`; 로 바꿔줘야
   const params = {
     Source: 'shin08250867@gmail.com', // 검증된 이메일 주소
     Destination: {
