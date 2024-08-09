@@ -23,8 +23,15 @@ const __dirname = path.dirname(__filename);
 
 app.use(
   cors({
-    origin: '*', // 출처 허용 옵션
-    credentials: true, // 사용자 인증이 필요한 리소스(쿠키 등) 접근
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true);
+      // HTTP와 HTTPS에서 오는 요청을 모두 허용
+      if (origin.startsWith('http://') || origin.startsWith('https://')) {
+        return callback(null, true);
+      }
+      callback(new Error('Not allowed by CORS'));
+    },
+    credentials: true,
   })
 );
 
