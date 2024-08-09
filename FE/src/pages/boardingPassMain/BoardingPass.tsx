@@ -6,13 +6,18 @@ import BoardingPassTicket from "./BoardingPassTicket";
 interface Ticket {
     airline: string;
     flightId: string;
-    departure: string;
-    arrival: string;
-    departureTime: string;
-    arrivalTime: string;
-    gate: string;
-    seat: string;
-    baggage: string;
+    airport: string;
+    airportCode: string;
+    carousel: string;
+    codeshare: string;
+    estimatedDateTime: string;
+    exitnumber: string;
+    gatenumber: string;
+    remark: string;
+    scheduleDateTime: string;
+    terminalid: string;
+    direction: string; // 추가된 필드: 출발 또는 도착 정보
+    chkinrange: string; // 체크인 범위
 }
 
 const BoardingPass: React.FC = () => {
@@ -25,12 +30,12 @@ const BoardingPass: React.FC = () => {
     }, []);
 
     const handleTicketClick = (index: number) => {
-        navigate(`/boardingPass/${index}`);
+        navigate(`/boardingPass/${index}`, { state: { ticket: tickets[index] } });
     };
 
     return (
         <>
-            <Header leftContent={"보딩패스"} />
+            <Header centerContent={"보딩패스"} />
             {tickets.map((ticket, index) => (
                 <div key={index} onClick={() => handleTicketClick(index)}>
                     <BoardingPassTicket ticket={ticket} />

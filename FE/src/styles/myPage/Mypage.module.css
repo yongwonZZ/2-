@@ -1,6 +1,4 @@
-/* MyPage.module.css */
-/* 카멜케이스로 변경 모듈 - 은 없어야함*/
-.mypage-container {
+.mypageContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -8,119 +6,178 @@
     width: 100%;
     padding: 20px;
     box-sizing: border-box;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    background-color: #ffffff; /* 배경색을 흰색으로 변경 */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* 그림자 밝기 감소 */
+    border-radius: 12px; /* 둥근 모서리 */
     margin: 20px auto;
+    max-width: 800px;
+    font-family: 'Arial', sans-serif;
 }
 
-.profile-container {
+.profileContainer {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #f8f9fa;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9; /* 프로필 섹션 배경을 약간 밝게 */
+    padding: 15px; /* 간격 조정 */
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* 그림자 밝기 감소 */
     width: 100%;
-    max-width: 600px;
-    margin-bottom: 20px;
+    margin-bottom: 15px; /* 간격 조정 */
+    position: relative;
+    transition: transform 0.3s, box-shadow 0.3s; /* 호버 애니메이션 추가 */
 }
 
-.profile-image {
-    width: 50px;
+.profileContainer:hover {
+    transform: translateY(-3px); /* 호버 시 약간의 움직임 */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* 호버 시 그림자 강화 */
+}
+
+.profileImage {
+    width: 50px; /* 사이즈 살짝 조정 */
     height: 50px;
-    background-color: #87ceeb; /* 하늘색 배경 */
-    border-radius: 50%; /* 둥근 원 */
-    flex-shrink: 0;
+    background-color: #6a6a6a;
+    border-radius: 100%;
 }
 
-.profile-info {
+.profileInfo {
     flex-grow: 1;
-    margin-left: 20px;
+    margin-left: 15px; /* 간격 조정 */
 }
 
 .nickname {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     margin: 0;
+    font-weight: bold;
+    color: #333;
 }
 
-.edit-info {
-    font-size: 1rem;
-    color: #555;
-    margin: 5px 0 0 0;
-}
-
-.move-button {
-    background-color: rgb(1, 23, 89);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+.editInfo {
+    font-size: 0.95rem; /* 크기 조정 */
+    color: #007bff;
+    margin: 4px 0 0 0;
     cursor: pointer;
+    transition: color 0.3s; /* 색상 변경 애니메이션 추가 */
 }
 
-.move-button:hover {
-    background-color: rgb(0, 20, 77);
+.editInfo:hover {
+    color: #0056b3; /* 호버 시 색상 변경 */
 }
 
-.ticket-container {
-    background-color: #f8f9fa;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
+.ticketContainer {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 12px;
     width: 100%;
-    max-width: 600px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.section-container {
-    background-color: #f8f9fa;
-    padding: 20px;
-    border-radius: 10px;
+.ticketContainer:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.ticketHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
-    max-width: 600px;
+    cursor: pointer;
+    padding-bottom: 10px; /* 밑줄과의 간격 */
+    border-bottom: 1px solid transparent; /* 기본적으로는 투명 */
+    transition: border-color 0.3s ease;
+}
+.ticketHeader.active {
+    border-bottom: 1px solid #007bff; /* 활성화 시 밑줄 색 */
+}
+.sectionContainer {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 12px;
+    width: 100%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .section {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.section:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .section p {
     margin: 0;
+    font-weight: bold;
+    color: #333;
 }
 
-.section-button {
-    background-color: rgb(1, 23, 89);
-    color: white;
+.sectionButton,
+.chevronButton {
+    background-color: transparent;
     border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
     cursor: pointer;
-}
-
-.section-button:hover {
-    background-color: rgb(0, 20, 77);
-}
-
-.logout-container {
+    font-size: 1.4rem; /* 폰트 크기 조정 */
     display: flex;
-    justify-content: space-between; /* 버튼을 양쪽 끝으로 정렬 */
-    gap: 10px; /* 버튼 사이의 간격 */
+    align-items: center;
+    transition: color 0.3s, transform 0.3s;
 }
 
-.logout-button {
-    background-color: rgb(220, 20, 60);
-    color: white;
+.sectionButton:hover,
+.chevronButton:hover {
+    color: #0056b3; /* 호버 시 색상 변경 */
+    transform: scale(1.05); /* 호버 시 살짝 확대 */
+}
+
+.logoutButton {
+    background-color: transparent;
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
     cursor: pointer;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #888;
+    transition: color 0.3s, transform 0.3s;
+}
+.chevronButton {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s, transform 0.3s; /* 회전 애니메이션을 위한 transform transition 추가 */
 }
 
-.logout-button:hover {
-    background-color: rgb(0, 20, 77);
+.rotateChevron {
+    transform: rotate(90deg); /* 회전 각도 변경 (90도 회전해서 아래를 바라보게 함) */
+}
+
+.sectionButton:hover,
+.chevronButton:hover {
+    color: #0056b3;
+    transform: scale(1.05); /* 호버 시 살짝 확대 */
+}
+.ticketDetails {
+    display: none; /* 기본적으로 숨김 */
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.ticketDetails.show {
+    display: flex; /* 활성화 시 보이도록 설정 */
 }
