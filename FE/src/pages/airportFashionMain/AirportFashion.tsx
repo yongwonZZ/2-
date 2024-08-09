@@ -11,47 +11,63 @@ import { IoIosArrowBack as IconArrowBack } from "react-icons/io";
 const AirportFashion: React.FC = () => {
   const navigate = useNavigate();
   const [posts, setPosts] = useState<
-    { images: string[]; text: string; style: string; date: string }[]
+    {
+      id: string;
+      token: string;
+      name: string;
+      images: string[];
+      text: string;
+      style: string;
+      date: string;
+    }[]
   >([]);
   const [filteredPosts, setFilteredPosts] = useState<
-    { images: string[]; text: string; style: string; date: string }[]
+    {
+      id: string;
+      token: string;
+      name: string;
+      images: string[];
+      text: string;
+      style: string;
+      date: string;
+    }[]
   >([]);
   const [selectedFilter, setSelectedFilter] = useState<string>("");
 
   useEffect(() => {
-    // API 요청 -> 게시글 목록 데이터 불러오기기 함수
-    const fetchPosts = async () => {
-      try {
-        const response = await fetch(
-          "http://localhost:5000/api/boards?page=1&limit=10"
-        ); // API 엔드포인트
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const data = await response.json();
-        // boardList에서 게시글 목록을 추출
-        const boardList = data.boardList.map((item: any) => ({
-          images: [item.img],
-          text: item.contents,
-          style: item.category,
-          date: item.date,
-        }));
-        setPosts(boardList);
-        setFilteredPosts(boardList);
-      } catch (error) {
-        console.error(
-          "There has been a problem with your fetch operation:",
-          error
-        );
-      }
-    };
+    // // API 요청 -> 게시글 목록 데이터 불러오기 함수
+    // const fetchPosts = async () => {
+    //   try {
+    //     const response = await fetch(
+    //       "http://localhost:5000/api/boards?page=1&limit=10"
+    //     ); // API 엔드포인트
+    //     if (!response.ok) {
+    //       throw new Error("Network response was not ok");
+    //     }
+    //     const data = await response.json();
+    //     // boardList에서 게시글 목록을 추출
+    //     const boardList = data.boardList.map((item: any) => ({
+    //       images: [item.img],
+    //       text: item.contents,
+    //       style: item.category,
+    //       date: item.date,
+    //     }));
+    //     setPosts(boardList);
+    //     setFilteredPosts(boardList);
+    //   } catch (error) {
+    //     console.error(
+    //       "There has been a problem with your fetch operation:",
+    //       error
+    //     );
+    //   }
+    // };
 
-    fetchPosts();
+    // fetchPosts();
 
-    // #로컬로
-    // const storedPosts = JSON.parse(localStorage.getItem("posts") || "[]");
-    // setPosts(storedPosts);
-    // setFilteredPosts(storedPosts);
+    // #로컬 스토리지로 불러오기
+    const storedPosts = JSON.parse(localStorage.getItem("posts") || "[]");
+    setPosts(storedPosts);
+    setFilteredPosts(storedPosts);
   }, []);
 
   const handleBackClick = () => {
@@ -96,6 +112,9 @@ const AirportFashion: React.FC = () => {
                 post.images.map((url, imgIndex) => (
                   <FashionImagesItem
                     key={`${index}-${imgIndex}`}
+                    id={post.id}
+                    token={post.token}
+                    name={post.name}
                     imageUrl={url}
                     description={post.text}
                     style={post.style}

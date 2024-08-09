@@ -81,28 +81,37 @@ const PostUpload: React.FC = () => {
     setSelectedStyle(style);
   };
 
-  const handlePostSubmit = async () => {
-    if (!selectedStyle) {
-      alert("스타일을 선택해주세요.");
-      return;
-    }
-
+  const handlePostSubmit = () => {
+    // 로컬 스토리지에서 사용자 토큰 가져오기
     const userToken = localStorage.getItem("token");
-    console.log("User Token:", userToken);
 
     if (!userToken) {
       alert("로그인 후에만 게시글을 등록할 수 있습니다.");
       return;
     }
 
-    // 로컬 스토리지에서 읽어온 토큰을 쿠키로 설정
-    document.cookie = `accessToken=${userToken}; path=/;`;
+    if (!selectedStyle) {
+      alert("스타일을 선택해주세요.");
+      return;
+    }
+
+    // 게시글 고유 아이디 생성
+    const postId = Date.now().toString();
+
+    // 로컬 스토리지 사용자 이름 가져오기
+    const userString = localStorage.getItem("user");
+    const username: string = userString
+      ? JSON.parse(userString).userName ?? ""
+      : "";
 
     const newPost = {
-      category: selectedStyle,
-      userId: "66b3271e45b4dcb3b7178924", // 실제 사용자 ID로 변경 필요
-      contents: text,
-      img: imageURLs[0] || "", // 이미지가 없을 경우 빈 문자열로 처리
+      id: postId,
+      token: userToken, // 인증 토큰
+      name: username,
+      images: imageURLs,
+      text,
+      style: selectedStyle,
+      date: new Date().toISOString(),
     };
 
     try {
