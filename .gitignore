@@ -1,6 +1,5 @@
 #
 /BE/node_modules
-/BE/.env
 
 # dependencies
 /FE/node_modules
@@ -16,7 +15,7 @@
 # misc
 /FE/.DS_Store
 
-/FE/.env
+
 /FE/.env.local
 /FE/.env.development.local
 /FE/.env.test.local
