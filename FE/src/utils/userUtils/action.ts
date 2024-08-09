@@ -87,7 +87,7 @@ export const updateUserPassword = async (currentPassword: string, newPassword: s
         }
 
         const response = await axios.put(
-            `${process.env.REACT_APP_API_URL}/updatePassword`,
+            `${process.env.VM_REACT_APP_API_URL}/updatePassword`,
             { currentPassword, newPassword },
             { headers: { Authorization: `Bearer ${token}` } }
         );
