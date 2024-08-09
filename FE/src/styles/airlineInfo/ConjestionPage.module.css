@@ -4,9 +4,10 @@
 .container {
   width: 100%;
   height: 100%;
-  max-width: 400px;
+  max-width: 500px;
   margin: 0 auto;
   padding-bottom: 60px;
+  position: relative;
   /* overflow: scroll; */
 }
 .conjestion-header {
@@ -70,6 +71,7 @@ td {
 /* option-controller */
 .option-controller {
   width: 100%;
+  max-width: 500px;
   padding: 20px;
   background-color: #fafafa;
   position: absolute;
