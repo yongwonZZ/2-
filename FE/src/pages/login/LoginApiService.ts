@@ -7,7 +7,7 @@ export const getProtectedData = async () => {
 
     try {
         // 서버에 인증된 요청 보내기
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/protected`, {
+        const response = await axios.get(`${process.env.VM_REACT_APP_API_URL}/protected`, {
             headers: { Authorization: `Bearer ${token}` } // 요청 헤더에 토큰 포함
         });
         return response.data;

@@ -35,7 +35,7 @@ const BoardingPass: React.FC = () => {
 
     return (
         <>
-            <Header leftContent={"보딩패스"} />
+            <Header centerContent={"보딩패스"} />
             {tickets.map((ticket, index) => (
                 <div key={index} onClick={() => handleTicketClick(index)}>
                     <BoardingPassTicket ticket={ticket} />

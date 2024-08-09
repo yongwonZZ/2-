@@ -57,16 +57,10 @@ const Login: React.FC = () => {
     }
   };
 
-  const handleSpinnerTest = () => {
-    setIsSpinnerActive(true);
-    setTimeout(() => {
-      setIsSpinnerActive(false);
-    }, 5000); // 5초 동안 스피너 작동
-  };
 
   return (
       <div>
-        <Header leftContent="로그인" />
+        <Header centerContent="로그인" />
         <div className={styles["login-container"]}>
           {error && <p className={styles.error}>{error}</p>}
           <form className={styles["login-form"]} onSubmit={handleLogin}>
