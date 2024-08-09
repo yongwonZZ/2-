@@ -1,15 +1,15 @@
-.amountKeypad {
+.amount-keypad {
   max-width: 500px;
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: row;
   margin: 0 auto;
-  background-color: #eee;
+  background-color: #ddd;
   padding-bottom: 60px;
   box-sizing: border-box;
 }
-.amountKetpadNumber {
+.amount-keypad-number {
   width: 75%;
   display: flex;
   flex-direction: row;
@@ -18,18 +18,24 @@
 }
 .keypad {
   font-size: 22px;
+  color: var(--color-dark);
   border: 0;
   outline: none;
-  background-color: #eee;
-  aspect-ratio: 1.2/1;
+  background-color: #ddd;
+  /* aspect-ratio: 1.2/1; */
+  box-sizing: border-box;
+  margin: 0;
 }
-.keypadBtn {
+.keypad:hover {
+  color: #fff;
+}
+.keypad-btn {
   width: 33.33%;
 }
-.keypadControl {
+.keypad-control {
   width: 25%;
 }
-.keypadControlBtn {
+.keypad-control-btn {
   width: 100%;
   height: 25%;
 }

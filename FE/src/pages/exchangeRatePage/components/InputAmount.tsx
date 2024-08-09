@@ -42,10 +42,10 @@ const InputAmount: React.FC<InputAmountProps> = ({
 
   return (
     <div className={styles["amount-keypad"]}>
-      <div className={styles["amount-ketpad-number"]}>
+      <div className={styles["amount-keypad-number"]}>
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map((num) => (
           <button
-            className={`${styles.keypad} ${styles["keypad-btn"]}`}
+            className={`${styles["keypad"]} ${styles["keypad-btn"]}`}
             key={num}
             onClick={() => handleButtonClick(num.toString())}
           >
@@ -55,25 +55,25 @@ const InputAmount: React.FC<InputAmountProps> = ({
       </div>
       <div className={styles["keypad-control"]}>
         <button
-          className={`${styles.keypad} ${styles["keypad-control-btn"]}`}
+          className={`${styles["keypad"]} ${styles["keypad-control-btn"]}`}
           onClick={handleBack}
         >
           <FaBackspace />
         </button>
         <button
-          className={`${styles.keypad} ${styles["keypad-control-btn"]}`}
+          className={`${styles["keypad"]} ${styles["keypad-control-btn"]}`}
           onClick={handleChangeCountry}
         >
           <FaExchangeAlt />
         </button>
         <button
-          className={`${styles.keypad} ${styles["keypad-control-btn"]}`}
+          className={`${styles["keypad"]} ${styles["keypad-control-btn"]}`}
           onClick={handleClear}
         >
           C
         </button>
         <button
-          className={`${styles.keypad} ${styles["keypad-control-btn"]}`}
+          className={`${styles["keypad"]} ${styles["keypad-control-btn"]}`}
         ></button>
       </div>
     </div>

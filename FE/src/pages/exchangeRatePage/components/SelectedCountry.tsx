@@ -48,22 +48,24 @@ const SelectedCountry: React.FC<SelectedCountryProps> = ({
         <div className={styles["country-image"]}>
           {countryImage && (
             <img
-              className={styles.flag}
+              className={styles["flag"]}
               src={countryImage}
               alt={`${currency?.cur_nm} flag`}
             />
           )}
         </div>
-        <div className={styles["country-name"]}>{currency?.cur_nm.split(" ")[0]}</div>
+        <div className={styles["country-name"]}>
+          {currency?.cur_nm.split(" ")[0]}
+        </div>
       </div>
-      <div className={styles.amount}>
-        <h1 className={styles.rateAmount}>
+      <div className={styles["amount"]}>
+        <h1 className={styles["rate-amount"]}>
           {/* {type === "base" ? amount : convertedAmount.toFixed(2)} */}
           {type === "base"
             ? formatNumber(amount)
             : formatNumber(convertedAmount)}
         </h1>
-        <div className={styles.currencyUnit}>{currency?.cur_unit}</div>
+        <div className={styles["currency-unit"]}>{currency?.cur_unit}</div>
       </div>
     </div>
   );
