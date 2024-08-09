@@ -22,7 +22,7 @@
 }
 
 .icon-prev {
-  font-size: 48px; /* 잠재적 위험 존재 */
+  font-size: var(--font-md);
   cursor: pointer;
 }
 
