@@ -81,7 +81,7 @@ const PostUpload: React.FC = () => {
     setSelectedStyle(style);
   };
 
-  const handlePostSubmit = () => {
+  const handlePostSubmit = async () => {
     // 로컬 스토리지에서 사용자 토큰 가져오기
     const userToken = localStorage.getItem("token");
 
@@ -152,13 +152,13 @@ const PostUpload: React.FC = () => {
       </p>
       <div className={styles["image-container"]}>
         <div className={styles["image-file-button"]}>
-          <label htmlFor='file-input'>
+          <label htmlFor="file-input">
             <IconPlus size={20} />
           </label>
           <input
-            id='file-input'
-            type='file'
-            accept='image/*'
+            id="file-input"
+            type="file"
+            accept="image/*"
             onChange={handleImageChange}
             style={{ display: "none" }}
           />
@@ -177,7 +177,7 @@ const PostUpload: React.FC = () => {
       <p className={styles["description"]}>내용을 입력해주세요.</p>
       <div className={styles["textarea-container"]}>
         <textarea
-          placeholder='착용한 #스타일을 소개해주세요.'
+          placeholder="착용한 #스타일을 소개해주세요."
           maxLength={MAXLENGTH}
           onChange={handleLengthCheck}
         ></textarea>
