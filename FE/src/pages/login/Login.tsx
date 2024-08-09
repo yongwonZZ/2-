@@ -57,12 +57,6 @@ const Login: React.FC = () => {
     }
   };
 
-  const handleSpinnerTest = () => {
-    setIsSpinnerActive(true);
-    setTimeout(() => {
-      setIsSpinnerActive(false);
-    }, 5000); // 5초 동안 스피너 작동
-  };
 
   return (
       <div>
