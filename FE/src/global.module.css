@@ -22,39 +22,7 @@
   --media-web: 1024px;
 }
 
-/* media size example */
-/* 모바일 스타일 */
-/* @media (max-width: var(--media-mobile)) {
-  body {
-    font-size: 14px;
-  }
+button:hover {
+  /* background-color: inherit !important; */
+  color: inherit !important;
 }
-*/
-
-/* 태블릿 스타일 */
-/* @media (min-width: var(--media-mobile)) and (max-width: var(--media-tab)) {
-  body {
-    font-size: 15px;
-  }
-}
-*/
-
-/* 웹 스타일 */
-/* @media (min-width: var(--media-tab)) {
-  body {
-    font-size: 16px;
-  }
-}
-*/
-
-/* @import url("https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Noto+Sans+KR:wght@400;700&display=swap");
-
-html {
-  background-color: var(--color-bg);
-}
-
-.font-base {
-  font-family: "Do Hyeon", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-} */

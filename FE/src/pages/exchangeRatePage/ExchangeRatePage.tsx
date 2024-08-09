@@ -143,7 +143,7 @@ const ExchangeRatePage = () => {
         centerContent={<div className={styles["exchange-header"]}>환율</div>}
       />
       <div className={styles["last-update"]}>
-        마지막 업데이트 <span className="">{`${getCurrentTime()} 14:26`}</span>
+        마지막 업데이트 <span className="">{getCurrentTime()}</span>
       </div>
       <div className={styles["ex-rate-list"]}>
         {defaultRates.length > 0
