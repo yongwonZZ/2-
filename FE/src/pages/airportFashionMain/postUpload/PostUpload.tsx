@@ -197,7 +197,13 @@ const PostUpload: React.FC = () => {
             "시크",
             "키치",
           ].map((style) => (
-            <button key={style} onClick={() => handleStyleSelect(style)}>
+            <button
+              key={style}
+              onClick={() => handleStyleSelect(style)}
+              className={
+                selectedStyle === style ? styles["selected-style"] : ""
+              }
+            >
               {style}
             </button>
           ))}
