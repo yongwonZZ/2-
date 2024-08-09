@@ -1,172 +1,165 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import styles from "../../../styles/airportFashion/airportFashionPost/postUpload.module.css";
-import styleBackBtn from "../../../styles/airportFashion/airportFashionPost/lookDetails.module.css";
+/* 기본 셋팅 값 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Noto Sans KR", sans-serif;
+}
 
-import { IoIosArrowBack as IconArrowBack } from "react-icons/io";
-import { GoPlus as IconPlus } from "react-icons/go";
-import { IoCloseOutline as IconClose } from "react-icons/io5";
+body {
+  font-family: "Noto Sans KR", sans-serif;
+}
 
-const PostUpload: React.FC = () => {
-  const navigate = useNavigate();
+button,
+label {
+  cursor: pointer;
+}
 
-  const handleBackClick = () => {
-    navigate(-1); // 이전 페이지로 이동
-  };
+h1 {
+  font-size: 20px;
+  text-align: center;
+  margin: 20px;
+  font-weight: 500;
+}
 
-  // 실시간 글자수 세기
-  const [text, setText] = useState("");
-  const MAXLENGTH = 100;
+hr {
+  margin: auto 0px;
+  border: 0;
+  height: 0.5px;
+  background: rgb(241, 241, 241);
+}
 
-  const handleLengthCheck = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setText(e.target.value);
-  };
+.post-upload-container {
+  margin-left: 40px;
+  margin-right: 40px;
+}
 
-  // 이미지 파일 선택
-  const [imageURLs, setImageURLs] = useState<string[]>([]);
-  const [selectedStyle, setSelectedStyle] = useState<string>("");
+.top-container h1 {
+  margin-right: 15px;
+}
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
-    if (files && files[0]) {
-      const file = files[0];
-      const imageURL = URL.createObjectURL(file);
-      setImageURLs([...imageURLs, imageURL]);
-    }
-  };
+/* 이미지 첨부란 */
+.image-container,
+.description {
+  display: flex;
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: 500;
+}
 
-  const handleRemoveImage = (index: number) => {
-    setImageURLs(imageURLs.filter((_, i) => i !== index));
-  };
+.image-container {
+  display: flex;
+  width: 100%;
+  overflow-x: auto;
+}
 
-  // 룩 스타일 선택
-  const handleStyleSelect = (style: string) => {
-    setSelectedStyle(style);
-  };
+.image-file-button {
+  font-size: 12px;
+  text-align: center;
+  min-width: 120px;
+  height: 170px;
+  border: 0.5px solid #e7e7e7;
+  border-radius: 5px;
+  color: #c0c0c0;
+  margin-bottom: 10px;
+  margin-right: -10px;
+  font-weight: 400;
+}
 
-  const handlePostSubmit = () => {
-    // 로컬 스토리지에서 사용자 토큰 가져오기
-    const userToken = localStorage.getItem("token");
+.image-file-button svg {
+  color: #e7e7e7;
+  margin-top: 70px;
+  margin-bottom: 5px;
+}
 
-    if (!userToken) {
-      alert("로그인 후에만 게시글을 등록할 수 있습니다.");
-      return;
-    }
+.image-seleted {
+  display: flex;
+}
+.image-seleted img {
+  width: 120px;
+  height: 170px;
+  border-radius: 5px;
+  margin-left: 25px;
+}
 
-    if (!selectedStyle) {
-      alert("스타일을 선택해주세요.");
-      return;
-    }
+.image-seleted button {
+  margin-left: -25px;
+  margin-top: 10px;
+  padding: 2px;
+  width: 17px;
+  height: 17px;
+  border-radius: 20px;
+  color: rgb(1, 23, 89);
+  background-color: white;
+}
 
-    // 게시글 고유 아이디 생성
-    const postId = Date.now().toString();
+.image-seleted button svg {
+  padding: 1px;
+  margin-top: -1px;
+  margin-left: -1px;
+}
 
-    // 로컬 스토리지 사용자 이름 가져오기
-    const userString = localStorage.getItem("user");
-    const username: string = userString
-      ? JSON.parse(userString).userName ?? ""
-      : "";
+/* 내용 입력란 */
+.textarea-container textarea {
+  border: 0.5px solid #e7e7e7;
+  border-radius: 5px;
+  margin-top: 15px;
+  width: 100%;
+  height: 100px;
+  resize: none;
+}
+.textarea-container textarea::placeholder {
+  font-size: 12px;
+  padding-left: 7px;
+  padding-top: 5px;
+  color: #e7e7e7;
+}
 
-    const newPost = {
-      id: postId,
-      token: userToken, // 인증 토큰
-      name: username,
-      images: imageURLs,
-      text,
-      style: selectedStyle,
-      date: new Date().toISOString(),
-    };
+.textarea-container p {
+  font-size: 12px;
+  color: #c0c0c0;
+  text-align: right;
+  margin-top: 6px;
+}
 
-    // 일단 로컬스토리지에 저장 -> 추후 db 연결
-    const existingPosts = JSON.parse(localStorage.getItem("posts") || "[]");
-    existingPosts.push(newPost);
-    localStorage.setItem("posts", JSON.stringify(existingPosts));
-    navigate("/airportFashion", { state: newPost });
-  };
+.look-style-button {
+  margin-top: 15px;
+  max-width: 300px;
+}
+.look-style-button button {
+  font-size: 12px;
+  border: 0.5px solid #e7e7e7;
+  border-radius: 20px;
+  width: 60px;
+  color: #c0c0c0;
+  padding: 5px;
+  margin-bottom: 5px;
+  margin-right: 5px;
+}
 
-  return (
-    <div className={styles["post-upload-container"]}>
-      <div className={styles["top-container"]}>
-        <button
-          className={styleBackBtn["back-button"]}
-          onClick={handleBackClick}
-        >
-          <IconArrowBack size={20} />
-        </button>
-        <h1>코디 올리기</h1>
-      </div>
-      <hr />
-      <p className={styles["description"]}>
-        스타일이 잘 보이는 사진으로 올려주세요!
-      </p>
-      <div className={styles["image-container"]}>
-        <div className={styles["image-file-button"]}>
-          <label htmlFor='file-input'>
-            <IconPlus size={20} />
-          </label>
-          <input
-            id='file-input'
-            type='file'
-            accept='image/*'
-            onChange={handleImageChange}
-            style={{ display: "none" }}
-          />
-          <p>{imageURLs.length}/10</p>
-        </div>
-        {imageURLs.map((image, index) => (
-          <div className={styles["image-seleted"]} key={index}>
-            <img src={image} alt={`Upload ${index}`} />
-            <button onClick={() => handleRemoveImage(index)}>
-              <IconClose size={16} />
-            </button>
-          </div>
-        ))}
-      </div>
+.look-style-button button:nth-child(5) {
+  margin-left: 15px;
+}
 
-      <p className={styles["description"]}>내용을 입력해주세요.</p>
-      <div className={styles["textarea-container"]}>
-        <textarea
-          placeholder='착용한 #스타일을 소개해주세요.'
-          maxLength={MAXLENGTH}
-          onChange={handleLengthCheck}
-        ></textarea>
-        <p>
-          {text.length}/{MAXLENGTH}
-        </p>
-      </div>
-      <p className={styles["description"]}>스타일</p>
-      <div>
-        <div className={styles["look-style-button"]}>
-          {[
-            "캐주얼",
-            "오피스",
-            "빈티지",
-            "스포티",
-            "럭셔리",
-            "시크",
-            "키치",
-          ].map((style) => (
-            <button
-              key={style}
-              onClick={() => handleStyleSelect(style)}
-              className={
-                selectedStyle === style ? styles["selected-style"] : ""
-              }
-            >
-              {style}
-            </button>
-          ))}
-        </div>
-      </div>
-      <button
-        className={styles["post-registration-button"]}
-        onClick={handlePostSubmit}
-      >
-        등록하기
-      </button>
-    </div>
-  );
-};
+.look-style-button button:hover {
+  cursor: pointer;
+  font-weight: 500;
+  color: rgb(1, 23, 89);
+  border: 1px solid rgb(1, 23, 89);
+}
 
-export default PostUpload;
+/* 등록하기 버튼 */
+.post-registration-button {
+  background-color: rgb(1, 23, 89);
+  color: white;
+  font-size: 12px;
+
+  width: 100%;
+  border-radius: 15px;
+  padding: 10px;
+  margin-top: 60px;
+}
+.selected-style {
+  background-color: rgb(58, 70, 112);
+  color: rgb(255, 255, 255);
+}
