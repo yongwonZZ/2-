@@ -124,3 +124,32 @@
   margin-top: 0px;
   text-decoration: none;
 }
+
+.delete-menu {
+  width: 70px;
+}
+.delete-menu button {
+  font-size: 12px;
+  background-color: #e6e4e4;
+  margin-left: 5px;
+  transform: rotate(-90deg);
+  margin: 5px;
+}
+.delete-menu button svg {
+  color: white;
+  background-color: rgb(221, 221, 221);
+  border-radius: 20px;
+  padding: 2px;
+  margin-right: 13px;
+  margin-top: 2px;
+}
+.delete-menu button:last-child {
+  color: black;
+  transform: rotate(-90deg);
+  margin-left: auto;
+  margin-top: -1px;
+}
+
+.delete-menu button:hover {
+  color: rgb(255, 119, 119);
+}
