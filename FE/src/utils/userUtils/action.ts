@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export interface User {
@@ -74,5 +75,31 @@ export const fetchUserInfoFromLocalStorage = () => {
 
     } catch (error) {
         console.error('Error fetching user info from localStorage:', error);
+    }
+};
+
+// 비밀번호 업데이트 함수
+export const updateUserPassword = async (currentPassword: string, newPassword: string) => {
+    try {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            throw new Error('No token found');
+        }
+
+        const response = await axios.put(
+            `${process.env.REACT_APP_API_URL}/updatePassword`,
+            { currentPassword, newPassword },
+            { headers: { Authorization: `Bearer ${token}` } }
+        );
+
+        return response.data;
+    } catch (error: any) {
+        if (error.response) {
+            throw new Error(error.response.data.message || 'Failed to update password');
+        } else if (error.request) {
+            throw new Error('No response received from the server');
+        } else {
+            throw new Error('Error setting up the request');
+        }
     }
 };

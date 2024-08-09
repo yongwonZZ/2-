@@ -1,4 +1,4 @@
-.countryItem {
+.country-item {
   width: 100%;
   padding: 15px 10px;
   box-sizing: border-box;
@@ -8,11 +8,12 @@
   justify-content: space-between;
   transition: 0.5s;
   cursor: pointer;
+  font-weight: 700;
 }
-.countryItem:hover {
+.country-item:hover {
   background-color: #ddd;
 }
-.countryItemHeader {
+.country-item-header {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -23,7 +24,7 @@
   height: 100%;
 }
 
-.countryImage {
+.country-image {
   width: 40px;
   height: 40px;
   background-color: #555;
@@ -34,13 +35,13 @@
   text-align: end;
   color: #011759;
 }
-.rateAmount {
+.rate-amount {
   font-size: 26px;
   font-weight: 700;
   text-align: end;
   margin: 0;
 }
-.currencyUnit {
+.currency-unit {
   font-size: 12px;
   font-weight: 700;
 }

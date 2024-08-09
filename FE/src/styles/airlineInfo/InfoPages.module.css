@@ -1,8 +1,10 @@
 .container {
   width: 100%;
   height: 100vh;
-  max-width: 400px;
+  /* padding-top: 60px; */
+  /* max-width: 500px; */
   margin: 0 auto;
+  box-sizing: border-box;
 }
 a {
   color: inherit;
@@ -13,21 +15,25 @@ a {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  max-width: 500px;
+  margin: 0 auto;
 }
-.updateTime {
+.update-time {
   text-align: end;
   color: #888;
   font-size: 12px;
   padding: 0 20px 5px 0;
 }
-.parkingHeader {
+.parking-header {
+  width: 100%;
+  /* position: fixed; */
   font-size: 18px;
   font-weight: 700;
   align-items: center;
   display: flex;
   gap: 10px;
 }
-.feeInfo {
+.fee-info {
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -35,7 +41,7 @@ a {
   color: #888;
   align-items: end;
 }
-.parkingListItem {
+.parking-list-item {
   font-weight: 700;
   display: flex;
   justify-content: space-between;

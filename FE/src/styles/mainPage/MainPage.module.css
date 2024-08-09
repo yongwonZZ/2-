@@ -1,12 +1,14 @@
 .wrapper {
   width: 100%;
-  max-width: 400px; /* width는 0~400px 범위 */
+  max-width: var(--media-tab);
   margin: auto;
   display: flex;
   flex-direction: column;
-  padding-bottom: 60px; /* navbar 높이만큼 여백 추가 */
+  padding-bottom: 60px;
 }
 
 .icon {
+  color: var(--color-base);
+  font-size: var(--font-md);
   margin-right: 10px;
 }
