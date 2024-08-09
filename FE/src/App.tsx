@@ -37,6 +37,7 @@ function App() {
 
           {/* 로그인 및 마이페이지 관련 라우트 */}
           <Route path="/login/*" element={<LoginMain />} />
+
           {/* BoardingPass 관련 라우트 */}
           <Route path="/boardingPass/*" element={<BoardingPassMain />} />
         </Routes>
