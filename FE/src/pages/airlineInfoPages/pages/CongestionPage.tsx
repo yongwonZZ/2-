@@ -116,7 +116,7 @@ const CongestionPage: React.FC = () => {
 
   return (
     <>
-      <div className={styles.container + " " + styles.conjestion}>
+      <div className={styles["container"] + " " + styles["conjestion"]}>
         <Header
           leftContent={
             <div className={styles["conjestion-header"]}>
