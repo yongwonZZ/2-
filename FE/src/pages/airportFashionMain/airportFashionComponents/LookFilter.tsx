@@ -1,5 +1,5 @@
 import React from "react";
-import "../airportFashion.css";
+import styles from "../../../styles/airportFashion/airportFashion.module.css";
 
 interface LookFilterProps {
   onFilterClick: (filter: string) => void;
@@ -10,7 +10,7 @@ const LookFilter: React.FC<LookFilterProps> = ({
   onFilterClick,
   selectedFilter,
 }) => {
-  const styles = [
+  const lookStyles = [
     "",
     "캐주얼",
     "오피스",
@@ -22,18 +22,18 @@ const LookFilter: React.FC<LookFilterProps> = ({
   ];
 
   return (
-    <div className='look-button-container'>
-      {styles.map((style) => (
+    <div className={styles["look-button-container"]}>
+      {lookStyles.map((lookStyle) => (
         <button
-          key={style}
-          onClick={() => onFilterClick(style)}
+          key={lookStyle}
+          onClick={() => onFilterClick(lookStyle)}
           style={{
             backgroundColor:
-              selectedFilter === style ? "rgb(1, 23, 89)" : "initial",
-            color: selectedFilter === style ? "#fff" : "initial",
+              selectedFilter === lookStyle ? "rgb(1, 23, 89)" : "initial",
+            color: selectedFilter === lookStyle ? "#fff" : "initial",
           }}
         >
-          {style === "" ? "전체" : style}
+          {lookStyle === "" ? "전체" : lookStyle}
         </button>
       ))}
     </div>

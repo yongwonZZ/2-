@@ -1,0 +1,22 @@
+/* 가장 바깥 wrapper */
+.wrapper {
+  background-color: #fff;
+  margin: 10px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.header {
+  margin: 12px 0;
+}
+
+.header h3 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}

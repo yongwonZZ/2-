@@ -1,0 +1,62 @@
+.wrapper {
+  width: 100%;
+  max-width: var(--media-tab);
+  min-height: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 60px; /* navbar 높이만큼 여백 추가 */
+}
+
+.icon-prev,
+.icon-share {
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.icon-prev:hover,
+.icon-share:hover {
+  color: var(--color-base);
+}
+
+.icon-departure {
+  font-size: 32px;
+}
+
+.card {
+  padding: 16px;
+  font-size: var(--font-sm);
+  border-bottom: 1px solid #ccc;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* 출발 항공편일 때는 역순 정렬 */
+.reverse {
+  flex-direction: row-reverse;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.section img {
+  width: 96px;
+  height: auto;
+}
+
+.btn {
+  position: sticky;
+  bottom: 60px;
+  padding: 20px 0;
+  max-width: inherit;
+  background-color: var(--color-dark);
+  font-size: var(--font-sm);
+  color: white;
+  text-decoration: none;
+}

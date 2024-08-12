@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { IoMdRefresh } from "react-icons/io";
 import { lastUpdatedTime } from "../../../utils/formatTime";
-import styles from "./AirlineLastUpdated.module.css";
+import styles from "../../../styles/airlinePage/airlineSerchComponents/AirlineLastUpdated.module.css";
 
 type AirlineLastUpdatedProps = {
   dataUpdatedAt: number;

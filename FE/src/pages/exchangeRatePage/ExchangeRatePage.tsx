@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import ExRateHeaderItem from "../../pages/exchangeRatePage/components/ExRateHeaderItem";
-import "./styles/ExchangeRatePage.css";
+import styles from "../../styles/exchangeRatePage/ExchangeRatePage.module.css";
 import SelectedCountry from "../../pages/exchangeRatePage/components/SelectedCountry";
 import InputAmount from "../../pages/exchangeRatePage/components/InputAmount";
 import {
@@ -9,6 +9,7 @@ import {
 } from "../../pages/exchangeRatePage/getExchangeRates";
 import Header from "../../components/Header";
 import { FaChevronLeft } from "react-icons/fa";
+import countryNameMapping from "./countryNameMapping";
 
 interface ExchangeRate {
   cur_unit: string;
@@ -41,7 +42,7 @@ const ExchangeRatePage = () => {
   const type = "AP01";
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchExchangeRatesAndImages = async () => {
       try {
         const rates = await fetchExchangeRate(searchdate, type);
         setExchangeRates(rates);
@@ -52,20 +53,26 @@ const ExchangeRatePage = () => {
         if (krwRate) setBaseCountry(krwRate);
         if (usdRate) setTargetCountry(usdRate);
 
-        // 국가 이미지 불러오기
-        for (const rate of rates) {
-          const countryName = rate.cur_nm.split(" ")[0];
-          const flagUrl = await fetchCountryImage(countryName);
-          setCountryImages((prevImages) => ({
-            ...prevImages,
-            [rate.cur_unit]: flagUrl,
-          }));
-        }
+        const countryImagesTemp: { [key: string]: string } = {};
+
+        await Promise.all(
+          rates.map(async (rate) => {
+            const countryName = rate.cur_nm.split(" ")[0];
+            const mappedCountryName =
+              countryNameMapping[countryName] || countryName;
+
+            const flagUrl = await fetchCountryImage(mappedCountryName);
+            countryImagesTemp[rate.cur_unit] = flagUrl;
+          })
+        );
+
+        setCountryImages(countryImagesTemp);
       } catch (error) {
         console.error("Failed to fetch exchange rates", error);
       }
     };
-    fetchData();
+
+    fetchExchangeRatesAndImages();
   }, [searchdate, type]);
 
   const defaultRates = useMemo(
@@ -92,10 +99,10 @@ const ExchangeRatePage = () => {
   );
 
   return isToggle ? (
-    <div className="container">
+    <div className={styles.container}>
       <Header
         leftContent={
-          <div className="exchange-header">
+          <div className={styles["exchange-header"]}>
             <FaChevronLeft
               style={{ fontSize: "22px" }}
               onClick={() => setIsToggle(false)}
@@ -104,37 +111,41 @@ const ExchangeRatePage = () => {
           </div>
         }
       />
-      <div className="country-list">
+      <div className={styles["country-list"]}>
         {exchangeRates.map((item, index) => (
           <div
-            className="country-item"
+            className={styles["country-item"]}
             key={index}
             onClick={() => handleSelectCountry(item)}
           >
-            <div className="country-item-header">
-              <div className="country-image">
+            <div className={styles["country-item-header"]}>
+              <div className={styles["country-image"]}>
                 {countryImages[item.cur_unit] && (
                   <img
-                    className="flag"
+                    className={styles["flag"]}
                     src={countryImages[item.cur_unit]}
                     alt={item.cur_nm}
                   />
                 )}
               </div>
-              <div className="country-name">{item.cur_nm.split(" ")[0]}</div>
+              <div className={styles["country-name"]}>
+                {item.cur_nm.split(" ")[0]}
+              </div>
             </div>
-            <div className="country-amount">{item.cur_unit}</div>
+            <div className={styles["country-amount"]}>{item.cur_unit}</div>
           </div>
         ))}
       </div>
     </div>
   ) : (
-    <div className="container">
-      <Header leftContent={<div className="exchange-header">환율</div>} />
-      <div className="last-update">
-        마지막 업데이트 <span className="">{`${getCurrentTime()} 14:26`}</span>
+    <div className={styles.container}>
+      <Header
+        centerContent={<div className={styles["exchange-header"]}>환율</div>}
+      />
+      <div className={styles["last-update"]}>
+        마지막 업데이트 <span className="">{getCurrentTime()}</span>
       </div>
-      <div className="ex-rate-list">
+      <div className={styles["ex-rate-list"]}>
         {defaultRates.length > 0
           ? defaultRates.map((rate) => (
               <ExRateHeaderItem
@@ -147,7 +158,7 @@ const ExchangeRatePage = () => {
               <ExRateHeaderItem key={item} curUnit={item} dealBasR="..." />
             ))}
       </div>
-      <div className="selected-list">
+      <div className={styles["selected-list"]}>
         {baseCountry ? (
           <div
             onClick={() => {
@@ -158,15 +169,17 @@ const ExchangeRatePage = () => {
             <SelectedCountry
               type="base"
               amount={amount}
-              {...baseCountry}
+              baseCountry={baseCountry ?? undefined}
               countryImage={countryImages[baseCountry.cur_unit]}
             />
           </div>
         ) : (
-          <div className="country-item">
-            <div className="country-item-header">
-              <div className="country-image"></div>
-              <div className="country-name">데이터를 불러오는 중입니다</div>
+          <div className={styles["country-item"]}>
+            <div className={styles["country-item-header"]}>
+              <div className={styles["country-image"]}></div>
+              <div className={styles["country-name"]}>
+                데이터를 불러오는 중입니다
+              </div>
             </div>
           </div>
         )}
@@ -180,15 +193,18 @@ const ExchangeRatePage = () => {
             <SelectedCountry
               type="target"
               amount={amount}
-              {...targetCountry}
+              baseCountry={baseCountry ?? undefined}
+              targetCountry={targetCountry ?? undefined}
               countryImage={countryImages[targetCountry.cur_unit]}
             />
           </div>
         ) : (
-          <div className="country-item">
-            <div className="country-item-header">
-              <div className="country-image"></div>
-              <div className="country-name">데이터를 불러오는 중입니다</div>
+          <div className={styles["country-item"]}>
+            <div className={styles["country-item-header"]}>
+              <div className={styles["country-image"]}></div>
+              <div className={styles["country-name"]}>
+                데이터를 불러오는 중입니다
+              </div>
             </div>
           </div>
         )}

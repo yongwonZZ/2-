@@ -17,6 +17,11 @@ const UserSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+    phoneNumber: {
+      type: String,
+      required: true,
+      unique: true,
+    },
     role: {
       type: String,
       enum: ['user', 'admin'], // 관리자랑 구별 짓기 위함
