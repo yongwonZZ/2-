@@ -11,10 +11,6 @@ const CommentSchema = new mongoose.Schema({
     ref: 'User',
     required: true,
   },
-  userName: {
-    type: String,
-    required: true,
-  },
   contents: {
     type: String,
     required: true,

@@ -1,41 +1,72 @@
-import React, { useEffect, useState } from "react";
-import "../styles/SelectedCountry.css";
+import React, { useCallback } from "react";
+import styles from "../../../styles/exchangeRatePage/SelectedCountry.module.css";
 
-interface SelectedCountryProps {
-  amount: number;
+interface ExchangeRate {
   cur_unit: string;
   cur_nm: string;
   deal_bas_r: string;
-  type: string;
-  countryImage?: string; // 이미지 prop 추가
 }
+
+interface SelectedCountryProps {
+  type: "base" | "target";
+  amount: number;
+  baseCountry?: ExchangeRate;
+  targetCountry?: ExchangeRate;
+  countryImage?: string;
+}
+
 const SelectedCountry: React.FC<SelectedCountryProps> = ({
-  amount,
-  cur_unit,
-  cur_nm,
-  deal_bas_r,
   type,
+  amount,
+  baseCountry,
+  targetCountry,
   countryImage,
 }) => {
-  useEffect(() => {
-    console.log("type : ", type, amount, "deal : ", deal_bas_r);
-  }, [amount]);
+  const currency = type === "base" ? baseCountry : targetCountry;
+  const baseRate = baseCountry
+    ? parseFloat(baseCountry.deal_bas_r.replace(/,/g, ""))
+    : 1;
+  const targetRate = targetCountry
+    ? parseFloat(targetCountry.deal_bas_r.replace(/,/g, ""))
+    : 1;
+
+  // 환율 계산 로직
+  const convertedAmount =
+    type === "base" ? amount : amount * (baseRate / targetRate);
+
+  // 숫자 포맷팅 함수
+  const formatNumber = useCallback((num: number) => {
+    return new Intl.NumberFormat("en-US", {
+      // minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(num);
+  }, []);
 
   return (
-    <div className="country-item">
-      <div className="country-item-header">
-        <div className="country-image">
+    <div className={styles["country-item"]}>
+      <div className={styles["country-item-header"]}>
+        <div className={styles["country-image"]}>
           {countryImage && (
-            <img className="flag" src={countryImage} alt={`${cur_nm} flag`} />
+            <img
+              className={styles["flag"]}
+              src={countryImage}
+              alt={`${currency?.cur_nm} flag`}
+            />
           )}
         </div>
-        <div className="country-name">{cur_unit}</div>
+        <div className={styles["country-name"]}>
+          {currency?.cur_nm.split(" ")[0]}
+        </div>
       </div>
-      <h1 className="rate-amount">
-        {type === "base"
-          ? amount
-          : Number(deal_bas_r.split(",").join("")) * Number(amount)}
-      </h1>
+      <div className={styles["amount"]}>
+        <h1 className={styles["rate-amount"]}>
+          {/* {type === "base" ? amount : convertedAmount.toFixed(2)} */}
+          {type === "base"
+            ? formatNumber(amount)
+            : formatNumber(convertedAmount)}
+        </h1>
+        <div className={styles["currency-unit"]}>{currency?.cur_unit}</div>
+      </div>
     </div>
   );
 };
