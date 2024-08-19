@@ -1,0 +1,109 @@
+/* .conjestion {
+  position: relative;
+} */
+.container {
+  width: 100%;
+  height: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding-bottom: 60px;
+  position: relative;
+  /* overflow: scroll; */
+}
+.conjestion-header {
+  font-size: 16px;
+  font-weight: 700;
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  /* padding: 0 10px; */
+}
+/* .list-container {
+  display: flex;
+  flex-direction: column;
+}
+.list-item {
+  display: flex;
+} */
+/* 해야함 */
+table {
+  vertical-align: center;
+}
+.data-table {
+  width: 100%;
+  font-size: 12px;
+  text-align: center;
+  z-index: -10;
+  /* align-items: center; */
+}
+.data-head {
+  background-color: #ddd;
+  height: 25px;
+  font-weight: 700;
+}
+tbody {
+  color: #027ffe;
+}
+.list-item {
+  height: 25px;
+}
+.current-time {
+  background-color: #dfdfdf;
+  font-weight: 700;
+  border: 1px solid #011759;
+}
+.list-item:last-child {
+  color: red;
+  background-color: #dfdfdf;
+}
+.list-item:last-child .dataTimeSet {
+  display: none;
+}
+th,
+td {
+  vertical-align: center;
+}
+.data-time {
+  color: #000;
+  font-weight: 700;
+}
+
+/* option-controller */
+.option-controller {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 0 0 10% 10%;
+  padding: 20px;
+  background-color: #fafafa;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  position: fixed;
+}
+.option-list {
+  width: 100%;
+  display: flex;
+  color: #555;
+}
+.option-btn {
+  font-size: 16px;
+  font-weight: 700;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  padding: 5px 0;
+  color: #000;
+}
+.btn-active {
+  color: #027ffe;
+}
+.select-btn {
+  background-color: #027ffe;
+  color: #fff;
+  font-size: 16px;
+  padding: 5px 0;
+  border: none;
+  border-radius: 10px;
+}

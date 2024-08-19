@@ -1,0 +1,74 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.spinner {
+    width: 120px;
+    height: 120px;
+    position: relative;
+}
+
+.earth {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #3498db, #2e8ece);
+    box-shadow: inset -10px -10px 30px rgba(0, 0, 0, 0.2),
+    inset 10px 10px 30px rgba(255, 255, 255, 0.5);
+    overflow: hidden;
+}
+
+.earth::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: linear-gradient(to right, #2e8ece, #3498db, #2e8ece, #3498db);
+    background-size: 50% 100%;
+    animation: scroll 6s linear infinite;
+}
+
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.plane-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.plane {
+    font-size: 72px;
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%) rotate(90deg);
+}

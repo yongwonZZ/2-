@@ -1,0 +1,14 @@
+.wrapper {
+  width: 100%;
+  max-width: var(--media-tab);
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 60px;
+}
+
+.icon {
+  color: var(--color-base);
+  font-size: var(--font-md);
+  margin-right: 10px;
+}

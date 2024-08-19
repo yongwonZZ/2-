@@ -1,4 +1,4 @@
-import styles from "./AirlineAttribute.module.css";
+import styles from "../../../styles/airlinePage/airlineSerchComponents/AirlineAttribute.module.css";
 
 type AirlineAttributeProps = {
   arrivals: boolean;
@@ -21,7 +21,7 @@ function AirlineAttribute({ arrivals }: AirlineAttributeProps) {
       </div>
       <div className={styles["section-lg"]}>
         <span>{arrivals ? "출구" : "체크인"}</span>
-        <span>{arrivals ? "체크인" : "탑승게이트"}</span>
+        <span>{arrivals ? "수하물" : "탑승게이트"}</span>
       </div>
     </div>
   );
