@@ -1,5 +1,5 @@
 import { memo } from "react";
-import styles from "./Header.module.css";
+import styles from "../styles/components/Header.module.css";
 
 type HeaderProps = {
   leftContent?: React.ReactNode; // Header 좌측에 위치할 것들(뒤로 가기 기능 icon 등..)

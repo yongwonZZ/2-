@@ -1,5 +1,5 @@
 import FlightFilterOption from "./FlightFilterOption";
-import styles from "./FlightFilterOptions.module.css";
+import styles from "../../../styles/airlinePage/airlineSerchComponents/FlightFilterOptions.module.css";
 
 type FlightFilterStatus = {
   arrivals: boolean;

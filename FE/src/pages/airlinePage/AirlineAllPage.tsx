@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./AirlineAllPage.module.css";
+import styles from "../../styles/airlinePage/AirlineAllPage.module.css";
 import Header from "../../components/Header";
 import AirlineSearchResult from "./airlineSearchComponents/AirlineSearchResult";
 import AirlineAttribute from "./airlineSearchComponents/AirlineAttribute";
@@ -98,7 +98,7 @@ function AirlineAllPage() {
           top: 60,
           height: 30,
           backgroundColor: "#fff",
-          zIndex: 1001,
+          zIndex: 101,
         }}
       ></div>
       <AirlineLastUpdated dataUpdatedAt={dataUpdatedAt} refetch={refetch} />
